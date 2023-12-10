@@ -228,6 +228,14 @@ function handleMarkpage() {
 	
 	}
 
+	// Gestion de l'input pour faire une recherche dans le contenu
 	document.getElementById("searchInput").addEventListener("input", searchText);
-
+	document.getElementById("searchInput").addEventListener("keydown", function(event) {
+		// Si on appuie sur Escape, on sort de la barre de recherche
+		if (event.key === "Escape" || event.keyCode === 27) {
+			// on réinitialise le champ d'entrée avec une chaîne vide
+			document.getElementById("searchInput").value = "";
+			searchText();
+		}
+	});
 };
