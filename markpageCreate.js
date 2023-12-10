@@ -237,7 +237,7 @@ function parseMarkdown(markdownContent) {
 
 function createMarkpage(data) {
 	const titleElement = document.getElementById("title");
-	const initialMessageElement = document.getElementById("initial-message");
+	const initialMessageElement = document.getElementById("initialMessage");
 	const mainElement = document.getElementById("content");
 	const footerContentElement = document.getElementById("footerContent");
 	const title = data[0];

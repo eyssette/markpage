@@ -18,7 +18,7 @@ header {
     text-align: center;
 }
 
-#initial-message {
+#initialMessage {
     text-align: left;
 	display:none;
 	margin-bottom:3em;

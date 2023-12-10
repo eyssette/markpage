@@ -34,7 +34,7 @@ function handleMarkpage() {
 	}
 		setTimeout(() => {
 			if (yamlMaths) {
-				const initialMessageElement = document.getElementById('initial-message');
+				const initialMessageElement = document.getElementById('initialMessage');
 				initialMessageElement.innerHTML = convertLatexExpressions(initialMessageElement.innerHTML)
 				const sectionContent = document.querySelectorAll(".sectionContent");
 					for (const section of sectionContent) {
