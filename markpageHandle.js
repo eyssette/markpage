@@ -123,7 +123,7 @@ function handleMarkpage() {
 			} else {
 				params = getParams(linkURL);
 				// Affichage par défaut de la première sous-section
-				if (params.sec && !params.subsec) {
+				if (params.sec && !params.subsec && markpageData[3][params.sec].length>1) {
 					params.subsec = "1";
 				}
 				// Redirection en fonction des paramètres dans l'URL
