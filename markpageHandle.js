@@ -95,5 +95,24 @@ function handleMarkpage() {
 			}
 		});
 	});
+
+	window.addEventListener('popstate', function(event) {
+		let actualURL = window.location.search;
+		console.log(actualURL);
+		console.log(history);
+		params = getParams(actualURL);
+		// Redirection en fonction des paramètres dans l'URL
+		newURL = baseURL + '?' + Object.keys(params).map(function(key) {
+			return key + '=' + encodeURIComponent(params[key]);
+		}).join('&');
+
+		if(actualURL == '') {
+			params=undefined;
+			showOnlyThisElement(undefined, 'sections');
+			showOnlyThisElement(undefined, 'subsections');
+		}
+		// On change l'affichage de l'URL sans recharger la page
+		changeDisplayBasedOnParams(params);
+	});
 	
 };
