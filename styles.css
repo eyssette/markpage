@@ -178,6 +178,20 @@ input {
 	margin-left:-1em;
 }
 
+#displayResults ul {
+	margin-top: 1em;
+    background: rgb(222 222 233);
+    padding: 10px 20px;
+    font-size: 13px;
+	border-radius:20px 0px 20px 0px;
+	list-style-type: none;
+}
+
+#displayResults a span {
+	display:none;
+}
+
+
 @media screen and (max-width: 600px) {
 	#searchBar {
 		margin-left:1em;
