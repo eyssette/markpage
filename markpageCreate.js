@@ -68,7 +68,7 @@ function getMarkdownContent() {
 			.catch((error) => {
 				markpageData = parseMarkdown(defaultMarkpage);
 				createMarkpage(markpageData);
-				alert("Il y a une erreur dans l'URL. Merci de la vérifier et de vous assurer que le fichier est bien accessible.")
+				alert("Il y a une erreur dans l'URL ou dans la syntaxe du fichier source. Merci de vous assurer que le fichier est bien accessible et qu'il respecte les règles d'écriture de Markpage")
 				console.log(error);
 			});
 	} else {
