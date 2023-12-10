@@ -125,7 +125,7 @@ function handleMarkpage() {
 			} else {
 				params = getParams(linkURL);
 				// Affichage par défaut de la première sous-section
-				if (params.sec && !params.subsec && subSectionsData[params.sec].length>1) {
+				if (params.sec && !params.subsec && subSectionsData[params.sec-1].length>1) {
 					params.subsec = "1";
 				}
 				// Redirection en fonction des paramètres dans l'URL
