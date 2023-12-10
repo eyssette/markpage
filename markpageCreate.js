@@ -30,6 +30,8 @@ const shortcuts = [
 	["myMarkpage","URL"],
 ]
 
+let markpageData;
+
 function getMarkdownContent() {
 	// Récupération du markdown externe
 	let urlMD = window.location.hash.substring(1); // Récupère l'URL du hashtag sans le #

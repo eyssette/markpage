@@ -163,7 +163,26 @@ h3 span {
 	margin-left:4.1em;
 }
 
+
+input {
+	border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.05);
+	border:none;
+	height: 24px;
+    padding: 0px 12px;
+}
+
+#searchBar {
+	position:absolute;
+	top:10px;
+	margin-left:-1em;
+}
+
 @media screen and (max-width: 600px) {
+	#searchBar {
+		margin-left:1em;
+	}
+
     footer {
 		font-size: 10px;
 		height:auto;
@@ -177,7 +196,7 @@ h3 span {
 	}
 
 	h1 {
-		padding-top: 0.75em;
+		padding-top: 2em;
     	margin-top: -0.25em;
 	}
 
