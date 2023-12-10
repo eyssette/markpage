@@ -2,6 +2,8 @@ function handleMarkpage() {
 
 	const bodyElement = document.body;	
 
+	const subSectionsData = markpageData[3];
+
 	function convertLatexExpressions(string) {
 		string = string
 			.replace(/\$\$(.*?)\$\$/g, "&#92;[$1&#92;]")
@@ -123,7 +125,7 @@ function handleMarkpage() {
 			} else {
 				params = getParams(linkURL);
 				// Affichage par défaut de la première sous-section
-				if (params.sec && !params.subsec && markpageData[3][params.sec].length>1) {
+				if (params.sec && !params.subsec && subSectionsData[params.sec].length>1) {
 					params.subsec = "1";
 				}
 				// Redirection en fonction des paramètres dans l'URL
@@ -167,4 +169,5 @@ function handleMarkpage() {
 		changeDisplayBasedOnParams(params);
 	});
 	
+	console.log(markpageData)
 };
