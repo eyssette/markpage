@@ -1,7 +1,7 @@
 // Par défaut on affiche ça :
 const defaultMarkpage = `# Markpage
 
-> ![](markmap-logo.jpg =100x100)
+> <div style="float:left; margin-right:2em; " markdown> ![](markmap-logo.png =90x90)</div> 
 > 
 > Markpage est un outil libre et gratuit qui permet de créer facilement un minisite web ou une application pour smarphone, à partir d'un simple fichier en Markdown
 > 
@@ -15,24 +15,6 @@ Voici le principe
 
 ## Des exemples ?
 
-### Orientation en BTS
-![](markmap-logo.jpg)
-
-Une application créée par 
-URL
-
-![](markmap-logo.jpg)
-
-- test
-- test
-
-1. test
-2. test
-
-### Le vocabulaire de l'AESH
-
-Une application créée par 
-URL
 
 ## Crédits
 
