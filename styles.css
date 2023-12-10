@@ -156,6 +156,12 @@ h3 a {
 	text-decoration: none;
 }
 
+h3 span {
+	display:block;
+	font-weight:300;
+	font-size:0.9em;
+	margin-left:4.1em;
+}
 
 @media screen and (max-width: 600px) {
 	
@@ -182,11 +188,27 @@ h3 a {
 		gap:5px;
 	}
 
+	h3 {
+		width:300px;
+		border-bottom: 1px solid #999;
+		padding-top:20px;
+		padding-bottom:15px;
+	}
+	.subSection.visible h3 {
+		border-color:#AAA;
+	}
+
 }
 
 @media screen and (min-width: 601px) {
 	h3 {
 		margin-left:-20px;
+	}
+	h3 span {
+		font-size: 0.65em;
+    	margin-left: 5em;
+    	width: 100%;
+    	padding-bottom: 8px;
 	}
 	.subSectionContent {
 		position: absolute;
