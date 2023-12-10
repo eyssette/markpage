@@ -89,6 +89,9 @@ function removeUselessCarriages(text) {
 	return text;
 }
 
+let yamlData;
+let yamlStyle;
+
 function parseMarkdown(markdownContent) {
 	// Gestion de la conversion du markdown en HTML
 	const converter = new showdown.Converter({
@@ -103,6 +106,34 @@ function parseMarkdown(markdownContent) {
 		return html;
 	}
 	
+	if (markdownContent.split("---").length > 2) {
+		yamlPart = markdownContent.split("---")[1]
+		try {
+			yamlData = jsyaml.load(yamlPart);
+			for (const property in yamlData) {
+				if (property == "maths") {
+					yamlMaths = yamlData[property];
+					if (yamlMaths === true) {
+						Promise.all([
+							loadScript(
+								"https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+							),
+							loadCSS(
+								"https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+							),
+						]);
+					}
+				}
+				if (property == "style") {
+					yamlStyle = yamlData[property];
+					const styleElement = document.createElement("style");
+					styleElement.innerHTML = yamlStyle;
+					document.body.appendChild(styleElement);
+				}
+			}
+		} catch (e) {}
+	}
+
 	// On distingue le header et le contenu
 	const indexfirstH2title = markdownContent.indexOf("## ");
 	const header = markdownContent.substring(0,indexfirstH2title);
@@ -113,10 +144,10 @@ function parseMarkdown(markdownContent) {
 	let markpageTitle;
 	let initialMessageContent;
 	if (indexStartBlockquote == -1) {
-		markpageTitle = header.replace('# ','').replace('\n','');
+		markpageTitle = header.replace('# ','').replace(/---(.|\n)*---/,'').replace('\n','').trim();
 		initialMessageContent = '';
 	} else {
-		markpageTitle = header.substring(0,indexStartBlockquote).replace('# ','').replace('\n','');
+		markpageTitle = header.substring(0,indexStartBlockquote).replace('# ','').replace(/---(.|\n)*---/,'').replace('\n','').trim();
 		initialMessageContent = header.substring(indexStartBlockquote);
 	}
 
