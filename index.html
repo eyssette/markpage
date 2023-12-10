@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Markpage</title>
+    <meta name="description" content="Un outil pour créer un mini site web ou une appli pour smartphone à partir d'un fichier en Markdown" />
+	<meta name="author" content="Cédric Eyssette" />
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' href='styles.css'>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body class="displayHomepage">
+    <div id="innerBox">
+        <header>
+            <h1 id="title"></h1>
+            <div id="initial-message"></div>
+        </header>
+        <main id="content">
+        </main>
+    </div>
+        <footer><div id="footerContent"></div></footer>
+    <script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
+    <script src='markpageHandle.js'></script>
+    <script src='markpageCreate.js'></script>
+</body>
+</html>

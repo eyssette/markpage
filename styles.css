@@ -1,0 +1,188 @@
+body {
+	font-family: "Inter",sans-serif,Avenir,Helvetica,Arial;
+	padding:0;
+	margin:0;
+	overflow-y: scroll;
+}
+
+#innerBox {
+    max-width: 700px;
+	min-height: 82vh;
+    margin: auto;
+	padding: 1em 3em;
+	margin-bottom:5em;
+	background: rgb(246, 246, 246);
+}
+
+header {
+    text-align: center;
+}
+
+#initial-message {
+    text-align: left;
+	display:none;
+	margin-bottom:3em;
+}
+
+img {
+	max-height:300px;
+}
+
+main {
+    text-align: left;
+}
+
+
+footer {
+	width: 95vw;
+	height:3em;
+	margin:0;
+	position:fixed;
+	padding:20px 10px;
+	font-size: 0.9em;
+	text-align: center;
+	margin-bottom:-10px;
+	bottom:5px;
+	background-color: white;
+}
+
+#footerContent {
+	max-width: 700px;
+	margin:auto;
+	display:flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+}
+
+footer a {
+	text-decoration: none;
+	color:#666;
+}
+footer a:hover {
+	color: black;
+}
+
+
+.sectionContent, .displayHomepage .sectionContent, .displayHomepage .sectionContent, .displayHomepage .subSection, .displaySection header, .displaySubSection header, .displaySection h2, .displaySubSection h2 {
+	display:none;
+}
+
+.displaySection .subSectionContent {
+	display:none;
+}
+
+.displaySection .visible h2, .displaySubSection .visible h2 {
+	display:block;
+}
+
+.visible, .visible .sectionContent, .displaySubSection .subSection.visible {
+	display:flex!important;
+	flex-direction: column;
+}
+
+.displaySubSection .subSection:not(.visible) .subSectionContent {
+	display:none;
+}
+
+
+
+h1 {
+	margin-bottom: 1.25em;
+}
+
+h2 {
+	text-align: center;
+	flex-grow: 1;
+	width:100%!important;
+}
+
+
+h3 {
+	flex-shrink: 0;
+    width: 180px;
+	padding: 10px 20px;
+}
+
+h3 img {
+	vertical-align: middle;
+	margin-right:1em;
+	width:50px;
+	height:50px;
+	border-radius: 50%;
+}
+
+h3 a {
+	color:black;
+	text-decoration: none;
+}
+
+.subSection,.subSection.visible {
+	display:flex;
+	flex-direction: row!important;
+	gap: 40px;
+}
+
+.subSection.visible h3 {
+	background-color: #DDD;
+}
+
+
+.displayHomepage h2 a {
+	text-decoration: none;
+    background-color: #ffffff5f;
+    padding: 5px 40px;
+    display: inline-block;
+    color: black;
+    border-radius: 12px;
+    font-size: 0.95em;
+    text-align: left!important;
+    border: 1px solid #666;
+	width:60%;
+	font-weight: 300;
+}
+.displayHomepage h2 a:hover {
+	background-color: rgb(0, 132, 255);
+	border-color: rgb(0, 132, 255);
+	color:white;
+}
+
+.displaySection h2, .displaySubSection h2 {
+	margin-bottom:1em;
+}
+.displaySection h2 a, .displaySubSection h2 a {
+	color:black;
+	text-decoration: none;
+}
+
+
+@media screen and (max-width: 600px) {
+	
+    footer {
+		font-size: 9px;
+	}
+	h2 {
+		font-size: 1em;
+	}
+	
+
+	.displaySubSection .subSection {
+		flex-wrap: wrap;
+		gap:5px;
+	}
+
+}
+
+@media screen and (min-width: 601px) {
+	h3 {
+		margin-left:-20px;
+	}
+	.subSectionContent {
+		position: absolute;
+		margin-left: 240px;
+		width: 53%;
+		max-width: 500px;
+		top:100px;
+	}
+}
