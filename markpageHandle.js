@@ -74,6 +74,10 @@ function handleMarkpage() {
 				showOnlyThisElement(undefined, 'subsections')
 			} else {
 				params = getParams(linkURL);
+				// Affichage par défaut de la première sous-section
+				if (params.sec && !params.subsec) {
+					params.subsec = "1";
+				}
 				// Redirection en fonction des paramètres dans l'URL
 				newURL = baseURL + '?' + Object.keys(params).map(function(key) {
 					return key + '=' + encodeURIComponent(params[key]);
