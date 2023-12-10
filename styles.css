@@ -160,12 +160,21 @@ h3 a {
 @media screen and (max-width: 600px) {
 	
     footer {
-		font-size: 9px;
+		font-size: 10px;
 	}
 	h2 {
 		font-size: 1em;
 	}
-	
+	#innerBox {
+		padding:0em 0.75em;
+	}
+	.displayHomepage #innerBox {
+		padding:0em!important;
+	}
+
+	.displayHomepage #innerBox blockquote {
+		margin:1em;
+	}
 
 	.displaySubSection .subSection {
 		flex-wrap: wrap;

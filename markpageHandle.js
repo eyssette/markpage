@@ -85,7 +85,7 @@ function handleMarkpage() {
 			changeDisplayBasedOnParams(params);
 			if (window.innerWidth < 600) {
 				link.scrollIntoView({
-					behavior: "instant"
+					behavior: "smooth"
 				});
 			} else {
 				window.scrollTo({
