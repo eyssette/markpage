@@ -83,7 +83,7 @@ function handleMarkpage() {
 			// On change l'affichage de l'URL sans recharger la page
 			history.pushState({path: newURL + '#'+ hash}, '', newURL + '#'+ hash);
 			changeDisplayBasedOnParams(params);
-			if (window.innerWidth < 600 && params.subsec) {
+			if (window.innerWidth < 600 && typeof params !== "undefined" && params.subsec ) {
 				link.scrollIntoView({
 					behavior: "smooth"
 				});
