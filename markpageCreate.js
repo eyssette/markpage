@@ -79,6 +79,7 @@ function getMarkdownContent() {
 
 getMarkdownContent()
 
+// Filtres pour supprimer des éléments inutiles
 function filterElementWithNoContent(element) {
 	value = element.trim().replace('\n','') === '' ? false : true; 
 	return value;
@@ -89,7 +90,31 @@ function removeUselessCarriages(text) {
 	return text;
 }
 
+function loadScript(src) {
+	// Fonction pour charger des scripts
+	return new Promise((resolve, reject) => {
+		const script = document.createElement("script");
+		script.src = src;
+		script.onload = resolve;
+		script.onerror = reject;
+		document.head.appendChild(script);
+	});
+}
+function loadCSS(src) {
+	// Fonction pour charger des CSS
+	return new Promise((resolve, reject) => {
+		const styleElement = document.createElement("link");
+		styleElement.href = src;
+		styleElement.rel = "stylesheet";
+		styleElement.onload = resolve;
+		styleElement.onerror = reject;
+		document.head.appendChild(styleElement);
+	});
+}
+
+// Variables pour la gestion de l'en-tête YAML
 let yamlData;
+let yamlMaths;
 let yamlStyle;
 
 function parseMarkdown(markdownContent) {
@@ -106,11 +131,13 @@ function parseMarkdown(markdownContent) {
 		return html;
 	}
 	
+	// Gestion de l'en-tête YAML
 	if (markdownContent.split("---").length > 2) {
 		yamlPart = markdownContent.split("---")[1]
 		try {
 			yamlData = jsyaml.load(yamlPart);
 			for (const property in yamlData) {
+				// Gestion des mathématiques
 				if (property == "maths") {
 					yamlMaths = yamlData[property];
 					if (yamlMaths === true) {
@@ -124,6 +151,7 @@ function parseMarkdown(markdownContent) {
 						]);
 					}
 				}
+				// Gestion des styles personnalisés
 				if (property == "style") {
 					yamlStyle = yamlData[property];
 					const styleElement = document.createElement("style");
@@ -217,15 +245,6 @@ function createMarkpage(data) {
 	let sectionsHTML = '';
 	let footerHTML = '<a href="." class="navigationLink">🏠</a>';
 
-	// On change le titre et le message initial avec le contenu personnalisé
-	titleElement.innerHTML = title;
-	if (initialMessage.length>0) {
-		initialMessageElement.innerHTML = initialMessage;
-		initialMessageElement.style.display = "block";
-	}
-	else {
-		initialMessageElement.style.display = "none";
-	}
 	let param;
 
 	// On crée le HTML pour le contenu en parcourant le contenu de chaque section
@@ -273,6 +292,14 @@ function createMarkpage(data) {
 	}
 
 	// On affiche le mini site
+	titleElement.innerHTML = title;
+	if (initialMessage.length>0) {
+		initialMessageElement.innerHTML = initialMessage;
+		initialMessageElement.style.display = "block";
+	}
+	else {
+		initialMessageElement.style.display = "none";
+	}
 	mainElement.innerHTML = sectionsHTML;
 	footerContentElement.innerHTML = footerHTML;
 	handleMarkpage()

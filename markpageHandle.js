@@ -1,5 +1,53 @@
 function handleMarkpage() {
-	const bodyElement = document.body;
+
+	const bodyElement = document.body;	
+
+	function convertLatexExpressions(string) {
+		string = string
+			.replace(/\$\$(.*?)\$\$/g, "&#92;[$1&#92;]")
+			.replace(/\$(.*?)\$/g, "&#92;($1&#92;)");
+		let expressionsLatex = string.match(
+			new RegExp(/&#92;\[.*?&#92;\]|&#92;\(.*?&#92;\)/g)
+		);
+		if (expressionsLatex) {
+			// On n'utilise Katex que s'il y a des expressions en Latex dans le Markdown
+			for (let expressionLatex of expressionsLatex) {
+				// On vérifie si le mode d'affichage de l'expression (inline ou block)
+				const inlineMaths = expressionLatex.includes("&#92;[") ? true : false;
+				// On récupère la formule mathématique
+				let mathInExpressionLatex = expressionLatex
+					.replace("&#92;[", "")
+					.replace("&#92;]", "");
+				mathInExpressionLatex = mathInExpressionLatex
+					.replace("&#92;(", "")
+					.replace("&#92;)", "");
+				// On convertit la formule mathématique en HTML avec Katex
+				stringWithLatex = katex.renderToString(mathInExpressionLatex, {
+					displayMode: inlineMaths,
+				});
+				string = string.replace(expressionLatex, stringWithLatex);
+			}
+		}
+		return string;
+	}
+		setTimeout(() => {
+			if (yamlMaths) {
+				const initialMessageElement = document.getElementById('initial-message');
+				initialMessageElement.innerHTML = convertLatexExpressions(initialMessageElement.innerHTML)
+				const sectionContent = document.querySelectorAll(".sectionContent");
+					for (const section of sectionContent) {
+						const subSectionsContent = section.querySelectorAll('.subSectionContent')
+						if (subSectionsContent.length>0) {
+							for (const subSection of subSectionsContent) {
+								subSection.innerHTML = convertLatexExpressions(subSection.innerHTML)
+							}
+						} else {
+							section.innerHTML = convertLatexExpressions(section.innerHTML)
+						}
+					}
+			}
+		}, 200);
+	
 	const sections = document.querySelectorAll('section');
 	const subSections = document.querySelectorAll('.subSection')
 	const links = document.querySelectorAll('.navigationLink');
