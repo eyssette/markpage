@@ -215,7 +215,8 @@ function handleMarkpage() {
 				for (const result of subSectionsResults) {
 					const indexSection = result[0];
 					const indexSubSection = result[1];
-					const subSectionElement = document.getElementById('subSection-'+(indexSubSection+1))
+					const sectionElement = document.getElementById('section-'+(indexSection+1))
+					const subSectionElement = sectionElement.querySelector('#subSection-'+(indexSubSection+1))
 					const subSectionTitle = subSectionElement.querySelector('h3 a').innerHTML
 					displayResultsHTML += '<li><a href="?sec='+(indexSection+1)+'&subsec='+(indexSubSection+1)+'#'+hash+'">'+subSectionTitle+'</a></li>'		
 				}
