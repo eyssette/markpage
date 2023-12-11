@@ -94,8 +94,8 @@ function handleMarkpage() {
 			const subSectionID = param.subsec;
 			if (subSectionID) {
 				bodyElement.className = "displaySubSection";
-				subSectionElement = document.getElementById("subSection-"+subSectionID);
 				sectionElement = document.getElementById("section-"+sectionID);
+				subSectionElement = sectionElement.querySelector("#subSection-"+subSectionID);
 				showOnlyThisElement(sectionElement, 'sections');
 				showOnlyThisElement(subSectionElement, 'subsections');
 			} else {
