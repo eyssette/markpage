@@ -126,7 +126,9 @@ function handleMarkpage() {
 			} else {
 				params = getParams(linkURL);
 				// Affichage par défaut de la première sous-section
-				if (params.sec && !params.subsec && subSectionsData[params.sec-1].length>1) {
+				const sectionElement = document.getElementById("section-"+params.sec)
+				const hasSubSections = sectionElement.querySelector(".subSectionContent")
+				if (params.sec && !params.subsec && hasSubSections) {
 					params.subsec = "1";
 				}
 				// Redirection en fonction des paramètres dans l'URL
