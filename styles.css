@@ -114,7 +114,7 @@ h2 {
 h3 {
 	flex-shrink: 0;
     width: 180px;
-	padding: 10px 20px;
+	padding: 5px 20px;
 }
 
 h3 img {
@@ -225,6 +225,10 @@ input {
 		padding-top: 2em;
     	margin-top: -0.25em;
 	}
+	
+	h2 {
+		margin-top:2.25em;
+	}
 
 	.displayHomepage h2 {
 		font-size: 1em;
@@ -250,11 +254,15 @@ input {
 		border-bottom: 1px solid #999;
 		padding-top:20px;
 		padding-bottom:15px;
+		margin:10px 0;
 	}
 	.subSection.visible h3 {
 		border-color:#AAA;
 	}
 
+	.subSectionContent img {
+		max-width: 340px;
+	}
 }
 
 @media screen and (min-width: 601px) {
@@ -274,5 +282,9 @@ input {
 		max-width: 500px;
 		top:100px;
 		padding-bottom:10em;
+	}
+
+	.subSectionContent img {
+		max-width: 460px;
 	}
 }
