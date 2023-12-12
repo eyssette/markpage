@@ -197,7 +197,7 @@ function parseMarkdown(markdownContent) {
 		// Dans chaque section, on regarde s'il y a des sous-sections (définis par un titre h3)
 		const subSections = sectionContent.split(/(?<!#)### /).filter(filterElementWithNoContent);
 		let subSectionsContent = [];
-		if (subSections.length > 1) {
+		if (sectionContent.match(/(?<!#)### /)) {
 			// S'il y a des sous-sections …
 			for (const subSection of subSections) {
 				// … on récupère le titre, l'image et le contenu de chaque sous-section
@@ -267,7 +267,7 @@ function createMarkpage(data) {
 
 		sectionsHTML = sectionsHTML + '<div class="sectionContent">';
 		// On regarde s'il y a des sous-sections
-		if (sectionContent.length > 1) {
+		if (typeof sectionContent[0] === "object") {
 			// S'il y a des sous-sections, on parcourt le contenu de chaque sous-section
 			for (let j = 0; j < sectionContent.length; j++) {
 				// Pour chaque sous-section …
