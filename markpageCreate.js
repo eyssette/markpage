@@ -228,17 +228,11 @@ function parseMarkdown(markdownContent) {
 	const header = markdownContent.substring(0,indexfirstH2title);
 	const mainContent = markdownContent.substring(indexfirstH2title);
 
-	// Dans le header, on distingue le titre (défini par un titre h1) et le message initial (défini par un blockquote)
-	const indexStartBlockquote = header.indexOf('> ');
-	let markpageTitle;
-	let initialMessageContent;
-	if (indexStartBlockquote == -1) {
-		markpageTitle = header.replace('# ','').replace(/---(.|\n)*---/,'').replace('\n','').trim();
-		initialMessageContent = '';
-	} else {
-		markpageTitle = header.substring(0,indexStartBlockquote).replace('# ','').replace(/---(.|\n)*---/,'').replace('\n','').trim();
-		initialMessageContent = header.substring(indexStartBlockquote);
-	}
+	// Dans le header, on distingue le titre (défini par un titre h1) et le message initial
+
+	const markpageTitle = header.match(/# .*/)[0].replace('# ','')
+	const indexStartTitle = header.indexOf(markpageTitle);
+	const initialMessageContent = header.substring(indexStartTitle+markpageTitle.length+2);
 
 	// Dans le contenu, on distingue chaque section (définie par un titre h2)
 	const sections = mainContent.split(/(?<!#)## /).filter(Boolean);
