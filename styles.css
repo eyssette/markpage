@@ -136,10 +136,16 @@ h3 a {
 	width: 130px;
 }
 
-h3 span {
+h3 aside {
 	display:block;
 	font-weight:300;
 	font-size:0.9em;
+}
+h3 aside aside {
+	font-weight:300;
+	font-size:0.9em;
+	color:#888;
+	margin-top:3px;
 }
 
 .subSection,.subSection.visible {
@@ -278,7 +284,7 @@ input {
 	h3 {
 		margin-left:-20px;
 	}
-	h3 span {
+	h3 aside {
 		font-size: 0.65em;
 	}
 	.subSectionContent {
