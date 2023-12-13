@@ -34,6 +34,7 @@ header {
     text-align: left;
 	display:none;
 	margin-bottom:3em;
+	padding: 0 10px;
 }
 
 img {
@@ -252,11 +253,7 @@ input {
 	.displayHomepage #innerBox {
 		padding:0em!important;
 	}
-
-	.displayHomepage #innerBox blockquote {
-		margin:1em;
-	}
-
+	
 	.displaySubSection .subSection {
 		flex-wrap: wrap;
 		gap:5px;
