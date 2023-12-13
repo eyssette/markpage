@@ -239,11 +239,12 @@ input {
 	}
 	
 	h2 {
-		margin-top:1.25em;
+		margin-top:2em;
 	}
 
 	.displayHomepage h2 {
 		font-size: 1em;
+		margin-top:1.25em;
 	}
 	#innerBox {
 		padding:0em 0.75em;
@@ -262,11 +263,11 @@ input {
 	}
 
 	h3 {
-		width:80%;
+		width:90%;
 		border-bottom: 1px solid #999;
-		padding-top:20px;
-		padding-bottom:15px;
-		margin:auto;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		margin: 20px auto;
 	}
 	h3 a {
 		width:400px;
