@@ -284,8 +284,7 @@ input {
 	.subSectionContent {
 		position: absolute;
 		margin-left: 240px;
-		width: 53%;
-		max-width: 500px;
+		max-width: 495px;
 		top:100px;
 		padding-bottom:10em;
 	}
