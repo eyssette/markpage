@@ -119,6 +119,10 @@ let yamlData;
 let yamlMaths;
 let yamlStyle;
 
+
+// Extensions pour Showdown
+
+// Gestion des attributs génériques du type {.classe1 .classe2}
 function showdownExtensionGenericAttributes() {
 	return [
 	  {
@@ -141,7 +145,37 @@ function showdownExtensionGenericAttributes() {
 		}
 	  }
 	];
+};
+
+// Gestion des admonitions
+function showdownExtensionAdmonitions() {
+	return [
+	  {
+		type: 'output',
+		filter: (text) => {
+			text = text.replaceAll('<p>:::',':::')
+			const regex = /:::(.*?)\n(.*?):::/gs;
+			const matches = text.match(regex);
+			if (matches) {
+				let modifiedText = text;
+				for (const match of matches) {
+					const regex2 = /:::(.*?)\s(.*?)\n(.*?):::/s;
+					const matchInformations = regex2.exec(match);
+					const type = matchInformations[1]
+					const title = matchInformations[2]
+					const content = matchInformations[3]
+					matchReplaced = `<div class="admonition ${type}"><div class="admonitionTitle">${title}</div><div class="admonitionContent">${content}</div></div>`
+					modifiedText = modifiedText.replaceAll(match,matchReplaced)
+				}
+				return modifiedText;
+			} else {
+				return text;
+			}
+		}
+	  }
+	];
   };
+
 
 function parseMarkdown(markdownContent) {
 	// Gestion de la conversion du markdown en HTML
@@ -149,7 +183,7 @@ function parseMarkdown(markdownContent) {
 		emoji: true,
 		parseImgDimensions: true,
 		simplifiedAutoLink: true,
-		extensions: [showdownExtensionGenericAttributes],
+		extensions: [showdownExtensionGenericAttributes, showdownExtensionAdmonitions],
 	});
 	function markdownToHTML(text) {
 		let html = converter.makeHtml(text);
