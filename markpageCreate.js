@@ -119,12 +119,37 @@ let yamlData;
 let yamlMaths;
 let yamlStyle;
 
+function showdownExtensionGenericAttributes() {
+	return [
+	  {
+		type: 'output',
+		filter: (text) => {
+			const regex = /<(\w+)>(.*?){(.*?)}/g;
+			const matches = text.match(regex)
+			if (matches) {
+				let modifiedText = text;
+				for (const match of matches) {
+					const matchInformations = regex.exec(match);
+					const classes = matchInformations[3].replaceAll(".","")
+					const matchReplaced = match.replace(regex,`<$1 class="${classes}">$2`)
+					modifiedText = modifiedText.replaceAll(match,matchReplaced)
+				}
+				return modifiedText;
+			} else {
+				return text;
+			}
+		}
+	  }
+	];
+  };
+
 function parseMarkdown(markdownContent) {
 	// Gestion de la conversion du markdown en HTML
 	const converter = new showdown.Converter({
 		emoji: true,
 		parseImgDimensions: true,
 		simplifiedAutoLink: true,
+		extensions: [showdownExtensionGenericAttributes],
 	});
 	function markdownToHTML(text) {
 		let html = converter.makeHtml(text);
