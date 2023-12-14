@@ -162,9 +162,14 @@ function showdownExtensionAdmonitions() {
 					const regex2 = /:::(.*?)\s(.*?)\n(.*?):::/s;
 					const matchInformations = regex2.exec(match);
 					const type = matchInformations[1]
-					const title = matchInformations[2]
+					let title = matchInformations[2]
 					const content = matchInformations[3]
-					matchReplaced = `<div class="admonition ${type}"><div class="admonitionTitle">${title}</div><div class="admonitionContent">${content}</div></div>`
+					if (title.includes('collapsible')) {
+						title = title.replace('collapsible','')
+						matchReplaced = `<div class="admonition ${type}"><details><summary class="admonitionTitle">${title}</summary><div class="admonitionContent">${content}</div></details>`
+					} else {
+						matchReplaced = `<div class="admonition ${type}"><div class="admonitionTitle">${title}</div><div class="admonitionContent">${content}</div></div>`
+					}
 					modifiedText = modifiedText.replaceAll(match,matchReplaced)
 				}
 				return modifiedText;
