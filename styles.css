@@ -229,6 +229,9 @@ input {
 	text-align:center;
 }
 
+.admonitionContent {
+	font-size:0.9em;
+}
 
 @media screen and (max-width: 600px) {
 	#searchBar {
