@@ -1,5 +1,5 @@
 :root{
-	--maxWidth: 800px;
+	--maxWidth: 850px;
 }
 
 body {
@@ -37,8 +37,10 @@ header {
 #initialMessage {
     text-align: left;
 	display:none;
+	margin:auto;
 	margin-bottom:3em;
 	padding: 0 10px;
+	max-width: 700px;
 }
 
 img {
@@ -104,7 +106,7 @@ footer a:hover {
 }
 
 .noSubSections {
-	max-width: calc(var(--maxWidth) - 100px);
+	max-width: 700px;
 	margin:auto;
 }
 
@@ -295,9 +297,10 @@ input {
 	.subSectionContent {
 		position: absolute;
 		margin-left: 240px;
-		max-width: calc(var(--maxWidth) - 200px);
+		max-width: calc(var(--maxWidth) - 220px);
 		top:100px;
 		padding-bottom:10em;
+		width: calc(var(--maxWidth));
 	}
 
 	.subSectionContent img {
