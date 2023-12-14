@@ -103,7 +103,10 @@ footer a:hover {
 	display:none;
 }
 
-
+.noSubSections {
+	max-width: calc(var(--maxWidth) - 100px);
+	margin:auto;
+}
 
 h1 {
 	margin-bottom: 1.25em;

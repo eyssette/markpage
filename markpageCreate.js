@@ -272,8 +272,9 @@ function parseMarkdown(markdownContent) {
 			}
 		} else {
 			// S'il n'y a pas de sous-section : on transforme directement en HTML le contenu, en supprimant les retours à la ligne inutiles
-			const subSectionsContentHTML = subSections[0] ? markdownToHTML(removeUselessCarriages(subSections[0])) : '';
-			subSectionsContent = [subSectionsContentHTML]
+			let subSectionsContentHTML = subSections[0] ? markdownToHTML(removeUselessCarriages(subSections[0])) : '';
+			subSectionsContentHTML = '<div class="noSubSections">' + subSectionsContentHTML + '</div>';
+			subSectionsContent = [subSectionsContentHTML];
 		}
 		subSectionsArray.push(subSectionsContent)
 	}
