@@ -1,13 +1,13 @@
 // Par défaut on affiche ça :
 const defaultMarkpage = `# Markpage
 
-> <div style="float:left; margin-right:2em; " markdown> ![](markmap-logo.png =90x90)</div> 
-> 
-> Markpage est un outil libre et gratuit qui permet de créer facilement un minisite web ou une application pour smarphone, à partir d'un simple fichier en Markdown
-> 
-> Outil créé par [Cédric Eyssette](https://eyssette.github.io/).
-> 
-> Les sources de ce logiciel sont sur [la Forge des Communs Numériques Éducatifs](https://forge.aeif.fr/eyssette/markpage)
+<div style="float:left; margin-right:2em; " markdown> ![](markpage-logo.png =90x90)</div> 
+ 
+Markpage est un outil libre et gratuit qui permet de créer facilement un minisite web ou une application pour smarphone, à partir d'un simple fichier en Markdown
+ 
+Outil créé par [Cédric Eyssette](https://eyssette.github.io/).
+ 
+Les sources de ce logiciel sont sur [la Forge des Communs Numériques Éducatifs](https://forge.aeif.fr/eyssette/markpage)
 
 ## Comment ça marche ?
 
@@ -50,7 +50,7 @@ function getMarkdownContent() {
 			urlMD.indexOf("download") === -1
 		) {
 			urlMD =
-				urlMD.replace("?edit", "").replace("?both", "").replace("?view", "") +
+				urlMD.replace("?edit", "").replace("?both", "").replace("?view", "").replace(/#$/, "") +
 				"/download";
 		}
 		// Vérification de la présence d'un raccourci
