@@ -226,6 +226,22 @@ input {
 	display:none;
 }
 
+#linkToHomePage {
+	display:none;
+	position:absolute;
+	top:10px;
+	width:100%;
+	max-width: var(--maxWidth);
+	margin:auto;
+	text-align:right;
+}
+
+#linkToHomePage a {
+	display:block;
+	padding-right:1em;
+	text-decoration: none;
+}
+
 .center {
 	text-align:center;
 }
@@ -314,4 +330,9 @@ input {
 	.subSectionContent img {
 		max-width: 460px;
 	}
+	
+	#linkToHomePage a {
+		padding-right:0em;
+	}
+
 }

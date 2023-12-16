@@ -119,6 +119,7 @@ let yamlData;
 let yamlMaths;
 let yamlStyle;
 let yamlSearchbar = true;
+let yamlLinkToHomePage = false;
 
 // Extensions pour Showdown
 
@@ -227,6 +228,10 @@ function parseMarkdown(markdownContent) {
 				// Choix possible de ne pas avoir la searchbar
 				if (property == "searchbar" || property == "recherche") {
 					yamlSearchbar = yamlData[property];
+				}
+				// Affichage possible d'un lien supplémentaire vers la page d'accueil en haut à droite
+				if (property == "linkToHomePage" || property == "lienPageAccueil") {
+					yamlLinkToHomePage = yamlData[property];
 				}
 			}
 		} catch (e) {}

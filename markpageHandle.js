@@ -172,6 +172,12 @@ function handleMarkpage() {
 	
 	// console.log(markpageData)
 
+	// Affichage si yamlLinkToHomePage d'un lien supplémentaire vers la page d'accueil en haut à droite
+	if (yamlLinkToHomePage) {
+		const linkToHomePageElement = document.getElementById("linkToHomePage");
+		linkToHomePageElement.style.display = "block";
+	}
+
 	// Gestion de la searchBar
 	const searchbarElement = document.getElementById('searchBar');
 	if(yamlSearchbar) {
