@@ -221,7 +221,7 @@ function parseMarkdown(markdownContent) {
 				if (property == "style") {
 					yamlStyle = yamlData[property];
 					const styleElement = document.createElement("style");
-					styleElement.innerHTML = yamlStyle;
+					styleElement.innerHTML = yamlStyle.replaceAll("\\","");
 					document.body.appendChild(styleElement);
 				}
 				// Choix possible de ne pas avoir la searchbar
