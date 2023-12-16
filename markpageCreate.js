@@ -118,7 +118,7 @@ function loadCSS(src) {
 let yamlData;
 let yamlMaths;
 let yamlStyle;
-
+let yamlSearchbar = true;
 
 // Extensions pour Showdown
 
@@ -223,6 +223,10 @@ function parseMarkdown(markdownContent) {
 					const styleElement = document.createElement("style");
 					styleElement.innerHTML = yamlStyle;
 					document.body.appendChild(styleElement);
+				}
+				// Choix possible de ne pas avoir la searchbar
+				if (property == "searchbar" || property == "recherche") {
+					yamlSearchbar = yamlData[property];
 				}
 			}
 		} catch (e) {}

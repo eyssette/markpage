@@ -207,6 +207,7 @@ input {
 }
 
 #searchBar {
+	display:none;
 	position:absolute;
 	top:10px;
 	margin-left:-1em;
