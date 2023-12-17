@@ -246,9 +246,44 @@ input {
 	text-align:center;
 }
 
-.admonitionContent {
-	font-size:0.9em;
+.admonition {
+	border:2px solid black;
+	border-radius: 5px;
+	padding:0.5em 1em;
+	background-color: #EEE;
 }
+
+.admonition.info {
+	border-color: #1505a1;
+}
+.admonition.tip {
+	border-color: #02461f;
+}
+.admonition.warning {
+	border-color: #b94a48;
+}
+
+.admonitionContent {
+	font-size:0.95em;
+}
+
+.admonitionTitle {
+	font-weight: bold;
+	font-size: 0.9em;
+	margin-bottom:0.5em;
+}
+
+.info .admonitionTitle {
+	color:#0b0258;
+}
+.tip .admonitionTitle {
+	color:#012e14;
+}
+.warning .admonitionTitle {
+	color:#470302;
+}
+
+
 
 pre {
 	background-color: white;

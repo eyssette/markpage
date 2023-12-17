@@ -55,6 +55,21 @@ style: a{color:red}
 
 ### Admonitions
 
+Les admonitions sont des sortes d'encadrés qui permettent de mettre en avant certaines informations.
+
+:::info Exemple d'admonition de type "info"
+Contenu
+:::
+
+:::tip Exemple d'admonition de type "tip"
+Contenu
+:::
+
+:::warning Exemple d'admonition de type "warning"
+Contenu
+:::
+
+
 Dans votre fichier, vous pouvez utiliser les "admonitions" avec la syntaxe suivante, dans laquelle typeAdmonition est le type de l'admonition (les types "info", "tip" et "warning" ont déjà un style CSS par défaut, mais vous pouvez en utiliser d'autres). Le titre de l'admonition peut contenir des espaces.
 
 \`\`\`
@@ -64,6 +79,8 @@ Bloc de texte en Markdown multiligne
 
 :::
 \`\`\`
+
+#### Admonitions dépliables
 
 Si vous voulez que votre admonition soit caché par défaut et dépliable en cliquant dessus, il faut ajouter \`collapsible\` à la première ligne
 
@@ -75,6 +92,10 @@ Bloc de texte en Markdown multiligne caché par défaut
 :::
 \`\`\`
 
+:::info collapsible Admonition dépliable
+Contenu
+:::
+
 ### Attributions de classes CSS
 
 Vous pouvez aussi attribuer une classe CSS à une ligne avec la syntaxe \`{.maClasse}\` en fin de ligne.
@@ -83,7 +104,7 @@ Si vous voulez attribuer une classe CSS à plusieurs lignes, il faut utiliser ce
 
 \`\`\`
 <div markdown class="maClasse">
-Mon bloc de texte Markdown multiligne
+Bloc de texte Markdown multiligne
 </div>
 \`\`\`
 
