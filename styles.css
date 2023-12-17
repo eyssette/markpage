@@ -250,6 +250,14 @@ input {
 	font-size:0.9em;
 }
 
+pre {
+	background-color: white;
+    padding: 1em 2em;
+    width: fit-content;
+    box-shadow: 1px 1px 1px 1px #AAA;
+    margin: 2em auto;
+}
+
 @media screen and (max-width: 600px) {
 	#searchBar {
 		margin-left:1em;
