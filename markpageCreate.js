@@ -11,14 +11,90 @@ Les sources de ce logiciel sont sur [la Forge des Communs Numériques Éducatifs
 
 ## Comment ça marche ?
 
-Voici le principe
+### Le principe
+
+1. Créez un fichier sur CodiMD ou sur une forge
+2. Créez votre site en respectant la [syntaxe de Markpage](?sec=1&subsec=2)
+3. Votre site sera alors disponible à l'adresse : https://eyssette.forge.aeif.fr/markpage#URL (en remplaçant URL par l'URL de votre fichier)
+
+### Quelle syntaxe faut-il respecter ?
+
+Le plus simple est de récupérer ce [modèle sur CodiMD](https://codimd.apps.education.fr/8IuZtiIqRwWfrQO9Rec4nA?both).
+
+La syntaxe de base est simple :
+
+- on définit le titre de son site avec un titre de niveau 1
+- tout ce qui vient entre ce titre et le premier titre de niveau 2 est considéré comme le message initial qui apparaît sur la page d'accueil
+- on fait des onglets avec les titres de niveau 2
+- tout ce qui vient sous un titre de niveau 2 est considéré comme le contenu de cet onglet
+- on peut faire des sous-sections avec des titres de niveau 3
+
+On peut utiliser toute la syntaxe Markdown classique dans le contenu de son site.
 
 ## Des exemples ?
+
+## Options plus avancées
+
+### En-tête YAML
+
+Vous pouvez au début de votre fichier ajouter un en-tête YAML de ce type :
+
+\`\`\`
+---
+maths: true
+recherche: false
+lienPageAccueil: true
+style: a{color:red}
+---
+\`\`\`
+
+- \`maths: true\` permet d'écrire des formules mathématiques en Latex avec la syntaxe \`$Latex$\` ou \`$$Latex$$\`
+- \`style: a{color:red}\` permet d'ajouter des styles CSS personnalisés
+- \`recherche: false\` permet de supprimer la barre de recherche en haut à gauche
+- \`lienPageAccueil: true\` permet d'ajouter un lien vers la page d'accueil en haut à droite
+
+### Admonitions
+
+Dans votre fichier, vous pouvez utiliser les "admonitions" avec la syntaxe suivante, dans laquelle typeAdmonition est le type de l'admonition (les types "info", "tip" et "warning" ont déjà un style CSS par défaut, mais vous pouvez en utiliser d'autres). Le titre de l'admonition peut contenir des espaces.
+
+\`\`\`
+:::typeAdmonition titre
+
+Bloc de texte en Markdown multiligne
+
+:::
+\`\`\`
+
+Si vous voulez que votre admonition soit caché par défaut et dépliable en cliquant dessus, il faut ajouter \`collapsible\` à la première ligne
+
+\`\`\`
+:::typeAdmonition collapsible titre
+
+Bloc de texte en Markdown multiligne caché par défaut
+
+:::
+\`\`\`
+
+### Attributions de classes CSS
+
+Vous pouvez aussi attribuer une classe CSS à une ligne avec la syntaxe \`{.maClasse}\` en fin de ligne.
+
+Si vous voulez attribuer une classe CSS à plusieurs lignes, il faut utiliser cette syntaxe :
+
+\`\`\`
+<div markdown class="maClasse">
+Mon bloc de texte Markdown multiligne
+</div>
+\`\`\`
 
 
 ## Crédits
 
-Markpage utilise les logiciels libres suivants :
+Markpage est hébergé sur la [Forge des Communs Numériques Éducatifs](https://forge.aeif.fr) et utilise les logiciels libres suivants :
+
+- [showdown](https://github.com/showdownjs/showdown) pour la conversion du markdown en html
+- [js-yaml](https://github.com/nodeca/js-yaml) pour la gestion des en-têtes yaml
+- [katex](https://katex.org/) pour la gestion des mathématiques en Latex
 
 `;
 
@@ -211,7 +287,7 @@ function parseMarkdown(markdownContent) {
 	}
 	
 	// Gestion de l'en-tête YAML
-	if (markdownContent.split("---").length > 2) {
+	if (markdownContent.split("---").length > 2 && markdownContent.startsWith("---")) {
 		yamlPart = markdownContent.split("---")[1]
 		try {
 			yamlData = jsyaml.load(yamlPart);
