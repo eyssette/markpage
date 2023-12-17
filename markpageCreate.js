@@ -32,6 +32,14 @@ const shortcuts = [
 
 let markpageData;
 
+// Variables pour la gestion de l'en-tête YAML
+let yamlData;
+let yamlMaths;
+let yamlStyle;
+let yamlSearchbar = true;
+let yamlLinkToHomePage = false;
+
+
 function getMarkdownContent() {
 	// Récupération du markdown externe
 	let urlMD = window.location.hash.substring(1); // Récupère l'URL du hashtag sans le #
@@ -113,13 +121,6 @@ function loadCSS(src) {
 		document.head.appendChild(styleElement);
 	});
 }
-
-// Variables pour la gestion de l'en-tête YAML
-let yamlData;
-let yamlMaths;
-let yamlStyle;
-let yamlSearchbar = true;
-let yamlLinkToHomePage = false;
 
 // Extensions pour Showdown
 
