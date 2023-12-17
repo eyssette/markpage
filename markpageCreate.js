@@ -135,10 +135,15 @@ function showdownExtensionGenericAttributes() {
 			if (matches) {
 				let modifiedText = text;
 				for (const match of matches) {
-					const matchInformations = regex.exec(match);
-					const classes = matchInformations[3].replaceAll(".","")
-					const matchReplaced = match.replace(regex,`<$1 class="${classes}">$2`)
-					modifiedText = modifiedText.replaceAll(match,matchReplaced)
+					const indexMatch = text.indexOf(match);
+					const endIndeMatch = indexMatch+match.length;
+					const isInCode = text.substring(endIndeMatch,endIndeMatch+7) == "</code>" ? true : false;
+					if (!isInCode) {
+						const matchInformations = regex.exec(match);
+						const classes = matchInformations[3].replaceAll(".","")
+						const matchReplaced = match.replace(regex,`<$1 class="${classes}">$2`)
+						modifiedText = modifiedText.replaceAll(match,matchReplaced)
+					}
 				}
 				return modifiedText;
 			} else {
