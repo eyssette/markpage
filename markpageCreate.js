@@ -130,7 +130,7 @@ function showdownExtensionGenericAttributes() {
 	  {
 		type: 'output',
 		filter: (text) => {
-			const regex = /<(\w+)>(.*?){(.*?)}/g;
+			const regex = /<(\w+)>(.*?){\.(.*?)}/g;
 			const matches = text.match(regex)
 			if (matches) {
 				let modifiedText = text;
