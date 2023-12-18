@@ -75,14 +75,19 @@ footer {
 	gap: 20px;
 }
 
+
 footer a {
 	text-decoration: none;
 	color:#666;
+	max-width:250px;
 }
 footer a:hover {
 	color: black;
 }
 
+footer a aside {
+	display:none;
+}
 
 .sectionContent, .displayHomepage .sectionContent, .displayHomepage .sectionContent, .displayHomepage .subSection, .displaySection header, .displaySubSection header, .displaySection h2, .displaySubSection h2 {
 	display:none;
@@ -118,6 +123,15 @@ h2 {
 	text-align: center;
 	flex-grow: 1;
 	width:100%!important;
+}
+
+h2 aside {
+	font-size: 0.8em;
+	color:#333;
+	font-weight: 300;
+}
+.displayHomepage h2 aside {
+	display:inline;
 }
 
 h3 {
