@@ -17,9 +17,11 @@ Les sources de ce logiciel sont sur [la Forge des Communs Numériques Éducatifs
 2. Créez votre site en respectant la [syntaxe de Markpage](?sec=1&subsec=2)
 3. Votre site sera alors disponible à l'adresse : https://eyssette.forge.aeif.fr/markpage#URL (en remplaçant URL par l'URL de votre fichier)
 
-### Quelle syntaxe faut-il respecter ?
+### Syntaxe de base
 
 Le plus simple est de récupérer ce [modèle sur CodiMD](https://codimd.apps.education.fr/8IuZtiIqRwWfrQO9Rec4nA?both).
+
+Ce modèle permet de générer ce mini-site : [voir le site](https://eyssette.forge.aeif.fr/markpage#https://codimd.apps.education.fr/8IuZtiIqRwWfrQO9Rec4nA?both).
 
 La syntaxe de base est simple :
 
@@ -31,7 +33,25 @@ La syntaxe de base est simple :
 
 On peut utiliser toute la syntaxe Markdown classique dans le contenu de son site.
 
-## Des exemples ?
+### Titres de sous-sections
+
+On peut ajouter une image et des sous-titres aux titres de sous-sections.
+
+Pour ajouter une image, on ajoute l'image en markdown dans la ligne juste au-dessous du titre de la sous-section.
+
+Pour ajouter un sous-titre, on place le sous-titre dans un élément \`aside\`, et on peut mettre également un deuxième sous-titre avec un autre élément \`aside\` dans le premier élément \`aside\`.
+
+On peut combiner ces trois éléments.
+
+\`\`\`
+### Titre section <aside>Sous-titre<aside>Deuxième sous-titre</aside></aside>
+![](URL-image)
+\`\`\`
+
+
+
+<!-- ##Des exemples ? -->
+
 
 ## Options plus avancées
 
