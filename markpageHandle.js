@@ -113,7 +113,11 @@ function handleMarkpage() {
 
 	// On détecte les clics sur les liens
 	links.forEach(function(link) {
-		link.addEventListener('click', function(event) {
+		let listenerElement = link;
+		if(link.parentElement.nodeName == "H3") {
+			listenerElement = link.parentElement;
+		} 
+		listenerElement.addEventListener('click', function(event) {
 			// Empêche le comportement par défaut d'ouverture du lien et récupère au contraire le contenu du lien
 			event.preventDefault();
 			const linkURL = link.href;
