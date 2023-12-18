@@ -128,6 +128,11 @@ Bloc de texte Markdown multiligne
 </div>
 \`\`\`
 
+#### Classes prédéfinies
+
+La classe \`{.center}\` permet de centrer un paragraphe.
+
+La classe \`{.large}\` après une image sous un titre de sous-section permet d'avoir une grande image plutôt qu'une petit icône.
 
 ## Crédits
 

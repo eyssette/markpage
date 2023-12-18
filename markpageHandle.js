@@ -114,7 +114,7 @@ function handleMarkpage() {
 	// On détecte les clics sur les liens
 	links.forEach(function(link) {
 		let listenerElement = link;
-		if(link.parentElement.nodeName == "H3") {
+		if(link.parentElement.nodeName == "H3" || link.parentElement.parentElement.nodeName == "H3") {
 			listenerElement = link.parentElement;
 		} 
 		listenerElement.addEventListener('click', function(event) {

@@ -128,6 +128,7 @@ h3 {
 	display:flex;
 	align-items:center;
 	cursor: pointer;
+	flex-wrap: wrap;
 }
 
 h3 img {
@@ -138,6 +139,14 @@ h3 img {
 	object-fit:contain;
 	margin-left: -0.5em;
     margin-right: 0.5em;
+}
+
+h3 .large img {
+	object-fit:none;
+	width:100%;
+	min-height:100px;
+	border-radius:0;
+	margin-bottom:0.5em;
 }
 
 h3 a {
