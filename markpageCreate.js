@@ -371,7 +371,7 @@ function parseMarkdown(markdownContent) {
 		sectionsTitles.push(sectionTitle);
 
 		// Dans chaque section, on regarde s'il y a des sous-sections (définis par un titre h3)
-		const subSections = sectionContent.split(/(?<!#)### /).filter(filterElementWithNoContent);
+		const subSections = sectionContent.split(/(?<!`\n)(?<!#)### /).filter(filterElementWithNoContent);
 		let subSectionsContent = [];
 		if (sectionContent.match(/(?<!#)### /)) {
 			// S'il y a des sous-sections …
