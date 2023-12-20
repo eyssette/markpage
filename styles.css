@@ -376,6 +376,11 @@ pre {
 	.subSectionContent img {
 		max-width: 340px;
 	}
+
+	pre {
+		max-width: 300px;
+		overflow-x: scroll;
+	}
 }
 
 @media screen and (min-width: 601px) {
