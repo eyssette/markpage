@@ -372,8 +372,7 @@ pre {
 	.subSection.visible h3 {
 		border-color:#AAA;
 	}
-
-	.subSectionContent img {
+	.sectionContent img {
 		max-width: 340px;
 	}
 
