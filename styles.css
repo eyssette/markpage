@@ -360,25 +360,47 @@ pre {
 	}
 
 	h3 {
-		width:90%;
+		width:95%;
 		border-bottom: 1px solid #999;
 		padding-top: 10px;
 		padding-bottom: 10px;
 		margin: 20px auto;
 	}
 	h3 a {
-		width:400px;
+		width:100%;
 	}
+	h3 img + a {
+		width:220px;
+	}
+	h3 aside, .large {
+		width:95%;
+	}
+	
 	.subSection.visible h3 {
 		border-color:#AAA;
 	}
 	.sectionContent img {
 		max-width: 340px;
 	}
+	.sectionContent {
+		margin:0;
+		width: 95%;
+	}
+	.subSectionContent {
+		overflow-x:auto;
+	}
+
+	.displaySection h2, .displaySubSection h2 {
+		width:86%!important;
+	}
 
 	pre {
-		max-width: 300px;
+		margin:2em auto;
+		max-width: 85%;
 		overflow-x: scroll;
+	}
+	#linkToHomePage {
+		width: 95%
 	}
 }
 
