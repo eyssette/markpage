@@ -323,9 +323,12 @@ function parseMarkdown(markdownContent) {
 		emoji: true,
 		parseImgDimensions: true,
 		simplifiedAutoLink: true,
+		simpleLineBreaks: true,
+		tables: true,
 		extensions: [showdownExtensionGenericAttributes, showdownExtensionAdmonitions],
 	});
 	function markdownToHTML(text) {
+		text = text.replaceAll('\n\n|','|')
 		let html = converter.makeHtml(text);
 		// Optimisation de l'affichage des images
 		html = html.replaceAll("<img ",'<img loading="lazy" ')
