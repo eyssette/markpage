@@ -173,13 +173,24 @@ function handleMarkpage() {
 		// On change l'affichage de l'URL sans recharger la page
 		changeDisplayBasedOnParams(params);
 	});
-	
-	// console.log(markpageData)
 
 	// Affichage si yamlLinkToHomePage d'un lien supplémentaire vers la page d'accueil en haut à droite
+	let linkToHomePageElement;
 	if (yamlLinkToHomePage) {
-		const linkToHomePageElement = document.getElementById("linkToHomePage");
+		linkToHomePageElement = document.getElementById("linkToHomePage");
 		linkToHomePageElement.style.display = "block";
+	}
+
+	// On peut ajouter un paramètre dans l'URL pour cacher le menu du bas et l'icône de page d'accueil
+	if (params.menu && params.menu == 0) {
+		const menuElement = document.getElementById('footerContent');
+		menuElement.style.display="none";
+		const footerElement = menuElement.parentElement;
+		footerElement.style.height="0px";
+		footerElement.style.padding="0px";
+		if (yamlLinkToHomePage) {
+			linkToHomePageElement.style.display = "none"
+		}
 	}
 
 	// Gestion de la searchBar
