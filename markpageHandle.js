@@ -203,7 +203,7 @@ function handleMarkpage() {
 			const h3Title = h3Elements[params.subsec-1].firstChild.innerHTML
 			if (params.sec && h3Title) {
 				const h2Title = document.querySelector('#section-'+params.sec+' h2 a')
-				h2Title.parentElement.innerHTML = h2Title.innerHTML + ' / ' + h3Title; 
+				h2Title.parentElement.innerHTML = h2Title.innerHTML + ' / ' + h3Title;
 			}
 		}
 		// On recale correctement en CSS le contenu de la section, étant donné qu'on a supprimé la partie "titres h3" sur la gauche
