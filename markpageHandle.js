@@ -192,6 +192,16 @@ function handleMarkpage() {
 			linkToHomePageElement.style.display = "none"
 		}
 	}
+	if (params.h3 && params.h3 == 0) {
+		const h3Elements = document.querySelectorAll('h3')
+		for (const h3Element of h3Elements) {
+			h3Element.style.display="none";
+		}
+		const styleSubSectionContent = '@media screen and (min-width: 601px) {.subSectionContent {margin-left:140px}}';
+		const styleSheet = document.createElement("style");
+		styleSheet.innerText = styleSubSectionContent;
+		document.head.appendChild(styleSheet);
+	}
 
 	// Gestion de la searchBar
 	const searchbarElement = document.getElementById('searchBar');
