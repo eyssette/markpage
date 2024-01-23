@@ -500,6 +500,7 @@ function createMarkpage(data) {
 
 	// On affiche le mini site
 	titleElement.innerHTML = title;
+	document.title = title;
 	if (initialMessage.length>0) {
 		initialMessageElement.innerHTML = initialMessage;
 		initialMessageElement.style.display = "block";
