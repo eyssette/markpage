@@ -394,7 +394,7 @@ function parseMarkdown(markdownContent) {
 		
 		// Dans chaque section, on distingue le titre et le contenu
 		const indexEndTitle = section.indexOf('\n');
-		const sectionTitle = section.substring(0,indexEndTitle);
+		const sectionTitle = markdownToHTML(section.substring(0,indexEndTitle)).replace('<p>','').replace('</p>','');
 		const sectionContent = section.substring(indexEndTitle);
 		sectionsTitles.push(sectionTitle);
 
@@ -407,7 +407,7 @@ function parseMarkdown(markdownContent) {
 				// … on récupère le titre, l'image et le contenu de chaque sous-section
 				// - récupération du titre
 				const indexEndTitleSubSection = subSection.indexOf('\n');
-				const subSectionTitle = subSection.substring(0,indexEndTitleSubSection);
+				const subSectionTitle = markdownToHTML(subSection.substring(0,indexEndTitleSubSection)).replace('<p>','').replace('</p>','');
 				// - récupération du contenu éventuellement avec image
 				let subSectionContent = subSection.substring(1+indexEndTitleSubSection);
 				// - s'il y a une image, on la récupère
@@ -431,7 +431,7 @@ function parseMarkdown(markdownContent) {
 	}
 
 	markpageData = [
-		markpageTitle,
+		markdownToHTML(markpageTitle).replace('<p>','').replace('</p>',''),
 		markdownToHTML(initialMessageContent),
 		sectionsTitles,
 		subSectionsArray
