@@ -94,7 +94,6 @@ function handleMarkpage() {
 	}
 
 	function changeDisplayBasedOnParams(param) {
-		console.log(param)
 		if (param) {
 			const sectionID = param.sec;
 			const subSectionID = param.subsec;
@@ -383,6 +382,8 @@ function handleMarkpage() {
 					// Si on est à la première section : on revient à la page d'accueil
 					delete params.sec
 					delete params.subsec
+					showOnlyThisElement(undefined, "sections");
+					showOnlyThisElement(undefined, "subsections");
 					changeDisplayBasedOnParams(params);
 				}
 			}
@@ -407,6 +408,8 @@ function handleMarkpage() {
 					// Si on est à la première section : on va à la page d'accueil
 					delete paramsURL.sec
 					delete paramsURL.subsec
+					showOnlyThisElement(undefined, "sections");
+					showOnlyThisElement(undefined, "subsections");
 					changeDisplayBasedOnParams(params);
 				}
 			}
@@ -460,5 +463,13 @@ function handleMarkpage() {
 	});
 	document.body.addEventListener("touchend", function (event) {
 		handleTouchEnd(event);
+	});
+	document.addEventListener("keydown", function (event) {
+		if (event.key === "ArrowLeft") {
+			moveNextOrPrevious(params,false);
+		}
+		if (event.key === "ArrowRight") {
+			moveNextOrPrevious(params,true);
+		}
 	});
 }
