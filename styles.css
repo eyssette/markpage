@@ -317,6 +317,10 @@ pre {
     margin: 2em auto;
 }
 
+mark {
+	background-color: #eeff6fe3;
+}
+
 @media screen and (max-width: 600px) {
 	#searchBar {
 		margin-left:1em;

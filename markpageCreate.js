@@ -316,6 +316,27 @@ function showdownExtensionAdmonitions() {
 	];
   };
 
+// Gestion des éléments soulignés et surlignés
+function showdownExtensionUnderline() {
+	return [
+		{
+		  type: 'output',
+		  filter: (text) => {
+			text = text.replaceAll(/\+\+(.*?)\+\+/g,'<u>$1</u>')
+			return text;
+		  }
+		}]
+}
+function showdownExtensionHighlight() {
+	return [
+		{
+		  type: 'output',
+		  filter: (text) => {
+			text = text.replaceAll(/\=\=(.*?)\=\=/g,'<mark>$1</mark>')
+			return text;
+		  }
+		}]
+}
 
 function parseMarkdown(markdownContent) {
 	// Gestion de la conversion du markdown en HTML
@@ -325,7 +346,7 @@ function parseMarkdown(markdownContent) {
 		simplifiedAutoLink: true,
 		simpleLineBreaks: true,
 		tables: true,
-		extensions: [showdownExtensionGenericAttributes, showdownExtensionAdmonitions],
+		extensions: [showdownExtensionGenericAttributes, showdownExtensionAdmonitions, showdownExtensionUnderline, showdownExtensionHighlight],
 	});
 	function markdownToHTML(text) {
 		text = text.replaceAll('\n\n|','|')
