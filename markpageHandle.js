@@ -444,10 +444,10 @@ function handleMarkpage() {
 		if (ratioX > ratioY) {
 			if (diffX >= 0) {
 				// Right Swipe
-				moveNextOrPrevious(params,true);
+				moveNextOrPrevious(params,false);
 			} else {
 				// Left Swipe
-				moveNextOrPrevious(params,false);
+				moveNextOrPrevious(params,true);
 			}
 		} else {
 			if (diffY >= 0) {
