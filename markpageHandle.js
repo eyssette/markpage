@@ -1,12 +1,14 @@
 function handleMarkpage() {
 	const bodyElement = document.body;
-	const progressBarElement = document.getElementById('progressBar');
-	const previousButton = document.getElementById('previousButton');
-	const nextButton = document.getElementById('nextButton');
+	const progressBarElement = document.getElementById("progressBar");
+	const previousButton = document.getElementById("previousButton");
+	const nextButton = document.getElementById("nextButton");
 
 	const sectionsTitle = markpageData[2];
 	const numberOfSections = sectionsTitle.length;
 	const subSectionsData = markpageData[3];
+
+	let newURL;
 
 	function convertLatexExpressions(string) {
 		string = string
@@ -120,10 +122,13 @@ function handleMarkpage() {
 					progressBarElement.style.display = "block";
 				}
 				// Dernière page : on cache le bouton "nextButton"
-				if (subSectionIDint == numberOfSubsections && sectionIDint == numberOfSections) {
-					nextButton.style.display="none";
+				if (
+					subSectionIDint == numberOfSubsections &&
+					sectionIDint == numberOfSections
+				) {
+					nextButton.style.display = "none";
 				} else {
-					nextButton.style.display="block";
+					nextButton.style.display = "block";
 				}
 			} else {
 				if (sectionID) {
@@ -153,7 +158,6 @@ function handleMarkpage() {
 			// Empêche le comportement par défaut d'ouverture du lien et récupère au contraire le contenu du lien
 			event.preventDefault();
 			const linkURL = link.href;
-			let newURL;
 			if (linkURL == baseURL || linkURL + "index.html" == baseURL) {
 				newURL = baseURL;
 				params = undefined;
@@ -400,8 +404,8 @@ function handleMarkpage() {
 					changeDisplayBasedOnParams(params);
 				} else {
 					// Si on est à la première section : on revient à la page d'accueil
-					delete params.sec
-					delete params.subsec
+					delete params.sec;
+					delete params.subsec;
 					showOnlyThisElement(undefined, "sections");
 					showOnlyThisElement(undefined, "subsections");
 					changeDisplayBasedOnParams(params);
@@ -426,8 +430,8 @@ function handleMarkpage() {
 					changeDisplayBasedOnParams(params);
 				} else {
 					// Si on est à la première section : on va à la page d'accueil
-					delete paramsURL.sec
-					delete paramsURL.subsec
+					delete paramsURL.sec;
+					delete paramsURL.subsec;
 					showOnlyThisElement(undefined, "sections");
 					showOnlyThisElement(undefined, "subsections");
 					changeDisplayBasedOnParams(params);
@@ -435,10 +439,24 @@ function handleMarkpage() {
 			}
 		} else if (next) {
 			// Si on était à la page d'accueil, on va à la première section et à la première sous-section
-				paramsURL.sec = 1;
-				paramsURL.subsec = 1;
-				changeDisplayBasedOnParams(params);
-			}
+			paramsURL.sec = 1;
+			paramsURL.subsec = 1;
+			changeDisplayBasedOnParams(params);
+		}
+		// On change l'historique dans l'URL sans changer la page
+		if (params.sec || paramsURL.sec != 1 || paramsURL.subsec != 1) {
+			newURL =
+				baseURL +
+				"?" +
+				Object.keys(params)
+					.map(function (key) {
+						return key + "=" + encodeURIComponent(params[key]);
+					})
+					.join("&");
+		} else {
+			newUrl = baseURL;
+		}
+		history.pushState({ path: newURL + "#" + hash }, "", newURL + "#" + hash);
 	}
 
 	let startX = 0;
@@ -464,10 +482,10 @@ function handleMarkpage() {
 		if (ratioX > ratioY) {
 			if (diffX >= 0) {
 				// Right Swipe
-				moveNextOrPrevious(params,false);
+				moveNextOrPrevious(params, false);
 			} else {
 				// Left Swipe
-				moveNextOrPrevious(params,true);
+				moveNextOrPrevious(params, true);
 			}
 		} else {
 			if (diffY >= 0) {
@@ -486,16 +504,16 @@ function handleMarkpage() {
 	});
 	document.addEventListener("keydown", function (event) {
 		if (event.key === "ArrowLeft") {
-			moveNextOrPrevious(params,false);
+			moveNextOrPrevious(params, false);
 		}
 		if (event.key === "ArrowRight") {
-			moveNextOrPrevious(params,true);
+			moveNextOrPrevious(params, true);
 		}
 	});
 	previousButton.addEventListener("click", () => {
-		moveNextOrPrevious(params,false);
-	})
+		moveNextOrPrevious(params, false);
+	});
 	nextButton.addEventListener("click", () => {
-		moveNextOrPrevious(params,true);
-	})
+		moveNextOrPrevious(params, true);
+	});
 }
