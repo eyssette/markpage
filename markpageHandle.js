@@ -1,5 +1,8 @@
 function handleMarkpage() {
 	const bodyElement = document.body;
+	const progressBarElement = document.getElementById('progressBar');
+	const previousButton = document.getElementById('previousButton');
+	const nextButton = document.getElementById('nextButton');
 
 	const sectionsTitle = markpageData[2];
 	const numberOfSections = sectionsTitle.length;
@@ -105,6 +108,23 @@ function handleMarkpage() {
 				);
 				showOnlyThisElement(sectionElement, "sections");
 				showOnlyThisElement(subSectionElement, "subsections");
+				// Gestion de la barre de progrès
+				const sectionIDint = parseInt(sectionID);
+				const numberOfSubsections = subSectionsData[sectionIDint - 1].length;
+				const subSectionIDint = parseInt(param.subsec);
+				progressBarElement.max = numberOfSubsections;
+				progressBarElement.value = subSectionIDint;
+				if (numberOfSubsections == 1) {
+					progressBarElement.style.display = "none";
+				} else {
+					progressBarElement.style.display = "block";
+				}
+				// Dernière page : on cache le bouton "nextButton"
+				if (subSectionIDint == numberOfSubsections && sectionIDint == numberOfSections) {
+					nextButton.style.display="none";
+				} else {
+					nextButton.style.display="block";
+				}
 			} else {
 				if (sectionID) {
 					bodyElement.className = "displaySection";
@@ -472,4 +492,10 @@ function handleMarkpage() {
 			moveNextOrPrevious(params,true);
 		}
 	});
+	previousButton.addEventListener("click", () => {
+		moveNextOrPrevious(params,false);
+	})
+	nextButton.addEventListener("click", () => {
+		moveNextOrPrevious(params,true);
+	})
 }
