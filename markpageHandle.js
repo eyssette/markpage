@@ -10,6 +10,7 @@ function handleMarkpage() {
 
 	let newURL;
 
+	// gestion des mathématiques en Latex
 	function convertLatexExpressions(string) {
 		string = string
 			.replace(/\$\$(.*?)\$\$/g, "&#92;[$1&#92;]")
@@ -82,6 +83,7 @@ function handleMarkpage() {
 
 	changeDisplayBasedOnParams(params);
 
+	// Une fonction pour choisir de n'afficher que l'élément actif
 	function showOnlyThisElement(element, type) {
 		if (type == "sections") {
 			for (const sectionElement of sections) {
@@ -98,6 +100,7 @@ function handleMarkpage() {
 		}
 	}
 
+	// Fonction pour changer l'affichage en fonction des paramètres dans l'objet param (qui correspond aux paramètres dans l'URL)
 	function changeDisplayBasedOnParams(param) {
 		if (param) {
 			const sectionID = param.sec;
@@ -367,10 +370,7 @@ function handleMarkpage() {
 		searchbarElement.remove();
 	}
 
-	// Gestion du swipe
-
-	// Gestion du déplacement d'un section ou sous-section à une autre
-
+	// Une fonction pour gérer le déplacement d'une section ou d'une sous-section à une autre
 	function moveNextOrPrevious(paramsURL, next) {
 		let paramsSecInt;
 		let paramsSubsecInt;
@@ -459,6 +459,7 @@ function handleMarkpage() {
 		history.pushState({ path: newURL + "#" + hash }, "", newURL + "#" + hash);
 	}
 
+	// Gestion du swipe
 	let startX = 0;
 	let startY = 0;
 
@@ -510,6 +511,8 @@ function handleMarkpage() {
 			moveNextOrPrevious(params, true);
 		}
 	});
+
+	// Gestion des boutons de navigation en bas
 	previousButton.addEventListener("click", () => {
 		moveNextOrPrevious(params, false);
 	});
