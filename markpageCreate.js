@@ -62,9 +62,10 @@ Vous pouvez au début de votre fichier ajouter un en-tête YAML de ce type :
 \`\`\`
 ---
 maths: true
+style: a{color:red}
 recherche: false
 lienPageAccueil: true
-style: a{color:red}
+swipe: false
 ---
 \`\`\`
 
@@ -72,6 +73,7 @@ style: a{color:red}
 - \`style: a{color:red}\` permet d'ajouter des styles CSS personnalisés
 - \`recherche: false\` permet de supprimer la barre de recherche en haut à gauche
 - \`lienPageAccueil: true\` permet d'ajouter un lien vers la page d'accueil en haut à droite
+- \`swipe: false\` permet de changer le mode de navigation sur mobile : par défaut, le paramètre est sur \`true\`, une seule sous-section est affichée et on navigue avec un mouvement de swipe ou bien via des boutons de navigation. Avec \`false\`, seule le contenu de la section active est affichée, mais tous les titres de sous-section sont présents et on peut scroller pour cliquer sur la sous-section qui nous intéresse.
 
 ### Admonitions
 
@@ -160,7 +162,7 @@ let yamlMaths;
 let yamlStyle;
 let yamlSearchbar = true;
 let yamlLinkToHomePage = false;
-
+let yamlSwipe = true;
 
 function getMarkdownContent() {
 	// Récupération du markdown externe
@@ -391,8 +393,15 @@ function parseMarkdown(markdownContent) {
 				if (property == "linkToHomePage" || property == "lienPageAccueil") {
 					yamlLinkToHomePage = yamlData[property];
 				}
+				// Possibilité de désactiver le swipe et par conséquent aussi l'affichage step-by-step (avec les boutons de navitation en bas)
+				if (property == "swipe") {
+					yamlSwipe = yamlData[property];
+				}
 			}
 		} catch (e) {}
+	}
+	if (yamlSwipe == true) {
+		loadCSS("swipe.min.css");
 	}
 
 	// On distingue le header et le contenu
