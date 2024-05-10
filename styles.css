@@ -15,14 +15,14 @@ body {
     margin: auto;
 	padding: 1em 3em;
 	margin-bottom:5em;
-	background: rgb(246, 246, 246);
+	background: rgb(246, 246, 255);
 }
 
 #backgroundInnerBox {
 	position: fixed;
     width: 100%;
     height: 100vh;
-    background-color: rgb(246, 246, 246);
+    background-color: rgb(246, 246, 255);
     max-width: var(--maxWidth);
     min-height: 82vh;
     margin: -3em;
@@ -328,6 +328,10 @@ mark {
 }
 
 @media screen and (max-width: 600px) {
+	body {
+		font-size:1.1em;
+	}
+
 	#searchBar {
 		margin-left:1em;
 	}
@@ -406,6 +410,8 @@ mark {
 	}
 	.subSectionContent {
 		overflow-x:auto;
+		width:100vw;
+		padding-left:10px
 	}
 
 	.displaySection h2, .displaySubSection h2 {
