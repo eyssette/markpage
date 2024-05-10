@@ -474,6 +474,10 @@ function createMarkpage(data) {
 	const titleElement = document.getElementById("title");
 	const initialMessageElement = document.getElementById("initialMessage");
 	const mainElement = document.getElementById("content");
+	const innerBoxElement = document.getElementById("innerBox");
+	if (yamlSearchbar === false) {
+		innerBoxElement.classList.add('noSearchBar');
+	}
 	const footerContentElement = document.getElementById("footerContent");
 	const title = data[0];
 	const initialMessage = data[1];

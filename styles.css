@@ -348,9 +348,17 @@ mark {
 		padding-top: 2em;
     	margin-top: -0.25em;
 	}
+
+	.noSearchBar h1 {
+		padding-top:1.25em;
+	}
 	
 	h2 {
 		margin-top:2em;
+	}
+
+	.noSearchBar h2 {
+		margin-top:1em;
 	}
 
 	.displayHomepage h2 {
