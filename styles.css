@@ -458,13 +458,17 @@ mark {
 	pre {
 		margin: 2em auto;
 		max-width: 85%;
-		overflow-x: scroll;
+		white-space: pre-line;
 	}
 	#linkToHomePage {
 		width: 95%;
 	}
 	img {
 		max-width: 100% !important;
+	}
+
+	a {
+		word-break: break-word;
 	}
 
 	footer {
