@@ -387,12 +387,16 @@ mark {
 	main {
 		background-color: white;
 		margin-top: 7px;
-		border-radius: 10px;
+		border-radius: 12px;
 		padding-bottom: 20px;
 		min-height: 90vh;
 	}
 	.displayHomepage {
 		background-color: rgb(246, 246, 248);
+	}
+
+	.displaySubSection main {
+		box-shadow: 0.125rem 0.125rem 1rem rgba(0, 0, 0, 0.2);
 	}
 
 	.displayHomepage main {
@@ -439,6 +443,10 @@ mark {
 	.subSectionContent {
 		overflow-x: auto;
 		width: 100vw;
+		padding-left: 10px;
+	}
+
+	.noSubSections {
 		padding-left: 10px;
 	}
 
