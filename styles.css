@@ -474,7 +474,7 @@ mark {
 	}
 }
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 601px) and (pointer: fine) {
 	#innerBox {
 		box-shadow: 0.125rem 0.125rem 1rem rgba(0, 0, 0, 0.2);
 		margin-top: 20px;
