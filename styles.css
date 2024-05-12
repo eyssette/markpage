@@ -7,6 +7,7 @@ body {
 	padding: 0;
 	margin: 0;
 	overflow-y: scroll;
+	font-size: 1.1em;
 }
 
 #innerBox {
@@ -331,9 +332,6 @@ mark {
 }
 
 @media screen and (max-width: 600px) {
-	body {
-		font-size: 1.1em;
-	}
 
 	#searchBar {
 		margin-left: 1em;
@@ -477,6 +475,17 @@ mark {
 }
 
 @media screen and (min-width: 601px) {
+	#innerBox {
+		box-shadow: 0.125rem 0.125rem 1rem rgba(0, 0, 0, 0.2);
+		margin-top: 20px;
+	}
+	#backgroundInnerBox {
+		height: auto;
+		background-color: transparent;
+	}
+	#searchBar {
+		top: 30px;
+	}
 	h3 {
 		margin-left: -20px;
 	}
@@ -499,4 +508,12 @@ mark {
 	#linkToHomePage a {
 		padding-right: 0em;
 	}
+
+	pre {
+		max-width: 95%;
+		overflow-y: hidden;
+		overflow-x: auto;
+		font-size: 0.9em;
+	}
+
 }
