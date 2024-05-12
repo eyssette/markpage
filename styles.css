@@ -499,6 +499,8 @@ mark {
 		top: 100px;
 		padding-bottom: 10em;
 		width: calc(var(--maxWidth));
+		overflow-y: auto;
+		max-height: 63vh;
 	}
 
 	.subSectionContent img {
