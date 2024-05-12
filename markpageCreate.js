@@ -1,13 +1,15 @@
 // Par défaut on affiche ça :
 const defaultMarkpage = `# Markpage
 
-<div style="float:left; margin-right:2em; " markdown> ![](markpage-logo.png =90x90)</div> 
+<div style="float:left; margin-right:2em; " markdown> ![](markpage-logo.png =100x100)</div> 
  
-Markpage est un outil libre et gratuit qui permet de créer facilement un minisite web ou une application pour smarphone, à partir d'un simple fichier en Markdown
+Markpage est un outil **libre** et **gratuit** qui permet de créer facilement un minisite web ou une application pour smarphone, à partir d'un simple fichier en Markdown.
+
+On peut l'utiliser notamment pour créer des petits modules de formation ou de révision.
+
+Outil créé par [Cédric Eyssette](https://eyssette.forge.apps.education.fr/).
  
-Outil créé par [Cédric Eyssette](https://eyssette.github.io/).
- 
-Les sources de ce logiciel sont sur [la Forge des Communs Numériques Éducatifs](https://forge.aeif.fr/eyssette/markpage)
+Les sources de ce logiciel sont sur la [Forge des Communs Numériques Éducatifs](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr)
 
 ## Comment ça marche ?
 
@@ -15,13 +17,13 @@ Les sources de ce logiciel sont sur [la Forge des Communs Numériques Éducatifs
 
 1. Créez un fichier sur CodiMD ou sur une forge
 2. Créez votre site en respectant la [syntaxe de Markpage](?sec=1&subsec=2)
-3. Votre site sera alors disponible à l'adresse : https://eyssette.forge.aeif.fr/markpage#URL (en remplaçant URL par l'URL de votre fichier)
+3. Votre site sera alors disponible à l'adresse : https://markpage.forge.apps.education.fr/#URL (en remplaçant URL par l'URL de votre fichier)
 
 ### Syntaxe de base
 
 Le plus simple est de récupérer ce [modèle sur CodiMD](https://codimd.apps.education.fr/8IuZtiIqRwWfrQO9Rec4nA?both).
 
-Ce modèle permet de générer ce mini-site : [voir le site](https://eyssette.forge.aeif.fr/markpage#https://codimd.apps.education.fr/8IuZtiIqRwWfrQO9Rec4nA?both).
+Ce modèle permet de générer ce mini-site : [voir le site](https://markpage.forge.apps.education.fr/#https://codimd.apps.education.fr/8IuZtiIqRwWfrQO9Rec4nA?both).
 
 La syntaxe de base est simple :
 
@@ -138,7 +140,7 @@ La classe \`{.large}\` après une image sous un titre de sous-section permet d'a
 
 ## Crédits
 
-Markpage est hébergé sur la [Forge des Communs Numériques Éducatifs](https://forge.aeif.fr) et utilise les logiciels libres suivants :
+Markpage est hébergé sur la [Forge des Communs Numériques Éducatifs](https://forge.apps.education.fr) et utilise les logiciels libres suivants :
 
 - [showdown](https://github.com/showdownjs/showdown) pour la conversion du markdown en html
 - [js-yaml](https://github.com/nodeca/js-yaml) pour la gestion des en-têtes yaml
