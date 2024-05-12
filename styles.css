@@ -495,7 +495,7 @@ mark {
 	.subSectionContent {
 		position: absolute;
 		margin-left: 240px;
-		max-width: calc(var(--maxWidth) - 220px);
+		max-width: min(calc(var(--maxWidth) - 220px),60vw);
 		top: 100px;
 		padding-bottom: 10em;
 		width: calc(var(--maxWidth));
