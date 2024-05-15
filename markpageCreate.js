@@ -3,7 +3,7 @@ const defaultMarkpage = `# Markpage
 
 <div style="float:left; margin-right:2em; " markdown> ![](markpage-logo.png =100x100)</div> 
  
-Markpage est un outil **libre** et **gratuit** qui permet de créer facilement un minisite web ou une application pour smarphone, à partir d'un simple fichier en Markdown.
+Markpage est un outil **libre** et **gratuit** qui permet de créer facilement un minisite web ou une application pour smartphone, à partir d'un simple fichier en Markdown.
 
 On peut l'utiliser notamment pour créer des petits modules de formation ou de révision.
 
