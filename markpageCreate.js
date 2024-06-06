@@ -178,14 +178,13 @@ function getMarkdownContent() {
 			);
 			urlMD = urlMD.replace("/blob/", "/");
 		}
-		// Gestion des fichiers hébergés sur codiMD
+		// gestion des fichiers hébergés sur codiMD / hedgedoc / digipage
 		if (
-			urlMD.startsWith("https://codimd") &&
-			urlMD.indexOf("download") === -1
+			(urlMD.startsWith("https://codimd") || urlMD.includes("hedgedoc") || urlMD.includes("digipage") )
 		) {
 			urlMD =
-				urlMD.replace("?edit", "").replace("?both", "").replace("?view", "").replace(/#$/, "") +
-				"/download";
+				urlMD.replace("?edit", "").replace("?both", "").replace("?view", "").replace(/#$/,"").replace(/\/$/,'');
+			urlMD = urlMD.indexOf("download") === -1 ? urlMD + "/download" : urlMD;
 		}
 		// Vérification de la présence d'un raccourci
 		shortcut = shortcuts.find(element => element[0]==urlMD)
