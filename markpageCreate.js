@@ -186,6 +186,10 @@ function getMarkdownContent() {
 				urlMD.replace("?edit", "").replace("?both", "").replace("?view", "").replace(/#$/,"").replace(/\/$/,'');
 			urlMD = urlMD.indexOf("download") === -1 ? urlMD + "/download" : urlMD;
 		}
+		// gestion des fichiers hébergés sur framapad
+		if (urlMD.includes('framapad') && !urlMD.endsWith('/export/txt')) {
+			urlMD = urlMD.replace(/\?.*/,'') + '/export/txt';
+		}
 		// Vérification de la présence d'un raccourci
 		shortcut = shortcuts.find(element => element[0]==urlMD)
 		if (shortcut) {
