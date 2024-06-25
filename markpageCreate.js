@@ -170,6 +170,11 @@ function getMarkdownContent() {
 	// Récupération du markdown externe
 	let urlMD = window.location.hash.substring(1); // Récupère l'URL du hashtag sans le #
 	if (urlMD !== "") {
+		// Vérification de la présence d'un raccourci
+		const shortcut = shortcuts.find(element => element[0]==urlMD)
+		if (shortcut) {
+			urlMD = shortcut[1]
+		}
 		// Gestion des fichiers hébergés sur github
 		if (urlMD.startsWith("https://github.com")) {
 			urlMD = urlMD.replace(
@@ -189,11 +194,6 @@ function getMarkdownContent() {
 		// gestion des fichiers hébergés sur framapad
 		if (urlMD.includes('framapad') && !urlMD.endsWith('/export/txt')) {
 			urlMD = urlMD.replace(/\?.*/,'') + '/export/txt';
-		}
-		// Vérification de la présence d'un raccourci
-		shortcut = shortcuts.find(element => element[0]==urlMD)
-		if (shortcut) {
-			urlMD = shortcut[1]
 		}
 
 		// Récupération du contenu du fichier
