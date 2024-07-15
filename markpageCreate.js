@@ -192,7 +192,7 @@ function getMarkdownContent() {
 			urlMD = urlMD.indexOf("download") === -1 ? urlMD + "/download" : urlMD;
 		}
 		// gestion des fichiers hébergés sur framapad
-		if (urlMD.includes('framapad') && !urlMD.endsWith('/export/txt')) {
+		if ((urlMD.includes("framapad") || urlMD.includes("digidoc")) && !urlMD.endsWith("/export/txt")) {
 			urlMD = urlMD.replace(/\?.*/,'') + '/export/txt';
 		}
 
