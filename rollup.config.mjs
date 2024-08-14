@@ -17,7 +17,19 @@ export default {
 		}),
 		postcss({
 			extensions: [".css"],
+			include: ["css/styles.css"],
 			extract: "css/styles.min.css",
+			minimize: true,
+			plugins: [
+				cssnano({
+					preset: "default",
+				}),
+			],
+		}),
+		postcss({
+			extensions: [".css"],
+			include: ["css/swipe.css"],
+			extract: "css/swipe.min.css",
 			minimize: true,
 			plugins: [
 				cssnano({
