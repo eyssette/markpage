@@ -1,4 +1,7 @@
-function handleMarkpage() {
+import { convertLatexExpressions } from "../processMarkdown/convertLatex";
+import { yaml } from "../processMarkdown/yaml";
+
+export function handleMarkpage(markpageData) {
 	const bodyElement = document.body;
 	const progressBarElement = document.getElementById("progressBar");
 	const previousButton = document.getElementById("previousButton");
@@ -9,47 +12,11 @@ function handleMarkpage() {
 	const subSectionsData = markpageData[3];
 
 	let newURL;
-
-	// gestion des mathématiques en Latex
-	function convertLatexExpressions(string) {
-		string = string
-			.replace(/\$\$(.*?)\$\$/g, "&#92;[$1&#92;]")
-			.replace(/\$(.*?)\$/g, "&#92;($1&#92;)");
-		let expressionsLatex = string.match(
-			new RegExp(/&#92;\[.*?&#92;\]|&#92;\(.*?&#92;\)/g)
-		);
-		if (expressionsLatex) {
-			// On n'utilise Katex que s'il y a des expressions en Latex dans le Markdown
-			for (let expressionLatex of expressionsLatex) {
-				// On vérifie le mode d'affichage de l'expression (inline ou block)
-				const inlineMaths = expressionLatex.includes("&#92;[") ? true : false;
-				// On récupère la formule mathématique
-				let mathInExpressionLatex = expressionLatex
-					.replace("&#92;[", "")
-					.replace("&#92;]", "");
-				mathInExpressionLatex = mathInExpressionLatex
-					.replace("&#92;(", "")
-					.replace("&#92;)", "");
-				mathInExpressionLatex = mathInExpressionLatex
-					.replaceAll("&lt;", "\\lt")
-					.replaceAll("&gt;", "\\gt");
-				mathInExpressionLatex = mathInExpressionLatex
-					.replaceAll("<em>", "_")
-					.replaceAll("</em>", "_");
-				// On convertit la formule mathématique en HTML avec Katex
-				stringWithLatex = katex.renderToString(mathInExpressionLatex, {
-					displayMode: inlineMaths,
-				});
-				string = string.replace(expressionLatex, stringWithLatex);
-			}
-		}
-		return string;
-	}
 	setTimeout(() => {
-		if (yamlMaths) {
+		if (yaml.maths) {
 			const initialMessageElement = document.getElementById("initialMessage");
 			initialMessageElement.innerHTML = convertLatexExpressions(
-				initialMessageElement.innerHTML
+				initialMessageElement.innerHTML,
 			);
 			const sectionContent = document.querySelectorAll(".sectionContent");
 			for (const section of sectionContent) {
@@ -58,7 +25,7 @@ function handleMarkpage() {
 				if (subSectionsContent.length > 0) {
 					for (const subSection of subSectionsContent) {
 						subSection.innerHTML = convertLatexExpressions(
-							subSection.innerHTML
+							subSection.innerHTML,
 						);
 					}
 				} else {
@@ -75,7 +42,7 @@ function handleMarkpage() {
 	const hash = window.location.hash.substring(1);
 	// Pour récupérer les paramètres de navigation dans l'URL
 	function getParams(URL) {
-		urlSearchParams = new URLSearchParams(URL.split("?")[1]);
+		const urlSearchParams = new URLSearchParams(URL.split("?")[1]);
 		const paramsObject = {};
 		urlSearchParams.forEach(function (value, key) {
 			paramsObject[key] = value;
@@ -113,9 +80,9 @@ function handleMarkpage() {
 			const subSectionID = param.subsec;
 			if (subSectionID) {
 				bodyElement.className = "displaySubSection";
-				sectionElement = document.getElementById("section-" + sectionID);
-				subSectionElement = sectionElement.querySelector(
-					"#subSection-" + subSectionID
+				const sectionElement = document.getElementById("section-" + sectionID);
+				const subSectionElement = sectionElement.querySelector(
+					"#subSection-" + subSectionID,
 				);
 				showOnlyThisElement(sectionElement, "sections");
 				showOnlyThisElement(subSectionElement, "subsections");
@@ -142,7 +109,9 @@ function handleMarkpage() {
 			} else {
 				if (sectionID) {
 					bodyElement.className = "displaySection";
-					sectionElement = document.getElementById("section-" + sectionID);
+					const sectionElement = document.getElementById(
+						"section-" + sectionID,
+					);
 					showOnlyThisElement(sectionElement, "sections");
 					showOnlyThisElement(undefined, "subsections");
 				} else {
@@ -208,7 +177,7 @@ function handleMarkpage() {
 		});
 	});
 
-	window.addEventListener("popstate", function (event) {
+	window.addEventListener("popstate", function () {
 		let actualURL = window.location.search;
 		params = getParams(actualURL);
 		// Redirection en fonction des paramètres dans l'URL
@@ -232,7 +201,7 @@ function handleMarkpage() {
 
 	// Affichage si yamlLinkToHomePage d'un lien supplémentaire vers la page d'accueil en haut à droite
 	let linkToHomePageElement;
-	if (yamlLinkToHomePage) {
+	if (yaml.linkToHomePage) {
 		linkToHomePageElement = document.getElementById("linkToHomePage");
 		linkToHomePageElement.style.display = "block";
 	}
@@ -244,7 +213,7 @@ function handleMarkpage() {
 		const footerElement = menuElement.parentElement;
 		footerElement.style.height = "0px";
 		footerElement.style.padding = "0px";
-		if (yamlLinkToHomePage) {
+		if (yaml.linkToHomePage) {
 			linkToHomePageElement.style.display = "none";
 		}
 	}
@@ -259,7 +228,7 @@ function handleMarkpage() {
 			const h3Title = h3Elements[params.subsec - 1].firstChild.innerHTML;
 			if (params.sec && h3Title) {
 				const h2Title = document.querySelector(
-					"#section-" + params.sec + " h2 a"
+					"#section-" + params.sec + " h2 a",
 				);
 				h2Title.parentElement.innerHTML = h2Title.innerHTML + " / " + h3Title;
 			}
@@ -274,7 +243,7 @@ function handleMarkpage() {
 
 	// Gestion de la searchBar
 	const searchbarElement = document.getElementById("searchBar");
-	if (yamlSearchbar) {
+	if (yaml.searchbar) {
 		// Par défaut, on gère la searchbar, mais on peut décider dans les paramètres YAML de ne pas avoir de searchbar
 		searchbarElement.style.display = "block";
 		function searchText() {
@@ -333,10 +302,10 @@ function handleMarkpage() {
 						const indexSection = result[0];
 						const indexSubSection = result[1];
 						const sectionElement = document.getElementById(
-							"section-" + (indexSection + 1)
+							"section-" + (indexSection + 1),
 						);
 						const subSectionElement = sectionElement.querySelector(
-							"#subSection-" + (indexSubSection + 1)
+							"#subSection-" + (indexSubSection + 1),
 						);
 						const subSectionTitle =
 							subSectionElement.querySelector("h3 a").innerHTML;
@@ -450,6 +419,7 @@ function handleMarkpage() {
 			changeDisplayBasedOnParams(params);
 		}
 		// On change l'historique dans l'URL sans changer la page
+		let newURL;
 		if (params.sec || paramsURL.sec != 1 || paramsURL.subsec != 1) {
 			newURL =
 				baseURL +
@@ -460,7 +430,7 @@ function handleMarkpage() {
 					})
 					.join("&");
 		} else {
-			newUrl = baseURL;
+			newURL = baseURL;
 		}
 		history.pushState({ path: newURL + "#" + hash }, "", newURL + "#" + hash);
 	}
@@ -476,7 +446,7 @@ function handleMarkpage() {
 	});
 
 	// Par défaut, sur mobile, la navigation se fait step-by-step dans les sous-sections et via un geste de swipe ou par les boutons de navigations en bas : on peut désactiver dans l'en-tête YAML ce paramètre
-	if (yamlSwipe) {
+	if (yaml.swipe) {
 		// Gestion du swipe
 		let startX = 0;
 		let startY = 0;
@@ -521,7 +491,6 @@ function handleMarkpage() {
 		document.body.addEventListener("touchend", function (event) {
 			handleTouchEnd(event);
 		});
-		
 
 		// Gestion des boutons de navigation en bas
 		previousButton.addEventListener("click", () => {
@@ -530,8 +499,5 @@ function handleMarkpage() {
 		nextButton.addEventListener("click", () => {
 			moveNextOrPrevious(params, true);
 		});
-	} else {
-		
 	}
-
 }

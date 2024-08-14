@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Markpage</title>
-    <meta name="description" content="Un outil pour créer un mini site web ou une appli pour smartphone à partir d'un fichier en Markdown" />
-	<meta name="author" content="Cédric Eyssette" />
+    <meta name="description"
+        content="Un outil pour créer un mini site web ou une appli pour smartphone à partir d'un fichier en Markdown" />
+    <meta name="author" content="Cédric Eyssette" />
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' href='styles.min.css'>
+    <link rel="stylesheet" href="css/styles.min.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
+
 <body class="displayHomepage">
     <div id="innerBox">
         <div id="backgroundInnerBox"></div>
@@ -27,7 +30,7 @@
             <div id="content">
             </div>
             <nav id="nav">
-                <progress id="progressBar" value="1" max="3" ></progress>
+                <progress id="progressBar" value="1" max="3"></progress>
                 <div id="navButtons">
                     <button id="previousButton">⬅️</button>
                     <button id="nextButton">➡️</button>
@@ -35,10 +38,10 @@
             </nav>
         </main>
     </div>
-        <footer><div id="footerContent"></div></footer>
-    <script src="scripts/js-yaml.min.js"></script>
-    <script src="scripts/showdown.min.js"></script>
-    <script src='markpageHandle.js'></script>
-    <script src='markpageCreate.js'></script>
+    <footer>
+        <div id="footerContent"></div>
+    </footer>
+    <script src="script.min.js"></script>
 </body>
+
 </html>
