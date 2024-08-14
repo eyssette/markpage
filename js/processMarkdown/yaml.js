@@ -17,6 +17,12 @@ export function processYAML(markdownContent) {
 			const yamlData = jsYaml.load(markdownContent.split("---")[1]);
 			yaml = yamlData ? deepMerge(yaml, yamlData) : yaml;
 		}
+		// Possibilité d'activer ou désactiver le swipe et par conséquent aussi l'affichage step-by-step (avec les boutons de navigation en bas)
+		if (yaml.swipe == true) {
+			loadCSS("./css/swipe.min.css");
+		} else {
+			yaml.swipe == false;
+		}
 		// Gestion des mathématiques
 		if (yaml.maths === true) {
 			Promise.all([
@@ -31,12 +37,6 @@ export function processYAML(markdownContent) {
 			const styleElement = document.createElement("style");
 			styleElement.innerHTML = yaml.style.replaceAll("\\", "");
 			document.body.appendChild(styleElement);
-		}
-		// Possibilité d'activer ou désactiver le swipe et par conséquent aussi l'affichage step-by-step (avec les boutons de navigation en bas)
-		if (yaml.swipe == true) {
-			loadCSS("./css/swipe.min.css");
-		} else {
-			yaml.swipe == false;
 		}
 		// Possibilité de ne pas avoir la searchbar
 		if (yaml.searchbar == false || yaml.recherche == false) {
