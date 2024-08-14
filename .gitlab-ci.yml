@@ -7,7 +7,7 @@ pages:
     - apk update && apk add gzip brotli
   script:
     - mkdir -p .public .public/css/
-    - cp favicon.ico index.html script.min.js script.min.js.map markpage-logo.svg .public/
+    - cp favicon.svg index.html script.min.js script.min.js.map .public/
     - cp css/styles.min.css css/swipe.min.css .public/css/
     - mv .public public
     - for ext in $FILES_TO_COMPRESS; do find public -type f -name "*.$ext" -exec gzip -f -k {} \;; done

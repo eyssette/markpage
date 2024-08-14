@@ -1,6 +1,6 @@
 # Markpage
 
-<div style="float:left; margin-right:2em; " markdown> ![](markpage-logo.svg =100x100)</div> 
+<div style="float:left; margin-right:2em; " markdown> ![](favicon.svg =100x100)</div> 
  
 Markpage est un outil **libre** et **gratuit** qui permet de créer facilement un minisite web ou une application pour smartphone, à partir d'un simple fichier en Markdown.
 
