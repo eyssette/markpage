@@ -1,13 +1,13 @@
 # Markpage
 
-<div style="float:left; margin-right:2em; " markdown> ![](markpage-logo.png =100x100)</div> 
+<div style="float:left; margin-right:2em; " markdown> ![](markpage-logo.svg =100x100)</div> 
  
 Markpage est un outil **libre** et **gratuit** qui permet de créer facilement un minisite web ou une application pour smartphone, à partir d'un simple fichier en Markdown.
 
 On peut l'utiliser notamment pour créer des petits modules de formation ou de révision.
 
 Outil créé par [Cédric Eyssette](https://eyssette.forge.apps.education.fr/).
- 
+
 Les sources de ce logiciel sont sur la [Forge des Communs Numériques Éducatifs](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr)
 
 ## Comment ça marche ?
@@ -49,10 +49,7 @@ On peut combiner ces trois éléments.
 ![](URL-image)
 ```
 
-
-
 <!-- ##Des exemples ? -->
-
 
 ## Options plus avancées
 
@@ -91,7 +88,6 @@ Contenu
 :::warning Exemple d'admonition de type "warning"
 Contenu
 :::
-
 
 Dans votre fichier, vous pouvez utiliser les "admonitions" avec la syntaxe suivante, dans laquelle typeAdmonition est le type de l'admonition (les types "info", "tip" et "warning" ont déjà un style CSS par défaut, mais vous pouvez en utiliser d'autres). Le titre de l'admonition peut contenir des espaces.
 
@@ -144,4 +140,3 @@ Markpage est hébergé sur la [Forge des Communs Numériques Éducatifs](https:/
 - [showdown](https://github.com/showdownjs/showdown) pour la conversion du markdown en html
 - [js-yaml](https://github.com/nodeca/js-yaml) pour la gestion des en-têtes yaml
 - [katex](https://katex.org/) pour la gestion des mathématiques en Latex
-
