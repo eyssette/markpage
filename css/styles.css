@@ -10,8 +10,9 @@ body {
 	font-size: 1.1em;
 }
 
-#innerBox, #backgroundInnerBox {
-	background-color: rgb(235,239,248);
+#innerBox,
+#backgroundInnerBox {
+	background-color: rgb(235, 239, 248);
 }
 
 #innerBox {
@@ -334,9 +335,9 @@ mark {
 }
 
 @media screen and (max-width: 834px) {
-
-	html, footer {
-		background-color: rgb(235,239,248);
+	html,
+	footer {
+		background-color: rgb(235, 239, 248);
 	}
 
 	#searchBar {
@@ -393,7 +394,6 @@ mark {
 		margin-top: 7px;
 		border-radius: 12px;
 		padding-bottom: 20px;
-		min-height: 90vh;
 	}
 	.displayHomepage {
 		background-color: rgb(246, 246, 248);
@@ -479,7 +479,7 @@ mark {
 @media screen and (min-width: 835px) and (pointer: fine) {
 	#innerBox {
 		margin-top: 20px;
-		border-radius:15px;
+		border-radius: 15px;
 	}
 	#backgroundInnerBox {
 		height: auto;
@@ -497,14 +497,14 @@ mark {
 	.subSectionContent {
 		position: absolute;
 		margin-left: 240px;
-		max-width: min(calc(var(--maxWidth) - 220px),60vw);
+		max-width: min(calc(var(--maxWidth) - 220px), 60vw);
 		top: 100px;
 		padding-bottom: 10em;
 		width: calc(var(--maxWidth));
 		overflow-x: hidden;
 		overflow-y: auto;
 		max-height: 63vh;
-		padding-right:20px;
+		padding-right: 20px;
 	}
 
 	.subSectionContent img {
@@ -521,5 +521,4 @@ mark {
 		overflow-x: auto;
 		font-size: 0.9em;
 	}
-
 }
