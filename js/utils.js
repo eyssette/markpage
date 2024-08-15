@@ -1,5 +1,15 @@
 import { shortcuts, corsProxy } from "./config";
 
+// Pour récupérer les paramètres de navigation dans l'URL
+export function getParams(URL) {
+	const urlSearchParams = new URLSearchParams(URL.split("?")[1]);
+	const paramsObject = {};
+	urlSearchParams.forEach(function (value, key) {
+		paramsObject[key] = value;
+	});
+	return paramsObject;
+}
+
 // Pour gérer l'URL de la source du flipbook
 export function handleURL(url) {
 	if (url !== "") {
