@@ -19,28 +19,6 @@ export function handleMarkpage(markpageData) {
 	changeDisplayBasedOnParams(params, markpageData);
 	handleClicks(baseURL, hash, params, markpageData);
 
-	// window.addEventListener("popstate", function () {
-	// 	let actualURL = window.location.search;
-	// 	params = getParams(actualURL);
-	// 	// Redirection en fonction des paramètres dans l'URL
-	// 	const newURL =
-	// 		baseURL +
-	// 		"?" +
-	// 		Object.keys(params)
-	// 			.map(function (key) {
-	// 				return key + "=" + encodeURIComponent(params[key]);
-	// 			})
-	// 			.join("&");
-
-	// 	if (actualURL == "") {
-	// 		params = undefined;
-	// 		showOnlyThisElement(undefined, "sections");
-	// 		showOnlyThisElement(undefined, "subsections");
-	// 	}
-	// 	// On change l'affichage de l'URL sans recharger la page
-	// 	changeDisplayBasedOnParams(params, markpageData);
-	// });
-
 	// Affichage si yamlLinkToHomePage d'un lien supplémentaire vers la page d'accueil en haut à droite
 	let linkToHomePageElement;
 	if (yaml.linkToHomePage) {
