@@ -1,4 +1,4 @@
-import jsYaml from "../externals/js-yaml.js";
+import { load as loadYAML } from "../externals/js-yaml.js";
 import { deepMerge, loadScript, loadCSS } from "../utils.js";
 
 export let yaml = {
@@ -14,7 +14,7 @@ export function processYAML(markdownContent) {
 			markdownContent.split("---").length > 2 &&
 			markdownContent.startsWith("---")
 		) {
-			const yamlData = jsYaml.load(markdownContent.split("---")[1]);
+			const yamlData = loadYAML(markdownContent.split("---")[1]);
 			yaml = yamlData ? deepMerge(yaml, yamlData) : yaml;
 		}
 		// Possibilité d'activer ou désactiver le swipe et par conséquent aussi l'affichage step-by-step (avec les boutons de navigation en bas)
