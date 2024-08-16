@@ -1,4 +1,5 @@
 import { showOnlyThisElement } from "./showOnlyThisElement";
+import { yaml } from "../processMarkdown/yaml";
 
 const bodyElement = document.body;
 const progressBarElement = document.getElementById("progressBar");
@@ -8,13 +9,14 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 	const sectionsTitle = markpageData[2];
 	const numberOfSections = sectionsTitle.length;
 	const subSectionsData = markpageData[3];
+	let subSectionElement;
 	if (param) {
 		const sectionID = param.sec;
 		const subSectionID = param.subsec;
 		if (subSectionID) {
 			bodyElement.className = "displaySubSection";
 			const sectionElement = document.getElementById("section-" + sectionID);
-			const subSectionElement = sectionElement.querySelector(
+			subSectionElement = sectionElement.querySelector(
 				"#subSection-" + subSectionID,
 			);
 			showOnlyThisElement(sectionElement, "sections");
@@ -49,6 +51,17 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 			} else {
 				bodyElement.className = "displayHomepage";
 			}
+		}
+		// Gestion du scroll vers l'élément cible
+		if (subSectionElement && window.innerWidth < 600 && yaml.swipe == false) {
+			subSectionElement.scrollIntoView({
+				behavior: "smooth",
+			});
+		} else {
+			window.scrollTo({
+				top: 0,
+				behavior: "smooth",
+			});
 		}
 	} else {
 		bodyElement.className = "displayHomepage";

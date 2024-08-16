@@ -46,16 +46,6 @@ export function handleClicks(baseURL, hash, params, markpageData) {
 			// On change l'affichage de l'URL sans recharger la page
 			history.pushState({ path: newURL + "#" + hash }, "", newURL + "#" + hash);
 			changeDisplayBasedOnParams(params, markpageData);
-			if (window.innerWidth < 600 && typeof params !== "undefined") {
-				link.scrollIntoView({
-					behavior: "smooth",
-				});
-			} else {
-				window.scrollTo({
-					top: 0,
-					behavior: "smooth",
-				});
-			}
 		});
 	});
 }
