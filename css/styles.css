@@ -268,8 +268,8 @@ input {
 #linkToHomePage {
 	display: none;
 	position: absolute;
-	top: 10px;
-	width: 100%;
+	top: 30px;
+	width: 90%;
 	max-width: var(--maxWidth);
 	margin: auto;
 	text-align: right;
@@ -466,6 +466,7 @@ mark {
 	}
 	#linkToHomePage {
 		width: 95%;
+		top: 10px;
 	}
 	img {
 		max-width: 100% !important;
