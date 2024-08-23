@@ -8,17 +8,19 @@ import { handleClicks } from "./handleClicks";
 import { paramsRemoveH3, paramsRemoveMenu } from "./params";
 import { showOnlyThisElement } from "./showOnlyThisElement";
 
+export let params;
+
 export function handleMarkpage(markpageData) {
 	if (yaml.maths) {
 		displayMaths();
 	}
 	const hash = window.location.hash.substring(1);
 	const actualURL = window.location.search;
-	let params = getParams(actualURL);
+	params = getParams(actualURL);
 	const baseURL = window.location.origin + window.location.pathname;
 
 	changeDisplayBasedOnParams(params, markpageData);
-	handleClicks(baseURL, hash, params, markpageData);
+	handleClicks(baseURL, hash, markpageData);
 
 	// Affichage si yamlLinkToHomePage d'un lien supplémentaire vers la page d'accueil en haut à droite
 	let linkToHomePageElement;

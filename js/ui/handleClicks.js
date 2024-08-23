@@ -1,8 +1,9 @@
 import { showOnlyThisElement } from "./showOnlyThisElement";
 import { changeDisplayBasedOnParams } from "./changeDisplayBasedOnParams";
 import { getParams } from "../utils";
+import { params } from "./handleMarkpage";
 
-export function handleClicks(baseURL, hash, params, markpageData) {
+export function handleClicks(baseURL, hash, markpageData) {
 	// On détecte les clics sur les liens
 	const links = document.querySelectorAll(".navigationLink");
 	links.forEach(function (link) {
@@ -20,19 +21,16 @@ export function handleClicks(baseURL, hash, params, markpageData) {
 			let newURL;
 			if (linkURL == baseURL || linkURL + "index.html" == baseURL) {
 				newURL = baseURL;
-				params = undefined;
+				delete params.sec;
+				delete params.subsec;
 				showOnlyThisElement(undefined, "sections");
 				showOnlyThisElement(undefined, "subsections");
 			} else {
-				params = getParams(linkURL);
-				// Affichage par défaut de la première sous-section
-				const sectionElement = document.getElementById("section-" + params.sec);
-				const hasSubSections =
-					sectionElement.querySelector(".subSectionContent");
-				if (params.sec && !params.subsec && hasSubSections) {
-					params.subsec = "1";
+				Object.assign(params, getParams(linkURL));
+				if (!("subsec" in getParams(linkURL))) {
+					params.subsec = 1;
 				}
-				// Redirection en fonction des paramètres dans l'URL
+				// Changement de l'historique de l'URL
 				newURL =
 					baseURL +
 					"?" +
@@ -42,8 +40,6 @@ export function handleClicks(baseURL, hash, params, markpageData) {
 						})
 						.join("&");
 			}
-
-			// On change l'affichage de l'URL sans recharger la page
 			history.pushState({ path: newURL + "#" + hash }, "", newURL + "#" + hash);
 			changeDisplayBasedOnParams(params, markpageData);
 		});
