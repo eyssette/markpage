@@ -6,6 +6,7 @@ import { handleNavigation } from "./navigation";
 import { searchBar } from "./searchBar";
 import { handleClicks } from "./handleClicks";
 import { paramsRemoveH3, paramsRemoveMenu } from "./params";
+import { showOnlyThisElement } from "./showOnlyThisElement";
 
 export function handleMarkpage(markpageData) {
 	if (yaml.maths) {
@@ -24,6 +25,14 @@ export function handleMarkpage(markpageData) {
 	if (yaml.linkToHomePage) {
 		linkToHomePageElement = document.getElementById("linkToHomePage");
 		linkToHomePageElement.style.display = "block";
+		linkToHomePageElement.addEventListener("click", function (e) {
+			e.preventDefault();
+			delete params.sec;
+			delete params.subsec;
+			showOnlyThisElement(undefined, "sections");
+			showOnlyThisElement(undefined, "subsections");
+			changeDisplayBasedOnParams(params, markpageData);
+		});
 	}
 	// On peut ajouter un paramètre dans l'URL pour cacher le menu du bas et l'icône de page d'accueil
 	if (params.menu && params.menu == 0) {
