@@ -32,6 +32,11 @@ export function handleMarkpage(markpageData) {
 			showOnlyThisElement(undefined, "sections");
 			showOnlyThisElement(undefined, "subsections");
 			changeDisplayBasedOnParams(params, markpageData);
+			history.pushState(
+				{ path: baseURL + "#" + hash },
+				"",
+				baseURL + "#" + hash,
+			);
 		});
 	}
 	// On peut ajouter un paramètre dans l'URL pour cacher le menu du bas et l'icône de page d'accueil
