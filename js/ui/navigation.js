@@ -38,7 +38,7 @@ export function handleNavigation(baseURL, hash, params, markpageData) {
 				} else if (paramsSecInt > 1) {
 					// Sinon : on passe à la section d'avant (sauf si on est à la première section)
 					paramsURL.sec = paramsSecInt - 1;
-					paramsURL.subsec = subSectionsData[paramsSecInt - 1].length;
+					paramsURL.subsec = subSectionsData[paramsURL.sec - 1].length;
 					changeDisplayBasedOnParams(params, markpageData);
 				} else {
 					// Si on est à la première section : on revient à la page d'accueil
