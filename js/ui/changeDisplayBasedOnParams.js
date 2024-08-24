@@ -27,7 +27,7 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 			subSectionElement = sectionElement.querySelector(
 				"#subSection-" + subSectionID,
 			);
-			visibleElement - subSectionElement;
+			visibleElement = subSectionElement;
 			showOnlyThisElement(sectionElement, "sections");
 			showOnlyThisElement(subSectionElement, "subsections");
 			// Gestion de la barre de progrès
