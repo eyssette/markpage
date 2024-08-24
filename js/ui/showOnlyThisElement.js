@@ -1,11 +1,3 @@
-// Pour forcer le reload d'une iframe
-function resetIframe(iframe) {
-	const srcIframe = iframe.src;
-	iframe.blur();
-	iframe.src = "";
-	iframe.src = srcIframe;
-}
-
 // Une fonction pour choisir de n'afficher que l'élément actif
 export function showOnlyThisElement(element, type) {
 	const sections = document.querySelectorAll("section");
@@ -22,9 +14,5 @@ export function showOnlyThisElement(element, type) {
 	}
 	if (element) {
 		element.classList.add("visible");
-		const iframesInElement = element.querySelectorAll("iframe");
-		for (const iframe of iframesInElement) {
-			resetIframe(iframe);
-		}
 	}
 }

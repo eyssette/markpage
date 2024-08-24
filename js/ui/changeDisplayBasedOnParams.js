@@ -4,8 +4,16 @@ import { yaml } from "../processMarkdown/yaml";
 const bodyElement = document.body;
 const progressBarElement = document.getElementById("progressBar");
 
+// Pour forcer le reload d'une iframe
+function resetIframe(iframe) {
+	const srcIframe = iframe.src;
+	iframe.src = "";
+	iframe.src = srcIframe;
+}
+
 // Fonction pour changer l'affichage en fonction des paramètres dans l'objet param (qui correspond aux paramètres dans l'URL)
 export function changeDisplayBasedOnParams(param, markpageData) {
+	let visibleElement;
 	const sectionsTitle = markpageData[2];
 	const numberOfSections = sectionsTitle.length;
 	const subSectionsData = markpageData[3];
@@ -19,6 +27,7 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 			subSectionElement = sectionElement.querySelector(
 				"#subSection-" + subSectionID,
 			);
+			visibleElement - subSectionElement;
 			showOnlyThisElement(sectionElement, "sections");
 			showOnlyThisElement(subSectionElement, "subsections");
 			// Gestion de la barre de progrès
@@ -46,10 +55,18 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 			if (sectionID) {
 				bodyElement.className = "displaySection";
 				const sectionElement = document.getElementById("section-" + sectionID);
+				visibleElement = sectionElement;
 				showOnlyThisElement(sectionElement, "sections");
 				showOnlyThisElement(undefined, "subsections");
 			} else {
 				bodyElement.className = "displayHomepage";
+			}
+		}
+		// Gestion des iframes dans l'élément visible
+		if (visibleElement) {
+			const iframesInElement = visibleElement.querySelectorAll("iframe");
+			for (const iframe of iframesInElement) {
+				resetIframe(iframe);
 			}
 		}
 		// Gestion du scroll vers l'élément cible
