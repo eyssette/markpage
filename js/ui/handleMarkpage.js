@@ -22,6 +22,13 @@ export function handleMarkpage(markpageData) {
 	changeDisplayBasedOnParams(params, markpageData);
 	handleClicks(baseURL, hash, markpageData);
 
+	window.addEventListener("popstate", function () {
+		// Gestion des retours en arrière dans l'historique du navigateur
+		let actualURL = window.location.search;
+		params = getParams(actualURL);
+		changeDisplayBasedOnParams(params, markpageData);
+	});
+
 	// Affichage si yamlLinkToHomePage d'un lien supplémentaire vers la page d'accueil en haut à droite
 	let linkToHomePageElement;
 	if (yaml.linkToHomePage) {
