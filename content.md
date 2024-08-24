@@ -14,7 +14,7 @@ Les sources de ce logiciel sont sur la [Forge des Communs Numériques Éducatifs
 
 ### Le principe
 
-1. Créez un fichier sur CodiMD ou sur une forge
+1. Créez un fichier sur un service comme [CodiMD](https://codimd.apps.education.fr/), [Digipad](https://digipad.app/), [Framapad](https://framapad.org/abc/fr/) … ou sur la [Forge](https://forge.apps.education.fr/).
 2. Créez votre site en respectant la [syntaxe de Markpage](?sec=1&subsec=2)
 3. Votre site sera alors disponible à l'adresse : https://markpage.forge.apps.education.fr/#URL (en remplaçant URL par l'URL de votre fichier)
 
@@ -133,10 +133,24 @@ La classe `{.center}` permet de centrer un paragraphe.
 
 La classe `{.large}` après une image sous un titre de sous-section permet d'avoir une grande image plutôt qu'une petit icône.
 
-## Crédits
+## Faire évoluer l'outil !
 
-Markpage est hébergé sur la [Forge des Communs Numériques Éducatifs](https://forge.apps.education.fr) et utilise les logiciels libres suivants :
+### Un outil libre et gratuit
+
+Markpage est un outil libre et gratuit hébergé sur la [Forge des Communs Numériques Éducatifs](https://forge.apps.education.fr).
+
+Markpage utilise les logiciels libres suivants :
 
 - [showdown](https://github.com/showdownjs/showdown) pour la conversion du markdown en html
 - [js-yaml](https://github.com/nodeca/js-yaml) pour la gestion des en-têtes yaml
 - [katex](https://katex.org/) pour la gestion des mathématiques en Latex
+
+### Contacter l'auteur
+
+Vous pouvez m'envoyer vos demandes d'évolution de l'outil, n'hésitez pas !
+
+Vous pouvez me contacter sur les [réseaux sociaux](https://eyssette.forge.apps.education.fr).
+
+De préférence, merci d'utiliser les “[tickets](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/issues)” sur LaForgeEdu.
+
+Vous pouvez aussi envoyer un [mail](mailto:forge-apps+markpage-markpage-forge-apps-education-fr-1073-1zlrcah1x0db338wwkjnjf1g4-issue@phm.education.gouv.fr)
