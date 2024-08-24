@@ -53,7 +53,11 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 			}
 		}
 		// Gestion du scroll vers l'élément cible
-		if (subSectionElement && window.innerWidth < 600 && yaml.swipe == false) {
+		if (
+			subSectionElement &&
+			window.innerWidth < 600 &&
+			yaml.oneByOne == false
+		) {
 			subSectionElement.scrollIntoView({
 				behavior: "smooth",
 			});

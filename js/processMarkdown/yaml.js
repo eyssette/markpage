@@ -3,7 +3,7 @@ import { deepMerge, loadScript, loadCSS } from "../utils.js";
 
 export let yaml = {
 	searchbar: true,
-	swipe: true,
+	oneByOne: true,
 	linkToHomePage: false,
 };
 
@@ -17,11 +17,11 @@ export function processYAML(markdownContent) {
 			const yamlData = loadYAML(markdownContent.split("---")[1]);
 			yaml = yamlData ? deepMerge(yaml, yamlData) : yaml;
 		}
-		// Possibilité d'activer ou désactiver le swipe et par conséquent aussi l'affichage step-by-step (avec les boutons de navigation en bas)
-		if (yaml.swipe == true) {
-			loadCSS("./css/swipe.min.css");
+		// Possibilité d'activer ou désactiver l'affichage oneByOne (avec les boutons de navigation en bas)
+		if (yaml.oneByOne == true) {
+			loadCSS("./css/oneByOne.min.css");
 		} else {
-			yaml.swipe == false;
+			yaml.oneByOne == false;
 		}
 		// Gestion des mathématiques
 		if (yaml.maths === true) {

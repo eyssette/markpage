@@ -1,5 +1,4 @@
 import { changeDisplayBasedOnParams } from "./changeDisplayBasedOnParams";
-import { yaml } from "../processMarkdown/yaml";
 import { showOnlyThisElement } from "./showOnlyThisElement";
 
 export function handleNavigation(baseURL, hash, params, markpageData) {
@@ -108,59 +107,57 @@ export function handleNavigation(baseURL, hash, params, markpageData) {
 		}
 	});
 
-	// Par défaut, sur mobile, la navigation se fait step-by-step dans les sous-sections et via un geste de swipe ou par les boutons de navigations en bas : on peut désactiver dans l'en-tête YAML ce paramètre
-	if (yaml.swipe) {
-		// Gestion du swipe
-		let startX = 0;
-		let startY = 0;
+	// Par défaut, sur écran tactile, la navigation se fait step-by-step dans les sous-sections et via un geste de swipe ou par les boutons de navigations en bas : on peut désactiver dans l'en-tête YAML ce paramètre
+	// Gestion du swipe
+	let startX = 0;
+	let startY = 0;
 
-		function handleTouchStart(e) {
-			startX = e.changedTouches[0].screenX;
-			startY = e.changedTouches[0].screenY;
-		}
-
-		function handleTouchEnd(e) {
-			const diffX = e.changedTouches[0].screenX - startX;
-			const diffY = e.changedTouches[0].screenY - startY;
-			const ratioX = Math.abs(diffX / diffY);
-			const ratioY = Math.abs(diffY / diffX);
-			const absDiff = Math.abs(ratioX > ratioY ? diffX : diffY);
-
-			// Ignore small movements.
-			if (absDiff < 30) {
-				return;
-			}
-
-			if (ratioX > ratioY) {
-				if (diffX >= 0) {
-					// Right Swipe
-					moveNextOrPrevious(params, false);
-				} else {
-					// Left Swipe
-					moveNextOrPrevious(params, true);
-				}
-			} else {
-				if (diffY >= 0) {
-					// Down Swipe
-				} else {
-					// Up Swipe
-				}
-			}
-		}
-
-		document.body.addEventListener("touchstart", function (event) {
-			handleTouchStart(event);
-		});
-		document.body.addEventListener("touchend", function (event) {
-			handleTouchEnd(event);
-		});
-
-		// Gestion des boutons de navigation en bas
-		previousButton.addEventListener("click", () => {
-			moveNextOrPrevious(params, false);
-		});
-		nextButton.addEventListener("click", () => {
-			moveNextOrPrevious(params, true);
-		});
+	function handleTouchStart(e) {
+		startX = e.changedTouches[0].screenX;
+		startY = e.changedTouches[0].screenY;
 	}
+
+	function handleTouchEnd(e) {
+		const diffX = e.changedTouches[0].screenX - startX;
+		const diffY = e.changedTouches[0].screenY - startY;
+		const ratioX = Math.abs(diffX / diffY);
+		const ratioY = Math.abs(diffY / diffX);
+		const absDiff = Math.abs(ratioX > ratioY ? diffX : diffY);
+
+		// Ignore small movements.
+		if (absDiff < 30) {
+			return;
+		}
+
+		if (ratioX > ratioY) {
+			if (diffX >= 0) {
+				// Right Swipe
+				moveNextOrPrevious(params, false);
+			} else {
+				// Left Swipe
+				moveNextOrPrevious(params, true);
+			}
+		} else {
+			if (diffY >= 0) {
+				// Down Swipe
+			} else {
+				// Up Swipe
+			}
+		}
+	}
+
+	document.body.addEventListener("touchstart", function (event) {
+		handleTouchStart(event);
+	});
+	document.body.addEventListener("touchend", function (event) {
+		handleTouchEnd(event);
+	});
+
+	// Gestion des boutons de navigation en bas
+	previousButton.addEventListener("click", () => {
+		moveNextOrPrevious(params, false);
+	});
+	nextButton.addEventListener("click", () => {
+		moveNextOrPrevious(params, true);
+	});
 }

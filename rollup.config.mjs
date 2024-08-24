@@ -28,8 +28,8 @@ export default {
 		}),
 		postcss({
 			extensions: [".css"],
-			include: ["css/swipe.css"],
-			extract: "css/swipe.min.css",
+			include: ["css/oneByOne.css"],
+			extract: "css/oneByOne.min.css",
 			minimize: true,
 			plugins: [
 				cssnano({

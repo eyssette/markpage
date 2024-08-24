@@ -63,7 +63,7 @@ maths: true
 style: a{color:red}
 recherche: false
 lienPageAccueil: true
-swipe: false
+oneByOne: false
 ---
 ```
 
@@ -71,7 +71,7 @@ swipe: false
 - `style: a{color:red}` permet d'ajouter des styles CSS personnalisés
 - `recherche: false` permet de supprimer la barre de recherche en haut à gauche
 - `lienPageAccueil: true` permet d'ajouter un lien vers la page d'accueil en haut à droite
-- `swipe: false` permet de changer le mode de navigation sur mobile : par défaut, le paramètre est sur `true`, une seule sous-section est affichée et on navigue avec un mouvement de swipe ou bien via des boutons de navigation. Avec `false`, seule le contenu de la section active est affichée, mais tous les titres de sous-section sont présents et on peut scroller pour cliquer sur la sous-section qui nous intéresse.
+- `oneByOne: false` permet de changer le mode de navigation sur mobile : par défaut, le paramètre est sur `true`, une seule sous-section est affichée et on navigue avec un mouvement de swipe ou bien via des boutons de navigation. Avec `false`, seul le contenu de la section active est affiché, mais tous les titres de sous-section sont présents et on peut scroller pour cliquer sur la sous-section qui nous intéresse.
 
 ### Admonitions
 
