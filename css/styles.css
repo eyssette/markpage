@@ -505,7 +505,7 @@ mark {
 		width: calc(var(--maxWidth));
 		overflow-x: hidden;
 		overflow-y: auto;
-		max-height: 63vh;
+		max-height: 61vh;
 		padding-right: 20px;
 	}
 
