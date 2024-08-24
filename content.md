@@ -147,7 +147,7 @@ Markpage utilise les logiciels libres suivants :
 
 ### Contacter l'auteur
 
-Vous pouvez m'envoyer vos demandes d'évolution de l'outil, n'hésitez pas !
+N'hésitez pas à m'envoyer vos demandes d'évolution de l'outil.
 
 Vous pouvez me contacter sur les [réseaux sociaux](https://eyssette.forge.apps.education.fr).
 
