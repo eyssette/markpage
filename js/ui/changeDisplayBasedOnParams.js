@@ -18,7 +18,7 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 	const numberOfSections = sectionsTitle.length;
 	const subSectionsData = markpageData[3];
 	let subSectionElement;
-	if (param) {
+	if (param && Object.keys(param).length > 0) {
 		const sectionID = param.sec;
 		const subSectionID = param.subsec;
 		if (subSectionID) {
@@ -85,6 +85,8 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 			});
 		}
 	} else {
+		showOnlyThisElement(undefined, "sections");
+		showOnlyThisElement(undefined, "subsections");
 		bodyElement.className = "displayHomepage";
 	}
 }
