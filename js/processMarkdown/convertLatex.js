@@ -22,8 +22,12 @@ export function convertLatexExpressions(string) {
 				.replaceAll("&lt;", "\\lt")
 				.replaceAll("&gt;", "\\gt");
 			mathInExpressionLatex = mathInExpressionLatex
+				.replaceAll("align<em>", "align*")
+				.replaceAll("align</em>", "align*")
 				.replaceAll("<em>", "_")
-				.replaceAll("</em>", "_");
+				.replaceAll("</em>", "_")
+				.replaceAll("&amp;", "&")
+				.replaceAll(" ", "\\ ");
 			// On convertit la formule mathématique en HTML avec Katex
 			const stringWithLatex = window.katex.renderToString(
 				mathInExpressionLatex,
