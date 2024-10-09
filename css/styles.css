@@ -8,6 +8,7 @@ body {
 	margin: 0;
 	overflow-y: scroll;
 	font-size: 1.1em;
+	margin-bottom: 120px;
 }
 
 #innerBox,
