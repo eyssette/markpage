@@ -124,8 +124,14 @@ const converter = new Showdown.Converter({
 	],
 });
 
+function fixImageDimensionsCodiMD(md) {
+	md = md.replaceAll(/=x([0-9]*)\)/g, "=*x$1)");
+	md = md.replaceAll(/=([0-9]*)x\)/g, "=$1x*)");
+	return md;
+}
+
 export function markdownToHTML(text) {
-	text = text.replaceAll("\n\n|", "|");
+	text = fixImageDimensionsCodiMD(text.replaceAll("\n\n|", "|"));
 	let html = converter.makeHtml(text);
 	// Optimisation de l'affichage des images
 	html = html.replaceAll("<img ", '<img loading="lazy" ');
