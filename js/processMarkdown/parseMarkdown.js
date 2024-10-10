@@ -28,6 +28,10 @@ export function parseMarkdown(markdownContent) {
 		const sectionTitle = markdownToHTML(section.substring(0, indexEndTitle))
 			.replace("<p>", "")
 			.replace("</p>", "");
+		const sectionTitleAside = sectionTitle.match(/<aside>(.*)<\/aside>/);
+		const sectionTitleAsideHTML = sectionTitleAside
+			? "<h3>" + sectionTitleAside[1] + "</h3>"
+			: "";
 		const sectionContent = section.substring(indexEndTitle);
 		sectionsTitles.push(sectionTitle);
 
@@ -61,9 +65,9 @@ export function parseMarkdown(markdownContent) {
 					subSectionContent = subSectionContent.substring(1 + indexEndImage);
 				}
 				// … on transforme en HTML le contenu, en supprimant les retours à la ligne inutiles
-				const subSectionContentHTML = markdownToHTML(
-					removeUselessCarriages(subSectionContent),
-				);
+				const subSectionContentHTML =
+					sectionTitleAsideHTML +
+					markdownToHTML(removeUselessCarriages(subSectionContent));
 				subSectionsContent.push([
 					subSectionTitle,
 					subSectionImage,
@@ -76,7 +80,10 @@ export function parseMarkdown(markdownContent) {
 				? markdownToHTML(removeUselessCarriages(subSections[0]))
 				: "";
 			subSectionsContentHTML =
-				'<div class="noSubSections">' + subSectionsContentHTML + "</div>";
+				'<div class="noSubSections">' +
+				sectionTitleAsideHTML +
+				subSectionsContentHTML +
+				"</div>";
 			subSectionsContent = [subSectionsContentHTML];
 		}
 		subSectionsArray.push(subSectionsContent);
