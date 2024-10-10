@@ -201,6 +201,9 @@ h3 aside aside {
 	color: #888;
 	margin-top: 3px;
 }
+h3 a:empty:before {
+	content: "…";
+}
 
 .subSection,
 .subSection.visible {
