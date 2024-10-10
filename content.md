@@ -39,22 +39,28 @@ On fait un titre de section avec un titre en markdown de niveau 2.
 
 Si on utilise la balise `<span>précisions</span>` dans un titre de niveau 2, alors le contenu dans cette balise ne sera affiché que dans le menu de la page d'accueil, et dans le titre de l'onglet correspondant, mais il ne sera pas affiché tout en bas dans le footer (pour gagner en lisibilité si le titre devient trop long).
 
+Pour ajouter un sous-titre au titre de section, on place le sous-titre dans un élément `aside`. Le sous-titre ne s'affiche pas non plus dans le footer.
+
+On peut combiner les balises `span` et `aside`. On aurait ainsi par exemple :
+
+```
+#​​# Titre section <span>précision sur le titre</span><aside>Sous-titre</aside>
+```
+
 ### Titres de sous-sections
 
-On peut ajouter une image et des sous-titres aux titres de sous-sections.
+On peut ajouter des sous-titres et une image aux titres de sous-sections.
+
+Pour ajouter un sous-titre au titre de sous-section, on place le sous-titre dans un élément `aside`, et on peut mettre également un deuxième sous-titre avec un autre élément `aside` dans le premier élément `aside`.
 
 Pour ajouter une image, on ajoute l'image en markdown dans la ligne juste au-dessous du titre de la sous-section.
-
-Pour ajouter un sous-titre, on place le sous-titre dans un élément `aside`, et on peut mettre également un deuxième sous-titre avec un autre élément `aside` dans le premier élément `aside`.
 
 On peut combiner ces trois éléments.
 
 ```
-### Titre section <aside>Sous-titre<aside>Deuxième sous-titre</aside></aside>
+​#​​#​# Titre sous-section <aside>Sous-titre<aside>2e sous-titre</aside></aside>
 ![](URL-image)
 ```
-
-<!-- ##Des exemples ? -->
 
 ## Options plus avancées
 
