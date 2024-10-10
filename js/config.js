@@ -2,3 +2,5 @@
 export const shortcuts = [["myMarkpage", "URL"]];
 
 export const corsProxy = "https://corsproxy.io/?";
+
+export const CSSthemes = ["colors.css"];

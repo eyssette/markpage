@@ -1,5 +1,6 @@
 import { load as loadYAML } from "../externals/js-yaml.js";
 import { deepMerge, loadScript, loadCSS } from "../utils.js";
+import { CSSthemes } from "../config.js";
 
 export let yaml = {
 	searchbar: true,
@@ -8,6 +9,7 @@ export let yaml = {
 };
 
 export function processYAML(markdownContent) {
+	const styleThemeElement = document.getElementById("styleTheme");
 	// Gestion de l'en-tête YAML
 	try {
 		if (
@@ -31,6 +33,42 @@ export function processYAML(markdownContent) {
 				),
 				loadCSS("https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"),
 			]);
+		}
+		// Gestion des styles personnalisés
+		if (yaml.theme) {
+			// Possibilité d'utiliser un thème pour les cartes
+			const themeName = yaml.theme.trim();
+			const CSSfile = themeName.endsWith(".css")
+				? themeName
+				: themeName + ".css";
+			if (CSSthemes.includes(CSSfile)) {
+				// theme = true;
+				let themeURL = "css/theme/" + CSSfile;
+				fetch(themeURL)
+					.then((response) => response.text())
+					.then((data) => {
+						styleThemeElement.textContent = data;
+						document.body.className =
+							document.body.className + " theme-" + CSSfile.replace(".css", "");
+					})
+					.catch((error) => {
+						styleThemeElement.textContent = "";
+						document.body.className = document.body.className.replace(
+							/theme-.*/,
+							"",
+						);
+						console.error(error);
+					});
+			} else {
+				styleThemeElement.textContent = "";
+				document.body.className = document.body.className.replace(
+					/theme-.*/,
+					"",
+				);
+			}
+		} else {
+			styleThemeElement.textContent = "";
+			document.body.className = document.body.className.replace(/theme-.*/, "");
 		}
 		// Gestion des styles personnalisés
 		if (yaml.style) {
