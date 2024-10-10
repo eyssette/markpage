@@ -245,6 +245,18 @@ h3 a:empty:before {
 	text-decoration: none;
 }
 
+.displaySubSection h2 aside {
+	font-size: 0.75em;
+}
+.subSectionContent h3 {
+	visibility: hidden;
+	height: 20px;
+}
+.noSubSections h3 {
+	display: none;
+	height: 0px;
+}
+
 input {
 	border-radius: 10px;
 	background-color: rgba(0, 0, 0, 0.05);
@@ -420,6 +432,9 @@ mark {
 		padding-top: 10px;
 		padding-bottom: 10px;
 		margin: 20px auto;
+	}
+	.subSectionContent h3 {
+		display: none;
 	}
 
 	h3 a {
