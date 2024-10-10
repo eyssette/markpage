@@ -1,3 +1,194 @@
-body {
-	color: red;
+.displayHomepage blockquote {
+	font-size: 1.5em;
+	margin: 0;
+}
+.displayHomepage img {
+	float: left;
+	margin-right: 1em;
+	margin-bottom: 1em;
+}
+#innerBox {
+	background-color: white;
+	border: 2px solid grey;
+}
+.displaySubSection h2 {
+	margin-top: 1.25em;
+}
+
+.subSectionContent a {
+	color: darkred;
+	text-decoration: grey underline;
+}
+
+.displaySubSection h2 aside {
+	font-size: 0.75em;
+	margin-top: 0.5em;
+}
+.subSectionContent h3 {
+	visibility: hidden;
+	height: 20px;
+}
+.noSubSections h3 {
+	display: none;
+	height: 0px;
+}
+
+h4 {
+	display: inline-block;
+	padding: 10px 15px;
+	border-radius: 12px;
+	margin-bottom: 20px;
+	color: white; /* Texte blanc */
+}
+h3 {
+	border-radius: 15px;
+	width: auto !important;
+	max-width: 180px;
+	font-size: 1em;
+}
+#section-1 .visible h3 {
+	border: 2px solid #777;
+}
+#section-2 .visible h3 {
+	border: 2px solid #777;
+}
+#section-3 .visible h3 {
+	border: 2px solid #777;
+}
+#section-4 .visible h3 {
+	border: 2px solid #777;
+}
+#section-5 .visible h3 {
+	border: 2px solid #777;
+}
+#section-1 h3 {
+	background-color: #ffdfcb;
+}
+#section-2 h3 {
+	background-color: #e9f6f2;
+}
+#section-3 h3 {
+	background-color: #e0eff1ff;
+}
+#section-4 h3 {
+	background-color: #f0e2f0ff;
+}
+#section-5 h3 {
+	background-color: #f3ded6ff;
+}
+
+.displaySubSection #section-1 h2 a,
+.displaySubSection #section-1 h2 a aside,
+#section-1 h3 {
+	color: #eb6209ff !important; /* Couleur du texte pour H2, H3 et fond de H4 dans Domaine 1 */
+}
+
+#section-1 h4 {
+	background-color: #eb6209ff; /* Même couleur de fond que les titres H2 et H3 */
+}
+
+/* Styles spécifiques pour le Domaine 2 */
+.displaySubSection #section-2 h2 a,
+.displaySubSection #section-2 h2 a aside,
+#section-2 h3 {
+	color: #2a9d8f !important; /* Couleur du texte pour H2, H3 et fond de H4 dans Domaine 2 */
+}
+
+#section-2 h4 {
+	background-color: #2a9d8f; /* Même couleur de fond que les titres H2 et H3 */
+	color: white;
+}
+
+/* Styles spécifiques pour le Domaine 3 */
+.displaySubSection #section-3 h2 a,
+.displaySubSection #section-3 h2 a aside,
+#section-3 h3 {
+	color: #1d3d91ff !important; /* Couleur du texte pour H2 et H3 dans Domaine 3 */
+}
+
+#section-3 h4 {
+	background-color: #1d3d91ff; /* Fond de la boîte H4 avec la couleur de la police H2 et H3 */
+	color: white; /* Texte blanc dans la boîte H4 */
+}
+
+/* Styles spécifiques pour le Domaine 4 */
+.displaySubSection #section-4 h2 a,
+.displaySubSection #section-4 h2 a aside,
+#section-4 h3 {
+	color: #a72886ff !important; /* Couleur du texte pour H2 et H3 dans Domaine 4 */
+}
+
+#section-4 h4 {
+	background-color: #a72886ff; /* Fond de la boîte H4 avec la couleur de la police H2 et H3 */
+	color: white; /* Texte blanc dans la boîte H4 */
+}
+
+/* Styles spécifiques pour le Domaine 5 */
+.displaySubSection #section-5 h2 a,
+.displaySubSection #section-5 h2 a aside,
+#section-5 h3 {
+	color: #af201fff !important; /* Couleur du texte pour H2 et H3 dans Domaine 5 */
+}
+
+#section-5 h4 {
+	background-color: #af201fff; /* Fond de la boîte H4 avec la couleur de la police H2 et H3 */
+	color: white; /* Texte blanc dans la boîte H4 */
+}
+
+.displayHomepage h2 a:hover {
+	background-color: #f1f1f1f1;
+	border-color: #b2a889;
+	color: black;
+}
+.displayHomepage h2 a {
+	background-color: white;
+}
+h3 img {
+	margin-left: 0.5em;
+}
+
+@media screen and (max-width: 834px) {
+	#section-1 h3,
+	#section-2 h3,
+	#section-3 h3,
+	#section-4 h3,
+	#section-5 h3 {
+		border: none;
+		max-width: unset;
+		padding: 0;
+	}
+	#section-1 .visible h3,
+	#section-2 .visible h3,
+	#section-3 .visible h3,
+	#section-4 .visible h3,
+	#section-5 .visible h3 {
+		background-color: unset;
+		border: none;
+	}
+	#section-1 h3 a,
+	#section-2 h3 a,
+	#section-3 h3 a,
+	#section-4 h3 a,
+	#section-5 h3 a {
+		width: 130px !important;
+	}
+	#section-1 h3 a {
+		border-bottom-color: #eb6209ff;
+	}
+	#section-2 h3 a {
+		border-bottom-color: #2a9d8f;
+	}
+	#section-3 h3 a {
+		border-bottom-color: #1d3d91ff;
+	}
+	#section-4 h3 a {
+		border-bottom-color: #a72886ff;
+	}
+	#section-5 h3 a {
+		border-bottom-color: #af201fff;
+	}
+	.subSectionContent h3 {
+		margin: 0;
+		height: 0;
+	}
 }
