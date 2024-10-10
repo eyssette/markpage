@@ -46,35 +46,32 @@ h3 {
 	max-width: 180px;
 	font-size: 1em;
 }
-section:nth-of-type(5n + 1) .visible h3 {
-	border: 2px solid #777;
-}
-section:nth-of-type(5n + 2) .visible h3 {
-	border: 2px solid #777;
-}
-section:nth-of-type(5n + 3) .visible h3 {
-	border: 2px solid #777;
-}
-section:nth-of-type(5n + 4) .visible h3 {
-	border: 2px solid #777;
-}
+section:nth-of-type(5n + 1) .visible h3,
+section:nth-of-type(5n + 2) .visible h3,
+section:nth-of-type(5n + 3) .visible h3,
+section:nth-of-type(5n + 4) .visible h3,
 section:nth-of-type(5n + 5) .visible h3 {
 	border: 2px solid #777;
 }
-section:nth-of-type(5n + 1) h3 {
+section:nth-of-type(5n + 1) h3,
+section:nth-of-type(5n + 1) .visible h3 {
 	background-color: #ffdfcb;
 }
-section:nth-of-type(5n + 2) h3 {
+section:nth-of-type(5n + 2) h3,
+section:nth-of-type(5n + 2) .visible h3 {
 	background-color: #e9f6f2;
 }
-section:nth-of-type(5n + 3) h3 {
-	background-color: #e0eff1ff;
+section:nth-of-type(5n + 3) h3,
+section:nth-of-type(5n + 3) .visible h3 {
+	background-color: #e0eff1;
 }
-section:nth-of-type(5n + 4) h3 {
-	background-color: #f0e2f0ff;
+section:nth-of-type(5n + 4) h3,
+section:nth-of-type(5n + 4) .visible h3 {
+	background-color: #f0e2f0;
 }
-section:nth-of-type(5n + 5) h3 {
-	background-color: #f3ded6ff;
+section:nth-of-type(5n + 5) h3,
+section:nth-of-type(5n + 5) .visible h3 {
+	background-color: #f3ded6;
 }
 
 .displaySubSection section:nth-of-type(5n + 1) h2 a,
