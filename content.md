@@ -28,11 +28,16 @@ La syntaxe de base est simple :
 
 - on définit le titre de son site avec un titre de niveau 1
 - tout ce qui vient entre ce titre et le premier titre de niveau 2 est considéré comme le message initial qui apparaît sur la page d'accueil
-- on fait des onglets avec les titres de niveau 2
-- tout ce qui vient sous un titre de niveau 2 est considéré comme le contenu de cet onglet
+- tout ce qui vient sous un titre de niveau 2 est considéré comme le contenu d'une section, qui apparaîtra dans un onglet spécifique
 - on peut faire des sous-sections avec des titres de niveau 3
 
 On peut utiliser toute la syntaxe Markdown classique dans le contenu de son site.
+
+### Titres de sections
+
+On fait un titre de section avec un titre en markdown de niveau 2.
+
+Si on utilise la balise `<span>précisions</span>` dans un titre de niveau 2, alors le contenu dans cette balise ne sera affiché que dans le menu de la page d'accueil, et dans le titre de l'onglet correspondant, mais il ne sera pas affiché tout en bas dans le footer (pour gagner en lisibilité si le titre devient trop long).
 
 ### Titres de sous-sections
 
