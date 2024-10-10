@@ -65,6 +65,7 @@ Vous pouvez au début de votre fichier ajouter un en-tête YAML de ce type :
 ```
 ---
 maths: true
+theme: colors
 style: a{color:red}
 recherche: false
 lienPageAccueil: true
@@ -73,6 +74,7 @@ oneByOne: false
 ```
 
 - `maths: true` permet d'écrire des formules mathématiques en Latex avec la syntaxe `$Latex$` ou `$$Latex$$`
+- `theme: colors` permet d'utiliser un thème personnalisé (thèmes possibles : seulement _colors_ pour le moment)
 - `style: a{color:red}` permet d'ajouter des styles CSS personnalisés
 - `recherche: false` permet de supprimer la barre de recherche en haut à gauche
 - `lienPageAccueil: true` permet d'ajouter un lien vers la page d'accueil en haut à droite
