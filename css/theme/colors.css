@@ -38,7 +38,7 @@ h4 {
 	padding: 10px 15px;
 	border-radius: 12px;
 	margin-bottom: 20px;
-	color: white; /* Texte blanc */
+	color: white;
 }
 h3 {
 	border-radius: 15px;
@@ -80,59 +80,55 @@ h3 {
 .displaySubSection #section-1 h2 a,
 .displaySubSection #section-1 h2 a aside,
 #section-1 h3 {
-	color: #eb6209ff !important; /* Couleur du texte pour H2, H3 et fond de H4 dans Domaine 1 */
+	color: #eb6209ff !important;
 }
 
 #section-1 h4 {
-	background-color: #eb6209ff; /* Même couleur de fond que les titres H2 et H3 */
+	background-color: #eb6209ff;
 }
 
-/* Styles spécifiques pour le Domaine 2 */
 .displaySubSection #section-2 h2 a,
 .displaySubSection #section-2 h2 a aside,
 #section-2 h3 {
-	color: #2a9d8f !important; /* Couleur du texte pour H2, H3 et fond de H4 dans Domaine 2 */
+	color: #2a9d8f !important;
 }
 
 #section-2 h4 {
-	background-color: #2a9d8f; /* Même couleur de fond que les titres H2 et H3 */
+	background-color: #2a9d8f;
 	color: white;
 }
 
-/* Styles spécifiques pour le Domaine 3 */
 .displaySubSection #section-3 h2 a,
 .displaySubSection #section-3 h2 a aside,
 #section-3 h3 {
-	color: #1d3d91ff !important; /* Couleur du texte pour H2 et H3 dans Domaine 3 */
+	color: #1d3d91ff !important;
 }
 
 #section-3 h4 {
-	background-color: #1d3d91ff; /* Fond de la boîte H4 avec la couleur de la police H2 et H3 */
-	color: white; /* Texte blanc dans la boîte H4 */
+	background-color: #1d3d91ff;
+	color: white;
 }
 
-/* Styles spécifiques pour le Domaine 4 */
 .displaySubSection #section-4 h2 a,
 .displaySubSection #section-4 h2 a aside,
 #section-4 h3 {
-	color: #a72886ff !important; /* Couleur du texte pour H2 et H3 dans Domaine 4 */
+	color: #a72886ff !important;
 }
 
 #section-4 h4 {
-	background-color: #a72886ff; /* Fond de la boîte H4 avec la couleur de la police H2 et H3 */
-	color: white; /* Texte blanc dans la boîte H4 */
+	background-color: #a72886ff;
+	color: white;
 }
 
-/* Styles spécifiques pour le Domaine 5 */
 .displaySubSection #section-5 h2 a,
 .displaySubSection #section-5 h2 a aside,
 #section-5 h3 {
-	color: #af201fff !important; /* Couleur du texte pour H2 et H3 dans Domaine 5 */
+	color: #af201fff !important;
 }
 
 #section-5 h4 {
-	background-color: #af201fff; /* Fond de la boîte H4 avec la couleur de la police H2 et H3 */
-	color: white; /* Texte blanc dans la boîte H4 */
+	background-color: #af201fff;
+	color: white;
 }
 
 .displayHomepage h2 a:hover {
