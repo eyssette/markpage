@@ -46,87 +46,87 @@ h3 {
 	max-width: 180px;
 	font-size: 1em;
 }
-#section-1 .visible h3 {
+section:nth-of-type(5n + 1) .visible h3 {
 	border: 2px solid #777;
 }
-#section-2 .visible h3 {
+section:nth-of-type(5n + 2) .visible h3 {
 	border: 2px solid #777;
 }
-#section-3 .visible h3 {
+section:nth-of-type(5n + 3) .visible h3 {
 	border: 2px solid #777;
 }
-#section-4 .visible h3 {
+section:nth-of-type(5n + 4) .visible h3 {
 	border: 2px solid #777;
 }
-#section-5 .visible h3 {
+section:nth-of-type(5n + 5) .visible h3 {
 	border: 2px solid #777;
 }
-#section-1 h3 {
+section:nth-of-type(5n + 1) h3 {
 	background-color: #ffdfcb;
 }
-#section-2 h3 {
+section:nth-of-type(5n + 2) h3 {
 	background-color: #e9f6f2;
 }
-#section-3 h3 {
+section:nth-of-type(5n + 3) h3 {
 	background-color: #e0eff1ff;
 }
-#section-4 h3 {
+section:nth-of-type(5n + 4) h3 {
 	background-color: #f0e2f0ff;
 }
-#section-5 h3 {
+section:nth-of-type(5n + 5) h3 {
 	background-color: #f3ded6ff;
 }
 
-.displaySubSection #section-1 h2 a,
-.displaySubSection #section-1 h2 a aside,
-#section-1 h3 {
+.displaySubSection section:nth-of-type(5n + 1) h2 a,
+.displaySubSection section:nth-of-type(5n + 1) h2 a aside,
+section:nth-of-type(5n + 1) h3 {
 	color: #eb6209ff !important;
 }
 
-#section-1 h4 {
+section:nth-of-type(5n + 1) h4 {
 	background-color: #eb6209ff;
 }
 
-.displaySubSection #section-2 h2 a,
-.displaySubSection #section-2 h2 a aside,
-#section-2 h3 {
+.displaySubSection section:nth-of-type(5n + 2) h2 a,
+.displaySubSection section:nth-of-type(5n + 2) h2 a aside,
+section:nth-of-type(5n + 2) h3 {
 	color: #2a9d8f !important;
 }
 
-#section-2 h4 {
+section:nth-of-type(5n + 2) h4 {
 	background-color: #2a9d8f;
 	color: white;
 }
 
-.displaySubSection #section-3 h2 a,
-.displaySubSection #section-3 h2 a aside,
-#section-3 h3 {
+.displaySubSection section:nth-of-type(5n + 3) h2 a,
+.displaySubSection section:nth-of-type(5n + 3) h2 a aside,
+section:nth-of-type(5n + 3) h3 {
 	color: #1d3d91ff !important;
 }
 
-#section-3 h4 {
+section:nth-of-type(5n + 3) h4 {
 	background-color: #1d3d91ff;
 	color: white;
 }
 
-.displaySubSection #section-4 h2 a,
-.displaySubSection #section-4 h2 a aside,
-#section-4 h3 {
+.displaySubSection section:nth-of-type(5n + 4) h2 a,
+.displaySubSection section:nth-of-type(5n + 4) h2 a aside,
+section:nth-of-type(5n + 4) h3 {
 	color: #a72886ff !important;
 }
 
-#section-4 h4 {
+section:nth-of-type(5n + 4) h4 {
 	background-color: #a72886ff;
 	color: white;
 }
 
-.displaySubSection #section-5 h2 a,
-.displaySubSection #section-5 h2 a aside,
-#section-5 h3 {
+.displaySubSection section:nth-of-type(5n + 5) h2 a,
+.displaySubSection section:nth-of-type(5n + 5) h2 a aside,
+section:nth-of-type(5n + 5) h3 {
 	color: #af201fff !important;
 }
 
-#section-5 h4 {
+section:nth-of-type(5n + 5) h4 {
 	background-color: #af201fff;
 	color: white;
 }
@@ -144,43 +144,43 @@ h3 img {
 }
 
 @media screen and (max-width: 834px) {
-	#section-1 h3,
-	#section-2 h3,
-	#section-3 h3,
-	#section-4 h3,
-	#section-5 h3 {
+	section:nth-of-type(5n + 1) h3,
+	section:nth-of-type(5n + 2) h3,
+	section:nth-of-type(5n + 3) h3,
+	section:nth-of-type(5n + 4) h3,
+	section:nth-of-type(5n + 5) h3 {
 		border: none;
 		max-width: unset;
 		padding: 0;
 	}
-	#section-1 .visible h3,
-	#section-2 .visible h3,
-	#section-3 .visible h3,
-	#section-4 .visible h3,
-	#section-5 .visible h3 {
+	section:nth-of-type(5n + 1) .visible h3,
+	section:nth-of-type(5n + 2) .visible h3,
+	section:nth-of-type(5n + 3) .visible h3,
+	section:nth-of-type(5n + 4) .visible h3,
+	section:nth-of-type(5n + 5) .visible h3 {
 		background-color: unset;
 		border: none;
 	}
-	#section-1 h3 a,
-	#section-2 h3 a,
-	#section-3 h3 a,
-	#section-4 h3 a,
-	#section-5 h3 a {
+	section:nth-of-type(5n + 1) h3 a,
+	section:nth-of-type(5n + 2) h3 a,
+	section:nth-of-type(5n + 3) h3 a,
+	section:nth-of-type(5n + 4) h3 a,
+	section:nth-of-type(5n + 5) h3 a {
 		width: 130px !important;
 	}
-	#section-1 h3 a {
+	section:nth-of-type(5n + 1) h3 a {
 		border-bottom-color: #eb6209ff;
 	}
-	#section-2 h3 a {
+	section:nth-of-type(5n + 2) h3 a {
 		border-bottom-color: #2a9d8f;
 	}
-	#section-3 h3 a {
+	section:nth-of-type(5n + 3) h3 a {
 		border-bottom-color: #1d3d91ff;
 	}
-	#section-4 h3 a {
+	section:nth-of-type(5n + 4) h3 a {
 		border-bottom-color: #a72886ff;
 	}
-	#section-5 h3 a {
+	section:nth-of-type(5n + 5) h3 a {
 		border-bottom-color: #af201fff;
 	}
 	.subSectionContent h3 {
