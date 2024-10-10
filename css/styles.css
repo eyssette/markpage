@@ -69,6 +69,10 @@ footer {
 	display: flex;
 }
 
+footer span {
+	display: none;
+}
+
 #footerContent {
 	max-width: var(--maxWidth);
 	margin: auto;
