@@ -146,6 +146,11 @@ La classe `{.center}` permet de centrer un paragraphe.
 
 La classe `{.large}` après une image sous un titre de sous-section permet d'avoir une grande image plutôt qu'une petit icône.
 
+### Paramètres dans l'URL
+
+On peut changer le thème utilisé par Markpage avec le paramètre
+`?theme=themeName` dans l'URL.
+
 ## Faire évoluer l'outil !
 
 ### Un outil libre et gratuit
