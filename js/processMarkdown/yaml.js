@@ -10,6 +10,7 @@ export let yaml = {
 };
 
 export function processYAML(markdownContent) {
+	const styleThemeElement = document.getElementById("styleTheme");
 	// Gestion de l'en-tête YAML
 	try {
 		if (
@@ -35,7 +36,6 @@ export function processYAML(markdownContent) {
 			]);
 		}
 		// Gestion des styles personnalisés
-		const styleThemeElement = document.getElementById("styleTheme");
 		if (yaml.theme) {
 			setTheme(yaml.theme, CSSthemes, styleThemeElement);
 		} else {

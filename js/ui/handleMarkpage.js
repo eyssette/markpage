@@ -7,6 +7,8 @@ import { searchBar } from "./searchBar";
 import { handleClicks } from "./handleClicks";
 import { paramsRemoveH3, paramsRemoveMenu } from "./params";
 import { showOnlyThisElement } from "./showOnlyThisElement";
+import { CSSthemes } from "../config";
+import { setTheme } from "./setTheme";
 
 export let params;
 
@@ -17,6 +19,10 @@ export function handleMarkpage(markpageData) {
 	const hash = window.location.hash.substring(1);
 	const actualURL = window.location.search;
 	params = getParams(actualURL);
+	if (params.theme) {
+		const styleThemeElement = document.getElementById("styleTheme");
+		setTheme(params.theme, CSSthemes, styleThemeElement);
+	}
 	const baseURL = window.location.origin + window.location.pathname;
 
 	changeDisplayBasedOnParams(params, markpageData);
