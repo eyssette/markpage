@@ -1,3 +1,16 @@
+:root {
+	--color1: #eb6209;
+	--color1light: #ffdfcb;
+	--color2: #2a9d8f;
+	--color2light: #e9f6f2;
+	--color3: #1d3d91;
+	--color3light: #e0eff1;
+	--color4: #a72886;
+	--color4light: #f0e2f0;
+	--color5: #af201f;
+	--color5light: #f3ded6;
+}
+
 .displayHomepage blockquote {
 	font-size: 1.5em;
 	margin: 0;
@@ -55,76 +68,76 @@ h3 {
 }
 #content > section:nth-of-type(5n + 1) h3,
 #content > section:nth-of-type(5n + 1) .visible h3 {
-	background-color: #ffdfcb;
+	background-color: var(--color1light);
 }
 #content > section:nth-of-type(5n + 2) h3,
 #content > section:nth-of-type(5n + 2) .visible h3 {
-	background-color: #e9f6f2;
+	background-color: var(--color2light);
 }
 #content > section:nth-of-type(5n + 3) h3,
 #content > section:nth-of-type(5n + 3) .visible h3 {
-	background-color: #e0eff1;
+	background-color: var(--color3light);
 }
 #content > section:nth-of-type(5n + 4) h3,
 #content > section:nth-of-type(5n + 4) .visible h3 {
-	background-color: #f0e2f0;
+	background-color: var(--color4light);
 }
 #content > section:nth-of-type(5n + 5) h3,
 #content > section:nth-of-type(5n + 5) .visible h3 {
-	background-color: #f3ded6;
+	background-color: var(--color5light);
 }
 
 .displaySubSection #content > section:nth-of-type(5n + 1) h2 a,
 .displaySubSection #content > section:nth-of-type(5n + 1) h2 a aside,
 #content > section:nth-of-type(5n + 1) h3 {
-	color: #eb6209;
+	color: var(--color1);
 }
 
 #content > section:nth-of-type(5n + 1) h4 {
-	background-color: #eb6209;
+	background-color: var(--color1);
 }
 
 .displaySubSection #content > section:nth-of-type(5n + 2) h2 a,
 .displaySubSection #content > section:nth-of-type(5n + 2) h2 a aside,
 #content > section:nth-of-type(5n + 2) h3 {
-	color: #2a9d8f;
+	color: var(--color2);
 }
 
 #content > section:nth-of-type(5n + 2) h4 {
-	background-color: #2a9d8f;
+	background-color: var(--color2);
 	color: white;
 }
 
 .displaySubSection #content > section:nth-of-type(5n + 3) h2 a,
 .displaySubSection #content > section:nth-of-type(5n + 3) h2 a aside,
 #content > section:nth-of-type(5n + 3) h3 {
-	color: #1d3d91ff;
+	color: var(--color3);
 }
 
 #content > section:nth-of-type(5n + 3) h4 {
-	background-color: #1d3d91ff;
+	background-color: var(--color3);
 	color: white;
 }
 
 .displaySubSection #content > section:nth-of-type(5n + 4) h2 a,
 .displaySubSection #content > section:nth-of-type(5n + 4) h2 a aside,
 #content > section:nth-of-type(5n + 4) h3 {
-	color: #a72886ff;
+	color: var(--color4);
 }
 
 #content > section:nth-of-type(5n + 4) h4 {
-	background-color: #a72886ff;
+	background-color: var(--color4);
 	color: white;
 }
 
 .displaySubSection #content > section:nth-of-type(5n + 5) h2 a,
 .displaySubSection #content > section:nth-of-type(5n + 5) h2 a aside,
 #content > section:nth-of-type(5n + 5) h3 {
-	color: #af201fff;
+	color: var(--color5);
 }
 
 #content > section:nth-of-type(5n + 5) h4 {
-	background-color: #af201fff;
+	background-color: var(--color5);
 	color: white;
 }
 
@@ -166,19 +179,19 @@ h3 img {
 		width: 130px !important;
 	}
 	#content > section:nth-of-type(5n + 1) h3 a {
-		border-bottom-color: #eb6209;
+		border-bottom-color: var(--color1);
 	}
 	#content > section:nth-of-type(5n + 2) h3 a {
-		border-bottom-color: #2a9d8f;
+		border-bottom-color: var(--color2);
 	}
 	#content > section:nth-of-type(5n + 3) h3 a {
-		border-bottom-color: #1d3d91ff;
+		border-bottom-color: var(--color3);
 	}
 	#content > section:nth-of-type(5n + 4) h3 a {
-		border-bottom-color: #a72886ff;
+		border-bottom-color: var(--color4);
 	}
 	#content > section:nth-of-type(5n + 5) h3 a {
-		border-bottom-color: #af201fff;
+		border-bottom-color: var(--color5);
 	}
 	.subSectionContent h3 {
 		margin: 0;
