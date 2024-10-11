@@ -28,6 +28,8 @@ export function processYAML(markdownContent) {
 		}
 		// Gestion des mathématiques
 		if (yaml.maths === true) {
+			// Fix pour l'utilisation de "\\"" en Latex
+			markdownContent = markdownContent.replaceAll("\\", "&#92;&#92;");
 			Promise.all([
 				loadScript(
 					"https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js",
@@ -63,4 +65,5 @@ export function processYAML(markdownContent) {
 	} catch (e) {
 		console.log("erreur processYAML : " + e);
 	}
+	return markdownContent;
 }

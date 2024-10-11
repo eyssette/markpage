@@ -3,7 +3,7 @@ import { markdownToHTML } from "./markdownToHTML";
 import { filterElementWithNoContent, removeUselessCarriages } from "../utils";
 
 export function parseMarkdown(markdownContent) {
-	processYAML(markdownContent);
+	markdownContent = processYAML(markdownContent);
 	// On distingue le header et le contenu
 	const indexfirstH2title = markdownContent.indexOf("## ");
 	const header = markdownContent.substring(0, indexfirstH2title);
