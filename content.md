@@ -151,6 +151,12 @@ La classe `{.large}` après une image sous un titre de sous-section permet d'avo
 On peut changer le thème utilisé par Markpage avec le paramètre
 `?theme=themeName` dans l'URL.
 
+### Styles CSS
+
+Il est recommandé d'utiliser l'en-tête yaml pour inclure vos styles CSS personnalisés.
+
+Vous pouvez cependant éventuellement les laisser dans le contenu en Markdown, mais dans ce cas, il ne faut pas les mettre au début, mais plutôt à la fin de votre fichier.
+
 ## Faire évoluer l'outil !
 
 ### Un outil libre et gratuit
