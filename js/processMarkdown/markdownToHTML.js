@@ -131,7 +131,7 @@ function fixImageDimensionsCodiMD(md) {
 }
 
 export function markdownToHTML(text) {
-	text = fixImageDimensionsCodiMD(text.replaceAll("\n\n|", "|"));
+	text = fixImageDimensionsCodiMD(text);
 	let html = converter.makeHtml(text);
 	// Optimisation de l'affichage des images
 	html = html.replaceAll("<img ", '<img loading="lazy" ');
