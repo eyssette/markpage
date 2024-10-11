@@ -15,11 +15,6 @@
 	font-size: 1.5em;
 	margin: 0;
 }
-.displayHomepage img {
-	float: left;
-	margin-right: 1em;
-	margin-bottom: 1em;
-}
 #innerBox {
 	background-color: white;
 	border: 2px solid grey;
