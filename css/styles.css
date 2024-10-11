@@ -127,6 +127,10 @@ nav {
 	display: none;
 }
 
+#navButtons button {
+	color: #0268df;
+}
+
 .displaySubSection .subSection:not(.visible) .subSectionContent {
 	display: none;
 }
