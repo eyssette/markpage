@@ -16,7 +16,7 @@
 	margin: 0;
 }
 #innerBox {
-	background-color: white;
+	background-color: white !important;
 	border: 2px solid grey;
 }
 .displaySubSection h2 {
@@ -191,5 +191,16 @@ h3 img {
 	.subSectionContent h3 {
 		margin: 0;
 		height: 0;
+	}
+}
+
+@media screen and (min-width: 835px) and (pointer: fine) {
+	#backgroundInnerBox,
+	.subSectionContent {
+		background-color: transparent;
+	}
+	.subSectionContent {
+		padding-bottom: 2em;
+		max-height: 61vh;
 	}
 }
