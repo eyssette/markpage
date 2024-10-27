@@ -86,6 +86,23 @@ oneByOne: false
 - `lienPageAccueil: true` permet d'ajouter un lien vers la page d'accueil en haut à droite
 - `oneByOne: false` permet de changer le mode de navigation sur mobile : par défaut, le paramètre est sur `true`, une seule sous-section est affichée et on navigue avec un mouvement de swipe ou bien via des boutons de navigation. Avec `false`, seul le contenu de la section active est affiché, mais tous les titres de sous-section sont présents et on peut scroller pour cliquer sur la sous-section qui nous intéresse.
 
+### Thèmes et Styles CSS
+
+#### Thèmes
+
+Pour changer de thème, il est recommandé d'utiliser l'en-tête yaml, mais vous pouvez aussi utiliser le paramètre `?theme=themeName` dans l'URL.
+
+Pour le moment un seul thème est disponible : le thème colors
+
+- [voir ce site avec le thème colors](?theme=colors&sec=2&subsec=2)
+- [voir ce site avec le thème par défaut](?sec=2&subsec=2)
+
+#### Styles CSS
+
+Il est recommandé d'utiliser l'en-tête yaml pour inclure vos styles CSS personnalisés.
+
+Vous pouvez cependant éventuellement les laisser dans le contenu en Markdown, mais dans ce cas, il ne faut pas les mettre au début, mais plutôt à la fin de votre fichier.
+
 ### Admonitions
 
 Les admonitions sont des sortes d'encadrés qui permettent de mettre en avant certaines informations.
@@ -130,7 +147,7 @@ Contenu
 
 ### Attributions de classes CSS
 
-Vous pouvez aussi attribuer une classe CSS à une ligne avec la syntaxe `{.maClasse}` en fin de ligne.
+Vous pouvez attribuer une classe CSS à une ligne avec la syntaxe `{.maClasse}` en fin de ligne.
 
 Si vous voulez attribuer une classe CSS à plusieurs lignes, il faut utiliser cette syntaxe :
 
@@ -145,17 +162,6 @@ Bloc de texte Markdown multiligne
 La classe `{.center}` permet de centrer un paragraphe.
 
 La classe `{.large}` après une image sous un titre de sous-section permet d'avoir une grande image plutôt qu'une petit icône.
-
-### Paramètres dans l'URL
-
-On peut changer le thème utilisé par Markpage avec le paramètre
-`?theme=themeName` dans l'URL.
-
-### Styles CSS
-
-Il est recommandé d'utiliser l'en-tête yaml pour inclure vos styles CSS personnalisés.
-
-Vous pouvez cependant éventuellement les laisser dans le contenu en Markdown, mais dans ce cas, il ne faut pas les mettre au début, mais plutôt à la fin de votre fichier.
 
 ## Faire évoluer l'outil !
 
