@@ -101,7 +101,7 @@ Pour le moment un seul thème est disponible : le thème colors
 
 Il est recommandé d'utiliser l'en-tête yaml pour inclure vos styles CSS personnalisés.
 
-Vous pouvez cependant éventuellement les laisser dans le contenu en Markdown, mais dans ce cas, il ne faut pas les mettre au début, mais plutôt à la fin de votre fichier.
+Vous pouvez cependant éventuellement les laisser dans le contenu en Markdown. Dans ce cas, il ne faut pas les mettre au début, mais plutôt à la fin de votre fichier.
 
 ### Admonitions
 
@@ -162,6 +162,21 @@ Bloc de texte Markdown multiligne
 La classe `{.center}` permet de centrer un paragraphe.
 
 La classe `{.large}` après une image sous un titre de sous-section permet d'avoir une grande image plutôt qu'une petit icône.
+
+## Exemples d'utilisation
+
+#### Création d'un minisite
+
+- [CRCN Édu & usages de l'IA](https://markpage.forge.apps.education.fr/#https://codimd.apps.education.fr/yiaeykqpSMS_ml1ZdIqUeA)
+- [Normative Ethics and The Body](https://markpage.forge.apps.education.fr/#https://codimd.apps.education.fr/xtmGW7mSRq67o_jDStbgvg)
+
+#### Mise en valeur de travaux d'élèves
+
+- [When Rights are Denied: Stories of Injustice](https://markpage.forge.apps.education.fr/#https://codimd.apps.education.fr/-PoT97vFTf2Zg3d0OoOONA)
+
+#### Création d'un lexique
+
+- [Modèle de lexique](https://markpage.forge.apps.education.fr/#https://codimd.apps.education.fr/8Cu1j7gKQ8eytUBJ9uUEZA)
 
 ## Faire évoluer l'outil !
 
