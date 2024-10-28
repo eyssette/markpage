@@ -1,4 +1,5 @@
 import Showdown from "../externals/showdown.js";
+import { yaml } from "./yaml.js";
 
 // Extensions pour Showdown
 
@@ -130,8 +131,24 @@ function fixImageDimensionsCodiMD(md) {
 	return md;
 }
 
+function resolveImagePath(md) {
+	md = md.replace(
+		/!\[(.*?)\]\((?!http)(.*?)\)/g,
+		function (match, altText, imagePath) {
+			const pathPrefix = yaml.pathImages.endsWith("/")
+				? yaml.pathImages
+				: yaml.pathImages + "/";
+			return `![${altText}](${pathPrefix}${imagePath})`;
+		},
+	);
+	return md;
+}
+
 export function markdownToHTML(text) {
 	text = fixImageDimensionsCodiMD(text);
+	if (yaml && yaml.pathImages) {
+		text = resolveImagePath(text);
+	}
 	let html = converter.makeHtml(text);
 	// Optimisation de l'affichage des images
 	html = html.replaceAll("<img ", '<img loading="lazy" ');
