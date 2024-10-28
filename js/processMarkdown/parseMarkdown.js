@@ -14,7 +14,7 @@ export function parseMarkdown(markdownContent) {
 	const markpageTitle = header.match(/# .*/)[0].replace("# ", "");
 	const indexStartTitle = header.indexOf(markpageTitle);
 	const initialMessageContent = header.substring(
-		indexStartTitle + markpageTitle.length + 2,
+		indexStartTitle + markpageTitle.length + 1,
 	);
 
 	// Dans le contenu, on distingue chaque section (définie par un titre h2)
