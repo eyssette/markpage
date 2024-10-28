@@ -1,3 +1,7 @@
+---
+style: img{border-radius:10px}
+---
+
 # Markpage
 
 <div style="float:left; margin-right:2em; " markdown> ![](favicon.svg =100x100)</div> 
