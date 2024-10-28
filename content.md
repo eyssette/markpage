@@ -178,6 +178,10 @@ La classe `{.large}` après une image sous un titre de sous-section permet d'avo
 
 - [Modèle de lexique](https://markpage.forge.apps.education.fr/#https://codimd.apps.education.fr/8Cu1j7gKQ8eytUBJ9uUEZA)
 
+#### Cahier de textes avec Markpage
+
+- [Exemple de cahier de textes](https://markpage.forge.apps.education.fr/#https://codimd.apps.education.fr/s/c6dPX8ZhT)
+
 ## Faire évoluer l'outil !
 
 ### Un outil libre et gratuit
