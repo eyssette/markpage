@@ -16,6 +16,13 @@ export function handleMarkpage(markpageData) {
 	if (yaml.maths) {
 		displayMaths();
 	}
+	if (yaml.addOns && yaml.addOns.includes("kroki")) {
+		setTimeout(() => {
+			document.getElementById("content").innerHTML = window.processKroki(
+				document.getElementById("content").innerHTML,
+			);
+		}, 200);
+	}
 	const hash = window.location.hash.substring(1);
 	const actualURL = window.location.search;
 	params = getParams(actualURL);

@@ -1,6 +1,6 @@
 import { load as loadYAML } from "../externals/js-yaml.js";
 import { deepMerge, loadScript, loadCSS } from "../utils.js";
-import { CSSthemes } from "../config.js";
+import { CSSthemes, allowedAddOns, addOnsDependencies } from "../config.js";
 import { setTheme } from "../ui/setTheme.js";
 
 export let yaml = {
@@ -61,6 +61,37 @@ export function processYAML(markdownContent) {
 			yaml.linkToHomePage = yaml.lienPageAccueil
 				? yaml.lienPageAccueil
 				: yaml.linkToHomePage;
+		}
+		// Gestion des addOns
+		if (yaml.addOns) {
+			// Gestion des addOns (scripts et css en plus)
+			yaml.addOns = yaml.addOns.replace(" ", "").split(",");
+			let addOnsDependenciesArray = [];
+			// On ajoute aussi les dépendances pour chaque addOn
+			for (const [addOn, addOnDependencies] of Object.entries(
+				addOnsDependencies,
+			)) {
+				if (yaml.addOns.includes(addOn)) {
+					for (const addOnDependencie of addOnDependencies) {
+						addOnsDependenciesArray.push(addOnDependencie);
+					}
+				}
+			}
+			yaml.addOns.push(...addOnsDependenciesArray);
+			// Pour chaque addOn, on charge le JS ou le CSS correspondant
+			for (const desiredAddOn of yaml.addOns) {
+				const addOnsPromises = [];
+				const addDesiredAddOn = allowedAddOns[desiredAddOn];
+				if (addDesiredAddOn) {
+					if (addDesiredAddOn.js) {
+						addOnsPromises.push(loadScript(addDesiredAddOn.js));
+					}
+					if (addDesiredAddOn.css) {
+						addOnsPromises.push(loadCSS(addDesiredAddOn.css));
+					}
+					Promise.all(addOnsPromises);
+				}
+			}
 		}
 	} catch (e) {
 		console.log("erreur processYAML : " + e);
