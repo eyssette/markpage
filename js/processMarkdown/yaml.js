@@ -62,12 +62,11 @@ export function processYAML(markdownContent) {
 				? yaml.lienPageAccueil
 				: yaml.linkToHomePage;
 		}
-		// Gestion des addOns
+		// Gestion des add-ons (scripts et css en plus)
 		if (yaml.addOns) {
-			// Gestion des addOns (scripts et css en plus)
 			yaml.addOns = yaml.addOns.replace(" ", "").split(",");
 			let addOnsDependenciesArray = [];
-			// On ajoute aussi les dépendances pour chaque addOn
+			// On ajoute aussi les dépendances pour chaque add-on
 			for (const [addOn, addOnDependencies] of Object.entries(
 				addOnsDependencies,
 			)) {
@@ -78,7 +77,7 @@ export function processYAML(markdownContent) {
 				}
 			}
 			yaml.addOns.push(...addOnsDependenciesArray);
-			// Pour chaque addOn, on charge le JS ou le CSS correspondant
+			// Pour chaque add-on, on charge le JS ou le CSS correspondant
 			for (const desiredAddOn of yaml.addOns) {
 				const addOnsPromises = [];
 				const addDesiredAddOn = allowedAddOns[desiredAddOn];

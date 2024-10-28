@@ -5,7 +5,7 @@ export const corsProxy = "https://corsproxy.io/?";
 
 export const CSSthemes = ["colors.css"];
 
-// Gestion des addOns
+// Gestion des add-ons
 export const allowedAddOns = {
 	pako: { js: "js/externals/pako.min.js" },
 	kroki: { js: "js/externals/kroki.js" },

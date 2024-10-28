@@ -13,9 +13,11 @@ import { setTheme } from "./setTheme";
 export let params;
 
 export function handleMarkpage(markpageData) {
+	// Gestion des maths
 	if (yaml.maths) {
 		displayMaths();
 	}
+	// Gestion des add-ons
 	if (yaml.addOns && yaml.addOns.includes("kroki")) {
 		setTimeout(() => {
 			document.getElementById("content").innerHTML = window.processKroki(
@@ -31,6 +33,7 @@ export function handleMarkpage(markpageData) {
 	const hash = window.location.hash.substring(1);
 	const actualURL = window.location.search;
 	params = getParams(actualURL);
+	// S'il y a un paramètre dans l'URL pour définir un thème, on définit le thème via ce paramètre
 	if (params.theme) {
 		const styleThemeElement = document.getElementById("styleTheme");
 		setTheme(params.theme, CSSthemes, styleThemeElement);
