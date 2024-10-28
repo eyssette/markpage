@@ -85,6 +85,7 @@ oneByOne: false
 - `recherche: false` permet de supprimer la barre de recherche en haut à gauche
 - `lienPageAccueil: true` permet d'ajouter un lien vers la page d'accueil en haut à droite
 - `oneByOne: false` permet de changer le mode de navigation sur mobile : par défaut, le paramètre est sur `true`, une seule sous-section est affichée et on navigue avec un mouvement de swipe ou bien via des boutons de navigation. Avec `false`, seul le contenu de la section active est affiché, mais tous les titres de sous-section sont présents et on peut scroller pour cliquer sur la sous-section qui nous intéresse.
+- `addOns: kroki, lightbox` permet d'utiliser des addOns, ici _kroki_ pour pouvoir générer des graphiques avec mermaid, tikz… et _lightbox_ pour pouvoir afficher en grand une image quand on clique dessus
 
 ### Thèmes et Styles CSS
 
@@ -102,6 +103,24 @@ Pour le moment un seul thème est disponible : le thème colors
 Il est recommandé d'utiliser l'en-tête yaml pour inclure vos styles CSS personnalisés.
 
 Vous pouvez cependant éventuellement les laisser dans le contenu en Markdown. Dans ce cas, il ne faut pas les mettre au début, mais plutôt à la fin de votre fichier.
+
+##### Attributions de classes CSS
+
+Vous pouvez attribuer une classe CSS à une ligne avec la syntaxe `{.maClasse}` en fin de ligne.
+
+Si vous voulez attribuer une classe CSS à plusieurs lignes, il faut utiliser cette syntaxe :
+
+```
+<div markdown class="maClasse">
+Bloc de texte Markdown multiligne
+</div>
+```
+
+##### Classes prédéfinies
+
+La classe `{.center}` permet de centrer un paragraphe.
+
+La classe `{.large}` après une image sous un titre de sous-section permet d'avoir une grande image plutôt qu'une petit icône.
 
 ### Admonitions
 
@@ -145,23 +164,23 @@ Bloc de texte en Markdown multiligne caché par défaut
 Contenu
 :::
 
-### Attributions de classes CSS
+### addOns
 
-Vous pouvez attribuer une classe CSS à une ligne avec la syntaxe `{.maClasse}` en fin de ligne.
+Vous pouvez utiliser des addOns pour gérer des contenus ou des fonctionnalités spécifiques.
 
-Si vous voulez attribuer une classe CSS à plusieurs lignes, il faut utiliser cette syntaxe :
+Il suffit de les indiquer dans l'en-tête YAML ainsi : `addOns: kroki, lightbox` par exemple pour ajouter kroki et lightbox.
 
-```
-<div markdown class="maClasse">
-Bloc de texte Markdown multiligne
-</div>
-```
+Les addOns disponibles sont les suivants :
 
-#### Classes prédéfinies
+#### kroki
 
-La classe `{.center}` permet de centrer un paragraphe.
+**kroki** permet de générer automatiquement des graphiques avec la syntaxe suivante : Tikz, Mermaid, PlantUML, Graphviz, Excalidraw, Vega ou Vegalite.
 
-La classe `{.large}` après une image sous un titre de sous-section permet d'avoir une grande image plutôt qu'une petit icône.
+Pour cela, il faut utiliser un bloc code et indiquer au début la syntaxe qu'on veut utiliser.
+
+#### lightbox
+
+**lightbox** permet d'afficher en grand une image quand on clique dessus.
 
 ## Exemples d'utilisation
 

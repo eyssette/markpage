@@ -9,10 +9,7 @@ export const CSSthemes = ["colors.css"];
 export const allowedAddOns = {
 	pako: { js: "js/externals/pako.min.js" },
 	kroki: { js: "js/externals/kroki.js" },
-	textFit: {
-		js: "js/externals/textFit.min.js",
-		css: "<style>.katex-display{max-width:80%} .katex-display .textFitted{white-space:nowrap}</style>",
-	},
+	lightbox: { js: "js/externals/lightbox.js" },
 };
 
 export const addOnsDependencies = {

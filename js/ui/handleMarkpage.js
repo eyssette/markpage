@@ -23,6 +23,11 @@ export function handleMarkpage(markpageData) {
 			);
 		}, 200);
 	}
+	if (yaml.addOns && yaml.addOns.includes("lightbox")) {
+		setTimeout(() => {
+			window.lightbox();
+		}, 200);
+	}
 	const hash = window.location.hash.substring(1);
 	const actualURL = window.location.search;
 	params = getParams(actualURL);
