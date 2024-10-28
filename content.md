@@ -172,15 +172,22 @@ Il suffit de les indiquer dans l'en-tête YAML ainsi : `addOns: kroki, lightbox`
 
 Les add-ons disponibles sont les suivants :
 
-#### kroki
+#### Kroki
 
-**kroki** permet de générer automatiquement des graphiques avec la syntaxe suivante : Tikz, Mermaid, PlantUML, Graphviz, Excalidraw, Vega ou Vegalite.
+_Kroki_ permet de générer automatiquement des graphiques avec la syntaxe suivante : Tikz, Mermaid, PlantUML, Graphviz, Excalidraw, Vega ou Vegalite.
 
-Pour cela, il faut utiliser un bloc code et indiquer au début la syntaxe qu'on veut utiliser.
+Pour cela, il faut utiliser un bloc code et indiquer au début la syntaxe qu'on veut utiliser, ainsi :
 
-#### lightbox
+````
+```mermaid
+On met ici son graphique avec la syntaxe mermaid
+```
 
-**lightbox** permet d'afficher en grand une image quand on clique dessus.
+````
+
+#### Lightbox
+
+_Lightbox_ permet d'afficher en grand une image quand on clique dessus.
 
 ## Exemples d'utilisation
 
@@ -222,3 +229,7 @@ Vous pouvez me contacter sur les [réseaux sociaux](https://eyssette.forge.apps.
 De préférence, merci d'utiliser les “[tickets](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/issues)” sur LaForgeEdu.
 
 Vous pouvez aussi envoyer un [mail](mailto:forge-apps+markpage-markpage-forge-apps-education-fr-1073-1zlrcah1x0db338wwkjnjf1g4-issue@phm.education.gouv.fr)
+
+```
+
+```
