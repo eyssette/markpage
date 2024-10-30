@@ -22,6 +22,10 @@ Les sources de ce logiciel sont sur la [Forge des Communs Numériques Éducatifs
 2. Créez votre site en respectant la [syntaxe de Markpage](?sec=1&subsec=2)
 3. Votre site sera alors disponible à l'adresse : https://markpage.forge.apps.education.fr/#URL (en remplaçant URL par l'URL de votre fichier)
 
+<label for="urlInput">Entrez l'URL de votre fichier en Markdown :</label>
+
+<input type="url" id="urlInput" placeholder="Votre URL"> <button id="okButton">OK</button>
+
 ### Syntaxe de base
 
 Le plus simple est de récupérer ce [modèle sur CodiMD](https://codimd.apps.education.fr/8IuZtiIqRwWfrQO9Rec4nA?both).

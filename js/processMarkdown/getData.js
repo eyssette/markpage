@@ -28,5 +28,22 @@ export function getMarkdownContentAndCreateMarkpage() {
 	} else {
 		markpageData = parseMarkdown(md);
 		createMarkpage(markpageData);
+		const urlInput = document.getElementById("urlInput");
+		const okButton = document.getElementById("okButton");
+		function redirectToUrl() {
+			const userUrl = urlInput.value.trim();
+			if (userUrl) {
+				const fullUrl = window.location.origin + `/#${userUrl}`;
+				window.open(fullUrl, "_blank");
+			} else {
+				alert("Veuillez entrer une URL valide.");
+			}
+		}
+		okButton.addEventListener("click", redirectToUrl);
+		urlInput.addEventListener("keypress", (event) => {
+			if (event.key === "Enter") {
+				redirectToUrl();
+			}
+		});
 	}
 }
