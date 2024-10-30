@@ -125,12 +125,14 @@ const converter = new Showdown.Converter({
 	],
 });
 
+// Gestion des dimensions des images
 function fixImageDimensionsCodiMD(md) {
 	md = md.replaceAll(/=x([0-9]*)\)/g, "=*x$1)");
 	md = md.replaceAll(/=([0-9]*)x\)/g, "=$1x*)");
 	return md;
 }
 
+// Gestion des URLs relatives des images
 function resolveImagePath(md) {
 	md = md.replace(
 		/!\[(.*?)\]\((?!http)(.*?)\)/g,
@@ -144,8 +146,15 @@ function resolveImagePath(md) {
 	return md;
 }
 
+// Gestion du Markdown dans un bloc div
+function markdownInDiv(md) {
+	md = md.replace(/<div(.*)?>/g, "<div markdown$1>");
+	return md;
+}
+
 export function markdownToHTML(text) {
 	text = fixImageDimensionsCodiMD(text);
+	text = markdownInDiv(text);
 	if (yaml && yaml.pathImages) {
 		text = resolveImagePath(text);
 	}
