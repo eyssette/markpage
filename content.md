@@ -238,7 +238,3 @@ Vous pouvez me contacter sur les [réseaux sociaux](https://eyssette.forge.apps.
 De préférence, merci d'utiliser les “[tickets](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/issues)” sur LaForgeEdu.
 
 Vous pouvez aussi envoyer un [mail](mailto:forge-apps+markpage-markpage-forge-apps-education-fr-1073-1zlrcah1x0db338wwkjnjf1g4-issue@phm.education.gouv.fr)
-
-```
-
-```
