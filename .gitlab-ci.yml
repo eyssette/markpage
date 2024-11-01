@@ -6,7 +6,7 @@ pages:
   before_script:
     - apk update && apk add gzip brotli
   script:
-    - mkdir -p .public .public/css/ .public/css/theme/ ./public/js/ ./public/js/externals/
+    - mkdir -p .public .public/css/ .public/css/theme/ .public/js/ .public/js/externals/
     - cp favicon.svg index.html script.min.js script.min.js.map .public/
     - cp css/styles.min.css css/oneByOne.min.css .public/css/
     - cp css/theme/* .public/css/theme
