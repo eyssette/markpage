@@ -1,7 +1,7 @@
 import { yaml } from "../processMarkdown/yaml";
 import { handleMarkpage } from "./handleMarkpage";
 
-export function createMarkpage(markpageData) {
+export function createMarkpage(markpageData, urlSourceMarkpage) {
 	const titleElement = document.getElementById("title");
 	const initialMessageElement = document.getElementById("initialMessage");
 	const mainElement = document.getElementById("content");
@@ -15,7 +15,8 @@ export function createMarkpage(markpageData) {
 	const sections = markpageData[2];
 	const sectionsContent = markpageData[3];
 	let sectionsHTML = "";
-	let footerHTML = '<a href="." class="navigationLink">🏠</a>';
+	const homeLink = urlSourceMarkpage ? ".#" + urlSourceMarkpage : ".";
+	let footerHTML = '<a href="' + homeLink + '" class="navigationLink">🏠</a>';
 	let param;
 	// On crée le HTML pour le contenu en parcourant le contenu de chaque section
 	for (let i = 0; i < sections.length; i++) {
@@ -25,8 +26,8 @@ export function createMarkpage(markpageData) {
 		// On récupère le contenu de chaque section
 		const sectionContent = sectionsContent[i];
 		// On va utiliser des paramètres dans l'URL pour naviguer entre sections
-		const paramInit = "?sec=" + sectionID;
-		param = paramInit;
+		const paramInit = "?sec=" + sectionID + "&subsec=1";
+		param = urlSourceMarkpage ? paramInit + "#" + urlSourceMarkpage : paramInit;
 		// On commence le HTML pour chaque section, avec le titre de chaque section et un lien vers la section correspondante
 		sectionsHTML = sectionsHTML + '<section id="section-' + sectionID + '">';
 		const linkH2 =
@@ -52,7 +53,10 @@ export function createMarkpage(markpageData) {
 				const imageH3 = subSection[1].replace("<p>", "").replace("</p>", "");
 				const contentH3 = subSection[2];
 				// … on insère un lien dans le titre avec un paramètre dans l'URL pour naviguer entre les sous-sections
-				param = param + "&subsec=" + subSectionID;
+				const paramWithoutHash = paramInit + "&subsec=" + subSectionID;
+				param = urlSourceMarkpage
+					? paramWithoutHash + "#" + urlSourceMarkpage
+					: paramWithoutHash;
 				sectionsHTML =
 					sectionsHTML +
 					"<h3>" +

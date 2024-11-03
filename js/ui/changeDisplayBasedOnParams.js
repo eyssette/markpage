@@ -19,8 +19,12 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 	const subSectionsData = markpageData[3];
 	let subSectionElement;
 	if (param && Object.keys(param).length > 0) {
-		const sectionID = param.sec;
-		const subSectionID = param.subsec;
+		const sectionID = param.sec
+			? param.sec.toString().replace(/#.*/, "")
+			: param.sec;
+		const subSectionID = param.subsec
+			? param.subsec.toString().replace(/#.*/, "")
+			: param.subsec;
 		if (subSectionID) {
 			bodyElement.className = "displaySubSection";
 			const sectionElement = document.getElementById("section-" + sectionID);

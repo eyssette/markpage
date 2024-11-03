@@ -15,7 +15,7 @@ export function getMarkdownContentAndCreateMarkpage() {
 			.then((data) => {
 				md = data;
 				markpageData = parseMarkdown(md);
-				createMarkpage(markpageData);
+				createMarkpage(markpageData, url);
 			})
 			.catch((error) => {
 				markpageData = parseMarkdown(md);

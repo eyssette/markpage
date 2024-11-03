@@ -17,10 +17,10 @@ export function handleClicks(baseURL, hash, markpageData) {
 		listenerElement.addEventListener("click", function (event) {
 			// Empêche le comportement par défaut d'ouverture du lien et récupère au contraire le contenu du lien
 			event.preventDefault();
-			const linkURL = link.href;
+			const linkURL = link.href.replace(link.hash, "");
 			let newURL;
 			if (linkURL == baseURL || linkURL + "index.html" == baseURL) {
-				newURL = baseURL;
+				newURL = baseURL + "#" + hash;
 				delete params.sec;
 				delete params.subsec;
 				showOnlyThisElement(undefined, "sections");
@@ -38,9 +38,11 @@ export function handleClicks(baseURL, hash, markpageData) {
 						.map(function (key) {
 							return key + "=" + encodeURIComponent(params[key]);
 						})
-						.join("&");
+						.join("&") +
+					"#" +
+					hash;
 			}
-			history.pushState({ path: newURL + "#" + hash }, "", newURL + "#" + hash);
+			history.pushState({ path: newURL }, "", newURL);
 			changeDisplayBasedOnParams(params, markpageData);
 		});
 	});

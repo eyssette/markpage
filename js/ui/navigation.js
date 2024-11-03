@@ -90,11 +90,13 @@ export function handleNavigation(baseURL, hash, params, markpageData) {
 					.map(function (key) {
 						return key + "=" + encodeURIComponent(params[key]);
 					})
-					.join("&");
+					.join("&") +
+				"#" +
+				hash;
 		} else {
-			newURL = baseURL;
+			newURL = baseURL + "#" + hash;
 		}
-		history.pushState({ path: newURL + "#" + hash }, "", newURL + "#" + hash);
+		history.pushState({ path: newURL }, "", newURL);
 	}
 
 	// Navigation avec les touches de navigation
