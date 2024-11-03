@@ -25,7 +25,7 @@ function processText2quiz(md) {
 			source = encodeURI(source);
 			const isDarkMode = detectDarkModeByPlugin();
 			const theme = isDarkMode ? "t=dm" : "t=lm";
-			return `<iframe class="iframeText2quiz" src="https://text2quiz.vercel.app/?v=1.0&dm=0&dh=0&dpt=0&${theme}#${source}"></iframe>`;
+			return `<iframe class="iframeText2quiz" src="https://text2quiz.vercel.app/?v=1.0&dm=0&dh=0&dqt=0&${theme}#${source}"></iframe>`;
 		},
 	);
 	return md;
