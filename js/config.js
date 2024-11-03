@@ -10,6 +10,10 @@ export const allowedAddOns = {
 	pako: { js: "js/externals/pako.min.js" },
 	kroki: { js: "js/externals/kroki.js" },
 	lightbox: { js: "js/externals/lightbox.js" },
+	text2quiz: {
+		js: "js/externals/text2quiz.js",
+		css: "<style>.iframeText2quiz{width:700px; height:350px; max-width: 100%; border:none}</style>",
+	},
 };
 
 export const addOnsDependencies = {

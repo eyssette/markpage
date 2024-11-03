@@ -30,6 +30,13 @@ export function handleMarkpage(markpageData) {
 			window.lightbox();
 		}, 200);
 	}
+	if (yaml.addOns && yaml.addOns.includes("text2quiz")) {
+		setTimeout(() => {
+			document.getElementById("content").innerHTML = window.processText2quiz(
+				document.getElementById("content").innerHTML,
+			);
+		}, 200);
+	}
 	const hash = window.location.hash.substring(1);
 	const actualURL = window.location.search;
 	params = getParams(actualURL);
