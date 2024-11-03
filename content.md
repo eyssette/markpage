@@ -183,6 +183,8 @@ Les add-ons disponibles sont les suivants :
 
 #### Kroki
 
+Mot-clé pour ajouter cet add-on : `kroki`
+
 _Kroki_ permet de générer automatiquement des graphiques avec la syntaxe suivante : Tikz, Mermaid, PlantUML, Graphviz, Excalidraw, Vega ou Vegalite.
 
 Pour cela, il faut utiliser un bloc code et indiquer au début la syntaxe qu'on veut utiliser, ainsi :
@@ -196,7 +198,26 @@ On met ici son graphique avec la syntaxe mermaid
 
 #### Lightbox
 
+Mot-clé pour ajouter cet add-on : `lightbox`
+
 _Lightbox_ permet d'afficher en grand une image quand on clique dessus.
+
+#### Text2quiz
+
+Mot-clé pour ajouter cet add-on : `text2quiz`
+
+[Text2quiz](https://text2quiz.vercel.app/) est un logiciel libre et gratuit qui permet de gérer des exercices à partir d'un fichier texte, en respectant une syntaxe particulière.
+
+On intègre un exercice text2quiz avec la syntaxe suivante : 
+
+````
+```text2quiz
+On met ici ses exercices avec la syntaxe text2quiz
+```
+
+````
+
+[Voir un exemple d'utilisation de text2quiz dans Markpage](https://markpage.forge.apps.education.fr/#https://codimd.apps.education.fr/DWVc_AZLRluTSja04zty-g)
 
 ## Exemples d'utilisation
 
