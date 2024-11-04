@@ -12,7 +12,7 @@ export const allowedAddOns = {
 	lightbox: { js: "js/externals/lightbox.js" },
 	text2quiz: {
 		js: "js/externals/text2quiz.js",
-		css: "<style>.iframeText2quiz{width:700px; height:350px; max-width: 100%; border:none} @media screen and (max-width: 834px){.iframeText2quiz{height:65vh;}}</style>",
+		css: "<style>.iframeText2quiz{width:700px; height:750px; max-width: 100%; border:none} @media screen and (max-width: 834px){.iframeText2quiz{height:65vh;}}</style>",
 	},
 };
 
