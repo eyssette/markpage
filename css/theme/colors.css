@@ -16,7 +16,7 @@
 	margin: 0;
 }
 #innerBox {
-	background-color: white !important;
+	background-color: #eeeded24 !important;
 	border: 2px solid grey;
 }
 .displaySubSection h2 {
@@ -192,10 +192,6 @@ h3 img {
 		margin: 0;
 		height: 0;
 	}
-}
-
-.iframeText2quiz {
-	background-color: #eeeeee7d;
 }
 
 
