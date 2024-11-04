@@ -194,6 +194,11 @@ h3 img {
 	}
 }
 
+.iframeText2quiz {
+	background-color: #eeeeee7d;
+}
+
+
 @media screen and (min-width: 835px) and (pointer: fine) {
 	#backgroundInnerBox,
 	.subSectionContent {
