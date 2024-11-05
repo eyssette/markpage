@@ -351,6 +351,10 @@ input {
 	color: #470302;
 }
 
+details {
+	cursor: pointer;
+}
+
 pre {
 	background-color: white;
 	padding: 1em 2em;
