@@ -196,12 +196,15 @@ h3 img {
 
 
 @media screen and (min-width: 835px) and (pointer: fine) {
+	#backgroundInnerBox, #innerBox {
+		min-height: 85vh;
+	}
 	#backgroundInnerBox,
 	.subSectionContent {
 		background-color: transparent;
 	}
 	.subSectionContent {
 		padding-bottom: 2em;
-		max-height: 61vh;
+		max-height: 66vh;
 	}
 }
