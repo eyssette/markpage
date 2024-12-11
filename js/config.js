@@ -4,6 +4,10 @@ export const shortcuts = [
 		"ethique-animale",
 		"https://codimd.apps.education.fr/1K2QEqbzRJeqb-bXZfiJqA/download",
 	],
+	[
+		"ethique-environnementale",
+		"https://codimd.apps.education.fr/TwoOoaLmRy2E-v5hnGJMUw/download",
+	],
 ];
 
 export const corsProxy = "https://corsproxy.io/?";
