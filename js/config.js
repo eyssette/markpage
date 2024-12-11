@@ -1,5 +1,10 @@
 // On peut définir des raccourcis vers ses markpages (si on veut forker le projet et avoir une URL plus courte à partager)
-export const shortcuts = [["myMarkpage", "URL"]];
+export const shortcuts = [
+	[
+		"ethique-animale",
+		"https://codimd.apps.education.fr/1K2QEqbzRJeqb-bXZfiJqA/download",
+	],
+];
 
 export const corsProxy = "https://corsproxy.io/?";
 
