@@ -16,7 +16,7 @@ export const CSSthemes = ["colors.css"];
 
 // Gestion des add-ons
 export const allowedAddOns = {
-	pako: { js: "js/externals/pako.min.js" },
+	pako: { js: "js/addOn/pako.min.js" },
 	kroki: { js: "js/addOn/kroki.js" },
 	lightbox: {
 		js: "js/addOn/lightbox.js",

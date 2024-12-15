@@ -6,11 +6,11 @@ pages:
   before_script:
     - apk update && apk add gzip brotli
   script:
-    - mkdir -p .public .public/css/ .public/css/theme/ .public/js/ .public/js/externals/
+    - mkdir -p .public .public/css/ .public/css/theme/ .public/js/ .public/js/addOn/
     - cp favicon.svg index.html script.min.js script.min.js.map .public/
     - cp css/styles.min.css css/oneByOne.min.css .public/css/
     - cp css/theme/* .public/css/theme
-    - cp js/externals/kroki.js js/externals/pako.min.js js/externals/lightbox.js js/externals/text2quiz.js .public/js/externals/
+    - cp js/addOn/pako.min.js js/addOn/kroki.js js/addOn/lightbox.js js/addOn/text2quiz.js js/addOn/copycode.js .public/js/addOn/
     - mv .public public
     - for ext in $FILES_TO_COMPRESS; do find public -type f -name "*.$ext" -exec gzip -f -k {} \;; done
     - for ext in $FILES_TO_COMPRESS; do find public -type f -name "*.$ext" -exec brotli -f -k {} \;; done
