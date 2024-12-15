@@ -219,6 +219,12 @@ On met ici ses exercices avec la syntaxe text2quiz
 
 [Voir un exemple d'utilisation de text2quiz dans Markpage](https://markpage.forge.apps.education.fr/#https://codimd.apps.education.fr/DWVc_AZLRluTSja04zty-g)
 
+#### Copycode
+
+Mot-clé pour ajouter cet add-on : `copycode`
+
+Cet add-on permet d'avoir un bouton cliquable pour copier dans le presse-papier le texte contenu dans un bloc code.
+
 ## Exemples d'utilisation
 
 #### Création d'un minisite
