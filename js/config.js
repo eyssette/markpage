@@ -27,7 +27,7 @@ export const allowedAddOns = {
 		css: "<style>.iframeText2quiz{width:700px; height:750px; max-width: 100%; border:none} @media screen and (max-width: 834px){.iframeText2quiz{height:65vh;}}</style>",
 	},
 	copycode: {
-		js: "js/addOn/copyCode.js",
+		js: "js/addOn/copycode.js",
 	},
 };
 
