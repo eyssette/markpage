@@ -10,7 +10,7 @@ export const shortcuts = [
 	],
 ];
 
-export const corsProxy = "https://corsproxy.io/?";
+export const corsProxy = "https://corsproxy.io/?url=";
 
 export const CSSthemes = ["colors.css"];
 
