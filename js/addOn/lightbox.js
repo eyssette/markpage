@@ -27,14 +27,14 @@ function lightbox() {
 
 	// Crée un élément <img> pour afficher les images
 	const lightboxImage = document.createElement("img");
-	lightboxImage.style.maxWidth = "100%";
-	lightboxImage.style.maxHeight = "100%";
-	lightboxImage.style.objectFit = "contain"; // Maintient les proportions de l'image
+	lightboxImage.style.maxWidth = "90%";
+	lightboxImage.style.maxHeight = "90%";
+	lightboxImage.style.objectFit = "contain";
 
 	// Crée un élément <iframe> pour afficher les PDFs
 	const lightboxPDF = document.createElement("iframe");
-	lightboxPDF.style.width = "100%";
-	lightboxPDF.style.height = "100%";
+	lightboxPDF.style.width = "90%";
+	lightboxPDF.style.height = "90%";
 	lightboxPDF.style.border = "none";
 
 	// Ajoute le conteneur pour l'image ou le PDF
@@ -92,7 +92,7 @@ function lightbox() {
 	pdfLinks.forEach((link) => {
 		link.classList.add("lightboxAddOn");
 		link.addEventListener("click", (e) => {
-			e.preventDefault(); // Empêche l'ouverture par défaut
+			e.preventDefault();
 			lightboxPDF.src = link.href;
 			lightboxPDF.style.display = "block";
 			lightboxImage.style.display = "none";
