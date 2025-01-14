@@ -120,3 +120,10 @@ export function loadCSS(src) {
 		document.head.appendChild(styleElement);
 	});
 }
+
+export function openLinksInNewTab(links) {
+	links.forEach((link) => {
+		link.setAttribute("target", "_blank");
+		link.setAttribute("rel", "noopener noreferrer");
+	});
+}

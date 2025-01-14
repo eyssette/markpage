@@ -79,6 +79,7 @@ function lightbox() {
 
 	// Ajoute un écouteur de clic sur chaque image
 	images.forEach((image) => {
+		image.classList.add("lightboxAddOn");
 		image.addEventListener("click", () => {
 			lightboxImage.src = image.src;
 			lightboxImage.style.display = "block";
@@ -89,6 +90,7 @@ function lightbox() {
 
 	// Ajoute un écouteur de clic sur chaque lien PDF
 	pdfLinks.forEach((link) => {
+		link.classList.add("lightboxAddOn");
 		link.addEventListener("click", (e) => {
 			e.preventDefault(); // Empêche l'ouverture par défaut
 			lightboxPDF.src = link.href;
