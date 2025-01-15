@@ -31,11 +31,12 @@ function lightbox() {
 	lightboxImage.style.maxHeight = "90%";
 	lightboxImage.style.objectFit = "contain";
 
-	// Crée un élément <iframe> pour afficher les PDFs
-	const lightboxPDF = document.createElement("iframe");
+	// Crée un élément <embed> pour afficher les PDFs
+	const lightboxPDF = document.createElement("embed");
 	lightboxPDF.style.width = "90%";
 	lightboxPDF.style.height = "90%";
 	lightboxPDF.style.border = "none";
+	lightboxPDF.setAttribute("type", "application/pdf");
 
 	// Ajoute le conteneur pour l'image ou le PDF
 	lightboxContent.appendChild(lightboxImage);
@@ -56,11 +57,22 @@ function lightbox() {
 	lightboxContainer.appendChild(closeButton);
 	document.body.appendChild(lightboxContainer);
 
-	// Fonction pour fermer la lightbox
+	// Ouverture de la lightbox
+	function openLightbox() {
+		lightboxContainer.style.display = "flex";
+		lightboxContainer.classList.add("lightbox-open");
+		lightboxContainer.classList.remove("lightbox-closed");
+	}
+
+	// Fermeture de la lightbox
 	function closeLightbox() {
 		lightboxContainer.style.display = "none";
 		lightboxImage.style.display = "none";
 		lightboxPDF.style.display = "none";
+		lightboxImage.src = "";
+		lightboxPDF.src = "";
+		lightboxContainer.classList.add("lightbox-closed");
+		lightboxContainer.classList.remove("lightbox-open");
 	}
 
 	// Ferme la lightbox si on clique dessus
@@ -84,7 +96,7 @@ function lightbox() {
 			lightboxImage.src = image.src;
 			lightboxImage.style.display = "block";
 			lightboxPDF.style.display = "none";
-			lightboxContainer.style.display = "flex";
+			openLightbox();
 		});
 	});
 
@@ -96,7 +108,7 @@ function lightbox() {
 			lightboxPDF.src = link.href;
 			lightboxPDF.style.display = "block";
 			lightboxImage.style.display = "none";
-			lightboxContainer.style.display = "flex";
+			openLightbox();
 		});
 	});
 }

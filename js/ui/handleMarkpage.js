@@ -60,10 +60,16 @@ export function handleMarkpage(markpageData) {
 	handleClicks(baseURL, hash, markpageData);
 
 	window.addEventListener("popstate", function () {
+		const isLightbox = document.querySelector("#lightbox.lightbox-open");
 		// Gestion des retours en arrière dans l'historique du navigateur
-		let actualURL = window.location.search;
-		params = getParams(actualURL);
-		changeDisplayBasedOnParams(params, markpageData);
+		if (isLightbox) {
+			// Cas où on revient en arrière alors qu'on vient d'ouvrir une lightbox
+			isLightbox.style.display = "none";
+		} else {
+			let actualURL = window.location.search;
+			params = getParams(actualURL);
+			changeDisplayBasedOnParams(params, markpageData);
+		}
 	});
 
 	// Affichage si yamlLinkToHomePage d'un lien supplémentaire vers la page d'accueil en haut à droite
