@@ -96,6 +96,22 @@ footer a:hover {
 footer a aside {
 	display: none;
 }
+.homeIcon{
+	display:block!important;
+}
+.homeIcon:before {
+	content: "";
+	-webkit-mask-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PHBhdGggZD0iTTEyLjY3MyAxLjYxMiAyMyAxMWgtM3Y5YTEgMSAwIDAgMS0xIDFINWExIDEgMCAwIDEtMS0xdi05SDFsMTAuMzI3LTkuMzg4YTEgMSAwIDAgMSAxLjM0NiAwWk0xMiAzLjcwMyA2IDkuMTU3VjE5aDV2LTZoMnY2aDVWOS4xNTdsLTYtNS40NTRaIi8+PC9zdmc+);
+	mask-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PHBhdGggZD0iTTEyLjY3MyAxLjYxMiAyMyAxMWgtM3Y5YTEgMSAwIDAgMS0xIDFINWExIDEgMCAwIDEtMS0xdi05SDFsMTAuMzI3LTkuMzg4YTEgMSAwIDAgMSAxLjM0NiAwWk0xMiAzLjcwMyA2IDkuMTU3VjE5aDV2LTZoMnY2aDVWOS4xNTdsLTYtNS40NTRaIi8+PC9zdmc+);
+	display: inline-block;
+	flex: 0 0 auto;
+	height: 1.5rem;
+	-webkit-mask-size: 100% 100%;
+	mask-size: 100% 100%;
+	vertical-align: calc(.375em - .75rem);
+	width: 1.5rem;
+	background:black;
+}
 
 .sectionContent,
 .displayHomepage .sectionContent,

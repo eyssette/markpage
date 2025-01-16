@@ -16,7 +16,10 @@ export function createMarkpage(markpageData, urlSourceMarkpage) {
 	const sectionsContent = markpageData[3];
 	let sectionsHTML = "";
 	const homeLink = urlSourceMarkpage ? ".#" + urlSourceMarkpage : ".";
-	let footerHTML = '<a href="' + homeLink + '" class="navigationLink">🏠</a>';
+	let footerHTML =
+		'<a href="' +
+		homeLink +
+		'" class="navigationLink"><span class="homeIcon"></span></a>';
 	let param;
 	// On crée le HTML pour le contenu en parcourant le contenu de chaque section
 	for (let i = 0; i < sections.length; i++) {
