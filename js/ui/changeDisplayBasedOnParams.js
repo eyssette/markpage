@@ -66,12 +66,23 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 				bodyElement.className = "displayHomepage";
 			}
 		}
-		// Gestion des iframes dans l'élément visible
+		// Gestion des iframes
+		const allIframes = document.querySelectorAll("iframe");
+		// Reset de l'iframe dans la page sur laquelle on vient d'arriver
 		if (visibleElement) {
-			const iframesInElement = visibleElement.querySelectorAll("iframe");
+			const iframesInElement = Array.from(allIframes).filter((iframe) =>
+				visibleElement.contains(iframe),
+			);
 			for (const iframe of iframesInElement) {
 				resetIframe(iframe);
 			}
+		}
+		// Reste des iframes de type vidéo (sinon la vidéo peut continuer à être jouée alors qu'on est passé à une autre page)
+		const iframesWithVideo = Array.from(allIframes).filter((iframe) =>
+			iframe.classList.contains("isVideo"),
+		);
+		for (const iframe of iframesWithVideo) {
+			resetIframe(iframe);
 		}
 		// Gestion du scroll vers l'élément cible
 		if (
