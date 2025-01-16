@@ -70,16 +70,6 @@ On peut combiner ces trois éléments.
 ![](URL-image)
 ```
 
-### Iframes
-
-On peut insérer des contenus en iframes.
-
-Pour les vidéos, afin d'éviter que la vidéo continue à être jouée quand on passe à une autre page, il faut ajouter la classe "isVideo" à votre iframe.
-
-```
- class="isVideo"
-```
-
 ## Options plus avancées
 
 ### En-tête YAML
