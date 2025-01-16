@@ -3,6 +3,7 @@ import { yaml } from "../processMarkdown/yaml";
 
 const bodyElement = document.body;
 const progressBarElement = document.getElementById("progressBar");
+let previousIframes = [];
 
 // Pour forcer le reload d'une iframe
 function resetIframe(iframe) {
@@ -68,21 +69,17 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 		}
 		// Gestion des iframes
 		const allIframes = document.querySelectorAll("iframe");
-		// Reset de l'iframe dans la page sur laquelle on vient d'arriver
+		// Reset des iframes qui étaient présentes sur la page précédente
 		if (visibleElement) {
+			if (previousIframes) {
+				for (const iframe of previousIframes) {
+					resetIframe(iframe);
+				}
+			}
 			const iframesInElement = Array.from(allIframes).filter((iframe) =>
 				visibleElement.contains(iframe),
 			);
-			for (const iframe of iframesInElement) {
-				resetIframe(iframe);
-			}
-		}
-		// Reste des iframes de type vidéo (sinon la vidéo peut continuer à être jouée alors qu'on est passé à une autre page)
-		const iframesWithVideo = Array.from(allIframes).filter((iframe) =>
-			iframe.classList.contains("isVideo"),
-		);
-		for (const iframe of iframesWithVideo) {
-			resetIframe(iframe);
+			previousIframes = iframesInElement;
 		}
 		// Gestion du scroll vers l'élément cible
 		if (
