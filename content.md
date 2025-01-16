@@ -210,7 +210,9 @@ On met ici son graphique avec la syntaxe mermaid
 
 Mot-clé pour ajouter cet add-on : `lightbox`
 
-_Lightbox_ permet d'afficher en grand une image quand on clique dessus.
+_Lightbox_ permet d'afficher en grand une image ou un PDF quand on clique dessus.
+
+Si on veut désactiver l'effet de lightbox pour un PDF, on ajoute simplement `?nolightbox` à la fin de l'URL du PDF.
 
 #### Text2quiz
 
