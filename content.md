@@ -1,6 +1,5 @@
 ---
 style: img{border-radius:10px}
-addOns: copycode
 ---
 
 # Markpage

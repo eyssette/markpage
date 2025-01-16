@@ -67,6 +67,7 @@ footer {
 	bottom: 0px;
 	background-color: white;
 	display: flex;
+	z-index: 10;
 }
 
 footer span {
