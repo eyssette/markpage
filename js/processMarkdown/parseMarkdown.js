@@ -18,7 +18,9 @@ export function parseMarkdown(markdownContent) {
 	);
 
 	// Dans le contenu, on distingue chaque section (définie par un titre h2)
-	const sections = mainContent.split(/(?<!#)## /).filter(Boolean);
+	const sections = mainContent
+		.split(/(\n|^)## /)
+		.filter(filterElementWithNoContent);
 	let sectionsTitles = [];
 	let subSectionsArray = [];
 
@@ -37,10 +39,10 @@ export function parseMarkdown(markdownContent) {
 
 		// Dans chaque section, on regarde s'il y a des sous-sections (définis par un titre h3)
 		const subSections = sectionContent
-			.split(/(?<!`\n)(?<!#)### /)
+			.split(/(\n|^)### /)
 			.filter(filterElementWithNoContent);
 		let subSectionsContent = [];
-		if (sectionContent.match(/(?<!#)### /)) {
+		if (/(\n|^)### /.test(sectionContent)) {
 			// S'il y a des sous-sections …
 			for (const subSection of subSections) {
 				// … on récupère le titre, l'image et le contenu de chaque sous-section
