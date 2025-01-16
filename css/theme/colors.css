@@ -17,6 +17,22 @@
 	background-color: white !important;
 }
 
+.displayHomepage blockquote {
+	font-size: 1.35em;
+}
+
+.displayHomepage h2 a:hover {
+	background-color: #f1f1f1f1;
+	border-color: #b2a889;
+	color: black;
+}
+.displayHomepage h2 a {
+	background-color: white;
+}
+.displayHomepage footer {
+	display: none;
+}
+
 .subSectionContent a {
 	color: darkred;
 	text-decoration: grey underline;
@@ -35,17 +51,7 @@ h4 {
 	color: white;
 }
 
-.displayHomepage h2 a:hover {
-	background-color: #f1f1f1f1;
-	border-color: #b2a889;
-	color: black;
-}
-.displayHomepage h2 a {
-	background-color: white;
-}
-.displayHomepage footer {
-	display: none;
-}
+
 
 footer {
 	height: 3em;
