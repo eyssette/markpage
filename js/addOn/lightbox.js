@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 function lightbox() {
 	// Sélectionne toutes les images et les liens vers des PDF de la page
 	const images = document.querySelectorAll("img");
