@@ -60,7 +60,7 @@ footer {
 
 @media screen and (min-width: 834px) {
 	h3 {
-		margin-left: -2em;
+		margin-left: -3em;
 	}
 	footer {
 		font-size: 1em;
@@ -109,8 +109,15 @@ footer a {
 	color: var(--color1);
 }
 
+h4 {
+	border-bottom: 2px solid;
+	border-radius: 0;
+	font-weight: bold;
+	padding: 10px 20px 10px 2px;
+}
+
 #content > section:nth-of-type(5n + 1) h4 {
-	background-color: var(--color1);
+	color: var(--color1);
 }
 
 .displaySubSection #content > section:nth-of-type(5n + 2) h2 a,
@@ -120,8 +127,7 @@ footer a {
 }
 
 #content > section:nth-of-type(5n + 2) h4 {
-	background-color: var(--color2);
-	color: white;
+	color: var(--color2);
 }
 
 .displaySubSection #content > section:nth-of-type(5n + 3) h2 a,
@@ -131,8 +137,7 @@ footer a {
 }
 
 #content > section:nth-of-type(5n + 3) h4 {
-	background-color: var(--color3);
-	color: white;
+	color: var(--color3);
 }
 
 .displaySubSection #content > section:nth-of-type(5n + 4) h2 a,
@@ -142,8 +147,7 @@ footer a {
 }
 
 #content > section:nth-of-type(5n + 4) h4 {
-	background-color: var(--color4);
-	color: white;
+	color: var(--color4);
 }
 
 .displaySubSection #content > section:nth-of-type(5n + 5) h2 a,
@@ -153,8 +157,7 @@ footer a {
 }
 
 #content > section:nth-of-type(5n + 5) h4 {
-	background-color: var(--color5);
-	color: white;
+	color: var(--color5);
 }
 
 @media screen and (max-width: 834px) {
@@ -180,5 +183,9 @@ footer a {
 	}
 	#content > section:nth-of-type(5n + 5) h3 a {
 		border-bottom-color: var(--color5);
+	}
+
+	.subSection h4{
+		border:none;
 	}
 }
