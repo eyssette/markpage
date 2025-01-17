@@ -27,8 +27,8 @@ function lightbox() {
 
 	// Crée un élément <img> pour afficher les images
 	const lightboxImage = document.createElement("img");
-	lightboxImage.style.maxWidth = "90%";
-	lightboxImage.style.maxHeight = "90%";
+	lightboxImage.style.maxWidth = "100%";
+	lightboxImage.style.maxHeight = "100%";
 	lightboxImage.style.objectFit = "contain";
 
 	// Crée un élément <embed> pour afficher les PDFs
