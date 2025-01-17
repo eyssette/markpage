@@ -68,6 +68,14 @@ footer {
 	background-color: white;
 	display: flex;
 	z-index: 10;
+	overflow-x: auto;
+}
+footer a.navigationLink:first-of-type {
+	padding-left: 2em;
+}
+
+footer a.navigationLink:last-of-type {
+	padding-right: 2em;
 }
 
 footer span {
@@ -435,6 +443,13 @@ caption {
 		padding: 0px 10px;
 		overflow-y: auto;
 		justify-content: left;
+	}
+	footer a.navigationLink:first-of-type {
+		padding-left: 0em;
+	}
+	
+	footer a.navigationLink:last-of-type {
+		padding-right: 1em;
 	}
 
 	h1 {
