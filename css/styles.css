@@ -51,6 +51,9 @@ header {
 img {
 	max-height: 300px;
 }
+.sectionContent img{
+	max-width: 100%;
+}
 
 main {
 	text-align: left;
