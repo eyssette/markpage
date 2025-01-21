@@ -4,15 +4,13 @@ style: img{border-radius:10px}
 
 # Markpage
 
-<div style="float:left; margin-right:2em; " markdown> ![](favicon.svg =100x100)</div> 
+<div style="float:left; margin-right:2em; margin-bottom:2em;" markdown> ![](favicon.svg =100x100)</div> 
  
-Markpage est un outil **libre** et **gratuit** qui permet de créer facilement un minisite web ou une application pour smartphone, à partir d'un simple fichier en Markdown.
+Markpage est un outil **libre** et **gratuit**, créé par [Cédric Eyssette](https://eyssette.forge.apps.education.fr/) sur [LaForgeÉdu](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr), qui permet de créer facilement un minisite web ou une application pour smartphone, à partir d'un simple fichier en Markdown.
 
 On peut l'utiliser notamment pour créer des petits modules de formation ou de révision.
 
-Outil créé par [Cédric Eyssette](https://eyssette.forge.apps.education.fr/).
-
-Les sources de ce logiciel sont sur la [Forge des Communs Numériques Éducatifs](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr)
+<label for="urlInput">Entrez l'URL de votre fichier en Markdown pour accéder à votre minisite :</label> <input type="url" id="urlInput" placeholder="Votre URL"> <button id="okButton">OK</button>
 
 ## Comment ça marche ?
 
@@ -266,4 +264,4 @@ Vous pouvez me contacter sur les [réseaux sociaux](https://eyssette.forge.apps.
 
 De préférence, merci d'utiliser les “[tickets](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/issues)” sur LaForgeEdu.
 
-Vous pouvez aussi envoyer un [mail](mailto:forge-apps+markpage-markpage-forge-apps-education-fr-1073-1zlrcah1x0db338wwkjnjf1g4-issue@phm.education.gouv.fr)
+Vous pouvez aussi envoyer un [mail](mailto:forge-apps+guichet+markpage-markpage-forge-apps-education-fr-1073-issue-@phm.education.gouv.fr)
