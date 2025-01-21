@@ -10,7 +10,7 @@ Markpage est un outil **libre** et **gratuit**, créé par [Cédric Eyssette](ht
 
 On peut l'utiliser notamment pour créer des petits modules de formation ou de révision.
 
-<label for="urlInput">Entrez l'URL de votre fichier en Markdown pour accéder à votre minisite :</label> <input type="url" id="urlInput" placeholder="Votre URL"> <button id="okButton">OK</button>
+<label for="urlInput1">Entrez l'URL de votre fichier en Markdown pour accéder à votre minisite :</label> <input type="url" id="urlInput1" placeholder="Votre URL"> <button id="okButton1">OK</button>
 
 ## Comment ça marche ?
 
@@ -20,9 +20,9 @@ On peut l'utiliser notamment pour créer des petits modules de formation ou de r
 2. Créez votre site en respectant la [syntaxe de Markpage](?sec=1&subsec=2)
 3. Votre site sera alors disponible à l'adresse : https://markpage.forge.apps.education.fr/#URL (en remplaçant URL par l'URL de votre fichier)
 
-<label for="urlInput">Entrez l'URL de votre fichier en Markdown :</label>
+<label for="urlInput2">Entrez l'URL de votre fichier en Markdown :</label>
 
-<input type="url" id="urlInput" placeholder="Votre URL"> <button id="okButton">OK</button>
+<input type="url" id="urlInput2" placeholder="Votre URL"> <button id="okButton2">OK</button>
 
 ### Syntaxe de base
 

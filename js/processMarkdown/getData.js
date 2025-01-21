@@ -28,10 +28,14 @@ export function getMarkdownContentAndCreateMarkpage() {
 	} else {
 		markpageData = parseMarkdown(md);
 		createMarkpage(markpageData);
-		const urlInput = document.getElementById("urlInput");
-		const okButton = document.getElementById("okButton");
-		function redirectToUrl() {
-			const userUrl = urlInput.value.trim();
+		const urlInput1 = document.getElementById("urlInput1");
+		const okButton1 = document.getElementById("okButton1");
+		const urlInput2 = document.getElementById("urlInput2");
+		const okButton2 = document.getElementById("okButton2");
+
+		// Fonction générique pour rediriger vers une URL
+		function redirectToUrl(inputElement) {
+			const userUrl = inputElement.value.trim();
 			if (userUrl) {
 				const fullUrl = window.location.origin + `/#${userUrl}`;
 				window.open(fullUrl, "_blank");
@@ -39,10 +43,16 @@ export function getMarkdownContentAndCreateMarkpage() {
 				alert("Veuillez entrer une URL valide.");
 			}
 		}
-		okButton.addEventListener("click", redirectToUrl);
-		urlInput.addEventListener("keypress", (event) => {
+		okButton1.addEventListener("click", () => redirectToUrl(urlInput1));
+		urlInput1.addEventListener("keypress", (event) => {
 			if (event.key === "Enter") {
-				redirectToUrl();
+				redirectToUrl(urlInput1);
+			}
+		});
+		okButton2.addEventListener("click", () => redirectToUrl(urlInput2));
+		urlInput2.addEventListener("keypress", (event) => {
+			if (event.key === "Enter") {
+				redirectToUrl(urlInput2);
 			}
 		});
 	}
