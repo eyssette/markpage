@@ -429,6 +429,12 @@ caption {
 	padding: 10px;
 }
 
+
+iframe {
+	max-width: 100%;
+}
+
+
 @media screen and (max-width: 834px) {
 	html,
 	footer {
