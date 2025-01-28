@@ -46,7 +46,7 @@ function showdownExtensionAdmonitions() {
 			type: "output",
 			filter: (text) => {
 				// Supprimer les balises <p> autour des admonitions
-				text = text.replace(/<p>:::(.*?)<\/p>/g, ":::$1");
+				text = text.replace(/<p>:::(.*?)(<\/p>)?/g, ":::$1");
 
 				// Expression régulière pour capturer le contenu des admonitions
 				const regex = /:::(\w+)(?:\s+(collapsible)?)?\s*(.*?)\n([\s\S]*?):::/g;
