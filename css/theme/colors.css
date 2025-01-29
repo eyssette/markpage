@@ -161,13 +161,13 @@ h4 {
 }
 
 @media screen and (max-width: 834px) {
-	#content > section:nth-of-type(5n + 1) .visible h3,
-	#content > section:nth-of-type(5n + 2) .visible h3,
-	#content > section:nth-of-type(5n + 3) .visible h3,
-	#content > section:nth-of-type(5n + 4) .visible h3,
-	#content > section:nth-of-type(5n + 5) .visible h3 {
-		background-color: unset;
-		border: none;
+	#content > section:nth-of-type(5n + 1) h3,
+	#content > section:nth-of-type(5n + 2) h3,
+	#content > section:nth-of-type(5n + 3) h3,
+	#content > section:nth-of-type(5n + 4) h3,
+	#content > section:nth-of-type(5n + 5) h3 {
+		background-color: unset!important;
+		border: none!important;
 	}
 	#content > section:nth-of-type(5n + 1) h3 a {
 		border-bottom-color: var(--color1);
