@@ -456,6 +456,10 @@ iframe {
 		overflow-y: auto;
 		justify-content: left;
 	}
+
+	footer a{
+		min-width:60px;
+	}
 	footer a.navigationLink:first-of-type {
 		padding-left: 0em;
 	}
@@ -588,6 +592,12 @@ iframe {
 	}
 }
 
+
+@media screen and (max-height: 500px) {
+	#footerContent{
+		margin-right:-70px!important;
+	}
+}
 @media screen and (min-width: 835px) and (pointer: fine) {
 	#innerBox {
 		margin-top: 20px;
