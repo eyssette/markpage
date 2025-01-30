@@ -148,10 +148,11 @@ export function handleNavigation(baseURL, hash, params, markpageData) {
 		}
 	}
 
-	document.body.addEventListener("touchstart", function (event) {
+	const innerBoxElement = document.querySelector("#innerBox");
+	innerBoxElement.addEventListener("touchstart", function (event) {
 		handleTouchStart(event);
 	});
-	document.body.addEventListener("touchend", function (event) {
+	innerBoxElement.addEventListener("touchend", function (event) {
 		handleTouchEnd(event);
 	});
 
