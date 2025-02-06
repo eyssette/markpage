@@ -118,6 +118,11 @@ footer {
 	display: none;
 }
 
+img,
+iframe {
+	max-width: 100% !important;
+}
+
 @media screen and (max-width: 834px) {
 	.displayHomepage h2 {
 		font-size: unset;
