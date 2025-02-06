@@ -48,6 +48,11 @@
 		font-size: unset;
 		padding: unset;
 	}
+	.displayHomepage h2 a:hover {
+		background-color: unset;
+		border-color: unset;
+		color: unset;
+	}
 	#content {
 		display: flex;
 		width: 100vw;
