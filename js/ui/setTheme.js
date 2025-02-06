@@ -1,5 +1,5 @@
 export function setTheme(theme, allowedThemes, styleThemeElement) {
-	// Possibilité d'utiliser un thème pour les cartes
+	// Possibilité d'utiliser un thème
 	const themeName = theme.trim();
 	const CSSfile = themeName.endsWith(".css") ? themeName : themeName + ".css";
 	if (allowedThemes.includes(CSSfile)) {
