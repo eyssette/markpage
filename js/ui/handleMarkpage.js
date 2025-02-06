@@ -1,6 +1,6 @@
 import { yaml } from "../processMarkdown/yaml";
 import { displayMaths } from "./displayMaths";
-import { getParams, openLinksInNewTab } from "../utils";
+import { getParams, openLinksInNewTab, loadCSS } from "../utils";
 import { changeDisplayBasedOnParams } from "./changeDisplayBasedOnParams";
 import { handleNavigation } from "./navigation";
 import { searchBar } from "./searchBar";
@@ -53,6 +53,10 @@ export function handleMarkpage(markpageData) {
 	if (params.theme) {
 		const styleThemeElement = document.getElementById("styleTheme");
 		setTheme(params.theme, CSSthemes, styleThemeElement);
+	}
+	if (params.pad && params.pad == 1) {
+		loadCSS("./css/pad.min.css");
+		yaml.pad = true;
 	}
 	const baseURL = window.location.origin + window.location.pathname;
 
