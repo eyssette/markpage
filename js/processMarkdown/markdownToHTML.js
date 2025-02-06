@@ -9,31 +9,37 @@ function showdownExtensionGenericAttributes() {
 		{
 			type: "output",
 			filter: (text) => {
-				const regex = /<(\w+)>(.*?){\.(.*?)}/g;
-				const matches = text.match(regex);
-				if (matches) {
-					let modifiedText = text;
-					for (const match of matches) {
-						const indexMatch = text.indexOf(match);
-						const endIndeMatch = indexMatch + match.length;
-						const isInCode =
-							text.substring(endIndeMatch, endIndeMatch + 7) == "</code>"
-								? true
-								: false;
-						if (!isInCode) {
-							const matchInformations = regex.exec(match);
-							const classes = matchInformations[3].replaceAll(".", "");
-							const matchReplaced = match.replace(
-								regex,
-								`<$1 class="${classes}">$2`,
-							);
-							modifiedText = modifiedText.replaceAll(match, matchReplaced);
-						}
-					}
-					return modifiedText;
-				} else {
-					return text;
-				}
+				// Regex pour détecter les attributs génériques en fin de ligne dans un élément
+				const genericAttributesRegexBlock = /<(\w+)(.*?)>(.*?) ({\.(.*?)})/g;
+
+				// Regex pour détecter l'utilisation d'attributs génériques à l'intérieur d'un élément (un passage mis en gras, en italiques, ou tout autre balise)
+				const genericAttributesRegexInline =
+					/<(\w+)(.*?)>(.*?)<\/\1>{(\.[^{}]+)}/g;
+
+				let modifiedText = text;
+
+				// Traitement des attributs génériques en fin de ligne
+				modifiedText = modifiedText.replace(
+					genericAttributesRegexBlock,
+					(match, tag, attrs, content, _, classes) => {
+						// Vérifier si l'élément est dans un <code>
+						if (match.includes("<code>")) return match;
+
+						const classAttribute = ` class="${classes.replace(/\./g, " ")}"`;
+						return `<${tag}${attrs}${classAttribute}>${content}</${tag}>`;
+					},
+				);
+
+				// Traitement des attributs génériques pour un élément inline
+				modifiedText = modifiedText.replace(
+					genericAttributesRegexInline,
+					(match, tag, attrs, content, classes) => {
+						const classAttribute = ` class="${classes.replace(/\./g, " ")}"`;
+						return `<${tag}${attrs}${classAttribute}>${content}</${tag}>`;
+					},
+				);
+
+				return modifiedText;
 			},
 		},
 	];
@@ -125,10 +131,10 @@ const converter = new Showdown.Converter({
 	simpleLineBreaks: true,
 	tables: true,
 	extensions: [
-		showdownExtensionGenericAttributes,
 		showdownExtensionAdmonitions,
 		showdownExtensionUnderline,
 		showdownExtensionHighlight,
+		showdownExtensionGenericAttributes,
 	],
 });
 
