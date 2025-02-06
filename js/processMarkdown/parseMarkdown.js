@@ -1,9 +1,23 @@
 import { processYAML } from "./yaml";
 import { markdownToHTML } from "./markdownToHTML";
 import { filterElementWithNoContent, removeUselessCarriages } from "../utils";
+function replaceHashesInCodeBlocks(markdown) {
+	return markdown.replace(/```([\s\S]*?)```/g, (match) => {
+		return match.replace(/#/g, "\uE000"); // Utilisation d'un caractère Unicode spécial
+	});
+}
+
+function restoreHashesInCodeBlocks(markdown) {
+	return markdown.replace(/```([\s\S]*?)```/g, (match) => {
+		return match.replace(/\uE000/g, "#");
+	});
+}
 
 export function parseMarkdown(markdownContent) {
 	markdownContent = processYAML(markdownContent);
+
+	// Suppression des caractères "#" dans les blocs codes
+	markdownContent = replaceHashesInCodeBlocks(markdownContent);
 	// On distingue le header et le contenu
 	const indexfirstH2title = markdownContent.indexOf("## ");
 	const header = markdownContent.substring(0, indexfirstH2title);
@@ -44,7 +58,8 @@ export function parseMarkdown(markdownContent) {
 		let subSectionsContent = [];
 		if (/(\n|^)### /.test(sectionContent)) {
 			// S'il y a des sous-sections …
-			for (const subSection of subSections) {
+			for (let subSection of subSections) {
+				subSection = restoreHashesInCodeBlocks(subSection);
 				// … on récupère le titre, l'image et le contenu de chaque sous-section
 				// - récupération du titre
 				const indexEndTitleSubSection = subSection.indexOf("\n");
@@ -78,9 +93,15 @@ export function parseMarkdown(markdownContent) {
 			}
 		} else {
 			// S'il n'y a pas de sous-section : on transforme directement en HTML le contenu, en supprimant les retours à la ligne inutiles
-			let subSectionsContentHTML = subSections[0]
-				? markdownToHTML(removeUselessCarriages(subSections[0]))
-				: "";
+			let subSectionsContentHTML = "";
+			if (subSections[0]) {
+				subSectionsContentHTML = subSections[0];
+				subSectionsContentHTML = markdownToHTML(
+					removeUselessCarriages(
+						restoreHashesInCodeBlocks(subSectionsContentHTML),
+					),
+				);
+			}
 			subSectionsContentHTML =
 				'<div class="noSubSections">' +
 				sectionTitleAsideHTML +
