@@ -140,6 +140,13 @@ export function handleMarkpage(markpageData) {
 			});
 		}
 		resizeSectionContentElements();
+		headerElement.querySelectorAll("img").forEach((img) => {
+			img.addEventListener("load", () => {
+				setTimeout(() => {
+					resizeSectionContentElements();
+				}, 300);
+			});
+		});
 		let resizeTimeout;
 		window.addEventListener("resize", () => {
 			clearTimeout(resizeTimeout);
