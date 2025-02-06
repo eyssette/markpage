@@ -25,6 +25,12 @@ export function processYAML(markdownContent) {
 			yaml.oneByOne = false;
 			yaml.searchbar = false;
 			yaml.linkToHomePage = false;
+			// Par défaut on ajoute l'addOn lightbox si on est dans le mode pad (car les images sont de toute façon petites dans chaque colonne)
+			if (yaml.addOns && !yaml.addOns.includes("lightbox")) {
+				yaml.addOns = yaml.addOns + ", lightbox";
+			} else {
+				yaml.addOns = "lightbox";
+			}
 		}
 		// Possibilité d'activer ou désactiver l'affichage oneByOne (avec les boutons de navigation en bas)
 		if (yaml.oneByOne == true) {
