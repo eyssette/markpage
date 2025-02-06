@@ -21,7 +21,13 @@ function adjustHeight(element) {
 		: headerRect.bottom + 30;
 	const bodyHeight = window.innerHeight;
 	const availableHeight = bodyHeight - headerHeight;
-	element.style.height = `${availableHeight}px`;
+	if (availableHeight > 500 && bodyHeight > 500) {
+		element.style.height = `${availableHeight}px`;
+	} else {
+		document.body.style.height = "unset";
+		document.body.style.overflow = "unset";
+		element.style.height = "unset";
+	}
 }
 
 export function handleMarkpage(markpageData) {
@@ -121,9 +127,20 @@ export function handleMarkpage(markpageData) {
 	handleNavigation(baseURL, hash, params, markpageData);
 
 	if (yaml.pad && yaml.padScroll) {
-		const sectionContentElement = document.querySelectorAll(".sectionContent");
-		sectionContentElement.forEach((element) => {
-			adjustHeight(element);
+		function resizeSectionContentElements() {
+			const sectionContentElement =
+				document.querySelectorAll(".sectionContent");
+			sectionContentElement.forEach((element) => {
+				adjustHeight(element);
+			});
+		}
+		resizeSectionContentElements();
+		let resizeTimeout;
+		window.addEventListener("resize", () => {
+			clearTimeout(resizeTimeout);
+			resizeTimeout = setTimeout(() => {
+				resizeSectionContentElements();
+			}, 200);
 		});
 	}
 }

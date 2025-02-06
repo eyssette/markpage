@@ -62,7 +62,7 @@ h2 {
 .sectionContent {
 	padding: 10px;
 	width: 90%;
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 .subSection {
 	border: 1px solid black;
@@ -72,7 +72,7 @@ h2 {
 }
 .subSection:last-of-type,
 .noSubSections {
-	margin-bottom: 5em;
+	margin-bottom: 10em;
 }
 h3 {
 	margin: 0;
