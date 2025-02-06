@@ -42,7 +42,6 @@ h3 {
 	border-radius: 15px;
 }
 
-
 h4 {
 	display: inline-block;
 	padding: 10px 15px;
@@ -50,8 +49,6 @@ h4 {
 	margin-bottom: 20px;
 	color: white;
 }
-
-
 
 footer {
 	height: 3em;
@@ -161,13 +158,19 @@ h4 {
 }
 
 @media screen and (max-width: 834px) {
+	html {
+		background-color: white;
+	}
+	.displaySubSection main {
+		box-shadow: none;
+	}
 	#content > section:nth-of-type(5n + 1) h3,
 	#content > section:nth-of-type(5n + 2) h3,
 	#content > section:nth-of-type(5n + 3) h3,
 	#content > section:nth-of-type(5n + 4) h3,
 	#content > section:nth-of-type(5n + 5) h3 {
-		background-color: unset!important;
-		border: none!important;
+		background-color: unset !important;
+		border: none !important;
 	}
 	#content > section:nth-of-type(5n + 1) h3 a {
 		border-bottom-color: var(--color1);
@@ -185,7 +188,7 @@ h4 {
 		border-bottom-color: var(--color5);
 	}
 
-	.subSection h4{
-		border:none;
+	.subSection h4 {
+		border: none;
 	}
 }
