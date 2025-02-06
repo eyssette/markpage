@@ -78,9 +78,7 @@ export function handleMarkpage(markpageData) {
 		yaml.pad = true;
 	}
 	if (!yaml.padScroll && params.padscroll && params.padscroll == 1) {
-		loadCSS(
-			"<style>body{height:100vw!important;overflow-y:hidden!important;}</style>",
-		);
+		loadCSS("<style>body{height:100vw;overflow-y:hidden;}</style>");
 		yaml.padScroll = true;
 	}
 	const baseURL = window.location.origin + window.location.pathname;
