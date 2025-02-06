@@ -13,15 +13,16 @@ import { setTheme } from "./setTheme";
 export let params;
 
 const headerElement = document.body.querySelector("header");
+const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
+
 function adjustHeight(element) {
-	const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
 	const headerRect = headerElement.getBoundingClientRect();
 	const headerHeight = isFirefox
 		? headerElement.clientHeight + 10
 		: headerRect.bottom + 30;
 	const bodyHeight = window.innerHeight;
 	const availableHeight = bodyHeight - headerHeight;
-	if (availableHeight > 500 && bodyHeight > 500) {
+	if (availableHeight > 500) {
 		element.style.height = `${availableHeight}px`;
 	} else {
 		document.body.style.height = "unset";
@@ -72,9 +73,15 @@ export function handleMarkpage(markpageData) {
 		const styleThemeElement = document.getElementById("styleTheme");
 		setTheme(params.theme, CSSthemes, styleThemeElement);
 	}
-	if (params.pad && params.pad == 1) {
+	if (!yaml.pad && params.pad && params.pad == 1) {
 		loadCSS("./css/pad.min.css");
 		yaml.pad = true;
+	}
+	if (!yaml.padScroll && params.padscroll && params.padscroll == 1) {
+		loadCSS(
+			"<style>body{height:100vw!important;overflow-y:hidden!important;}</style>",
+		);
+		yaml.padScroll = true;
 	}
 	const baseURL = window.location.origin + window.location.pathname;
 
