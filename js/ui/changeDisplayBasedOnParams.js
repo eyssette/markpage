@@ -8,8 +8,10 @@ let previousIframes = [];
 // Pour forcer le reload d'une iframe
 function resetIframe(iframe) {
 	const srcIframe = iframe.src;
-	iframe.src = "";
-	iframe.src = srcIframe;
+	if (!yaml.pad) {
+		iframe.src = "";
+		iframe.src = srcIframe;
+	}
 }
 
 // Fonction pour changer l'affichage en fonction des paramètres dans l'objet param (qui correspond aux paramètres dans l'URL)
@@ -84,8 +86,7 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 		// Gestion du scroll vers l'élément cible
 		if (
 			subSectionElement &&
-			window.innerWidth < 600 &&
-			yaml.oneByOne == false
+			((window.innerWidth < 600 && yaml.oneByOne == false) || yaml.pad)
 		) {
 			subSectionElement.scrollIntoView({
 				behavior: "smooth",
@@ -100,5 +101,9 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 		showOnlyThisElement(undefined, "sections");
 		showOnlyThisElement(undefined, "subsections");
 		bodyElement.className = "displayHomepage";
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth",
+		});
 	}
 }

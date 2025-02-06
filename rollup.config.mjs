@@ -37,5 +37,16 @@ export default {
 				}),
 			],
 		}),
+		postcss({
+			extensions: [".css"],
+			include: ["css/pad.css"],
+			extract: "css/pad.min.css",
+			minimize: true,
+			plugins: [
+				cssnano({
+					preset: "default",
+				}),
+			],
+		}),
 	],
 };

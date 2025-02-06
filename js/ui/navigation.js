@@ -102,9 +102,11 @@ export function handleNavigation(baseURL, hash, params, markpageData) {
 	// Navigation avec les touches de navigation
 	document.addEventListener("keydown", function (event) {
 		if (event.key === "ArrowLeft") {
+			event.preventDefault();
 			moveNextOrPrevious(params, false);
 		}
 		if (event.key === "ArrowRight") {
+			event.preventDefault();
 			moveNextOrPrevious(params, true);
 		}
 	});

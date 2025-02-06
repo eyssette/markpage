@@ -1,0 +1,96 @@
+@media screen and (min-width: 835px) {
+	body {
+		font-size: 1em;
+	}
+	h1 {
+		margin: 0em;
+		padding-top: 0.25em;
+	}
+	#linkToHomePage,
+	#searchBar {
+		display: none !important;
+	}
+	#initialMessage {
+		width: 80vw;
+		max-width: 80vw;
+	}
+	section,
+	.displaySubSection .subSection.visible,
+	.visible,
+	.visible .sectionContent,
+	.displaySubSection .subSection:not(.visible) .subSectionContent,
+	.displayHomepage .sectionContent,
+	.displayHomepage .subSection,
+	.displaySection .subSectionContent,
+	.displaySection h2,
+	.displaySection header,
+	.displaySubSection h2,
+	.displaySubSection header,
+	.sectionContent {
+		display: block !important;
+	}
+	#backgroundInnerBox,
+	#innerBox {
+		width: 100vw;
+		height: 100vh;
+		max-width: none;
+		margin: 0;
+		padding: 0;
+	}
+	h2 {
+		margin-bottom: 1em !important;
+	}
+	.displayHomepage h2 a {
+		background-color: unset;
+		border: unset;
+		font-weight: unset;
+		width: unset;
+		font-size: unset;
+		padding: unset;
+	}
+	#content {
+		display: flex;
+		width: 100vw;
+	}
+	#content > section {
+		width: 350px;
+	}
+	.sectionContent {
+		padding: 10px;
+		width: 90%;
+	}
+	.subSection {
+		border: 1px solid black;
+		border-radius: 15px;
+		background: white;
+		margin-bottom: 1em;
+	}
+	h3 {
+		margin: 0;
+		border-radius: 14px 14px 0 0px;
+		padding: 5px 0;
+		width: 100%;
+		justify-content: center;
+	}
+	.subSection.visible h3 {
+		background: none;
+		border-bottom: 1px solid darkred;
+	}
+	.subSectionContent {
+		position: relative;
+		margin-left: 0px;
+		padding-bottom: 0;
+		top: 0;
+		width: 100%;
+		padding-right: 0;
+		width: 90%;
+		margin: auto;
+		background: none;
+	}
+	.subSectionContent * {
+		max-width: 90% !important;
+	}
+	footer {
+		display: none;
+	}
+}

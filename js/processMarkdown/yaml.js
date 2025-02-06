@@ -62,6 +62,9 @@ export function processYAML(markdownContent) {
 				? yaml.lienPageAccueil
 				: yaml.linkToHomePage;
 		}
+		if (yaml.pad === true) {
+			loadCSS("./css/pad.min.css");
+		}
 		// Gestion des add-ons (scripts et css en plus)
 		if (yaml.addOns) {
 			yaml.addOns = yaml.addOns.replace(" ", "").split(",");
