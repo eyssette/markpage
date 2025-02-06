@@ -1,14 +1,14 @@
 :root {
 	--color1: #eb6209;
-	--color1light: #ffe1bc;
-	--color2: #2a9d8f;
-	--color2light: #e9f6f2;
+	--color1light: #ffe8d9;
+	--color2: #ae268b;
+	--color2light: #f0e2f0;
 	--color3: #1d3d91;
-	--color3light: #e0eff1;
-	--color4: #a72886;
-	--color4light: #f0e2f0;
-	--color5: #af201f;
-	--color5light: #f3ded6;
+	--color3light: #e8eaf7;
+	--color4: #af201f;
+	--color4light: #f3ded6;
+	--color5: #2a9d8f;
+	--color5light: #d7f2ee;
 }
 
 #innerBox,

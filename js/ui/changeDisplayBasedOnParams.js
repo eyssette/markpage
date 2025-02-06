@@ -66,7 +66,9 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 				showOnlyThisElement(sectionElement, "sections");
 				showOnlyThisElement(undefined, "subsections");
 			} else {
-				bodyElement.className = "displayHomepage";
+				bodyElement.className = yaml.pad
+					? "displaySubSection"
+					: "displayHomepage";
 			}
 		}
 		// Gestion des iframes
@@ -110,7 +112,7 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 	} else {
 		showOnlyThisElement(undefined, "sections");
 		showOnlyThisElement(undefined, "subsections");
-		bodyElement.className = "displayHomepage";
+		bodyElement.className = yaml.pad ? "displaySubSection" : "displayHomepage";
 		window.scrollTo({
 			top: 0,
 			behavior: "smooth",
