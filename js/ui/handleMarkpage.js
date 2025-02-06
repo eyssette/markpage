@@ -12,6 +12,18 @@ import { setTheme } from "./setTheme";
 
 export let params;
 
+const headerElement = document.body.querySelector("header");
+function adjustHeight(element) {
+	const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
+	const headerRect = headerElement.getBoundingClientRect();
+	const headerHeight = isFirefox
+		? headerElement.clientHeight + 10
+		: headerRect.bottom + 30;
+	const bodyHeight = window.innerHeight;
+	const availableHeight = bodyHeight - headerHeight;
+	element.style.height = `${availableHeight}px`;
+}
+
 export function handleMarkpage(markpageData) {
 	// Gestion des maths
 	if (yaml.maths) {
@@ -107,4 +119,11 @@ export function handleMarkpage(markpageData) {
 	searchBar(hash, markpageData);
 
 	handleNavigation(baseURL, hash, params, markpageData);
+
+	if (yaml.pad && yaml.padScroll) {
+		const sectionContentElement = document.querySelectorAll(".sectionContent");
+		sectionContentElement.forEach((element) => {
+			adjustHeight(element);
+		});
+	}
 }

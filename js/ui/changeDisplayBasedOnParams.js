@@ -88,9 +88,19 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 			subSectionElement &&
 			((window.innerWidth < 600 && yaml.oneByOne == false) || yaml.pad)
 		) {
-			subSectionElement.scrollIntoView({
-				behavior: "smooth",
-			});
+			if (yaml.padScroll) {
+				window.scrollTo({ top: 0 });
+				window.scrollTo({
+					left: subSectionElement.parentNode.offsetLeft - 150,
+					behavior: "smooth",
+				});
+				subSectionElement.parentNode.scrollTop =
+					subSectionElement.offsetTop - 150;
+			} else {
+				subSectionElement.scrollIntoView({
+					behavior: "smooth",
+				});
+			}
 		} else {
 			window.scrollTo({
 				top: 0,

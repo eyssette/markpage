@@ -32,6 +32,9 @@ export function processYAML(markdownContent) {
 				yaml.addOns = "lightbox";
 			}
 		}
+		if (yaml.padScroll === true) {
+			loadCSS("<style>body{height:100vw;overflow-y:hidden;}</style>");
+		}
 		// Possibilité d'activer ou désactiver l'affichage oneByOne (avec les boutons de navigation en bas)
 		if (yaml.oneByOne == true) {
 			loadCSS("./css/oneByOne.min.css");
