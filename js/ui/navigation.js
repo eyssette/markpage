@@ -1,5 +1,6 @@
 import { changeDisplayBasedOnParams } from "./changeDisplayBasedOnParams";
 import { showOnlyThisElement } from "./showOnlyThisElement";
+import { yaml } from "../processMarkdown/yaml";
 
 export function handleNavigation(baseURL, hash, params, markpageData) {
 	const sectionsTitle = markpageData[2];
@@ -151,12 +152,14 @@ export function handleNavigation(baseURL, hash, params, markpageData) {
 	}
 
 	const innerBoxElement = document.querySelector("#innerBox");
-	innerBoxElement.addEventListener("touchstart", function (event) {
-		handleTouchStart(event);
-	});
-	innerBoxElement.addEventListener("touchend", function (event) {
-		handleTouchEnd(event);
-	});
+	if (!yaml.pad) {
+		innerBoxElement.addEventListener("touchstart", function (event) {
+			handleTouchStart(event);
+		});
+		innerBoxElement.addEventListener("touchend", function (event) {
+			handleTouchEnd(event);
+		});
+	}
 
 	// Gestion des boutons de navigation en bas
 	previousButton.addEventListener("click", () => {

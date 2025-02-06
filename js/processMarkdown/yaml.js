@@ -20,6 +20,12 @@ export function processYAML(markdownContent) {
 			const yamlData = loadYAML(markdownContent.split("---")[1]);
 			yaml = yamlData ? deepMerge(yaml, yamlData) : yaml;
 		}
+		if (yaml.pad === true) {
+			loadCSS("./css/pad.min.css");
+			yaml.oneByOne = false;
+			yaml.searchbar = false;
+			yaml.linkToHomePage = false;
+		}
 		// Possibilité d'activer ou désactiver l'affichage oneByOne (avec les boutons de navigation en bas)
 		if (yaml.oneByOne == true) {
 			loadCSS("./css/oneByOne.min.css");
@@ -61,9 +67,6 @@ export function processYAML(markdownContent) {
 			yaml.linkToHomePage = yaml.lienPageAccueil
 				? yaml.lienPageAccueil
 				: yaml.linkToHomePage;
-		}
-		if (yaml.pad === true) {
-			loadCSS("./css/pad.min.css");
 		}
 		// Gestion des add-ons (scripts et css en plus)
 		if (yaml.addOns) {
