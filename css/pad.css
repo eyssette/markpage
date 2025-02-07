@@ -99,10 +99,12 @@ h3 {
 	background: none;
 }
 pre {
-	width: unset;
-	background: rgb(192, 192, 192);
+	border: 1px solid silver;
 	font-size: 1em;
-	border: none;
+	width: unset;
+	color: #333;
+	border-radius: 5px;
+	box-shadow: none;
 }
 footer {
 	display: none;
