@@ -20,6 +20,13 @@ export function processYAML(markdownContent) {
 			const yamlData = loadYAML(markdownContent.split("---")[1]);
 			yaml = yamlData ? deepMerge(yaml, yamlData) : yaml;
 		}
+		if (yaml.markpad === true) {
+			loadCSS(
+				"<style>h1{position:fixed;text-align:left;top:0;width:100vw;padding: 5px 0px 8px 55px;background: #004450;color:white;background-image:url(https://educajou.forge.apps.education.fr/markpad/images/logo.svg);background-repeat:no-repeat;background-size:contain;background-position-x:12px;background-size:1em;background-position-y:45%;}#initialMessage{display:none!important}</style>",
+			);
+			yaml.pad = true;
+			yaml.padScroll = true;
+		}
 		if (yaml.pad === true) {
 			loadCSS("./css/pad.min.css");
 			yaml.oneByOne = false;
@@ -34,9 +41,6 @@ export function processYAML(markdownContent) {
 		}
 		if (yaml.padScroll === true) {
 			loadCSS("<style>body{height:100vw;overflow-y:hidden;}</style>");
-			loadCSS(
-				"<style>h1{position:fixed;text-align:left;top:0;width:100vw;padding: 5px 0px 8px 55px;background: #004450;color:white;background-image:url(https://educajou.forge.apps.education.fr/markpad/images/logo.svg);background-repeat:no-repeat;background-size:contain;background-position-x:12px;background-size:1em;background-position-y:45%;}#initialMessage{display:none!important}</style>",
-			);
 		}
 		// Possibilité d'activer ou désactiver l'affichage oneByOne (avec les boutons de navigation en bas)
 		if (yaml.oneByOne == true) {

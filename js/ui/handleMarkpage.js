@@ -78,9 +78,6 @@ export function handleMarkpage(markpageData) {
 		loadCSS("<style>body{height:100vw;overflow-y:hidden;}</style>");
 		yaml.padScroll = true;
 		params.pad = true;
-		loadCSS(
-			"<style>h1{position:fixed;text-align:left;top:0;width:100vw;padding: 5px 0px 8px 55px;background: #004450;color:white;background-image:url(https://educajou.forge.apps.education.fr/markpad/images/logo.svg);background-repeat:no-repeat;background-size:contain;background-position-x:12px;background-size:1em;background-position-y:45%;}#initialMessage{display:none!important}</style>",
-		);
 	}
 	if (!yaml.pad && params.pad && params.pad == 1) {
 		loadCSS("./css/pad.min.css");
