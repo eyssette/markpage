@@ -55,7 +55,6 @@ export function handleClicks(baseURL, hash, markpageData) {
 			// Liste de tags à ignorer car ils représentent des éléments potentiellement interactifs
 			const ignoredTags = [
 				"IMG",
-				"A",
 				"IFRAME",
 				"BUTTON",
 				"INPUT",
@@ -67,9 +66,12 @@ export function handleClicks(baseURL, hash, markpageData) {
 				"CANVAS",
 			];
 			// On ne fait rien si on clique sur un élément potentiellement interactif ou si le clic est à l'intérieur des contenus des colonnes
+			// Pour les liens "A", on traite différement les titres des capsules, sur lesquelles on peut cliquer pour se déplacer avec la souris.
 			if (
 				ignoredTags.includes(event.target.tagName) ||
-				event.target.closest(".subSectionContent, .noSubSections")
+				event.target.closest(".subSectionContent, .noSubSections") ||
+				(event.target.tagName == "A" &&
+					event.target.parentElement.tagName != "H3")
 			) {
 				return;
 			}
