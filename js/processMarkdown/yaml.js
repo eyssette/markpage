@@ -20,7 +20,11 @@ export function processYAML(markdownContent) {
 			const yamlData = loadYAML(markdownContent.split("---")[1]);
 			yaml = yamlData ? deepMerge(yaml, yamlData) : yaml;
 		}
-		if (yaml.markpad === true) {
+		const isMarkpadWebsite = window.location.href.includes("markpad")
+			? true
+			: false;
+		if (yaml.markpad === true || isMarkpadWebsite) {
+			yaml.markpad = true;
 			loadCSS(
 				"<style>h1{position:fixed;text-align:left;top:0;width:100vw;padding: 5px 0px 8px 55px;background: #004450;color:white;background-image:url('./markpad.svg');background-repeat:no-repeat;background-size:contain;background-position-x:12px;background-size:1em;background-position-y:45%;}#initialMessage{display:none!important}</style>",
 			);
