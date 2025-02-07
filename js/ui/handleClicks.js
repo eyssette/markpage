@@ -2,6 +2,7 @@ import { showOnlyThisElement } from "./showOnlyThisElement";
 import { changeDisplayBasedOnParams } from "./changeDisplayBasedOnParams";
 import { getParams } from "../utils";
 import { params } from "./handleMarkpage";
+import { yaml } from "../processMarkdown/yaml";
 
 export function handleClicks(baseURL, hash, markpageData) {
 	// On détecte les clics sur les liens
@@ -46,4 +47,55 @@ export function handleClicks(baseURL, hash, markpageData) {
 			changeDisplayBasedOnParams(params, markpageData);
 		});
 	});
+
+	// Possibilité de se déplacer à gauche ou à droite avec un clic maintenu sur la souris
+	// (Dans le mode "pad")
+	if (yaml.pad) {
+		document.addEventListener("mousedown", function (event) {
+			// Liste de tags à ignorer car ils représentent des éléments potentiellement interactifs
+			const ignoredTags = [
+				"IMG",
+				"A",
+				"IFRAME",
+				"BUTTON",
+				"INPUT",
+				"TEXTAREA",
+				"SELECT",
+				"LABEL",
+				"VIDEO",
+				"AUDIO",
+				"CANVAS",
+			];
+			// On ne fait rien si on clique sur un élément potentiellement interactif ou si le clic est à l'intérieur des contenus des colonnes
+			if (
+				ignoredTags.includes(event.target.tagName) ||
+				event.target.closest(".subSectionContent, .noSubSections")
+			) {
+				return;
+			}
+
+			let startX = event.clientX;
+			let scrollLeft =
+				document.documentElement.scrollLeft || document.body.scrollLeft;
+			let isDragging = true;
+
+			// On empêche la sélection de texte au moment de relâcher la souris
+			event.preventDefault();
+
+			function onMouseMove(e) {
+				if (!isDragging) return;
+				let deltaX = e.clientX - startX;
+				window.scrollTo({ left: scrollLeft - deltaX, behavior: "auto" });
+			}
+
+			function onMouseUp() {
+				isDragging = false;
+				document.removeEventListener("mousemove", onMouseMove);
+				document.removeEventListener("mouseup", onMouseUp);
+			}
+
+			document.addEventListener("mousemove", onMouseMove);
+			document.addEventListener("mouseup", onMouseUp);
+		});
+	}
 }
