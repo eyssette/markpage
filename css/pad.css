@@ -81,6 +81,7 @@ h3 {
 	padding: 5px 0;
 	width: 100%;
 	justify-content: center;
+	text-align: center;
 }
 .subSection.visible h3 {
 	background: none;
