@@ -20,7 +20,7 @@ export const allowedAddOns = {
 	kroki: { js: "js/addOn/kroki.js" },
 	lightbox: {
 		js: "js/addOn/lightbox.js",
-		css: "<style>img{cursor: pointer}#lightbox img{max-width:90%!important;max-height:90%!important}</style>",
+		css: "<style>img[src]:not([src$='?nolightbox']){cursor: pointer}#lightbox img{max-width:90%!important;max-height:90%!important}</style>",
 	},
 	text2quiz: {
 		js: "js/addOn/text2quiz.js",
