@@ -1,9 +1,14 @@
 body {
 	font-size: 0.9em;
 }
+@media screen and (max-width: 834px) {
+	.noSearchBar h1 {
+		padding-top: unset;
+	}
+}
 h1 {
 	margin: 0em;
-	padding-top: 0.25em !important;
+	padding-top: 0.25em;
 }
 #linkToHomePage,
 #searchBar {
