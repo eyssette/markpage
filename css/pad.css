@@ -3,7 +3,7 @@ body {
 }
 h1 {
 	margin: 0em;
-	padding-top: 0.25em;
+	padding-top: 0.25em !important;
 }
 #linkToHomePage,
 #searchBar {
