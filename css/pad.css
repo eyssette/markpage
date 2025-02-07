@@ -109,12 +109,16 @@ pre {
 footer {
 	display: none;
 }
+
 #content > section:nth-of-type(5n + 1) .visible h3,
 #content > section:nth-of-type(5n + 2) .visible h3,
 #content > section:nth-of-type(5n + 3) .visible h3,
 #content > section:nth-of-type(5n + 4) .visible h3,
 #content > section:nth-of-type(5n + 5) .visible h3 {
-	border-width: 1px;
+	border: none;
+}
+.subSection.visible {
+	border: 3px solid rgb(85, 11, 11);
 }
 
 #nav {
