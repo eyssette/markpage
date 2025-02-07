@@ -122,6 +122,9 @@ img,
 iframe {
 	max-width: 100% !important;
 }
+iframe {
+	max-height: 200px;
+}
 
 @media screen and (max-width: 834px) {
 	.displayHomepage h2 {
