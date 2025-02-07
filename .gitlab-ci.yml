@@ -7,7 +7,7 @@ pages:
     - apk update && apk add gzip brotli
   script:
     - mkdir -p .public .public/css/ .public/css/theme/ .public/js/ .public/js/addOn/
-    - cp favicon.svg index.html script.min.js script.min.js.map .public/
+    - cp *.svg index.html script.min.js script.min.js.map .public/
     - cp css/*.min.css .public/css/
     - cp css/theme/* .public/css/theme
     - cp js/addOn/pako.min.js js/addOn/kroki.js js/addOn/lightbox.js js/addOn/text2quiz.js js/addOn/copycode.js .public/js/addOn/
