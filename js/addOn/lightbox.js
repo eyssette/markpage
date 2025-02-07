@@ -1,7 +1,11 @@
 // eslint-disable-next-line no-unused-vars
 function lightbox() {
 	// Sélectionne toutes les images et les liens vers des PDF de la page
-	const images = document.querySelectorAll("img");
+
+	// On sélectionne toutes les images sauf les images dont l'URL finit par ?nolightbox
+	const images = document.querySelectorAll(
+		"img[src]:not([src$='?nolightbox'])",
+	);
 	const pdfLinks = document.querySelectorAll("a[href$='.pdf']");
 
 	// Crée et configure le conteneur lightbox
