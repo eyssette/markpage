@@ -76,8 +76,16 @@ export function handleMarkpage(markpageData) {
 	if (!yaml.pad && params.pad && params.pad == 1) {
 		loadCSS("./css/pad.min.css");
 		yaml.pad = true;
+		// On supprime les styles oneByOne si on utilise le mode pad
+		const styleOneByOneElement = document.querySelector(
+			'link[href*="oneByOne.min.css"]',
+		);
+		if (styleOneByOneElement) {
+			styleOneByOneElement.remove();
+		}
 	}
 	if (!yaml.padScroll && params.padscroll && params.padscroll == 1) {
+		// Cas où on veut que le scroll se fasse colonne par colonne dans le mode pad
 		loadCSS("<style>body{height:100vw;overflow-y:hidden;}</style>");
 		yaml.padScroll = true;
 	}
