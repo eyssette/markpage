@@ -22,7 +22,7 @@ function adjustHeight(element) {
 		: headerRect.bottom + 30;
 	const bodyHeight = window.innerHeight;
 	const availableHeight = bodyHeight - headerHeight;
-	if (availableHeight > 500) {
+	if (availableHeight > 500 || yaml.markpad) {
 		element.style.height = `${availableHeight}px`;
 	} else {
 		document.body.style.height = "unset";
