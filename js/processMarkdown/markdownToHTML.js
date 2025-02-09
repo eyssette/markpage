@@ -1,5 +1,6 @@
 import Showdown from "../externals/showdown.js";
 import { yaml } from "./yaml.js";
+import { getCSScolor } from "../ui/colors.js";
 
 // Extensions pour Showdown
 
@@ -11,6 +12,19 @@ function showdownExtensionGenericAttributes() {
 			filter: (text) => {
 				// Regex pour détecter les attributs génériques en fin de ligne dans un élément
 				const genericAttributesRegexBlock = /<(\w+)(.*?)>(.*?) ({\.(.*?)})/g;
+
+				const easyGenericAttributesRegexInline = /--(.*?):(.*?)--/g;
+				text = text.replace(
+					easyGenericAttributesRegexInline,
+					(match, colorString, text) => {
+						const color = getCSScolor(colorString);
+						if (color) {
+							return `<span style="color:${color}">${text}</span>`;
+						} else {
+							return match;
+						}
+					},
+				);
 
 				// Regex pour détecter l'utilisation d'attributs génériques à l'intérieur d'un élément (un passage mis en gras, en italiques, ou tout autre balise)
 				const genericAttributesRegexInline =
