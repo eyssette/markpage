@@ -11,6 +11,7 @@ export function searchBar(hash, markpageData) {
 		function searchText() {
 			let sectionsResults = [];
 			let subSectionsResults = [];
+			let sectionsColumnResults = [];
 			const inputText = document
 				.getElementById("searchInput")
 				.value.toLowerCase();
@@ -19,6 +20,7 @@ export function searchBar(hash, markpageData) {
 					// Recherche dans le titre de chaque section + le contenu de chaque section
 					const textSection =
 						sectionsTitle[i].toString().toLowerCase() +
+						"\n" +
 						subSectionsData[i].toString().toLowerCase();
 					if (textSection.indexOf(inputText) > -1) {
 						// On a trouvé le texte dans la section
@@ -32,6 +34,10 @@ export function searchBar(hash, markpageData) {
 								if (textSubSection.indexOf(inputText) > -1) {
 									subSectionsResults.push([i, j]);
 								}
+							}
+							// Cas où on n'a trouvé le terme que dans le titre de la section
+							if (yaml.markpad && subSectionsResults.length == 0) {
+								sectionsColumnResults.push(i);
 							}
 						} else {
 							// Sinon, on indique juste comme résultat la section correspondante
@@ -96,8 +102,10 @@ export function searchBar(hash, markpageData) {
 				sections.forEach((section) => {
 					section.classList.remove("isResultFromSearch");
 					section.classList.remove("hasResultFromSearch");
+					section.classList.remove("isColumnResultFromSearch");
 					section.classList.remove("hide");
 				});
+				// Cas où le résultat se trouve dans la section
 				if (sectionsResults.length > 0) {
 					hasResults = true;
 					sectionsResults.forEach((sectionResult) => {
@@ -108,6 +116,7 @@ export function searchBar(hash, markpageData) {
 						activeSection.classList.add("isResultFromSearch");
 					});
 				}
+				// Cas où le résultat se trouve dans une sous-section
 				if (subSectionsResults.length > 0) {
 					hasResults = true;
 					subSectionsResults.forEach((subSectionResult) => {
@@ -123,11 +132,23 @@ export function searchBar(hash, markpageData) {
 						activeSubSection.classList.add("isResultFromSearch");
 					});
 				}
+				// Cas où seul le titre de colonne a été trouvé
+				if (sectionsColumnResults.length > 0) {
+					hasResults = true;
+					sectionsColumnResults.forEach((sectionsColumnResult) => {
+						const sectionId = sectionsColumnResult + 1;
+						const activeSection = document.querySelector(
+							`#section-${sectionId}`,
+						);
+						activeSection.classList.add("isColumnResultFromSearch");
+					});
+				}
 				if (hasResults) {
 					sections.forEach((section) => {
 						if (
 							section.classList.contains("isResultFromSearch") ||
-							section.classList.contains("hasResultFromSearch")
+							section.classList.contains("hasResultFromSearch") ||
+							section.classList.contains("isColumnResultFromSearch")
 						) {
 							section.classList.remove("hide");
 						} else {

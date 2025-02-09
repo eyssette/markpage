@@ -154,6 +154,9 @@ footer {
 .hide {
 	display: none !important;
 }
+.isColumnResultFromSearch .hide {
+	display: block !important;
+}
 
 #nav {
 	display: none;
