@@ -68,6 +68,10 @@ h2 {
 #content > section {
 	min-width: 300px;
 	max-width: 400px;
+	background: #ebeff8;
+}
+.theme-colors #content > section {
+	background: white;
 }
 .sectionContent {
 	padding: 10px;
@@ -80,6 +84,7 @@ h2 {
 	background: white;
 	margin-bottom: 1em;
 }
+
 .subSection:last-of-type,
 .noSubSections {
 	margin-bottom: 10em;
@@ -113,6 +118,9 @@ h4 {
 	width: 90%;
 	margin: auto;
 	background: none;
+}
+.theme-colors .subSectionContent {
+	background: transparent !important;
 }
 li {
 	margin-top: 0.5em;
