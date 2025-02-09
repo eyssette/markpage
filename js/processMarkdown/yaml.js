@@ -26,7 +26,7 @@ export function processYAML(markdownContent) {
 		if (yaml.markpad === true || isMarkpadWebsite) {
 			yaml.markpad = true;
 			loadCSS(
-				"<style>h1,#searchBard{position:fixed}h1{text-align:left;top:0;width:100vw;padding:5px 0px 8px 55px;background: #004450;color:white;background-image:url('./markpad.svg');background-repeat:no-repeat;background-size:contain;background-position-x:12px;background-size:1em;background-position-y:45%;height:1.15em;overflow:hidden;justify-content:left!important;}#initialMessage{display:none!important}main{margin-top:2.75em;}.sectionContent{margin-top:-0.75em!important}#innerBox{overflow-y:hidden}@media screen and (max-width:500px){h1{height:2em!important;justify-content:center!important;padding-left:25px!important;padding-right:40px!important;text-align:center;}main{margin-top:3em}#content>section{background:#f6f6f8}}</style>",
+				"<style>h1,#searchBar{position:fixed}h1{text-align:left;top:0;width:100%;background: #004450;color:white;height:1.15em;overflow:hidden;justify-content:left!important;padding-left:20px;padding-top:.12em!important;padding-bottom:0.18em}h1 img{height:1em;width:1em;object-fit:contain;vertical-align: text-top;}#initialMessage{display:none!important}main{margin-top:2.75em;}.sectionContent{margin-top:-0.75em!important}#innerBox{overflow-y:hidden}@media screen and (max-width:500px){h1{height:2em!important;justify-content:center!important;text-align:center;padding-left:0!important}main{margin-top:3em}#content>section{background:#f6f6f8}}</style>",
 			);
 			document.body.querySelector("h1").textContent = "Markpad";
 			yaml.pad = true;

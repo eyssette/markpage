@@ -179,6 +179,9 @@ iframe {
 }
 
 @media screen and (max-width: 834px) {
+	#searchBar {
+		display: none !important;
+	}
 	.displayHomepage h2 {
 		font-size: unset;
 		margin-top: unset;
@@ -208,7 +211,10 @@ iframe {
 		scroll-snap-align: center;
 	}
 }
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 834px) {
+	#searchBar {
+		display: block !important;
+	}
 	#searchBar {
 		top: 10px;
 		right: 10px;

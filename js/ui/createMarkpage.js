@@ -89,7 +89,7 @@ export function createMarkpage(markpageData, urlSourceMarkpage) {
 	titleElement.innerHTML = title;
 	if (yaml.markpad) {
 		setTimeout(() => {
-			window.textFit(titleElement);
+			window.textFit(titleElement, { multiLine: true });
 		}, 100);
 	}
 	document.title = title.replace("<span>", " – ").replace(/<[^>]*>?/gm, "");
