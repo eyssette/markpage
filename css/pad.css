@@ -9,6 +9,9 @@ body {
 h1 {
 	margin: 0em;
 	padding-top: 0.25em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 #linkToHomePage,
 #searchBar {
@@ -88,13 +91,20 @@ h3 {
 	justify-content: center;
 	text-align: center;
 }
+h3 a {
+	max-width: 90%;
+}
 .subSection.visible h3 {
 	background: none;
 	border-bottom: 1px solid darkred;
 }
+h4 {
+	margin: 0;
+}
 .subSectionContent {
 	position: relative;
 	margin-left: 0px;
+	padding-top: 0.25em;
 	padding-bottom: 0;
 	top: 0;
 	width: 100%;
