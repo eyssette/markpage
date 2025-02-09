@@ -161,6 +161,8 @@ export function handleMarkpage(markpageData) {
 			clearTimeout(resizeTimeout);
 			resizeTimeout = setTimeout(() => {
 				resizeSectionContentElements();
+				const titleElement = document.getElementById("title");
+				window.textFit(titleElement);
 			}, 200);
 		});
 	}
