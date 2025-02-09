@@ -43,49 +43,99 @@ export function searchBar(hash, markpageData) {
 			const numberResultsSection = sectionsResults.length;
 			const numberResultsSubSection = subSectionsResults.length;
 			const numberResults = numberResultsSection + numberResultsSubSection;
-			const displayResultsElement = document.getElementById("displayResults");
-			let displayResultsHTML = "";
-			if (numberResults > 0) {
-				displayResultsHTML = "<ul>";
-				if (numberResultsSection > 0) {
-					for (const indexSection of sectionsResults) {
-						displayResultsHTML +=
-							'<li><a href="?sec=' +
-							(indexSection + 1) +
-							"#" +
-							hash +
-							'">' +
-							sectionsTitle[indexSection] +
-							"</a></li>";
+			if (!yaml.pad) {
+				// Si on n'est pas dans le mode pad : on affiche les résultats en dessous de la barre de recherche
+				const displayResultsElement = document.getElementById("displayResults");
+				let displayResultsHTML = "";
+				if (numberResults > 0) {
+					displayResultsHTML = "<ul>";
+					if (numberResultsSection > 0) {
+						for (const indexSection of sectionsResults) {
+							displayResultsHTML +=
+								'<li><a href="?sec=' +
+								(indexSection + 1) +
+								"#" +
+								hash +
+								'">' +
+								sectionsTitle[indexSection] +
+								"</a></li>";
+						}
 					}
-				}
-				if (numberResultsSubSection > 0) {
-					for (const result of subSectionsResults) {
-						const indexSection = result[0];
-						const indexSubSection = result[1];
-						const sectionElement = document.getElementById(
-							"section-" + (indexSection + 1),
-						);
-						const subSectionElement = sectionElement.querySelector(
-							"#subSection-" + (indexSubSection + 1),
-						);
-						const subSectionTitle =
-							subSectionElement.querySelector("h3 a").innerHTML;
-						displayResultsHTML +=
-							'<li><a href="?sec=' +
-							(indexSection + 1) +
-							"&subsec=" +
-							(indexSubSection + 1) +
-							"#" +
-							hash +
-							'">' +
-							subSectionTitle +
-							"</a></li>";
+					if (numberResultsSubSection > 0) {
+						for (const result of subSectionsResults) {
+							const indexSection = result[0];
+							const indexSubSection = result[1];
+							const sectionElement = document.getElementById(
+								"section-" + (indexSection + 1),
+							);
+							const subSectionElement = sectionElement.querySelector(
+								"#subSection-" + (indexSubSection + 1),
+							);
+							const subSectionTitle =
+								subSectionElement.querySelector("h3 a").innerHTML;
+							displayResultsHTML +=
+								'<li><a href="?sec=' +
+								(indexSection + 1) +
+								"&subsec=" +
+								(indexSubSection + 1) +
+								"#" +
+								hash +
+								'">' +
+								subSectionTitle +
+								"</a></li>";
+						}
 					}
+					displayResultsHTML += "</ul>";
 				}
-				displayResultsHTML += "</ul>";
+				displayResultsElement.innerHTML = displayResultsHTML;
+			} else {
+				// Si on est dans le mode pad, on affiche seulement les capsules qui correspondent aux résultats
+				let hasResults = false;
+				//Reset de la classe pour afficher les résultats
+				const sections = document.querySelectorAll("section");
+				sections.forEach((section) => {
+					section.classList.remove("isResultFromSearch");
+					section.classList.remove("hasResultFromSearch");
+					section.classList.remove("hide");
+				});
+				if (sectionsResults.length > 0) {
+					hasResults = true;
+					sectionsResults.forEach((sectionResult) => {
+						const sectionId = sectionResult + 1;
+						const activeSection = document.querySelector(
+							`#section-${sectionId}`,
+						);
+						activeSection.classList.add("isResultFromSearch");
+					});
+				}
+				if (subSectionsResults.length > 0) {
+					hasResults = true;
+					subSectionsResults.forEach((subSectionResult) => {
+						const sectionId = subSectionResult[0] + 1;
+						const subSectionId = subSectionResult[1] + 1;
+						const activeSection = document.querySelector(
+							`#section-${sectionId}`,
+						);
+						const activeSubSection = activeSection.querySelector(
+							`#subSection-${subSectionId}`,
+						);
+						activeSection.classList.add("hasResultFromSearch");
+						activeSubSection.classList.add("isResultFromSearch");
+					});
+				}
+				if (hasResults) {
+					sections.forEach((section) => {
+						if (
+							section.classList.contains("isResultFromSearch") ||
+							section.classList.contains("hasResultFromSearch")
+						) {
+							section.classList.remove("hide");
+						} else {
+							section.classList.add("hide");
+						}
+					});
+				}
 			}
-			displayResultsElement.innerHTML = displayResultsHTML;
 		}
 
 		// Gestion de l'input pour faire une recherche dans le contenu

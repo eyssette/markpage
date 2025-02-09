@@ -16,7 +16,7 @@ h1 {
 }
 #linkToHomePage,
 #searchBar {
-	display: none !important;
+	display: none;
 }
 #initialMessage {
 	width: 80vw;
@@ -141,8 +141,18 @@ footer {
 #content > section:nth-of-type(5n + 5) .visible h3 {
 	border: none;
 }
-.subSection.visible {
-	border: 3px solid rgb(85, 11, 11);
+.subSection.visible,
+.subSection.isResultFromSearch,
+.isResultFromSearch .noSubSections {
+	border: 3px solid rgb(85, 11, 11) !important;
+}
+.noSubSections {
+	padding: 10px;
+	border-radius: 15px;
+}
+
+.hide {
+	display: none !important;
 }
 
 #nav {
@@ -178,5 +188,21 @@ iframe {
 	}
 	#content > section {
 		min-width: 105%;
+	}
+}
+@media screen and (min-width: 500px) {
+	#searchBar {
+		top: 10px;
+		right: 10px;
+		z-index: 2;
+		padding: 0 10px;
+		background: white;
+	}
+	#searchBar input {
+		background: unset;
+		border: none;
+	}
+	#searchBar input:focus-visible {
+		outline: none;
 	}
 }

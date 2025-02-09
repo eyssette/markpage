@@ -35,7 +35,6 @@ export function processYAML(markdownContent) {
 		if (yaml.pad === true) {
 			loadCSS("./css/pad.min.css");
 			yaml.oneByOne = false;
-			yaml.searchbar = false;
 			yaml.linkToHomePage = false;
 			// Par défaut on ajoute l'addOn lightbox si on est dans le mode pad (car les images sont de toute façon petites dans chaque colonne)
 			if (yaml.addOns && !yaml.addOns.includes("lightbox")) {
