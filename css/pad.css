@@ -12,6 +12,7 @@ h1 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	z-index: 1;
 }
 #linkToHomePage,
 #searchBar {
@@ -112,6 +113,14 @@ h4 {
 	width: 90%;
 	margin: auto;
 	background: none;
+}
+li {
+	margin-top: 0.5em;
+	margin-left: -1.25em;
+}
+ul,
+ol {
+	margin-bottom: 1.5em;
 }
 pre {
 	border: 1px solid silver;
