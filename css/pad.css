@@ -1,5 +1,5 @@
 body {
-	font-size: 0.9em;
+	font-size: 0.95em;
 }
 @media screen and (max-width: 834px) {
 	.noSearchBar h1 {
@@ -185,6 +185,9 @@ iframe {
 }
 
 @media screen and (max-width: 500px) {
+	body {
+		font-size: 1.1em;
+	}
 	#initialMessage {
 		max-width: unset;
 		width: max-content;
