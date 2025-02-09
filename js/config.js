@@ -29,6 +29,9 @@ export const allowedAddOns = {
 	copycode: {
 		js: "js/addOn/copycode.js",
 	},
+	textFit: {
+		js: "js/addOn/textFit.min.js",
+	},
 };
 
 export const addOnsDependencies = {

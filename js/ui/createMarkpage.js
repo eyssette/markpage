@@ -87,6 +87,11 @@ export function createMarkpage(markpageData, urlSourceMarkpage) {
 
 	// On affiche le mini site
 	titleElement.innerHTML = title;
+	if (yaml.markpad) {
+		setTimeout(() => {
+			window.textFit(titleElement);
+		}, 100);
+	}
 	document.title = title.replace("<span>", " – ").replace(/<[^>]*>?/gm, "");
 	if (initialMessage.length > 0 || yaml.pad) {
 		initialMessageElement.innerHTML = initialMessage;
