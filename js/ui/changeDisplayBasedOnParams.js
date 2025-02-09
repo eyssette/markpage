@@ -29,7 +29,9 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 			? param.subsec.toString().replace(/#.*/, "")
 			: param.subsec;
 		if (subSectionID) {
-			bodyElement.className = "displaySubSection";
+			bodyElement.classList.remove("displayHomepage");
+			bodyElement.classList.remove("displaySection");
+			bodyElement.classList.add("displaySubSection");
 			const sectionElement = document.getElementById("section-" + sectionID);
 			subSectionElement = sectionElement.querySelector(
 				"#subSection-" + subSectionID,
@@ -60,15 +62,23 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 			}
 		} else {
 			if (sectionID) {
-				bodyElement.className = "displaySection";
+				bodyElement.classList.remove("displayHomepage");
+				bodyElement.classList.remove("displaySubSection");
+				bodyElement.classList.add("displaySection");
 				const sectionElement = document.getElementById("section-" + sectionID);
 				visibleElement = sectionElement;
 				showOnlyThisElement(sectionElement, "sections");
 				showOnlyThisElement(undefined, "subsections");
 			} else {
-				bodyElement.className = yaml.pad
-					? "displaySubSection"
-					: "displayHomepage";
+				if (yaml.pad) {
+					bodyElement.classList.remove("displayHomepage");
+					bodyElement.classList.remove("displaySection");
+					bodyElement.classList.add("displaySubSection");
+				} else {
+					bodyElement.classList.remove("displaySection");
+					bodyElement.classList.remove("displaySubSection");
+					bodyElement.classList.add("displayHomepage");
+				}
 			}
 		}
 		// Gestion des iframes
@@ -112,7 +122,15 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 	} else {
 		showOnlyThisElement(undefined, "sections");
 		showOnlyThisElement(undefined, "subsections");
-		bodyElement.className = yaml.pad ? "displaySubSection" : "displayHomepage";
+		if (yaml.pad) {
+			bodyElement.classList.remove("displayHomepage");
+			bodyElement.classList.remove("displaySection");
+			bodyElement.classList.add("displaySubSection");
+		} else {
+			bodyElement.classList.remove("displaySection");
+			bodyElement.classList.remove("displaySubSection");
+			bodyElement.classList.add("displayHomepage");
+		}
 		window.scrollTo({
 			top: 0,
 			behavior: "smooth",
