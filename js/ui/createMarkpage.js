@@ -19,7 +19,7 @@ export function createMarkpage(markpageData, urlSourceMarkpage) {
 	let footerHTML =
 		'<a href="' +
 		homeLink +
-		'" class="navigationLink"><span class="homeIcon"></span></a>';
+		'" class="navigationLink" aria-label="Page d\'accueil"><span class="homeIcon"></span></a>';
 	let param;
 	// On crée le HTML pour le contenu en parcourant le contenu de chaque section
 	for (let i = 0; i < sections.length; i++) {
