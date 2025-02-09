@@ -20,11 +20,10 @@ export function searchBar(hash, markpageData) {
 					// Recherche dans le titre de chaque section + le contenu de chaque section
 					const textSection =
 						sectionsTitle[i].toString().toLowerCase() +
-						"\n" +
 						subSectionsData[i].toString().toLowerCase();
 					if (textSection.indexOf(inputText) > -1) {
 						// On a trouvé le texte dans la section
-						if (subSectionsData[i].length > 1) {
+						if (subSectionsData[i].length > 0) {
 							// S'il y a des sous-sections, on affine la recherche dans chaque sous-section
 							for (let j = 0; j < subSectionsData[i].length; j++) {
 								// recherche du texte dans le contenu de chaque sous-section
@@ -125,8 +124,8 @@ export function searchBar(hash, markpageData) {
 						const activeSection = document.querySelector(
 							`#section-${sectionId}`,
 						);
-						const activeSubSection = activeSection.querySelector(
-							`#subSection-${subSectionId}`,
+						const activeSubSection = document.querySelector(
+							`#section-${sectionId} #subSection-${subSectionId}`,
 						);
 						activeSection.classList.add("hasResultFromSearch");
 						activeSubSection.classList.add("isResultFromSearch");
