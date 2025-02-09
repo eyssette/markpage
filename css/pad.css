@@ -196,12 +196,16 @@ iframe {
 	body {
 		font-size: 1.1em;
 	}
+	#innerBox {
+		scroll-snap-type: x mandatory;
+	}
 	#initialMessage {
 		max-width: unset;
 		width: max-content;
 	}
 	#content > section {
 		min-width: 105%;
+		scroll-snap-align: center;
 	}
 }
 @media screen and (min-width: 500px) {
