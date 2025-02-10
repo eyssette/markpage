@@ -8,8 +8,12 @@ let markpageData;
 
 export function getMarkdownContentAndCreateMarkpage() {
 	const url = window.location.hash.substring(1).replace(/\?.*/, "");
-	const sourceMarkpage = handleURL(url);
+	let sourceMarkpage = handleURL(url);
+	if (sourceMarkpage == "" && window.location.href.includes("markpad")) {
+		sourceMarkpage = "./contentMarkpad.md";
+	}
 	if (sourceMarkpage !== "") {
+		console.log(sourceMarkpage);
 		fetch(sourceMarkpage)
 			.then((response) => response.text())
 			.then((data) => {

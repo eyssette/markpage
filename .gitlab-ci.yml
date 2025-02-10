@@ -11,6 +11,7 @@ pages:
     - cp css/*.min.css .public/css/
     - cp css/theme/* .public/css/theme
     - cp js/addOn/*.js .public/js/addOn/
+    - cp contentMarkpad.md .public/
     - mv .public public
     - for ext in $FILES_TO_COMPRESS; do find public -type f -name "*.$ext" -exec gzip -f -k {} \;; done
     - for ext in $FILES_TO_COMPRESS; do find public -type f -name "*.$ext" -exec brotli -f -k {} \;; done
