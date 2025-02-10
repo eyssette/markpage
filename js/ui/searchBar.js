@@ -124,9 +124,14 @@ export function searchBar(hash, markpageData) {
 						const activeSection = document.querySelector(
 							`#section-${sectionId}`,
 						);
-						const activeSubSection = document.querySelector(
+						let activeSubSection = document.querySelector(
 							`#section-${sectionId} #subSection-${subSectionId}`,
 						);
+						if (!activeSubSection) {
+							activeSubSection = document.querySelector(
+								`#section-${sectionId} .noSubSections`,
+							);
+						}
 						activeSection.classList.add("hasResultFromSearch");
 						activeSubSection.classList.add("isResultFromSearch");
 					});
