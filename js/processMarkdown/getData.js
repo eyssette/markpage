@@ -1,5 +1,5 @@
 import defaultMD from "../../content.md";
-import { handleURL } from "../utils";
+import { handleURL, redirectToUrl } from "../utils";
 import { parseMarkdown } from "./parseMarkdown";
 import { createMarkpage } from "../ui/createMarkpage";
 
@@ -9,17 +9,28 @@ let markpageData;
 export function getMarkdownContentAndCreateMarkpage() {
 	const url = window.location.hash.substring(1).replace(/\?.*/, "");
 	let sourceMarkpage = handleURL(url);
-	if (sourceMarkpage == "" && window.location.href.includes("markpad")) {
-		sourceMarkpage = "./contentMarkpad.md";
+	const isMarkpad = window.location.href.includes("markpad");
+	if (sourceMarkpage == "" && isMarkpad) {
+		sourceMarkpage = "contentMarkpad.md";
 	}
+	console.log(sourceMarkpage);
 	if (sourceMarkpage !== "") {
-		console.log(sourceMarkpage);
 		fetch(sourceMarkpage)
 			.then((response) => response.text())
 			.then((data) => {
 				md = data;
 				markpageData = parseMarkdown(md);
 				createMarkpage(markpageData, url);
+				if (isMarkpad) {
+					const urlInput = document.getElementById("urlInput");
+					const okButton = document.getElementById("okButton");
+					okButton.addEventListener("click", () => redirectToUrl(urlInput));
+					urlInput.addEventListener("keypress", (event) => {
+						if (event.key === "Enter") {
+							redirectToUrl(urlInput);
+						}
+					});
+				}
 			})
 			.catch((error) => {
 				markpageData = parseMarkdown(md);
@@ -37,16 +48,6 @@ export function getMarkdownContentAndCreateMarkpage() {
 		const urlInput2 = document.getElementById("urlInput2");
 		const okButton2 = document.getElementById("okButton2");
 
-		// Fonction générique pour rediriger vers une URL
-		function redirectToUrl(inputElement) {
-			const userUrl = inputElement.value.trim();
-			if (userUrl) {
-				const fullUrl = window.location.origin + `/#${userUrl}`;
-				window.open(fullUrl, "_blank");
-			} else {
-				alert("Veuillez entrer une URL valide.");
-			}
-		}
 		okButton1.addEventListener("click", () => redirectToUrl(urlInput1));
 		urlInput1.addEventListener("keypress", (event) => {
 			if (event.key === "Enter") {

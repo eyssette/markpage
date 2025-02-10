@@ -24,6 +24,10 @@ https://markpad.forge.apps.education.fr/#LIEN_DE_VOTRE_FICHIER
 
 ```
 
+<label for="urlInput">Entrez l'URL de votre fichier en Markdown :</label>
+
+<input type="url" id="urlInput" placeholder="Votre URL"> <button id="okButton">OK</button>
+
 ### Exemple
 
 Vous pouvez partir de [cet exemple](https://codimd.apps.education.fr/YGJdl513QfaBSmH_XCZW4Q?both) sur Codimd et le dupliquer.
@@ -216,6 +220,12 @@ Ceci est du **gras**.
 La deuxième ligne est formatée comme du code car elle est encadrée de signes `.
 
 ## Interface
+
+### Navigation
+
+Sur ordinateur, vous pouvez scroller, mais aussi naviguer de capsule en capsule avec le clavier (flèche gauche et flèche droite).
+
+Sur téléphone, vous pouvez swiper d'une colonne à une autre facilement.
 
 ### Couleurs
 

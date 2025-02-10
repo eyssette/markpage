@@ -63,6 +63,17 @@ export function handleURL(url) {
 	return url;
 }
 
+// Fonction générique pour rediriger vers une URL
+export function redirectToUrl(inputElement) {
+	const userUrl = inputElement.value.trim();
+	if (userUrl) {
+		const fullUrl = window.location.origin + `/#${userUrl}`;
+		window.open(fullUrl, "_blank");
+	} else {
+		alert("Veuillez entrer une URL valide.");
+	}
+}
+
 export function deepMerge(target, source) {
 	const isObject = (obj) => obj && typeof obj === "object";
 
