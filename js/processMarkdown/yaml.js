@@ -20,15 +20,14 @@ export function processYAML(markdownContent) {
 			const yamlData = loadYAML(markdownContent.split("---")[1]);
 			yaml = yamlData ? deepMerge(yaml, yamlData) : yaml;
 		}
-		const isMarkpadWebsite = window.location.href.includes("markpad")
+		const isLightpadWebsite = window.location.href.includes("lightpad")
 			? true
 			: false;
-		if (yaml.markpad === true || isMarkpadWebsite) {
-			yaml.markpad = true;
+		if (yaml.lightpad === true || isLightpadWebsite) {
+			yaml.lightpad = true;
 			loadCSS(
 				"<style>h1,#searchBar{position:fixed}h1{text-align:left;top:0;width:100%;background: #004450;color:white;height:1.15em;overflow:hidden;justify-content:left!important;padding-left:20px;padding-top:.12em!important;padding-bottom:0.18em}h1 img{height:1em;width:1em;object-fit:contain;vertical-align:text-top;margin-right:0.25em}#initialMessage{display:none!important}main{margin-top:2.75em;}.sectionContent{margin-top:-0.75em!important}#innerBox{overflow-y:hidden}@media screen and (max-width:500px){h1{height:2em!important;justify-content:center!important;text-align:center;padding-left:0!important}h1 img{margin-right:0}main{margin-top:3em}#content>section{background:#f6f6f8}}</style>",
 			);
-			document.body.querySelector("h1").textContent = "Markpad";
 			yaml.pad = true;
 			yaml.padScroll = true;
 			if (yaml.addOns && !yaml.addOns.includes("textFit")) {

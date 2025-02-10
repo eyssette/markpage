@@ -87,7 +87,7 @@ export function createMarkpage(markpageData, urlSourceMarkpage) {
 
 	// On affiche le mini site
 	titleElement.innerHTML = title;
-	if (yaml.markpad) {
+	if (yaml.lightpad) {
 		const interval = setInterval(() => {
 			if (window.textFit) {
 				window.textFit(titleElement, { multiLine: true });

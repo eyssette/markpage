@@ -35,7 +35,7 @@ export function searchBar(hash, markpageData) {
 								}
 							}
 							// Cas où on n'a trouvé le terme que dans le titre de la section
-							if (yaml.markpad && subSectionsResults.length == 0) {
+							if (yaml.lightpad && subSectionsResults.length == 0) {
 								sectionsColumnResults.push(i);
 							}
 						} else {

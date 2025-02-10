@@ -103,7 +103,7 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 			if (
 				(yaml.padScroll &&
 					document.body.classList.contains("adjustHeightColumns")) ||
-				yaml.markpad
+				yaml.lightpad
 			) {
 				document.body.querySelector("#innerBox").scrollTo({
 					left: subSectionElement.parentNode.offsetLeft - 150,

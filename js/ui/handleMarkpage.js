@@ -22,7 +22,7 @@ function adjustHeight(element) {
 		: headerRect.bottom + 30;
 	const bodyHeight = window.innerHeight;
 	const availableHeight = bodyHeight - headerHeight;
-	if (availableHeight > 500 || yaml.markpad) {
+	if (availableHeight > 500 || yaml.lightpad) {
 		element.style.height = `${availableHeight}px`;
 		document.body.classList.add("adjustHeightColumns");
 	} else {

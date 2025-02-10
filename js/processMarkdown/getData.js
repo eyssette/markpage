@@ -9,9 +9,9 @@ let markpageData;
 export function getMarkdownContentAndCreateMarkpage() {
 	const url = window.location.hash.substring(1).replace(/\?.*/, "");
 	let sourceMarkpage = handleURL(url);
-	const isMarkpad = window.location.href.includes("markpad");
-	if (sourceMarkpage == "" && isMarkpad) {
-		sourceMarkpage = "contentMarkpad.md";
+	const isLightpad = window.location.href.includes("lightpad");
+	if (sourceMarkpage == "" && isLightpad) {
+		sourceMarkpage = "contentLightpad.md";
 	}
 	if (sourceMarkpage !== "") {
 		fetch(sourceMarkpage)
@@ -20,7 +20,7 @@ export function getMarkdownContentAndCreateMarkpage() {
 				md = data;
 				markpageData = parseMarkdown(md);
 				createMarkpage(markpageData, url);
-				if (sourceMarkpage == "contentMarkpad.md") {
+				if (sourceMarkpage == "contentLightpad.md") {
 					const urlInput = document.getElementById("urlInput");
 					const okButton = document.getElementById("okButton");
 					okButton.addEventListener("click", () => redirectToUrl(urlInput));
