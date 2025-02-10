@@ -53,7 +53,7 @@ export function handleMarkpage(markpageData) {
 				"a:not(.lightboxAddOn):not(.navigationLink)",
 			);
 			openLinksInNewTab(linksWithNoLightbox);
-		}, 200);
+		}, 500);
 	} else {
 		const linksWithNoLightbox = document.querySelectorAll(
 			"a:not(.navigationLink)",
