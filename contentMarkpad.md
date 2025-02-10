@@ -175,7 +175,8 @@ Par exemple depuis https://tube-numerique-educatif.apps.education.fr/
 <iframe title="Présentation de la Journée du Libre éducatif 2024" width="560" height="315" src="https://tube-numerique-educatif.apps.education.fr/videos/embed/85f97f35-d00c-4aa8-ad51-bcc9135ff8a2" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
 ```
 donne
-<iframe title="Présentation de la Journée du Libre éducatif 2024" width="560" height="315" src="https://tube-numerique-educatif.apps.education.fr/videos/embed/85f97f35-d00c-4aa8-ad51-bcc9135ff8a2" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+
+<iframe title="Présentation de la Journée du Libre éducatif 2024" width="560" height="315" src="https://tube-numerique-educatif.apps.education.fr/videos/embed/85f97f35-d00c-4aa8-ad51-bcc9135ff8a2" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms" loading="lazy"></iframe>
 
 
 ## Autres
