@@ -13,7 +13,6 @@ export function getMarkdownContentAndCreateMarkpage() {
 	if (sourceMarkpage == "" && isMarkpad) {
 		sourceMarkpage = "contentMarkpad.md";
 	}
-	console.log(sourceMarkpage);
 	if (sourceMarkpage !== "") {
 		fetch(sourceMarkpage)
 			.then((response) => response.text())
