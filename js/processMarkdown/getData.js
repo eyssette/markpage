@@ -21,7 +21,7 @@ export function getMarkdownContentAndCreateMarkpage() {
 				md = data;
 				markpageData = parseMarkdown(md);
 				createMarkpage(markpageData, url);
-				if (isMarkpad) {
+				if (sourceMarkpage == "contentMarkpad.md") {
 					const urlInput = document.getElementById("urlInput");
 					const okButton = document.getElementById("okButton");
 					okButton.addEventListener("click", () => redirectToUrl(urlInput));
