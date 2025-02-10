@@ -16,7 +16,7 @@ function lightbox() {
 	lightboxContainer.style.left = "0";
 	lightboxContainer.style.width = "100%";
 	lightboxContainer.style.height = "100%";
-	lightboxContainer.style.backgroundColor = "white";
+	lightboxContainer.style.backgroundColor = "#000000c4";
 	lightboxContainer.style.display = "none";
 	lightboxContainer.style.justifyContent = "center";
 	lightboxContainer.style.alignItems = "center";
@@ -24,8 +24,16 @@ function lightbox() {
 
 	// Crée un conteneur pour l'image ou le PDF
 	const lightboxContent = document.createElement("div");
-	lightboxContent.style.width = "90%";
-	lightboxContent.style.height = "90%";
+	if (window.screen.width < 500) {
+		lightboxContent.style.width = "100%";
+		lightboxContent.style.height = "100%";
+	} else {
+		lightboxContent.style.width = "85%";
+		lightboxContent.style.height = "85%";
+		lightboxContent.style.border = "10px solid black";
+		lightboxContent.style.borderRadius = "20px";
+	}
+	lightboxContent.style.backgroundColor = "white";
 	lightboxContent.style.display = "flex";
 	lightboxContent.style.justifyContent = "center";
 	lightboxContent.style.alignItems = "center";
@@ -33,7 +41,8 @@ function lightbox() {
 	// Crée un élément <img> pour afficher les images
 	const lightboxImage = document.createElement("img");
 	lightboxImage.style.maxWidth = "100%";
-	lightboxImage.style.maxHeight = "100%";
+	lightboxImage.style.width = "100%";
+	//lightboxImage.style.maxHeight = "100%";
 	lightboxImage.style.objectFit = "contain";
 
 	// Crée un élément <embed> pour afficher les PDFs
@@ -52,10 +61,16 @@ function lightbox() {
 	const closeButton = document.createElement("span");
 	closeButton.innerHTML = "&times;";
 	closeButton.style.position = "absolute";
-	closeButton.style.top = "20px";
-	closeButton.style.right = "20px";
-	closeButton.style.fontSize = "30px";
-	closeButton.style.color = "black";
+	if (window.screen.width < 500) {
+		closeButton.style.top = "10px";
+		closeButton.style.right = "10px";
+		closeButton.style.color = "black";
+	} else {
+		closeButton.style.top = "40px";
+		closeButton.style.right = "50px";
+		closeButton.style.color = "white";
+	}
+	closeButton.style.fontSize = "50px";
 	closeButton.style.cursor = "pointer";
 
 	// Ajoute la croix de fermeture au conteneur
@@ -67,6 +82,9 @@ function lightbox() {
 		lightboxContainer.style.display = "flex";
 		lightboxContainer.classList.add("lightbox-open");
 		lightboxContainer.classList.remove("lightbox-closed");
+		lightboxImage.addEventListener("click", () => {
+			closeLightbox();
+		});
 	}
 
 	// Fermeture de la lightbox
@@ -96,9 +114,10 @@ function lightbox() {
 
 	// Ajoute un écouteur de clic sur chaque image
 	images.forEach((image) => {
-		image.classList.add("lightboxAddOn");
 		image.addEventListener("click", () => {
+			image.classList.add("lightboxAddOn");
 			lightboxImage.src = image.src;
+			lightboxImage.style.height = `${image.naturalHeight * 3}px`;
 			lightboxImage.style.display = "block";
 			lightboxPDF.style.display = "none";
 			openLightbox();
