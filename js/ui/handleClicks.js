@@ -75,10 +75,9 @@ export function handleClicks(baseURL, hash, markpageData) {
 			) {
 				return;
 			}
-
 			let startX = event.clientX;
-			let scrollLeft =
-				document.documentElement.scrollLeft || document.body.scrollLeft;
+			const innerBoxElement = document.body.querySelector("#innerBox");
+			let scrollLeft = innerBoxElement.scrollLeft;
 			let isDragging = true;
 
 			// On empêche la sélection de texte au moment de relâcher la souris
@@ -87,7 +86,10 @@ export function handleClicks(baseURL, hash, markpageData) {
 			function onMouseMove(e) {
 				if (!isDragging) return;
 				let deltaX = e.clientX - startX;
-				window.scrollTo({ left: scrollLeft - deltaX, behavior: "auto" });
+				innerBoxElement.scrollTo({
+					left: scrollLeft - deltaX,
+					behavior: "auto",
+				});
 			}
 
 			function onMouseUp() {
