@@ -3,7 +3,7 @@
 }
 
 body {
-	font-family: "Inter", sans-serif, Avenir, Helvetica, Arial;
+	font-family: Helvetica, Arial, sans-serif;
 	padding: 0;
 	margin: 0;
 	overflow-y: scroll;
@@ -51,7 +51,7 @@ header {
 img {
 	max-height: 300px;
 }
-.sectionContent img{
+.sectionContent img {
 	max-width: 100%;
 }
 
@@ -107,8 +107,8 @@ footer a:hover {
 footer a aside {
 	display: none;
 }
-.homeIcon{
-	display:block!important;
+.homeIcon {
+	display: block !important;
 }
 .homeIcon:before {
 	content: "";
@@ -119,9 +119,9 @@ footer a aside {
 	height: 1.5rem;
 	-webkit-mask-size: 100% 100%;
 	mask-size: 100% 100%;
-	vertical-align: calc(.375em - .75rem);
+	vertical-align: calc(0.375em - 0.75rem);
 	width: 1.5rem;
-	background:black;
+	background: black;
 }
 
 .sectionContent,
@@ -221,8 +221,8 @@ h3 a {
 	text-decoration: none;
 	width: auto;
 }
-h3 img+a{
-	width:130px;
+h3 img + a {
+	width: 130px;
 }
 
 h3 aside {
@@ -429,11 +429,9 @@ caption {
 	padding: 10px;
 }
 
-
 iframe {
 	max-width: 100%;
 }
-
 
 @media screen and (max-width: 834px) {
 	html,
@@ -457,13 +455,13 @@ iframe {
 		justify-content: left;
 	}
 
-	footer a{
-		min-width:60px;
+	footer a {
+		min-width: 60px;
 	}
 	footer a.navigationLink:first-of-type {
 		padding-left: 0em;
 	}
-	
+
 	footer a.navigationLink:last-of-type {
 		padding-right: 1em;
 	}
@@ -592,10 +590,9 @@ iframe {
 	}
 }
 
-
 @media screen and (max-height: 500px) {
-	#footerContent{
-		margin-right:-70px!important;
+	#footerContent {
+		margin-right: -70px !important;
 	}
 }
 @media screen and (min-width: 835px) and (pointer: fine) {
