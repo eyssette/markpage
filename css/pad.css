@@ -230,3 +230,11 @@ iframe {
 		outline: none;
 	}
 }
+@media screen and (min-width: 1400px) {
+	body {
+		font-size: 1.2em;
+	}
+	#content > section {
+		min-width: 400px;
+	}
+}
