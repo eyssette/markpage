@@ -24,10 +24,12 @@ function adjustHeight(element) {
 	const availableHeight = bodyHeight - headerHeight;
 	if (availableHeight > 500 || yaml.markpad) {
 		element.style.height = `${availableHeight}px`;
+		document.body.classList.add("adjustHeightColumns");
 	} else {
 		document.body.style.height = "unset";
 		document.body.style.overflow = "unset";
 		element.style.height = "unset";
+		document.body.classList.remove("adjustHeightColumns");
 	}
 }
 

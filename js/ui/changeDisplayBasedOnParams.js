@@ -100,9 +100,12 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 			subSectionElement &&
 			((window.innerWidth < 600 && yaml.oneByOne == false) || yaml.pad)
 		) {
-			if (yaml.padScroll) {
-				window.scrollTo({ top: 0 });
-				window.scrollTo({
+			if (
+				(yaml.padScroll &&
+					document.body.classList.contains("adjustHeightColumns")) ||
+				yaml.markpad
+			) {
+				document.body.querySelector("#innerBox").scrollTo({
 					left: subSectionElement.parentNode.offsetLeft - 150,
 					behavior: "smooth",
 				});
