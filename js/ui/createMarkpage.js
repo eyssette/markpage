@@ -22,6 +22,12 @@ export function createMarkpage(markpageData, urlSourceMarkpage) {
 		'" class="navigationLink" aria-label="Page d\'accueil"><span class="homeIcon"></span></a>';
 	let param;
 	// On crée le HTML pour le contenu en parcourant le contenu de chaque section
+	if (yaml.lightpad && sections.length == 1) {
+		// S'il n'y a pas de titres h2 dans un lightpad (=pas de colonnes), le premier titre correspond en fait à un titre h3 (titre de la première capsule)
+		sectionsContent[0][0][0] = sections[0];
+		sections[0] = "";
+		document.body.classList.add("noColumns");
+	}
 	for (let i = 0; i < sections.length; i++) {
 		const sectionID = i + 1;
 		// On récupère le titre de chaque section

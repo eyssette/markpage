@@ -21,8 +21,11 @@ function adjustHeight(element) {
 		? headerElement.clientHeight + 10
 		: headerRect.bottom + 30;
 	const bodyHeight = window.innerHeight;
-	const availableHeight = bodyHeight - headerHeight;
+	let availableHeight = bodyHeight - headerHeight;
 	if (availableHeight > 500 || yaml.lightpad) {
+		if (document.body.classList.contains("noColumns")) {
+			availableHeight = availableHeight - 50;
+		}
 		element.style.height = `${availableHeight}px`;
 		document.body.classList.add("adjustHeightColumns");
 	} else {

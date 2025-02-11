@@ -178,6 +178,24 @@ iframe {
 	max-height: 200px;
 }
 
+.noColumns #content {
+	overflow-x: auto;
+}
+.noColumns .sectionContent {
+	display: flex !important;
+	flex-direction: column;
+	flex-wrap: wrap;
+	gap: 1em;
+	overflow-y: unset;
+}
+.noColumns h2 {
+	display: none;
+}
+.noColumns .subSection,
+.noColumns .noSubSections {
+	width: 300px;
+}
+
 @media screen and (max-width: 834px) {
 	#searchBar {
 		display: none !important;
@@ -236,5 +254,9 @@ iframe {
 	}
 	#content > section {
 		min-width: 400px;
+	}
+	.noColumns .subSection,
+	.noColumns .noSubSections {
+		width: 400px;
 	}
 }
