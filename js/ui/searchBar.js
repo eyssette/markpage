@@ -1,4 +1,5 @@
 import { yaml } from "../processMarkdown/yaml";
+import { removeTagsFromString } from "../utils";
 
 // Gestion de la searchBar
 export function searchBar(hash, markpageData) {
@@ -18,18 +19,20 @@ export function searchBar(hash, markpageData) {
 			if (inputText.length > 2) {
 				for (let i = 0; i < subSectionsData.length; i++) {
 					// Recherche dans le titre de chaque section + le contenu de chaque section
-					const textSection =
+					let textSection =
 						sectionsTitle[i].toString().toLowerCase() +
 						subSectionsData[i].toString().toLowerCase();
+					textSection = removeTagsFromString(textSection);
 					if (textSection.indexOf(inputText) > -1) {
 						// On a trouvé le texte dans la section
 						if (subSectionsData[i].length > 0) {
 							// S'il y a des sous-sections, on affine la recherche dans chaque sous-section
 							for (let j = 0; j < subSectionsData[i].length; j++) {
 								// recherche du texte dans le contenu de chaque sous-section
-								const textSubSection = subSectionsData[i][j]
+								let textSubSection = subSectionsData[i][j]
 									.toString()
 									.toLowerCase();
+								textSubSection = removeTagsFromString(textSubSection);
 								if (textSubSection.indexOf(inputText) > -1) {
 									subSectionsResults.push([i, j]);
 								}

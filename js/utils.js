@@ -102,6 +102,10 @@ export function removeUselessCarriages(text) {
 	return text;
 }
 
+export function removeTagsFromString(str) {
+	return str.replace(/(<([^>]+)>)/gi, "");
+}
+
 export function loadScript(src) {
 	// Fonction pour charger des scripts
 	return new Promise((resolve, reject) => {
