@@ -12,7 +12,7 @@ h1 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	z-index: 1;
+	z-index: 11;
 }
 #linkToHomePage,
 #searchBar {
@@ -228,6 +228,22 @@ iframe {
 		min-width: 105%;
 		scroll-snap-align: center;
 	}
+	.noColumns .sectionContent {
+		flex-direction: row;
+		margin-bottom: -3em;
+	}
+	.noColumns .subSection,
+	.noColumns .noSubSections {
+		min-width: 300px;
+		max-width: 400px;
+		width: unset;
+	}
+	.noColumns #innerBox {
+		scroll-snap-type: unset;
+	}
+	.noColumns #content > section {
+		scroll-snap-align: unset;
+	}
 }
 @media screen and (min-width: 834px) {
 	#searchBar {
@@ -236,7 +252,7 @@ iframe {
 	#searchBar {
 		top: 10px;
 		right: 10px;
-		z-index: 2;
+		z-index: 12;
 		padding: 0 10px;
 		background: white;
 	}
