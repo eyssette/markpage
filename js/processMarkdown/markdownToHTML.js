@@ -16,10 +16,15 @@ function showdownExtensionGenericAttributes() {
 				const easyGenericAttributesRegexInline = /--(.*?):(.*?)--/g;
 				text = text.replace(
 					easyGenericAttributesRegexInline,
-					(match, colorString, text) => {
+					(match, colorString, textInColor) => {
 						const color = getCSScolor(colorString);
-						if (color) {
-							return `<span style="color:${color}">${text}</span>`;
+						const matchPosition = text.indexOf(match);
+						const before = text.substring(0, matchPosition);
+						const isInCode = /<code>|<pre>/.test(
+							before.slice(before.lastIndexOf("<")),
+						);
+						if (color && !isInCode) {
+							return `<span style="color:${color}">${textInColor}</span>`;
 						} else {
 							return match;
 						}
