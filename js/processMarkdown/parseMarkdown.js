@@ -1,14 +1,14 @@
 import { processYAML } from "./yaml";
 import { markdownToHTML } from "./markdownToHTML";
 import { filterElementWithNoContent, removeUselessCarriages } from "../utils";
-function replaceHashesInCodeBlocks(markdown) {
-	return markdown.replace(/```([\s\S]*?)```/g, (match) => {
+function replaceHashesInCodeAndCommentBlocks(markdown) {
+	return markdown.replace(/(```[\s\S]*?```|<!--[\s\S]*?-->)/g, (match) => {
 		return match.replace(/#/g, "\uE000"); // Utilisation d'un caractère Unicode spécial
 	});
 }
 
-function restoreHashesInCodeBlocks(markdown) {
-	return markdown.replace(/```([\s\S]*?)```/g, (match) => {
+function restoreHashesInCodeAndCommentsBlocks(markdown) {
+	return markdown.replace(/(```[\s\S]*?```|<!--[\s\S]*?-->)/g, (match) => {
 		return match.replace(/\uE000/g, "#");
 	});
 }
@@ -17,7 +17,7 @@ export function parseMarkdown(markdownContent) {
 	markdownContent = processYAML(markdownContent);
 
 	// Suppression des caractères "#" dans les blocs codes
-	markdownContent = replaceHashesInCodeBlocks(markdownContent);
+	markdownContent = replaceHashesInCodeAndCommentBlocks(markdownContent);
 	// On distingue le header et le contenu
 	const indexfirstH2title = markdownContent.indexOf("## ");
 	const header = markdownContent.substring(0, indexfirstH2title);
@@ -59,7 +59,7 @@ export function parseMarkdown(markdownContent) {
 		if (/(\n|^)### /.test(sectionContent)) {
 			// S'il y a des sous-sections …
 			for (let subSection of subSections) {
-				subSection = restoreHashesInCodeBlocks(subSection);
+				subSection = restoreHashesInCodeAndCommentsBlocks(subSection);
 				// … on récupère le titre, l'image et le contenu de chaque sous-section
 				// - récupération du titre
 				const indexEndTitleSubSection = subSection.indexOf("\n");
@@ -98,7 +98,7 @@ export function parseMarkdown(markdownContent) {
 				subSectionsContentHTML = subSections[0];
 				subSectionsContentHTML = markdownToHTML(
 					removeUselessCarriages(
-						restoreHashesInCodeBlocks(subSectionsContentHTML),
+						restoreHashesInCodeAndCommentsBlocks(subSectionsContentHTML),
 					),
 				);
 			}
