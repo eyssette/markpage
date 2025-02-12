@@ -48,5 +48,16 @@ export default {
 				}),
 			],
 		}),
+		postcss({
+			extensions: [".css"],
+			include: ["css/lightpad.css"],
+			extract: "css/lightpad.min.css",
+			minimize: true,
+			plugins: [
+				cssnano({
+					preset: "default",
+				}),
+			],
+		}),
 	],
 };

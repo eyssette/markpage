@@ -129,6 +129,7 @@ export function loadCSS(src) {
 			styleElement = document.createElement("link");
 			styleElement.href = src;
 			styleElement.rel = "stylesheet";
+			styleElement.type = "text/css";
 			styleElement.onload = resolve;
 			styleElement.onerror = reject;
 		}
