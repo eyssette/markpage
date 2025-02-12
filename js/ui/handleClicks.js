@@ -76,8 +76,13 @@ export function handleClicks(baseURL, hash, markpageData) {
 				return;
 			}
 			let startX = event.clientX;
-			const innerBoxElement = document.body.querySelector("#innerBox");
-			let scrollLeft = innerBoxElement.scrollLeft;
+			const isModeLightpadNoColums =
+				document.body.classList.contains("noColumns");
+			let scrollableElement = isModeLightpadNoColums
+				? document.body.querySelector("#content")
+				: document.body.querySelector("#innerBox");
+
+			let scrollLeft = scrollableElement.scrollLeft;
 			let isDragging = true;
 
 			// On empêche la sélection de texte au moment de relâcher la souris
@@ -86,7 +91,7 @@ export function handleClicks(baseURL, hash, markpageData) {
 			function onMouseMove(e) {
 				if (!isDragging) return;
 				let deltaX = e.clientX - startX;
-				innerBoxElement.scrollTo({
+				scrollableElement.scrollTo({
 					left: scrollLeft - deltaX,
 					behavior: "auto",
 				});
