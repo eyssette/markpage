@@ -101,7 +101,10 @@ export function createMarkpage(markpageData, urlSourceMarkpage) {
 			}
 		}, 10);
 	}
-	document.title = title.replace("<span>", " – ").replace(/<[^>]*>?/gm, "");
+	document.title = title
+		.replace("<span>", " – ")
+		.replace(/<[^>]*>?/gm, "")
+		.trim();
 	if (initialMessage.length > 0 || yaml.pad) {
 		initialMessageElement.innerHTML = initialMessage;
 		initialMessageElement.style.display = "block";

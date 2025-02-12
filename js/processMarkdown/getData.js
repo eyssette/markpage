@@ -11,6 +11,7 @@ export function getMarkdownContentAndCreateMarkpage() {
 	let sourceMarkpage = handleURL(url);
 	const isLightpad = window.location.href.includes("lightpad");
 	if (sourceMarkpage == "" && isLightpad) {
+		document.title = "Lightpad";
 		sourceMarkpage = "contentLightpad.md";
 	}
 	if (sourceMarkpage !== "") {
