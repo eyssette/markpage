@@ -105,8 +105,18 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 					document.body.classList.contains("adjustHeightColumns")) ||
 				yaml.lightpad
 			) {
-				document.body.querySelector("#innerBox").scrollTo({
-					left: subSectionElement.parentNode.offsetLeft - 150,
+				const isModeLightpadNoColums =
+					document.body.classList.contains("noColumns");
+				let scrollableElement = isModeLightpadNoColums
+					? document.body.querySelector("#content")
+					: document.body.querySelector("#innerBox");
+				let scrollToElement = isModeLightpadNoColums
+					? subSectionElement
+					: subSectionElement.parentNode;
+				const WindowWidth = window.innerWidth;
+				const offsetWindow = WindowWidth / 3;
+				scrollableElement.scrollTo({
+					left: scrollToElement.offsetLeft - offsetWindow,
 					behavior: "smooth",
 				});
 				subSectionElement.parentNode.scrollTop =
