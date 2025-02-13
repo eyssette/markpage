@@ -23,21 +23,25 @@ export function searchBar(hash, markpageData) {
 						sectionsTitle[i].toString().toLowerCase() +
 						subSectionsData[i].toString().toLowerCase();
 					textSection = removeTagsFromString(textSection);
-					if (textSection.indexOf(inputText) > -1) {
-						// On a trouvé le texte dans la section
+					// Diviser inputText en plusieurs termes si nécessaire
+					let terms = inputText.toLowerCase().trim().split(/\s+/);
+
+					if (terms.every((term) => textSection.includes(term))) {
+						// On a trouvé tous les termes dans la section
 						if (subSectionsData[i].length > 0) {
 							// S'il y a des sous-sections, on affine la recherche dans chaque sous-section
 							for (let j = 0; j < subSectionsData[i].length; j++) {
-								// recherche du texte dans le contenu de chaque sous-section
+								// Recherche du texte dans le contenu de chaque sous-section
 								let textSubSection = subSectionsData[i][j]
 									.toString()
 									.toLowerCase();
 								textSubSection = removeTagsFromString(textSubSection);
-								if (textSubSection.indexOf(inputText) > -1) {
+
+								if (terms.every((term) => textSubSection.includes(term))) {
 									subSectionsResults.push([i, j]);
 								}
 							}
-							// Cas où on n'a trouvé le terme que dans le titre de la section
+							// Cas où on n'a trouvé les termes que dans le titre de la section
 							if (yaml.lightpad && subSectionsResults.length == 0) {
 								sectionsColumnResults.push(i);
 							}
