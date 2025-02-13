@@ -84,8 +84,8 @@ export function processYAML(markdownContent) {
 		} else {
 			yaml.searchbar = true;
 		}
-		// Affichage possible d'un lien supplémentaire vers la page d'accueil en haut à droite
-		if (yaml.linkToHomePage || yaml.lienPageAccueil) {
+		// Affichage possible d'un lien supplémentaire vers la page d'accueil en haut à droite (sauf si on est sur Lightpad)
+		if ((yaml.linkToHomePage || yaml.lienPageAccueil) && !yaml.lightpad) {
 			yaml.linkToHomePage = yaml.lienPageAccueil
 				? yaml.lienPageAccueil
 				: yaml.linkToHomePage;
