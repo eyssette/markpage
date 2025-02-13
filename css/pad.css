@@ -196,10 +196,26 @@ iframe {
 	width: 300px;
 }
 
+#searchBar {
+	display: block !important;
+}
+#searchBar {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 12;
+	padding: 0 10px;
+	background: white;
+}
+#searchBar input {
+	background: unset;
+	border: none;
+}
+#searchBar input:focus-visible {
+	outline: none;
+}
+
 @media screen and (max-width: 834px) {
-	#searchBar {
-		display: none !important;
-	}
 	.displayHomepage h2 {
 		font-size: unset;
 		margin-top: unset;
@@ -224,6 +240,22 @@ iframe {
 		max-width: unset;
 		width: max-content;
 	}
+	#searchBar {
+		background: transparent;
+		top: 5em;
+		right: 0px;
+		padding: 0;
+	}
+	#searchBar input {
+		width: 0px;
+	}
+	#searchBar input:hover,
+	#searchBar input:not(:placeholder-shown) {
+		width: fit-content;
+		background: white;
+		border: 1px solid black;
+		margin-right: 10px;
+	}
 	#content > section {
 		min-width: 105%;
 		scroll-snap-align: center;
@@ -243,25 +275,6 @@ iframe {
 	}
 	.noColumns #content > section {
 		scroll-snap-align: unset;
-	}
-}
-@media screen and (min-width: 834px) {
-	#searchBar {
-		display: block !important;
-	}
-	#searchBar {
-		top: 10px;
-		right: 10px;
-		z-index: 12;
-		padding: 0 10px;
-		background: white;
-	}
-	#searchBar input {
-		background: unset;
-		border: none;
-	}
-	#searchBar input:focus-visible {
-		outline: none;
 	}
 }
 @media screen and (min-width: 1400px) {
