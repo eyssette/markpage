@@ -3,6 +3,9 @@ h1,
 	position: fixed;
 }
 h1 {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 	text-align: left;
 	top: 0;
 	width: 100%;
@@ -11,17 +14,16 @@ h1 {
 	height: 1.15em;
 	overflow: hidden;
 	justify-content: left !important;
-	padding-left: 20px;
+	padding-left: 10px;
 	padding-top: 0.12em !important;
 	padding-bottom: 0.18em;
 }
 h1 img {
-	height: 1em;
-	width: 1em;
+	height: 1.5em;
 	object-fit: contain;
-	vertical-align: text-top;
-	margin-right: 0.25em;
+	vertical-align: middle;
 }
+
 #initialMessage {
 	display: none !important;
 }
