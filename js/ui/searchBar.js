@@ -76,11 +76,17 @@ export function searchBar(hash, markpageData) {
 							const sectionElement = document.getElementById(
 								"section-" + (indexSection + 1),
 							);
-							const subSectionElement = sectionElement.querySelector(
+							let activeSubSection = sectionElement.querySelector(
 								"#subSection-" + (indexSubSection + 1),
 							);
-							const subSectionTitle =
-								subSectionElement.querySelector("h3 a").innerHTML;
+							if (!activeSubSection) {
+								activeSubSection = document.querySelector(
+									`#section-${indexSection + 1} .noSubSections`,
+								);
+							}
+							const subSectionTitle = activeSubSection.querySelector("h3 a")
+								? activeSubSection.querySelector("h3 a").innerHTML
+								: sectionElement.querySelector("h2 a").innerHTML;
 							displayResultsHTML +=
 								'<li><a href="?sec=' +
 								(indexSection + 1) +
