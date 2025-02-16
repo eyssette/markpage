@@ -3,7 +3,7 @@ theme: colors
 addOns: copycode
 ---
 
-# ![](lightpad.svg?nolightbox) Lightpad
+# <img width="50" height="50" alt src="lightpad.svg?nolightbox"> Lightpad
 
 ## Bienvenue
 
