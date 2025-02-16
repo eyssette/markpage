@@ -191,7 +191,7 @@ export function markdownToHTML(text) {
 		text = resolveImagePath(text);
 	}
 	let html = converter.makeHtml(text);
-	// Optimisation de l'affichage des images
-	html = html.replaceAll("<img ", '<img loading="lazy" ');
+	// Optimisation de l'affichage des images (sauf si en HTLM on ne met pas l'attribut src en premier)
+	html = html.replaceAll("<img src", '<img loading="lazy" src');
 	return html;
 }
