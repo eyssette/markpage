@@ -160,8 +160,9 @@ Par exemple :
 ```
 ![](https://docs.forge.apps.education.fr/assets/images/brigit_et_komit_transparent.png)
 ```
+
 donne :
-![](https://docs.forge.apps.education.fr/assets/images/brigit_et_komit_transparent.png)
+![](assets/img/brigit_et_komit_transparent-266x300.png)
 
 NB : sur Codimd, vous pouvez faire glisser une image directement depuis votre ordinateur vers l'éditeur de texte.
 Et le lien est automatiquement formaté !
@@ -172,11 +173,11 @@ Par exemple depuis https://tube-numerique-educatif.apps.education.fr/
 
 
 ```
-<iframe title="Présentation de la Journée du Libre éducatif 2024" width="560" height="315" src="https://tube-numerique-educatif.apps.education.fr/videos/embed/85f97f35-d00c-4aa8-ad51-bcc9135ff8a2" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+<iframe title="Présentation de la Journée du Libre éducatif 2024" width="300" height="215" src="https://tube-numerique-educatif.apps.education.fr/videos/embed/85f97f35-d00c-4aa8-ad51-bcc9135ff8a2" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
 ```
 donne
 
-<iframe title="Présentation de la Journée du Libre éducatif 2024" width="560" height="315" src="https://tube-numerique-educatif.apps.education.fr/videos/embed/85f97f35-d00c-4aa8-ad51-bcc9135ff8a2" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms" loading="lazy"></iframe>
+<iframe title="Présentation de la Journée du Libre éducatif 2024" width="300" height="215" src="https://tube-numerique-educatif.apps.education.fr/videos/embed/85f97f35-d00c-4aa8-ad51-bcc9135ff8a2" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms" loading="lazy"></iframe>
 
 
 ## Autres
