@@ -36,6 +36,11 @@ main {
 #innerBox {
 	overflow-y: hidden;
 }
+
+.sectionContent img {
+	display: block;
+	margin: auto;
+}
 @media screen and (max-width: 500px) {
 	h1 {
 		height: 2em !important;
