@@ -153,12 +153,20 @@ export function handleNavigation(baseURL, hash, params, markpageData) {
 
 	const innerBoxElement = document.querySelector("#innerBox");
 	if (!yaml.pad) {
-		innerBoxElement.addEventListener("touchstart", function (event) {
-			handleTouchStart(event);
-		});
-		innerBoxElement.addEventListener("touchend", function (event) {
-			handleTouchEnd(event);
-		});
+		innerBoxElement.addEventListener(
+			"touchstart",
+			function (event) {
+				handleTouchStart(event);
+			},
+			{ passive: false },
+		);
+		innerBoxElement.addEventListener(
+			"touchend",
+			function (event) {
+				handleTouchEnd(event);
+			},
+			{ passive: false },
+		);
 	}
 
 	// Gestion des boutons de navigation en bas
