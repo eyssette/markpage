@@ -162,7 +162,7 @@ Par exemple :
 ```
 
 donne :
-![](assets/img/brigit_et_komit_transparent-266x300.png)
+<img width="266" height="300" src="assets/img/brigit_et_komit_transparent-266x300.png" />
 
 NB : sur Codimd, vous pouvez faire glisser une image directement depuis votre ordinateur vers l'éditeur de texte.
 Et le lien est automatiquement formaté !
