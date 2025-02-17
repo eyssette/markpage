@@ -123,8 +123,10 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 					left: scrollToElement.offsetLeft - offsetWindow,
 					behavior: "smooth",
 				});
-				subSectionElement.parentNode.scrollTop =
-					subSectionElement.offsetTop - 150;
+				setTimeout(() => {
+					subSectionElement.parentNode.scrollTop =
+						subSectionElement.offsetTop - 150;
+				}, 100);
 			} else {
 				subSectionElement.scrollIntoView({
 					behavior: "smooth",
