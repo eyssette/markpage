@@ -12,7 +12,7 @@ export const shortcuts = [
 
 export const corsProxy = "https://corsproxy.io/?url=";
 
-export const CSSthemes = ["colors.css"];
+export const CSSthemes = ["colors.css","digipad.css"];
 
 // Gestion des add-ons
 export const allowedAddOns = {

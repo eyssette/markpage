@@ -1,5 +1,5 @@
 ---
-theme: colors
+theme: digipad
 addOns: copycode
 ---
 
@@ -115,7 +115,7 @@ Texte ++souligné++
 
 ### Couleur
 
-Pour --rouge:écrire en couleur-- on encadre avec -- -- en précisant la couleur avant les deux points.
+Pour --rouge:écrire en couleur-- on encadre avec `-- --` en précisant la couleur avant les deux points.
 
 ```
 Ce texte est --rouge:en rouge--.
