@@ -34,7 +34,7 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 			bodyElement.classList.add("displaySubSection");
 			const sectionElement = document.getElementById("section-" + sectionID);
 			subSectionElement = sectionElement.querySelector(
-				"#subSection-" + subSectionID,
+				".subSection-" + subSectionID,
 			);
 			visibleElement = subSectionElement;
 			showOnlyThisElement(sectionElement, "sections");

@@ -81,7 +81,7 @@ export function searchBar(hash, markpageData) {
 								"section-" + (indexSection + 1),
 							);
 							let activeSubSection = sectionElement.querySelector(
-								"#subSection-" + (indexSubSection + 1),
+								".subSection-" + (indexSubSection + 1),
 							);
 							if (!activeSubSection) {
 								activeSubSection = document.querySelector(
@@ -138,7 +138,7 @@ export function searchBar(hash, markpageData) {
 							`#section-${sectionId}`,
 						);
 						let activeSubSection = document.querySelector(
-							`#section-${sectionId} #subSection-${subSectionId}`,
+							`#section-${sectionId} .subSection-${subSectionId}`,
 						);
 						if (!activeSubSection) {
 							activeSubSection = document.querySelector(

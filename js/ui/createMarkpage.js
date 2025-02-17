@@ -54,7 +54,7 @@ export function createMarkpage(markpageData, urlSourceMarkpage) {
 				const subSection = sectionContent[j];
 				sectionsHTML =
 					sectionsHTML +
-					'<section class="subSection" id="subSection-' +
+					'<section class="subSection subSection-' +
 					subSectionID +
 					'">';
 				// … on récupère le titre, l'image et le contenu
