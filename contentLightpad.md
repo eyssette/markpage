@@ -240,6 +240,12 @@ On définit le thème dans un en-tête en début de fichier.
 theme: colors
 ---
 ```
+ou
+```
+---
+theme: digipad
+---
+```
 
 On peut aussi ajouter des styles CSS en les définissant dans une balise `<style>` (à placer de préférence à la fin de son document).
 
