@@ -124,7 +124,20 @@ function showdownExtensionUnderline() {
 		{
 			type: "output",
 			filter: (text) => {
-				text = text.replaceAll(/\+\+(.*?)\+\+/g, "<u>$1</u>");
+				text = text.replaceAll(
+					/\+\+(.*?)\+\+/g,
+					(match, contentUnderlined, offset) => {
+						const before = text.substring(0, offset);
+						const isInCode = /<code>|<pre>/.test(
+							before.slice(before.lastIndexOf("<")),
+						);
+
+						if (isInCode) {
+							// Si le soulignement est dans un bloc de code, on ne fait rien
+							return match;
+						} else return `<u>${contentUnderlined}</u>`;
+					},
+				);
 				return text;
 			},
 		},
