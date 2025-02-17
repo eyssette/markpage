@@ -115,6 +115,10 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 					: subSectionElement.parentNode;
 				const WindowWidth = window.innerWidth;
 				const offsetWindow = WindowWidth / 3;
+				window.scrollTo({
+					top: 0,
+					behavior: "instant",
+				});
 				scrollableElement.scrollTo({
 					left: scrollToElement.offsetLeft - offsetWindow,
 					behavior: "smooth",
@@ -144,9 +148,10 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 			bodyElement.classList.remove("displaySubSection");
 			bodyElement.classList.add("displayHomepage");
 		}
+		const scrollTopBehavior = yaml.pad ? "instant" : "smooth";
 		window.scrollTo({
 			top: 0,
-			behavior: "smooth",
+			behavior: scrollTopBehavior,
 		});
 	}
 }
