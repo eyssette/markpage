@@ -45,6 +45,8 @@ main {
 h3 img + a {
 	width: unset;
 }
+
+
 @media screen and (max-width: 500px) {
 	h1 {
 		height: 2em !important;
