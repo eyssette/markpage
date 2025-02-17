@@ -25,6 +25,7 @@ export function processYAML(markdownContent) {
 			: false;
 		if (yaml.lightpad === true || isLightpadWebsite) {
 			loadCSS("./css/lightpad.min.css");
+			document.body.classList.add("lightpad");
 			yaml.lightpad = true;
 			yaml.pad = true;
 			yaml.padScroll = true;

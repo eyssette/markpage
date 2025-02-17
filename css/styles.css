@@ -475,7 +475,7 @@ iframe {
 		padding-top: 1.25em;
 	}
 
-	h2 {
+	body:not(.lightpad) h2 {
 		margin-top: 2em;
 	}
 

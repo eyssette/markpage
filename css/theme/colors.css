@@ -164,11 +164,11 @@ h4 {
 	.displaySubSection main {
 		box-shadow: none;
 	}
-	#content > section:nth-of-type(5n + 1) h3,
-	#content > section:nth-of-type(5n + 2) h3,
-	#content > section:nth-of-type(5n + 3) h3,
-	#content > section:nth-of-type(5n + 4) h3,
-	#content > section:nth-of-type(5n + 5) h3 {
+	body:not(.lightpad) #content > section:nth-of-type(5n + 1) h3,
+	body:not(.lightpad) #content > section:nth-of-type(5n + 2) h3,
+	body:not(.lightpad) #content > section:nth-of-type(5n + 3) h3,
+	body:not(.lightpad) #content > section:nth-of-type(5n + 4) h3,
+	body:not(.lightpad) #content > section:nth-of-type(5n + 5) h3 {
 		background-color: unset !important;
 		border: none !important;
 	}
