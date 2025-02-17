@@ -84,7 +84,7 @@ section h3 {
 }
 
 h1 {
-	background-color: #000000 !important;
+	background-color: #170f46 !important;
 	box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
@@ -95,10 +95,13 @@ h2, h2>a {
 	margin-left: auto;
 	margin-right: auto;
 	border-radius: 5px;
+	font-weight: normal !important;
+
 }
 
 h3 {
 	border-radius: 5px;
+	font-weight: normal !important;
 }
 
 h4 {
@@ -223,8 +226,17 @@ h4 {
 
 pre {
 	color: white !important;
-	background-color: black;
+	border: rgb(146, 128, 128) 3px inset !important;
+	background-color: rgb(0, 0, 0);
 	font-family: 'Courier New', Courier, monospace !important;
+	padding: 2em 1em 1em 1em !important;
+}
+
+input {
+	border: 1px black solid;
+	position: relative;
+	left: 3px;
+	margin-right: 5px;
 }
 
 @media screen and (max-width: 834px) {
