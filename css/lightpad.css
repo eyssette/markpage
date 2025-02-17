@@ -37,9 +37,13 @@ main {
 	overflow-y: hidden;
 }
 
-.sectionContent img {
+.subSectionContent img,
+.noSubSections img {
 	display: block;
 	margin: auto;
+}
+h3 img + a {
+	width: unset;
 }
 @media screen and (max-width: 500px) {
 	h1 {
