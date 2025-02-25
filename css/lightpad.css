@@ -46,10 +46,9 @@ h3 img + a {
 	width: unset;
 }
 
-
 @media screen and (max-width: 500px) {
 	h1 {
-		height: 2em !important;
+		height: 1.5em !important;
 		justify-content: center !important;
 		text-align: center;
 		padding-left: 0 !important;
