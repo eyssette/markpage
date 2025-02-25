@@ -44,7 +44,7 @@ function showdownExtensionGenericAttributes() {
 						// Vérifier si l'élément est dans un <code>
 						if (match.includes("<code>")) return match;
 
-						const classAttribute = ` class="${classes.replace(/\./g, " ")}"`;
+						const classAttribute = ` class="${classes.replace(/\./g, " ").trim()}"`;
 						return `<${tag}${attrs}${classAttribute}>${content}</${tag}>`;
 					},
 				);
@@ -53,7 +53,7 @@ function showdownExtensionGenericAttributes() {
 				modifiedText = modifiedText.replace(
 					genericAttributesRegexInline,
 					(match, tag, attrs, content, classes) => {
-						const classAttribute = ` class="${classes.replace(/\./g, " ")}"`;
+						const classAttribute = ` class="${classes.replace(/\./g, " ").trim()}"`;
 						return `<${tag}${attrs}${classAttribute}>${content}</${tag}>`;
 					},
 				);
