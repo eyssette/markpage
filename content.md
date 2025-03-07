@@ -223,7 +223,15 @@ On met ici ses exercices avec la syntaxe text2quiz
 
 Mot-clé pour ajouter cet add-on : `copycode`
 
-Cet add-on permet d'avoir un bouton cliquable pour copier dans le presse-papier le texte contenu dans un bloc code.
+Cet add-on permet d'avoir un bouton cliquable pour copier dans le presse-papier le texte contenu dans un bloc code (avec la syntaxe markdown ci-dessous).
+
+Rappel de la syntaxe pour un bloc code :
+
+````
+```
+contenu du bloc code
+```
+````
 
 ## Exemples d'utilisation
 
