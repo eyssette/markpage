@@ -11,6 +11,10 @@
 	--color5light: #d7f2ee;
 }
 
+body,
+html,
+main,
+#backgroundInnerBox,
 #content {
 	background-color: rgb(155, 201, 219) !important;
 }
@@ -56,12 +60,6 @@ section h3 {
 #content > section:nth-of-type(5n + 5) h2,
 #content > section:nth-of-type(5n + 5) .noSubSections {
 	border: 2px solid var(--color5);
-}
-
-#innerBox,
-#backgroundInnerBox,
-.subSectionContent {
-	background-color: white !important;
 }
 
 .displayHomepage blockquote {
