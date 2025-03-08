@@ -177,8 +177,8 @@ export function handleMarkpage(markpageData) {
 		const titleElement = document.getElementById("title");
 		const interval = setInterval(() => {
 			if (window.textFit) {
-				window.textFit(titleElement, { multiLine: true });
 				clearInterval(interval);
+				window.textFit(titleElement, { multiLine: true });
 			}
 		}, 10);
 	}
