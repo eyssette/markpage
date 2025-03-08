@@ -235,7 +235,7 @@ Sur ordinateur, vous pouvez scroller, mais aussi naviguer de capsule en capsule 
 
 Sur téléphone, vous pouvez swiper d'une colonne à une autre facilement.
 
-### Couleurs
+### Thèmes
 
 On peut personnaliser l'apparence de Lightpad en utilisant les thèmes disponibles.
 
@@ -243,15 +243,11 @@ On définit le thème dans un en-tête en début de fichier.
 
 ```
 ---
-theme: colors
----
-```
-ou
-```
----
 theme: digipad
 ---
 ```
+
+Les thèmes disponibles sont les suivants : `colors`, `digipad`.
 
 On peut aussi ajouter des styles CSS en les définissant dans une balise `<style>` (à placer de préférence à la fin de son document).
 
