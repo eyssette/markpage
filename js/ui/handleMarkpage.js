@@ -167,7 +167,9 @@ export function handleMarkpage(markpageData) {
 			resizeTimeout = setTimeout(() => {
 				resizeSectionContentElements();
 				const titleElement = document.getElementById("title");
-				window.textFit(titleElement, { reProcess: true, multiLine: true });
+				if (window.textFit) {
+					window.textFit(titleElement, { multiLine: true });
+				}
 			}, 200);
 		});
 	}
