@@ -24,7 +24,7 @@ https://lightpad.forge.apps.education.fr/#LIEN_DE_VOTRE_FICHIER
 
 ```
 
-<label for="urlInput">Entrez l'URL de votre fichier en Markdown :</label>
+<label for="urlInput">Copiez ici le lien vers votre fichier :</label>
 
 <input type="url" id="urlInput" placeholder="Votre URL"> <button id="okButton">OK</button>
 
