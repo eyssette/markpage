@@ -1,6 +1,6 @@
 h1,
 #searchBar {
-	position: fixed;
+	position: fixed !important;
 }
 h1 {
 	display: flex;
