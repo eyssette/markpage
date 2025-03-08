@@ -173,4 +173,13 @@ export function handleMarkpage(markpageData) {
 			}, 200);
 		});
 	}
+	if (yaml.lightpad) {
+		const titleElement = document.getElementById("title");
+		const interval = setInterval(() => {
+			if (window.textFit) {
+				window.textFit(titleElement, { multiLine: true });
+				clearInterval(interval);
+			}
+		}, 10);
+	}
 }

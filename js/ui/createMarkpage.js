@@ -93,14 +93,6 @@ export function createMarkpage(markpageData, urlSourceMarkpage) {
 
 	// On affiche le mini site
 	titleElement.innerHTML = title;
-	if (yaml.lightpad) {
-		const interval = setInterval(() => {
-			if (window.textFit) {
-				window.textFit(titleElement, { multiLine: true });
-				clearInterval(interval);
-			}
-		}, 10);
-	}
 	document.title = title
 		.replace("<span>", " – ")
 		.replace(/<[^>]*>?/gm, "")
