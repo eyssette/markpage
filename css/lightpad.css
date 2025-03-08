@@ -30,8 +30,21 @@ h1 img {
 main {
 	margin-top: 2.75em;
 }
+#content > section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 .sectionContent {
 	margin-top: -0.75em !important;
+	box-sizing: border-box;
+	width: 95% !important;
+}
+.sectionContent,
+h2 {
+	margin-left: auto;
+	margin-right: auto;
 }
 #innerBox {
 	overflow-y: hidden;
@@ -70,5 +83,6 @@ section h3 {
 	}
 	#content > section {
 		background: #f6f6f8;
+		min-width: 100% !important;
 	}
 }
