@@ -39,6 +39,7 @@
 
 section h3 {
 	cursor: grab;
+	border-radius: 5px 5px 0 0;
 }
 
 #content > section:nth-of-type(5n + 1) .subSection,
