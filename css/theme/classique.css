@@ -11,19 +11,18 @@
 	--color5light: #d7f2ee;
 }
 
-
 #content {
 	background-color: rgb(155, 201, 219) !important;
 }
 
-#content>section {
+#content > section {
 	background-color: rgb(155, 201, 219) !important;
 	cursor: grab;
 }
 
 .subSection {
 	border-radius: 5px !important;
-	cursor: auto;	
+	cursor: auto;
 }
 
 .sectionContent {
@@ -42,17 +41,14 @@ section h3 {
 	cursor: grab;
 }
 
-
-
 #content > section:nth-of-type(5n + 1) .subSection,
 #content > section:nth-of-type(5n + 1) h2,
-#content > section:nth-of-type(5n + 1) .noSubSections
-{
+#content > section:nth-of-type(5n + 1) .noSubSections {
 	border: 2px solid var(--color1);
 }
 #content > section:nth-of-type(5n + 2) .subSection,
 #content > section:nth-of-type(5n + 2) h2,
-#content > section:nth-of-type(5n + 2) .noSubSections  {
+#content > section:nth-of-type(5n + 2) .noSubSections {
 	border: 2px solid var(--color2);
 }
 #content > section:nth-of-type(5n + 3) .subSection,
@@ -62,12 +58,12 @@ section h3 {
 }
 #content > section:nth-of-type(5n + 4) .subSection,
 #content > section:nth-of-type(5n + 4) h2,
-#content > section:nth-of-type(5n + 4) .noSubSections  {
+#content > section:nth-of-type(5n + 4) .noSubSections {
 	border: 2px solid var(--color4);
 }
 #content > section:nth-of-type(5n + 5) .subSection,
 #content > section:nth-of-type(5n + 5) h2,
-#content > section:nth-of-type(5n + 5) .noSubSections  {
+#content > section:nth-of-type(5n + 5) .noSubSections {
 	border: 2px solid var(--color5);
 }
 
@@ -103,7 +99,8 @@ h1 {
 	box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
-h2, h2>a {
+h2,
+h2 > a {
 	text-transform: uppercase;
 	color: #000000 !important;
 	width: 95% !important;
@@ -111,7 +108,6 @@ h2, h2>a {
 	margin-right: auto;
 	border-radius: 5px;
 	font-weight: normal !important;
-
 }
 
 h3 {
@@ -243,7 +239,7 @@ pre {
 	color: white !important;
 	border: rgb(146, 128, 128) 3px inset !important;
 	background-color: rgb(102, 102, 102);
-	font-family: 'Courier New', Courier, monospace !important;
+	font-family: "Courier New", Courier, monospace !important;
 	padding: 1.25em 1em 1em 1em !important;
 }
 

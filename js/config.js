@@ -12,7 +12,7 @@ export const shortcuts = [
 
 export const corsProxy = "https://corsproxy.io/?url=";
 
-export const CSSthemes = ["colors.css","classique.css"];
+export const CSSthemes = ["colors.css", "classique.css"];
 
 // Gestion des add-ons
 export const allowedAddOns = {
