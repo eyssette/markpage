@@ -209,7 +209,13 @@ Pour afficher du code sans qu'il ne soit interprété, encadrez-le avec des `.
 
 Exemple 
 
-![](https://minio.apps.education.fr/codimd-prod/uploads/upload_67f3727b7aa5a18bba6faee7f2c6536c.png)
+````
+Ceci est du **gras**.
+
+```
+Ceci est du **gras**.
+```
+````
 
 donne
 
