@@ -13,12 +13,10 @@
 
 #content > section {
 	background-color: rgb(151, 212, 212) !important;
-	cursor: grab;
 }
 
 .subSection {
 	border-radius: 5px !important;
-	cursor: auto;
 }
 
 .sectionContent {
@@ -26,10 +24,6 @@
 	padding: 0 !important;
 	margin-left: auto;
 	margin-right: auto;
-}
-
-section h3 {
-	cursor: grab;
 }
 
 #content > section:nth-of-type(5n + 1) .subSection,

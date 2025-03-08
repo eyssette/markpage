@@ -17,12 +17,10 @@
 
 #content > section {
 	background-color: rgb(155, 201, 219) !important;
-	cursor: grab;
 }
 
 .subSection {
 	border-radius: 5px !important;
-	cursor: auto;
 }
 
 .sectionContent {
@@ -38,7 +36,6 @@
 }
 
 section h3 {
-	cursor: grab;
 	border-radius: 5px 5px 0 0;
 }
 

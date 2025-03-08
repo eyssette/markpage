@@ -46,6 +46,15 @@ h3 img + a {
 	width: unset;
 }
 
+#content > section,
+section h3 {
+	cursor: grab;
+}
+.subSection,
+.noSubSections {
+	cursor: auto;
+}
+
 @media screen and (max-width: 500px) {
 	h1 {
 		height: 1.5em !important;
