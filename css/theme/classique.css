@@ -23,13 +23,6 @@
 	border-radius: 5px !important;
 }
 
-.sectionContent {
-	width: 95% !important;
-	padding: 0 !important;
-	margin-left: auto;
-	margin-right: auto;
-}
-
 .noSubSections {
 	background-color: #ffffff;
 	border-radius: 5px !important;
@@ -101,9 +94,8 @@ h2,
 h2 > a {
 	text-transform: uppercase;
 	color: #000000 !important;
-	width: 95% !important;
-	margin-left: auto;
-	margin-right: auto;
+	width: 90% !important;
+	margin-left: 10px;
 	border-radius: 5px;
 	font-weight: normal !important;
 }
@@ -127,6 +119,9 @@ footer {
 }
 
 @media screen and (min-width: 834px) {
+	.sectionContent {
+		padding-right: 7px !important;
+	}
 	h3 {
 		margin-left: -3em;
 	}
@@ -277,6 +272,10 @@ input {
 	}
 	#content > section:nth-of-type(5n + 5) h3 a {
 		border-bottom-color: var(--color5);
+	}
+	.displaySection h2,
+	.displaySubSection h2 {
+		width: 90% !important;
 	}
 
 	.subSection h4 {
