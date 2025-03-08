@@ -12,8 +12,12 @@
 }
 
 
+#content {
+	background-color: rgb(155, 201, 219) !important;
+}
+
 #content>section {
-	background-color: rgb(151, 212, 212) !important;
+	background-color: rgb(155, 201, 219) !important;
 	cursor: grab;
 }
 
@@ -29,6 +33,11 @@
 	margin-right: auto;
 }
 
+.noSubSections {
+	background-color: #ffffff;
+	border-radius: 5px !important;
+}
+
 section h3 {
 	cursor: grab;
 }
@@ -36,23 +45,29 @@ section h3 {
 
 
 #content > section:nth-of-type(5n + 1) .subSection,
-#content > section:nth-of-type(5n + 1) h2 {
+#content > section:nth-of-type(5n + 1) h2,
+#content > section:nth-of-type(5n + 1) .noSubSections
+{
 	border: 2px solid var(--color1);
 }
 #content > section:nth-of-type(5n + 2) .subSection,
-#content > section:nth-of-type(5n + 2) h2  {
+#content > section:nth-of-type(5n + 2) h2,
+#content > section:nth-of-type(5n + 2) .noSubSections  {
 	border: 2px solid var(--color2);
 }
 #content > section:nth-of-type(5n + 3) .subSection,
-#content > section:nth-of-type(5n + 3) h2 {
+#content > section:nth-of-type(5n + 3) h2,
+#content > section:nth-of-type(5n + 3) .noSubSections {
 	border: 2px solid var(--color3);
 }
 #content > section:nth-of-type(5n + 4) .subSection,
-#content > section:nth-of-type(5n + 4) h2  {
+#content > section:nth-of-type(5n + 4) h2,
+#content > section:nth-of-type(5n + 4) .noSubSections  {
 	border: 2px solid var(--color4);
 }
 #content > section:nth-of-type(5n + 5) .subSection,
-#content > section:nth-of-type(5n + 5) h2  {
+#content > section:nth-of-type(5n + 5) h2,
+#content > section:nth-of-type(5n + 5) .noSubSections  {
 	border: 2px solid var(--color5);
 }
 
@@ -84,7 +99,7 @@ section h3 {
 }
 
 h1 {
-	background-color: #170f46 !important;
+	background-color: #374aa1 !important;
 	box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
@@ -227,9 +242,9 @@ h4 {
 pre {
 	color: white !important;
 	border: rgb(146, 128, 128) 3px inset !important;
-	background-color: rgb(0, 0, 0);
+	background-color: rgb(102, 102, 102);
 	font-family: 'Courier New', Courier, monospace !important;
-	padding: 2em 1em 1em 1em !important;
+	padding: 1.25em 1em 1em 1em !important;
 }
 
 input {
