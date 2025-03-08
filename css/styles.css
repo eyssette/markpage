@@ -298,6 +298,7 @@ input {
 	border: none;
 	height: 24px;
 	padding: 0px 12px;
+	margin-left: 5px;
 }
 
 #searchBar {
