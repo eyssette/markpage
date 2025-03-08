@@ -1,5 +1,4 @@
 ---
-theme: digipad
 addOns: copycode
 ---
 
