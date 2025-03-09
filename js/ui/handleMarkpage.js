@@ -168,7 +168,7 @@ export function handleMarkpage(markpageData) {
 				resizeSectionContentElements();
 				const titleElement = document.getElementById("title");
 				if (window.textFit) {
-					window.textFit(titleElement, { multiLine: true });
+					window.textFit(titleElement, { minFontSize: 16, multiLine: true });
 				}
 			}, 200);
 		});
@@ -178,7 +178,7 @@ export function handleMarkpage(markpageData) {
 		const interval = setInterval(() => {
 			if (window.textFit) {
 				clearInterval(interval);
-				window.textFit(titleElement, { multiLine: true });
+				window.textFit(titleElement, { minFontSize: 16, multiLine: true });
 			}
 		}, 10);
 	}
