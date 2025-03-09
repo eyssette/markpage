@@ -1,4 +1,4 @@
-import { processYAML } from "./yaml";
+import { processYAML, yaml } from "./yaml";
 import { markdownToHTML } from "./markdownToHTML";
 import { filterElementWithNoContent, removeUselessCarriages } from "../utils";
 function replaceHashesInCodeAndCommentBlocks(markdown) {
@@ -25,7 +25,10 @@ export function parseMarkdown(markdownContent) {
 
 	// Dans le header, on distingue le titre (défini par un titre h1) et le message initial
 
-	const markpageTitle = header.match(/# .*/)[0].replace("# ", "");
+	let markpageTitle = header.match(/# .*/)[0].replace("# ", "");
+	if (yaml && yaml.lightpad) {
+		markpageTitle = markpageTitle.replace(/<br.*?>/, " – ");
+	}
 	const indexStartTitle = header.indexOf(markpageTitle);
 	const initialMessageContent = header.substring(
 		indexStartTitle + markpageTitle.length + 1,

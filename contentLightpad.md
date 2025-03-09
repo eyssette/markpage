@@ -9,7 +9,7 @@ style: a.selectTheme{display:inline-block;margin:0.5em 0.5em;}
 
 ### Qu'est-ce que Lightpad ?
 
-Lightpad est une --violetfoncé:application-- libre et gratuite qui vous permet de créer des "pads" avec des colonnes et des capsules, à la manière de [Digipad](https://digipad.app).
+Lightpad est une application libre et gratuite qui vous permet de créer des “pads” avec des colonnes et des capsules, à la manière de [Digipad](https://digipad.app).
 
 C'est une version dérivée de [MarkPage](https://markpage.forge.apps.education.fr/). Comme avec ce dernier, l'édition se fait en Markdown.
 
@@ -28,9 +28,16 @@ https://lightpad.forge.apps.education.fr/#LIEN_DE_VOTRE_FICHIER
 
 <input type="url" id="urlInput" placeholder="Votre URL"> <button id="okButton">OK</button>
 
-### Exemple
 
-Vous pouvez partir de [cet exemple](https://codimd.apps.education.fr/YGJdl513QfaBSmH_XCZW4Q?both) sur Codimd et le dupliquer.
+### Exemples de pads
+
+- [Un recueil de procédures de calcul réfléchi au cycle 2](https://lightpad.forge.apps.education.fr/?theme=classique#https://codimd.apps.education.fr/BcCdVm8vRUW0X-TNKZP9zQ)
+- [Un dictionnaire en SVT](https://lightpad.forge.apps.education.fr/#https://codimd.apps.education.fr/s_7J0ekaRqmT7sHslSc19w)
+- [Un cahier de texte](https://lightpad.forge.apps.education.fr/#https://codimd.apps.education.fr/s/c6dPX8ZhT)
+
+### Modèle
+
+Vous pouvez partir de [ce modèle](https://codimd.apps.education.fr/YGJdl513QfaBSmH_XCZW4Q?both) sur Codimd et le dupliquer.
 
 Codimd est recommandé plutôt que Framapad car sur Codimd, l'éditeur vous “facilitera la vie”.
 Des boutons dédiés permettent de formater correctement le texte. De plus il affiche une coloration syntaxique qui aide à s'y retrouver.
@@ -260,7 +267,7 @@ Ceci est du **gras**.
 ```
 ````
 
-donne
+donne :
 
 Ceci est du **gras**.
 
@@ -322,12 +329,12 @@ On peut aussi utiliser des [codes emojis](https://eyssette.forge.apps.education.
 
 ### Crédits
 
-Lightpad est une collaboration d'Arnaud Champollion et de Cédric Eyssette, partagée sous licence libre MIT.
+Lightpad est une collaboration d'[Arnaud Champollion](http://educajou.forge.apps.education.fr/) et de [Cédric Eyssette](http://eyssette.forge.apps.education.fr/), partagée sous licence libre MIT.
 
 Le code source est sur [la Forge des Communs Numériques](https://forge.apps.education.fr).
 Voir [la page du projet](https://forge.apps.education.fr/lightpad/lightpad.forge.apps.education.fr).
 
-Cette application est un dérivé de [Markpage](https://eyssette.forge.apps.education.fr/). Si vous voulez construire un site, Markpage intègre les fonctions de Lightpad mais offre d'autres options à configurer.
+Cette application est un dérivé de [Markpage](https://markpage.forge.apps.education.fr/). Si vous voulez construire un site, Markpage intègre les fonctions de Lightpad mais offre d'autres options à configurer.
 
 ### Participer à améliorer Lightpad
 
