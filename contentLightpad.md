@@ -9,7 +9,7 @@ style: a.selectTheme{display:inline-block;margin:0.5em 0.5em;}
 
 ### Qu'est-ce que Lightpad ?
 
-Lightpad est une --violetfoncé:application-- libre et gratuite qui vous permet de créer des "pads" avec des colonnes et des capsules, à la manière de [Digipad](https://digipad.app).
+Lightpad est une application libre et gratuite qui vous permet de créer des "pads" avec des colonnes et des capsules, à la manière de [Digipad](https://digipad.app).
 
 C'est une version dérivée de [MarkPage](https://markpage.forge.apps.education.fr/). Comme avec ce dernier, l'édition se fait en Markdown.
 
