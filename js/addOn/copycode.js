@@ -36,6 +36,5 @@ setTimeout(() => {
 		});
 		// Ajoute le bouton au conteneur <pre>
 		pre.appendChild(copyButton);
-		pre.style.padding = "3em 2em 1em 2em";
 	});
 }, 300);
