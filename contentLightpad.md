@@ -34,7 +34,7 @@ Vous pouvez partir de [cet exemple](https://codimd.apps.education.fr/YGJdl513Qfa
 Codimd est recommandé plutôt que Framapad car sur Codimd, l'éditeur vous “facilitera la vie”.
 Des boutons dédiés permettent de formater correctement le texte. De plus il affiche une coloration syntaxique qui aide à s'y retrouver.
 
-![](/assets/img/exempleCodiMD.png)
+<img width="332" height="102" alt src="/assets/img/exempleCodiMD.png" />
 
 
 ## Structure du pad
