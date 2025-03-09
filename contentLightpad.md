@@ -28,6 +28,13 @@ https://lightpad.forge.apps.education.fr/#LIEN_DE_VOTRE_FICHIER
 
 <input type="url" id="urlInput" placeholder="Votre URL"> <button id="okButton">OK</button>
 
+
+### Exemples de pads
+
+- [Un recueil de procédures de calcul réfléchi au cycle 2](https://lightpad.forge.apps.education.fr/?theme=classique#https://codimd.apps.education.fr/BcCdVm8vRUW0X-TNKZP9zQ)
+- [Un dictionnaire en SVT](https://lightpad.forge.apps.education.fr/#https://codimd.apps.education.fr/s_7J0ekaRqmT7sHslSc19w)
+- [Un cahier de texte](https://lightpad.forge.apps.education.fr/#https://codimd.apps.education.fr/s/c6dPX8ZhT)
+
 ### Modèle
 
 Vous pouvez partir de [ce modèle](https://codimd.apps.education.fr/YGJdl513QfaBSmH_XCZW4Q?both) sur Codimd et le dupliquer.
