@@ -91,3 +91,9 @@ span.textFitted {
 		min-width: 100% !important;
 	}
 }
+
+@media screen and (min-width: 500px) {
+	span.textFitted {
+		padding-right: 200px;
+	}
+}
