@@ -68,6 +68,11 @@ section h3 {
 	cursor: auto;
 }
 
+span.textFitted {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
 @media screen and (max-width: 500px) {
 	h1 {
 		height: 1.5em !important;
