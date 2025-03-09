@@ -147,6 +147,40 @@ donne :
 ##### Sous-titre
 Contenu
 
+### Encadrés
+
+On peut mettre en avant du contenu avec un encadré, en utilisant cette syntaxe :
+
+```
+:::warning
+Attention : information importante.
+
+Très importante.
+:::
+```
+
+:::warning
+Attention : information importante.
+
+Très importante.
+:::
+
+À la place de “warning”, on peut mettre info” ou “success”. On peut aussi ajouter “collapsible”, suivi d'un titre de l'encadré pour que le contenu soit caché par défaut et s'affiche quand on clique sur le titre.
+
+```
+:::info collapsible Plus de détail
+Voici des détails.
+
+À lire pour en savoir plus.
+:::
+```
+
+:::info collapsible Plus de détail
+Voici des détails.
+
+À lire pour en savoir plus.
+:::
+
 ## Multimedia
 
 ### Images
@@ -174,9 +208,17 @@ Par exemple depuis https://tube-numerique-educatif.apps.education.fr/
 ```
 <iframe title="Présentation de la Journée du Libre éducatif 2024" width="300" height="215" src="https://tube-numerique-educatif.apps.education.fr/videos/embed/85f97f35-d00c-4aa8-ad51-bcc9135ff8a2" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
 ```
-donne
 
+Il est recommandé de mettre la vidéo dans un encadré qui se déplie afin d'optimiser le chargement de votre page.
+
+```
+:::info collapsible Voir la vidéo
+<iframe title="Présentation de la Journée du Libre éducatif 2024" width="300" height="215" src="https://tube-numerique-educatif.apps.education.fr/videos/embed/85f97f35-d00c-4aa8-ad51-bcc9135ff8a2" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+:::
+```
+:::info collapsible Voir la vidéo
 <iframe title="Présentation de la Journée du Libre éducatif 2024" width="300" height="215" src="https://tube-numerique-educatif.apps.education.fr/videos/embed/85f97f35-d00c-4aa8-ad51-bcc9135ff8a2" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms" loading="lazy"></iframe>
+:::
 
 
 ## Autres
