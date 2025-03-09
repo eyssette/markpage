@@ -204,7 +204,7 @@ Par exemple :
 
 donne :
 
-<img width="228" height="256" alt="Brigit, une forgeronne et Komit, un castor, sur une enclume, se font un check" src="assets/img/Brigit_et_Komit_transparent.svg" />
+<img width="228" height="256" alt="Brigit, une forgeronne et Komit, un castor, sur une enclume, se font un check" src="assets/img/Brigit_et_Komit_transparent.svg" loading="lazy" />
 
 NB : sur Codimd, vous pouvez faire glisser une image directement depuis votre ordinateur vers l'éditeur de texte.
 Et le lien est automatiquement formaté !
