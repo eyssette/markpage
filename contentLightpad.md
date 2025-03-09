@@ -1,6 +1,6 @@
 ---
 addOns: copycode
-style: button a {text-decoration:none!important}
+style: a.selectTheme{display:inline-block;margin:0.5em 0.5em;}
 ---
 
 # <img width="50" height="50" alt src="lightpad.svg?nolightbox"> Lightpad
@@ -290,7 +290,9 @@ theme: digipad
 ---
 ```
 
-Les thèmes disponibles sont les suivants : <button><a href="/">base</a></button> <button><a href="/?theme=colors">colors</a></button> <button><a href="/?theme=classique">classique</a></button>
+Les thèmes disponibles sont les suivants :
+
+<a href="/" class="selectTheme">base</a> <a href="/?theme=colors" class="selectTheme">colors</a> <a href="/?theme=classique" class="selectTheme">classique</a>
 
 On peut aussi ajouter des styles CSS en les définissant dans une balise `<style>` (à placer de préférence à la fin de son document).
 
