@@ -114,7 +114,7 @@ Texte ++souligné++
 
 ### Couleur
 
-Pour --rouge:écrire en couleur-- on encadre avec `-- --` en précisant la couleur avant les deux points.
+Pour <span style="color:#EB0000">écrire en couleur</span> on encadre avec `-- --` en précisant la couleur avant les deux points.
 
 ```
 Ce texte est --rouge:en rouge--.
