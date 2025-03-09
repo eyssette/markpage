@@ -13,7 +13,7 @@ setTimeout(() => {
 		copyButton.style.cursor = "pointer";
 		copyButton.style.border = "none";
 		copyButton.style.borderRadius = "3px";
-		copyButton.style.backgroundColor = "#007BFF";
+		copyButton.style.backgroundColor = "#0071F0";
 		copyButton.style.color = "white";
 		copyButton.style.zIndex = "10";
 
