@@ -329,12 +329,12 @@ On peut aussi utiliser des [codes emojis](https://eyssette.forge.apps.education.
 
 ### Crédits
 
-Lightpad est une collaboration d'Arnaud Champollion et de Cédric Eyssette, partagée sous licence libre MIT.
+Lightpad est une collaboration d'[Arnaud Champollion](http://educajou.forge.apps.education.fr/) et de [Cédric Eyssette](http://eyssette.forge.apps.education.fr/), partagée sous licence libre MIT.
 
 Le code source est sur [la Forge des Communs Numériques](https://forge.apps.education.fr).
 Voir [la page du projet](https://forge.apps.education.fr/lightpad/lightpad.forge.apps.education.fr).
 
-Cette application est un dérivé de [Markpage](https://eyssette.forge.apps.education.fr/). Si vous voulez construire un site, Markpage intègre les fonctions de Lightpad mais offre d'autres options à configurer.
+Cette application est un dérivé de [Markpage](https://markpage.forge.apps.education.fr/). Si vous voulez construire un site, Markpage intègre les fonctions de Lightpad mais offre d'autres options à configurer.
 
 ### Participer à améliorer Lightpad
 
