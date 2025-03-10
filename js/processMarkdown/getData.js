@@ -45,22 +45,25 @@ export function getMarkdownContentAndCreateMarkpage() {
 	} else {
 		markpageData = parseMarkdown(md);
 		createMarkpage(markpageData);
-		const urlInput1 = document.getElementById("urlInput1");
-		const okButton1 = document.getElementById("okButton1");
-		const urlInput2 = document.getElementById("urlInput2");
-		const okButton2 = document.getElementById("okButton2");
-
-		okButton1.addEventListener("click", () => redirectToUrl(urlInput1));
-		urlInput1.addEventListener("keypress", (event) => {
-			if (event.key === "Enter") {
-				redirectToUrl(urlInput1);
-			}
-		});
-		okButton2.addEventListener("click", () => redirectToUrl(urlInput2));
-		urlInput2.addEventListener("keypress", (event) => {
-			if (event.key === "Enter") {
-				redirectToUrl(urlInput2);
-			}
-		});
+		if (md.includes("urlInput1")) {
+			const urlInput1 = document.getElementById("urlInput1");
+			const okButton1 = document.getElementById("okButton1");
+			okButton1.addEventListener("click", () => redirectToUrl(urlInput1));
+			urlInput1.addEventListener("keypress", (event) => {
+				if (event.key === "Enter") {
+					redirectToUrl(urlInput1);
+				}
+			});
+		}
+		if (md.includes("urlInput2")) {
+			const urlInput2 = document.getElementById("urlInput2");
+			const okButton2 = document.getElementById("okButton2");
+			okButton2.addEventListener("click", () => redirectToUrl(urlInput2));
+			urlInput2.addEventListener("keypress", (event) => {
+				if (event.key === "Enter") {
+					redirectToUrl(urlInput2);
+				}
+			});
+		}
 	}
 }
