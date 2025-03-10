@@ -1,6 +1,6 @@
 ---
 addOns: copycode
-style: a.selectTheme{display:inline-block;margin:0.5em 0.5em;}
+style: a.selectTheme{display:inline-block;margin:0.5em 0.5em;}ul span{font-size:0.9em;display:block;color:#333}
 ---
 
 # <img width="50" height="50" alt src="lightpad.svg?nolightbox"> Lightpad
@@ -26,9 +26,9 @@ Votre Lightpad sera ensuite accessible à l'adresse : `https://lightpad.forge.ap
 
 ### Exemples de pads
 
-- [Un recueil de procédures de calcul réfléchi au cycle 2](https://lightpad.forge.apps.education.fr/?theme=digipad#https://codimd.apps.education.fr/BcCdVm8vRUW0X-TNKZP9zQ)
-- [Un dictionnaire en SVT](https://lightpad.forge.apps.education.fr/#https://codimd.apps.education.fr/s_7J0ekaRqmT7sHslSc19w)
-- [Un cahier de texte](https://lightpad.forge.apps.education.fr/#https://codimd.apps.education.fr/s/c6dPX8ZhT)
+- [Un recueil de procédures de calcul réfléchi au cycle 2](https://lightpad.forge.apps.education.fr/?theme=digipad#https://codimd.apps.education.fr/BcCdVm8vRUW0X-TNKZP9zQ) <span>(Arnaud Champollion)</span>
+- [Un dictionnaire en SVT](https://lightpad.forge.apps.education.fr/#https://codimd.apps.education.fr/s_7J0ekaRqmT7sHslSc19w) <span>(Cyril Iaconelli)</span>
+- [Un cahier de texte](https://lightpad.forge.apps.education.fr/#https://codimd.apps.education.fr/s/c6dPX8ZhT) <span>(Jacques-Olivier Boudier)</span>
 
 ### Modèle
 
