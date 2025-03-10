@@ -15,14 +15,9 @@ C'est une version dérivée de [MarkPage](https://markpage.forge.apps.education.
 
 ### Comment ça marche ?
 
-Il suffit de créer un texte sur [Codimd](https://codimd.apps.education.fr), [Framapad](https://framapad.org/abc/fr/) ou [Digipage](https://digipage.app/) puis de copier son URL.
+Il suffit d'écrire son texte dans un fichier sur [Codimd](https://codimd.apps.education.fr), [Framapad](https://framapad.org/abc/fr/) ou [Digipage](https://digipage.app/) puis de copier son URL.	
 
-Votre Lightpad sera ensuite accessible à l'adresse
-
-```
-https://lightpad.forge.apps.education.fr/#LIEN_DE_VOTRE_FICHIER
-
-```
+Votre Lightpad sera ensuite accessible à l'adresse : `https://lightpad.forge.apps.education.fr/#LIEN_DE_VOTRE_FICHIER`
 
 <label for="urlInput">Copiez ici le lien vers votre fichier :</label>
 
