@@ -9,7 +9,9 @@ let markpageData;
 export function getMarkdownContentAndCreateMarkpage() {
 	const url = window.location.hash.substring(1).replace(/\?.*/, "");
 	let sourceMarkpage = handleURL(url);
-	const isLightpad = window.location.href.includes("lightpad");
+	const isLightpad =
+		window.location.href.includes("https://lightpad.forge.apps.education.fr") ||
+		window.location.href.includes("?lightpad");
 	if (sourceMarkpage == "" && isLightpad) {
 		document.title = "Lightpad";
 		sourceMarkpage = "contentLightpad.md";
