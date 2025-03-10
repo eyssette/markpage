@@ -129,6 +129,7 @@ li {
 ul,
 ol {
 	margin-bottom: 1.5em;
+	margin-left: 0.25em;
 }
 pre {
 	border: 1px solid silver;
