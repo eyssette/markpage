@@ -31,7 +31,7 @@ https://lightpad.forge.apps.education.fr/#LIEN_DE_VOTRE_FICHIER
 
 ### Exemples de pads
 
-- [Un recueil de procédures de calcul réfléchi au cycle 2](https://lightpad.forge.apps.education.fr/?theme=classique#https://codimd.apps.education.fr/BcCdVm8vRUW0X-TNKZP9zQ)
+- [Un recueil de procédures de calcul réfléchi au cycle 2](https://lightpad.forge.apps.education.fr/?theme=digipad#https://codimd.apps.education.fr/BcCdVm8vRUW0X-TNKZP9zQ)
 - [Un dictionnaire en SVT](https://lightpad.forge.apps.education.fr/#https://codimd.apps.education.fr/s_7J0ekaRqmT7sHslSc19w)
 - [Un cahier de texte](https://lightpad.forge.apps.education.fr/#https://codimd.apps.education.fr/s/c6dPX8ZhT)
 
@@ -299,7 +299,7 @@ theme: digipad
 
 Les thèmes disponibles sont les suivants :
 
-<a href="/" class="selectTheme">base</a> <a href="/?theme=colors" class="selectTheme">colors</a> <a href="/?theme=classique" class="selectTheme">classique</a>
+<a href="/" class="selectTheme">base</a> <a href="/?theme=colors" class="selectTheme">colors</a> <a href="/?theme=digipad" class="selectTheme">digipad</a>
 
 On peut aussi ajouter des styles CSS en les définissant dans une balise `<style>` (à placer de préférence à la fin de son document).
 
