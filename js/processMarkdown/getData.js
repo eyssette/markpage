@@ -3,12 +3,18 @@ import { handleURL, redirectToUrl } from "../utils";
 import { parseMarkdown } from "./parseMarkdown";
 import { createMarkpage } from "../ui/createMarkpage";
 
-let md = defaultMD;
+let md;
 let markpageData;
 
-export function getMarkdownContentAndCreateMarkpage() {
+export function getMarkdownContentAndCreateMarkpage(options) {
 	const url = window.location.hash.substring(1).replace(/\?.*/, "");
-	let sourceMarkpage = handleURL(url);
+	const optionUseCorsProxy =
+		options && options.useCorsProxy ? options.useCorsProxy : false;
+	const optionUseDefaultMarkpage =
+		options && options.useDefaultMarkpage ? true : false;
+	let sourceMarkpage = handleURL(url, {
+		useCorsProxy: optionUseCorsProxy,
+	});
 	const isLightpad =
 		window.location.href.includes("https://lightpad.forge.apps.education.fr") ||
 		window.location.href.includes("?lightpad");
@@ -16,33 +22,45 @@ export function getMarkdownContentAndCreateMarkpage() {
 		document.title = "Lightpad";
 		sourceMarkpage = "contentLightpad.md";
 	}
-	if (sourceMarkpage !== "") {
+	if (sourceMarkpage !== "" && !optionUseDefaultMarkpage) {
 		fetch(sourceMarkpage)
 			.then((response) => response.text())
 			.then((data) => {
 				md = data;
-				markpageData = parseMarkdown(md);
-				createMarkpage(markpageData, url);
-				if (sourceMarkpage == "contentLightpad.md") {
-					const urlInput = document.getElementById("urlInput");
-					const okButton = document.getElementById("okButton");
-					okButton.addEventListener("click", () => redirectToUrl(urlInput));
-					urlInput.addEventListener("keypress", (event) => {
-						if (event.key === "Enter") {
-							redirectToUrl(urlInput);
-						}
-					});
+				const isNotMarkdown = !md.includes("# ");
+				if (isNotMarkdown) {
+					getMarkdownContentAndCreateMarkpage({ useDefaultMarkpage: true });
+					alert(
+						"Il y a une erreur dans l'URL ou dans la syntaxe du fichier source. Merci de vous assurer que le fichier est bien accessible et qu'il respecte les règles d'écriture de Markpage",
+					);
+				} else {
+					markpageData = parseMarkdown(md);
+					createMarkpage(markpageData, url);
+					if (sourceMarkpage == "contentLightpad.md") {
+						const urlInput = document.getElementById("urlInput");
+						const okButton = document.getElementById("okButton");
+						okButton.addEventListener("click", () => redirectToUrl(urlInput));
+						urlInput.addEventListener("keypress", (event) => {
+							if (event.key === "Enter") {
+								redirectToUrl(urlInput);
+							}
+						});
+					}
 				}
 			})
 			.catch((error) => {
-				markpageData = parseMarkdown(md);
-				createMarkpage(markpageData);
-				alert(
-					"Il y a une erreur dans l'URL ou dans la syntaxe du fichier source. Merci de vous assurer que le fichier est bien accessible et qu'il respecte les règles d'écriture de Markpage",
-				);
-				console.log(error);
+				if (!optionUseCorsProxy) {
+					getMarkdownContentAndCreateMarkpage({ useCorsProxy: true });
+				} else {
+					getMarkdownContentAndCreateMarkpage({ useDefaultMarkpage: true });
+					alert(
+						"Il y a une erreur dans l'URL ou bien votre fichier n'est pas accessible",
+					);
+					console.log(error);
+				}
 			});
 	} else {
+		md = defaultMD;
 		markpageData = parseMarkdown(md);
 		createMarkpage(markpageData);
 		if (md.includes("urlInput1")) {

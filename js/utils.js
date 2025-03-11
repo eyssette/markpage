@@ -11,9 +11,9 @@ export function getParams(URL) {
 }
 
 // Pour gérer l'URL de la source du flipbook
-export function handleURL(url) {
+export function handleURL(url, options) {
 	if (url !== "") {
-		let addCorsProxy = true;
+		let addCorsProxy = options && options.useCorsProxy ? true : false;
 		// Vérification de la présence d'un raccourci
 		const shortcut = shortcuts.find((element) => element[0] == url);
 		if (shortcut) {
