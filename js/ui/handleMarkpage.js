@@ -43,19 +43,25 @@ export function handleMarkpage(markpageData) {
 	}
 	// Gestion des add-ons
 	if (yaml.addOns && yaml.addOns.includes("kroki")) {
-		setTimeout(() => {
-			document.getElementById("content").innerHTML = window.processKroki(
-				document.getElementById("content").innerHTML,
-			);
+		const interval = setInterval(() => {
+			if (window.processKroki) {
+				clearInterval(interval);
+				document.getElementById("content").innerHTML = window.processKroki(
+					document.getElementById("content").innerHTML,
+				);
+			}
 		}, 200);
 	}
 	if (yaml.addOns && yaml.addOns.includes("lightbox")) {
-		setTimeout(() => {
-			window.lightbox();
-			const linksWithNoLightbox = document.querySelectorAll(
-				"a:not(.lightboxAddOn):not(.navigationLink)",
-			);
-			openLinksInNewTab(linksWithNoLightbox);
+		const interval = setInterval(() => {
+			if (window.lightbox) {
+				clearInterval(interval);
+				window.lightbox();
+				const linksWithNoLightbox = document.querySelectorAll(
+					"a:not(.lightboxAddOn):not(.navigationLink)",
+				);
+				openLinksInNewTab(linksWithNoLightbox);
+			}
 		}, 500);
 	} else {
 		const linksWithNoLightbox = document.querySelectorAll(
@@ -64,10 +70,13 @@ export function handleMarkpage(markpageData) {
 		openLinksInNewTab(linksWithNoLightbox);
 	}
 	if (yaml.addOns && yaml.addOns.includes("text2quiz")) {
-		setTimeout(() => {
-			document.getElementById("content").innerHTML = window.processText2quiz(
-				document.getElementById("content").innerHTML,
-			);
+		const interval = setInterval(() => {
+			if (window.processText2quiz) {
+				clearInterval(interval);
+				document.getElementById("content").innerHTML = window.processText2quiz(
+					document.getElementById("content").innerHTML,
+				);
+			}
 		}, 200);
 	}
 	const hash = window.location.hash.substring(1);
