@@ -434,6 +434,10 @@ iframe {
 	max-width: 100%;
 }
 
+hr:last-child {
+	display: none;
+}
+
 @media screen and (max-width: 834px) {
 	html,
 	footer {
