@@ -225,6 +225,14 @@ h3 img + a {
 	width: 130px;
 }
 
+h4 img,
+h5 img,
+h6 img {
+	height: 1em;
+	object-fit: contain;
+	display: inline-block !important;
+}
+
 h3 aside {
 	display: block;
 	font-weight: 300;
