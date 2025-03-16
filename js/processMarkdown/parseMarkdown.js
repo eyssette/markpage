@@ -20,8 +20,16 @@ export function parseMarkdown(markdownContent) {
 	markdownContent = replaceHashesInCodeAndCommentBlocks(markdownContent);
 	// On distingue le header et le contenu
 	const indexfirstH2title = markdownContent.indexOf("## ");
-	const header = markdownContent.substring(0, indexfirstH2title);
-	const mainContent = markdownContent.substring(indexfirstH2title);
+	const indexfirstH3title = markdownContent.indexOf("### ");
+	const hasNoH2title = indexfirstH2title == indexfirstH3title + 1;
+	// S'il n'y a pas de titre H2, le début du contenu se fait à partir du premier titre H2
+	const indexContentFirstTitle = hasNoH2title
+		? indexfirstH3title
+		: indexfirstH2title;
+	// Le header se situe du début jusqu'au premier titre principal (h2 ou h3)
+	const header = markdownContent.substring(0, indexContentFirstTitle);
+	// Le contenu principal se situe à partir du premier titre principal (h2 ou h3)
+	const mainContent = markdownContent.substring(indexContentFirstTitle);
 
 	// Dans le header, on distingue le titre (défini par un titre h1) et le message initial
 
@@ -43,15 +51,21 @@ export function parseMarkdown(markdownContent) {
 
 	for (const section of sections) {
 		// Dans chaque section, on distingue le titre et le contenu
-		const indexEndTitle = section.indexOf("\n");
-		const sectionTitle = markdownToHTML(section.substring(0, indexEndTitle))
-			.replace("<p>", "")
-			.replace("</p>", "");
-		const sectionTitleAside = sectionTitle.match(/<aside>(.*)<\/aside>/);
-		const sectionTitleAsideHTML = sectionTitleAside
-			? "<h3>" + sectionTitleAside[1] + "</h3>"
-			: "";
-		const sectionContent = section.substring(indexEndTitle);
+		let sectionContent = section;
+		let sectionTitle = "";
+		let sectionTitleAsideHTML = "";
+		if (!section.startsWith("### ")) {
+			// Si la section ne commence pas par "###", c'est qu'on a un titre général de section H2 qui va devenir le titre de notre colonne
+			const indexEndTitle = section.indexOf("\n");
+			sectionTitle = markdownToHTML(section.substring(0, indexEndTitle))
+				.replace("<p>", "")
+				.replace("</p>", "");
+			const sectionTitleAside = sectionTitle.match(/<aside>(.*)<\/aside>/);
+			sectionTitleAsideHTML = sectionTitleAside
+				? "<h3>" + sectionTitleAside[1] + "</h3>"
+				: "";
+			sectionContent = section.substring(indexEndTitle);
+		}
 		sectionsTitles.push(sectionTitle);
 
 		// Dans chaque section, on regarde s'il y a des sous-sections (définis par un titre h3)
