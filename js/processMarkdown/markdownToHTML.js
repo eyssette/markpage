@@ -14,17 +14,30 @@ function showdownExtensionGenericAttributes() {
 				const genericAttributesRegexBlock = /<(\w+)(.*?)>(.*?) ({\.(.*?)})/g;
 
 				const easyGenericAttributesRegexInline = /--(.*?):(.*?)--/g;
+				let lastMatchPositionEasyGenericAttribute = 0;
 				text = text.replace(
 					easyGenericAttributesRegexInline,
-					(match, colorString, textInColor) => {
-						const color = getCSScolor(colorString);
-						const matchPosition = text.indexOf(match);
+					(match, attributeString, textWithAttribute) => {
+						const isColor = getCSScolor(attributeString);
+						const sectionText = text.substring(
+							lastMatchPositionEasyGenericAttribute,
+						);
+						const matchPosition = sectionText.indexOf(match);
+						lastMatchPositionEasyGenericAttribute =
+							lastMatchPositionEasyGenericAttribute +
+							matchPosition +
+							match.length;
 						const before = text.substring(0, matchPosition);
+						const after = text.substring(lastMatchPositionEasyGenericAttribute);
 						const isInCode = /<code>|<pre>/.test(
 							before.slice(before.lastIndexOf("<")),
 						);
-						if (color && !isInCode) {
-							return `<span style="color:${color}">${textInColor}</span>`;
+						const isComment = after && after.startsWith(">");
+						if (!isInCode & !isComment) {
+							const replaceBy = isColor
+								? `<span style="color:${isColor}">${textWithAttribute}</span>`
+								: `<span class="${attributeString}">${textWithAttribute}</span>`;
+							return replaceBy;
 						} else {
 							return match;
 						}
