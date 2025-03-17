@@ -48,6 +48,28 @@ export function handleClicks(baseURL, hash, markpageData) {
 		});
 	});
 
+	if (yaml.lightpad) {
+		document.querySelectorAll("#initialMessage button").forEach((button) => {
+			button.addEventListener("click", function () {
+				const searchInput = document.querySelector("#searchInput");
+				// On récupère les mots s'il y en a qui sont présents dans le champ de recherche
+				let words = searchInput.value.trim().split(/\s+/).filter(Boolean);
+
+				if (this.classList.toggle("active")) {
+					// Ajouter le texte du bouton aux mots du champ de recherche
+					words.push(this.textContent.trim());
+				} else {
+					// Retirer le texte du bouton aux mots du champ de recherche
+					words = words.filter((word) => word !== this.textContent.trim());
+				}
+
+				// On actualise le champ de recherche et on déclenche la recherche
+				searchInput.value = words.join(" ");
+				searchInput.dispatchEvent(new Event("input", { bubbles: true }));
+			});
+		});
+	}
+
 	// Possibilité de se déplacer à gauche ou à droite avec un clic maintenu sur la souris
 	// (Dans le mode "pad")
 	if (yaml.pad) {
