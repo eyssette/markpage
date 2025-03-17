@@ -102,8 +102,10 @@ export function removeUselessCarriages(text) {
 	return text;
 }
 
-export function removeTagsFromString(str) {
-	return str.replace(/(<([^>]+)>)/gi, "");
+export function removeTagsFromStringButKeepAltImages(str) {
+	return str
+		.replace(/<img[^>]*alt=["']([^"']+)["'][^>]*>/gi, "$1") // Remplace les balises <img> par leur contenu alt
+		.replace(/<[^>]+>/gi, ""); // Supprime toutes les autres balises
 }
 
 export function loadScript(src) {

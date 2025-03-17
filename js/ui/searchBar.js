@@ -1,5 +1,5 @@
 import { yaml } from "../processMarkdown/yaml";
-import { removeTagsFromString } from "../utils";
+import { removeTagsFromStringButKeepAltImages } from "../utils";
 
 // Gestion de la searchBar
 export function searchBar(hash, markpageData) {
@@ -22,7 +22,7 @@ export function searchBar(hash, markpageData) {
 					let textSection =
 						sectionsTitle[i].toString().toLowerCase() +
 						subSectionsData[i].toString().toLowerCase();
-					textSection = removeTagsFromString(textSection);
+					textSection = removeTagsFromStringButKeepAltImages(textSection);
 					// Diviser inputText en plusieurs termes si nécessaire
 					let terms = inputText.toLowerCase().trim().split(/\s+/);
 
@@ -35,7 +35,8 @@ export function searchBar(hash, markpageData) {
 								let textSubSection = subSectionsData[i][j]
 									.toString()
 									.toLowerCase();
-								textSubSection = removeTagsFromString(textSubSection);
+								textSubSection =
+									removeTagsFromStringButKeepAltImages(textSubSection);
 
 								if (terms.every((term) => textSubSection.includes(term))) {
 									subSectionsResults.push([i, j]);
