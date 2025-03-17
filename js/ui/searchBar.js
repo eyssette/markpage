@@ -161,19 +161,20 @@ export function searchBar(hash, markpageData) {
 						activeSection.classList.add("isColumnResultFromSearch");
 					});
 				}
-				if (hasResults) {
-					sections.forEach((section) => {
-						if (
-							section.classList.contains("isResultFromSearch") ||
+				sections.forEach((section) => {
+					if (
+						hasResults &&
+						(section.classList.contains("isResultFromSearch") ||
 							section.classList.contains("hasResultFromSearch") ||
-							section.classList.contains("isColumnResultFromSearch")
-						) {
-							section.classList.remove("hide");
-						} else {
+							section.classList.contains("isColumnResultFromSearch"))
+					) {
+						section.classList.remove("hide");
+					} else {
+						if (inputText.length > 2) {
 							section.classList.add("hide");
 						}
-					});
-				}
+					}
+				});
 			}
 		}
 
