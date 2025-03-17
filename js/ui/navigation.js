@@ -102,6 +102,15 @@ export function handleNavigation(baseURL, hash, params, markpageData) {
 
 	// Navigation avec les touches de navigation
 	document.addEventListener("keydown", function (event) {
+		// Vérifier si l'élément actif est un champ de saisie
+		const isTextInput =
+			document.activeElement &&
+			(document.activeElement.tagName === "INPUT" ||
+				document.activeElement.tagName === "TEXTAREA" ||
+				document.activeElement.isContentEditable);
+
+		if (isTextInput) return; // Ne rien faire si on est dans un champ de saisie
+
 		if (event.key === "ArrowLeft") {
 			event.preventDefault();
 			moveNextOrPrevious(params, false);
