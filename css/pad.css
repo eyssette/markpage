@@ -160,7 +160,8 @@ footer {
 	border-radius: 15px;
 }
 
-.hide {
+.hide,
+.displaySubSection .subSection.visible.hide {
 	display: none !important;
 }
 .isColumnResultFromSearch .hide {
