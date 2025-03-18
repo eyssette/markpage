@@ -6,6 +6,7 @@ export function searchBar(hash, markpageData) {
 	const sectionsTitle = markpageData[2];
 	const subSectionsData = markpageData[3];
 	const searchbarElement = document.getElementById("searchBar");
+	const searchInput = document.getElementById("searchInput");
 	if (yaml.searchbar) {
 		// Par défaut, on gère la searchbar, mais on peut décider dans les paramètres YAML de ne pas avoir de searchbar
 		searchbarElement.style.display = "block";
@@ -13,9 +14,7 @@ export function searchBar(hash, markpageData) {
 			let sectionsResults = [];
 			let subSectionsResults = [];
 			let sectionsColumnResults = [];
-			const inputText = document
-				.getElementById("searchInput")
-				.value.toLowerCase();
+			const inputText = searchInput.value.toLowerCase();
 			if (inputText.length > 2) {
 				for (let i = 0; i < subSectionsData.length; i++) {
 					// Recherche dans le titre de chaque section + le contenu de chaque section
@@ -179,19 +178,18 @@ export function searchBar(hash, markpageData) {
 		}
 
 		// Gestion de l'input pour faire une recherche dans le contenu
-		document
-			.getElementById("searchInput")
-			.addEventListener("input", searchText);
-		document
-			.getElementById("searchInput")
-			.addEventListener("keydown", function (event) {
-				// Si on appuie sur Escape, on sort de la barre de recherche
-				if (event.key === "Escape" || event.keyCode === 27) {
-					// on réinitialise le champ d'entrée avec une chaîne vide
-					document.getElementById("searchInput").value = "";
-					searchText();
-				}
-			});
+		searchInput.addEventListener("input", searchText);
+		searchInput.addEventListener("keydown", function (event) {
+			// Si on appuie sur Escape, on sort de la barre de recherche
+			if (event.key === "Escape" || event.keyCode === 27) {
+				// on réinitialise le champ d'entrée avec une chaîne vide
+				searchInput.value = "";
+				searchText();
+				setTimeout(() => {
+					searchInput.blur();
+				}, 100);
+			}
+		});
 	} else {
 		// Si on ne veut pas de searchbar
 		searchbarElement.remove();
