@@ -41,8 +41,12 @@ export function searchBar(hash, markpageData) {
 									subSectionsResults.push([i, j]);
 								}
 							}
-							// Cas où on n'a trouvé les termes que dans le titre de la section
-							if (yaml.lightpad && subSectionsResults.length == 0) {
+							// Cas où on n'a trouvé les termes que dans le titre de la section et où on n'est pas dans un mode sans colonnes
+							if (
+								yaml.lightpad &&
+								subSectionsResults.length == 0 &&
+								!document.body.classList.contains("noColumns")
+							) {
 								sectionsColumnResults.push(i);
 							}
 						} else {
