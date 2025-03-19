@@ -190,6 +190,11 @@ export function searchBar(hash, markpageData) {
 				}, 100);
 			}
 		});
+		document.body.addEventListener("click", function (event) {
+			if (event.target !== searchInput) {
+				searchInput.blur();
+			}
+		});
 	} else {
 		// Si on ne veut pas de searchbar
 		searchbarElement.remove();
