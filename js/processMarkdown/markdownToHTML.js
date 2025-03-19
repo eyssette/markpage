@@ -34,9 +34,23 @@ function showdownExtensionGenericAttributes() {
 						);
 						const isComment = after && after.startsWith(">");
 						if (!isInCode & !isComment) {
-							const replaceBy = isColor
-								? `<span style="color:${isColor}">${textWithAttribute}</span>`
-								: `<span class="${attributeString}">${textWithAttribute}</span>`;
+							let replaceBy;
+							const isTag = attributeString.startsWith("tag");
+							if (!isTag) {
+								replaceBy = isColor
+									? `<span style="color:${isColor}">${textWithAttribute}</span>`
+									: `<span class="${attributeString}">${textWithAttribute}</span>`;
+							} else {
+								const contentAfterTag = attributeString
+									.replace("tag", "")
+									.trim();
+								const colourBackground = getCSScolor(contentAfterTag);
+								if (colourBackground) {
+									replaceBy = `<span class="tag" style="background-color:${colourBackground}">${textWithAttribute}</span>`;
+								} else {
+									replaceBy = `<span class="tag ${contentAfterTag}">${textWithAttribute}</span>`;
+								}
+							}
 							return replaceBy;
 						} else {
 							return match;
