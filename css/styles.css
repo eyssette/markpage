@@ -396,6 +396,24 @@ details {
 	cursor: pointer;
 }
 
+.tag {
+	display: inline-flex;
+	font-size: 12px;
+	border: none;
+	border-radius: 15px;
+	width: fit-content;
+	padding: 0 15px;
+	height: 30px;
+	font-weight: bold;
+	transition: 0.3s;
+	background-color: #01579b;
+	color: #ffffff;
+	align-items: center;
+}
+.tag:hover {
+	opacity: 0.7;
+}
+
 pre {
 	background-color: white;
 	padding: 2em 1.5em;
