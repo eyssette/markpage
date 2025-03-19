@@ -1,3 +1,4 @@
+// prettier-ignore
 const frenchToEnglishColorName = {
 	// Basic colors
 	argent: "Silver",
@@ -22,18 +23,18 @@ const frenchToEnglishColorName = {
 	indigo: "Indigo",
 	// Couleur plus claire ou plus foncée
 	bleuclair: "lightblue",
-	bleufoncé: "darkblue",
+	"bleufoncé": "darkblue",
 	cyanclair: "lightcyan",
-	cyanfoncé: "darkcyan",
-	magentafoncé: "DarkMagenta",
+	"cyanfoncé": "darkcyan",
+	"magentafoncé": "DarkMagenta",
 	magentaclair: "Orchid",
 	marronclair: "Chocolate",
 	rougeclair: "LightCoral",
-	rosefoncé: "DeepPink",
+	"rosefoncé": "DeepPink",
 	vertclair: "PaleGreen",
-	vertfoncé: "DarkGreen",
+	"vertfoncé": "DarkGreen",
 	violetclair: "Plum",
-	violetfoncé: "Purple",
+	"violetfoncé": "Purple",
 	// Noms composés
 	vertolive: "OliveDrab",
 	bleuciel: "SkyBlue",
