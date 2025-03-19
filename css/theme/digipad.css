@@ -245,9 +245,6 @@ input {
 	html {
 		background-color: white;
 	}
-	.displaySubSection main {
-		box-shadow: none;
-	}
 	body:not(.lightpad) #content > section:nth-of-type(5n + 1) h3,
 	body:not(.lightpad) #content > section:nth-of-type(5n + 2) h3,
 	body:not(.lightpad) #content > section:nth-of-type(5n + 3) h3,

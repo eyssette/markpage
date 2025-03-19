@@ -97,3 +97,10 @@ span.textFitted {
 		padding-right: 200px;
 	}
 }
+
+@media screen and (max-width: 834px) {
+	.displaySubSection main {
+		box-shadow: none;
+		background-color: transparent;
+	}
+}
