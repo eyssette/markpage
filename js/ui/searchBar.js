@@ -181,6 +181,25 @@ export function searchBar(hash, markpageData) {
 			}
 		}
 
+		if (window.matchMedia("(max-width: 500px)").matches) {
+			const title = document.querySelector("header h1");
+			function updateTitleVisibility() {
+				const imageInTitle = title.querySelector("img");
+				if (searchInput.matches(":hover") || searchInput.value.trim() !== "") {
+					title.style.color = "transparent";
+					imageInTitle.style.display = "none";
+				} else {
+					title.style.color = "white";
+					imageInTitle.style.display = "inline-block";
+				}
+			}
+			searchbarElement.addEventListener("mouseover", updateTitleVisibility);
+			searchbarElement.addEventListener("mouseout", updateTitleVisibility);
+			searchInput.addEventListener("input", updateTitleVisibility);
+			searchInput.addEventListener("focus", updateTitleVisibility);
+			searchInput.addEventListener("blur", updateTitleVisibility);
+		}
+
 		// Gestion de l'input pour faire une recherche dans le contenu
 		searchInput.addEventListener("input", searchText);
 		searchInput.addEventListener("keydown", function (event) {
@@ -195,7 +214,7 @@ export function searchBar(hash, markpageData) {
 			}
 		});
 		document.body.addEventListener("click", function (event) {
-			if (event.target !== searchInput) {
+			if (event.target !== searchInput && event.target.tagName != "LABEL") {
 				searchInput.blur();
 			}
 		});
