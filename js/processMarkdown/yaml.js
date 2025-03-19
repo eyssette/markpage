@@ -34,7 +34,7 @@ export function processYAML(markdownContent) {
 			} else {
 				yaml.addOns = "textFit";
 			}
-			if (yaml.bandeau || yaml.banner) {
+			if ((yaml.bandeau && yaml.bandeau != "non") || yaml.banner) {
 				document.body.classList.add("useBanner");
 			}
 		}
