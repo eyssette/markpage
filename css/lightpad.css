@@ -73,6 +73,44 @@ span.textFitted {
 	padding-right: 10px;
 }
 
+.useBanner #initialMessage {
+	display: block !important;
+	width: fit-content;
+	max-width: fit-content;
+	margin-top: 3em;
+	margin-bottom: 0;
+	margin-left: 0.75em;
+	overflow: hidden !important;
+}
+.useBanner #initialMessage button {
+	padding: 0 15px;
+	height: 30px;
+	margin-right: 0.75em;
+	background-color: white !important;
+	border: 1px solid black;
+	color: black;
+	font-weight: bold;
+	border-radius: 7px;
+}
+.useBanner #initialMessage button:hover {
+	background-color: #aaa !important;
+}
+.useBanner #initialMessage button.active {
+	background-color: #333 !important;
+	color: white;
+}
+.useBanner #initialMessage button:first-of-type {
+	margin-left: 1em;
+}
+.useBanner.noColumns #content {
+	overflow: visible;
+	padding-top: 0 !important;
+	margin-top: -1.75em;
+}
+.useBanner #innerBox {
+	overflow-y: auto !important;
+}
+
 @media screen and (max-width: 500px) {
 	h1 {
 		height: 1.5em !important;
