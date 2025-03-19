@@ -52,7 +52,8 @@ function isValidColorNameCSS(string) {
 }
 
 export function getCSScolor(string) {
-	if (isValidColorNameCSS[string]) {
+	string = string.toLowerCase();
+	if (isValidColorNameCSS(string)) {
 		return string;
 	} else {
 		return frenchToEnglishColorName[string];
