@@ -48,10 +48,13 @@ export function handleClicks(baseURL, hash, markpageData) {
 		});
 	});
 
+	// Gestion des boutons de filtres dans Lightpad
 	if (yaml.lightpad) {
-		document.querySelectorAll("#initialMessage button").forEach((button) => {
+		const searchInput = document.querySelector("#searchInput");
+		const buttons = document.querySelectorAll("#initialMessage button");
+		// Si on clique sur un boutons de filtre, alors on ajoute le contenu de ce bouton dans le champ de recherche
+		buttons.forEach((button) => {
 			button.addEventListener("click", function () {
-				const searchInput = document.querySelector("#searchInput");
 				// On récupère les mots s'il y en a qui sont présents dans le champ de recherche
 				let words = searchInput.value.trim().split(/\s+/).filter(Boolean);
 
@@ -66,6 +69,18 @@ export function handleClicks(baseURL, hash, markpageData) {
 				// On actualise le champ de recherche et on déclenche la recherche
 				searchInput.value = words.join(" ");
 				searchInput.dispatchEvent(new Event("input", { bubbles: true }));
+			});
+		});
+		// Réciproquement : si on édite le champ de recherche et qu'on supprime ou qu'on ajoute un filtre, alors le bouton correspondant doit avoir ou perdre le statut "active"
+		searchInput.addEventListener("input", function () {
+			const words = this.value.trim().split(/\s+/).filter(Boolean);
+			buttons.forEach((button) => {
+				const buttonText = button.textContent.trim();
+				if (words.includes(buttonText)) {
+					button.classList.add("active");
+				} else {
+					button.classList.remove("active");
+				}
 			});
 		});
 	}
