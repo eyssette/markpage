@@ -19,6 +19,10 @@ main,
 	background-color: rgb(155, 201, 219) !important;
 }
 
+#innerBox {
+	background-color: transparent;
+}
+
 #content > section {
 	background-color: rgb(155, 201, 219) !important;
 }

@@ -182,6 +182,7 @@ iframe {
 
 .noColumns #content {
 	overflow-x: auto;
+	padding-top: 2.75em;
 }
 .noColumns .sectionContent {
 	display: flex !important;
@@ -191,7 +192,7 @@ iframe {
 	overflow-y: unset;
 }
 .noColumns h2 {
-	display: none;
+	display: none !important;
 }
 .noColumns .subSection,
 .noColumns .noSubSections {
