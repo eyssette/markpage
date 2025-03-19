@@ -187,10 +187,10 @@ export function searchBar(hash, markpageData) {
 				const imageInTitle = title.querySelector("img");
 				if (searchInput.matches(":hover") || searchInput.value.trim() !== "") {
 					title.style.color = "transparent";
-					imageInTitle.style.display = "none";
+					imageInTitle.style.opacity = "0";
 				} else {
 					title.style.color = "white";
-					imageInTitle.style.display = "inline-block";
+					imageInTitle.style.opacity = "1";
 				}
 			}
 			searchbarElement.addEventListener("mouseover", updateTitleVisibility);
