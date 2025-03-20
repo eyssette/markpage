@@ -19,9 +19,10 @@ export function searchBar(hash, markpageData) {
 			if (inputText.length > 2) {
 				for (let i = 0; i < subSectionsData.length; i++) {
 					// Recherche dans le titre de chaque section + le contenu de chaque section
+					const titleSection = sectionsTitle[i].toString().toLowerCase();
+					const contentSection = subSectionsData[i].toString().toLowerCase();
 					let textSection =
-						sectionsTitle[i].toString().toLowerCase() +
-						subSectionsData[i].toString().toLowerCase();
+						sectionsTitle[i].toString().toLowerCase() + contentSection;
 					textSection = removeTagsFromStringButKeepAltImages(textSection);
 					// Diviser inputText en plusieurs termes si nécessaire
 					let terms = inputText.toLowerCase().trim().split(/\s+/);
@@ -42,12 +43,8 @@ export function searchBar(hash, markpageData) {
 									subSectionsResults.push([i, j]);
 								}
 							}
-							// Cas où on n'a trouvé les termes que dans le titre de la section et où on n'est pas dans un mode sans colonnes
-							if (
-								yaml.lightpad &&
-								subSectionsResults.length == 0 &&
-								!document.body.classList.contains("noColumns")
-							) {
+							// Cas où on a trouvé les termes dans le titre de la section : du coup c'est toute la colonne qu'il faut afficher
+							if (terms.every((term) => titleSection.includes(term))) {
 								sectionsColumnResults.push(i);
 							}
 						} else {
