@@ -103,6 +103,9 @@ h1 span.textFitted {
 .useBanner #initialMessage button:first-of-type {
 	margin-left: 1em;
 }
+.useBanner #content {
+	margin-top: -3.75em;
+}
 .useBanner.noColumns #content {
 	overflow: visible;
 	padding-top: 0 !important;
