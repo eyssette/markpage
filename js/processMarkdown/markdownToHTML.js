@@ -107,7 +107,7 @@ function showdownExtensionAdmonitions() {
 				text = text.replace(
 					regex,
 					(match, type, collapsible, title, content, offset) => {
-						title = title.replace("<br />", "");
+						title = title.replace("<br />", "").replace("</p>", "");
 						// Vérifier si l'admonition est dans un bloc code en regardant autour
 						const before = text.substring(0, offset);
 						const isInCode = /<code>|<pre>/.test(
@@ -190,10 +190,10 @@ const converter = new Showdown.Converter({
 	simpleLineBreaks: true,
 	tables: true,
 	extensions: [
+		showdownExtensionGenericAttributes,
 		showdownExtensionAdmonitions,
 		showdownExtensionUnderline,
 		showdownExtensionHighlight,
-		showdownExtensionGenericAttributes,
 	],
 });
 
