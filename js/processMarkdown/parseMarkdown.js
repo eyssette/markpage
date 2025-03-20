@@ -1,6 +1,10 @@
 import { processYAML, yaml } from "./yaml";
 import { markdownToHTML } from "./markdownToHTML";
-import { filterElementWithNoContent, removeUselessCarriages } from "../utils";
+import {
+	filterElementWithNoContent,
+	removeUselessCarriages,
+	sortCaseAndAccentInsensitive,
+} from "../utils";
 function replaceHashesInCodeAndCommentBlocks(markdown) {
 	return markdown.replace(/(```[\s\S]*?```|<!--[\s\S]*?-->)/g, (match) => {
 		return match.replace(/#/g, "\uE000"); // Utilisation d'un caractère Unicode spécial
@@ -51,7 +55,7 @@ export function parseMarkdown(markdownContent) {
 			while ((match = regex.exec(text)) !== null) {
 				matches.add(match[1].trim());
 			}
-			return Array.from(matches).sort();
+			return sortCaseAndAccentInsensitive(Array.from(matches));
 		}
 		const tags = extractTags(mainContent);
 		// On transforme ces tags en boutons dans le message initial

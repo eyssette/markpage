@@ -152,3 +152,10 @@ export function openLinksInNewTab(links) {
 		link.setAttribute("rel", "noopener noreferrer");
 	});
 }
+
+// Trier un tableau sans prendre en compte la casse et les accents
+export function sortCaseAndAccentInsensitive(array) {
+	return array.sort((a, b) => {
+		return a.localeCompare(b, "fr", { sensitivity: "base" });
+	});
+}
