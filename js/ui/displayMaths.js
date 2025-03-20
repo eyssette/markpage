@@ -1,3 +1,4 @@
+import { yaml } from "../processMarkdown/yaml";
 import { convertLatexExpressions } from "../processMarkdown/convertLatex";
 
 export function displayMaths() {
@@ -5,9 +6,14 @@ export function displayMaths() {
 		if (window.katex) {
 			clearInterval(interval);
 			const initialMessageElement = document.getElementById("initialMessage");
-			initialMessageElement.innerHTML = convertLatexExpressions(
-				initialMessageElement.innerHTML,
-			);
+			const initialMessageElementBaseContent = initialMessageElement.innerHTML;
+			const useFiltersButtons =
+				initialMessageElementBaseContent.includes("<button>");
+			if (yaml && yaml.lightpad && !useFiltersButtons) {
+				initialMessageElement.innerHTML = convertLatexExpressions(
+					initialMessageElementBaseContent,
+				);
+			}
 			const sectionContent = document.querySelectorAll(".sectionContent");
 			for (const section of sectionContent) {
 				const subSectionsContent =
