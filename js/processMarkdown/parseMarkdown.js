@@ -38,9 +38,30 @@ export function parseMarkdown(markdownContent) {
 		markpageTitle = markpageTitle.replace(/<br.*?>/, " – ");
 	}
 	const indexStartTitle = header.indexOf(markpageTitle);
-	const initialMessageContent = header.substring(
+	let initialMessageContent = header.substring(
 		indexStartTitle + markpageTitle.length + 1,
 	);
+	if (yaml && yaml.lightpad && yaml.autofiltres && yaml.autofiltres != "non") {
+		// Cas où on utilise autofiltres dans lightpad
+		// On extrait les tags dans le contenu principal
+		function extractTags(text) {
+			const regex = /--tag.*?:(.*?)--/g;
+			let matches = new Set();
+			let match;
+			while ((match = regex.exec(text)) !== null) {
+				matches.add(match[1].trim());
+			}
+
+			return Array.from(matches).sort();
+		}
+		const tags = extractTags(mainContent);
+		// On transforme ces tags en boutons dans le message initial
+		if (tags.length > 0) {
+			initialMessageContent = tags
+				.map((tag) => `<button>${tag}</button>`)
+				.join("");
+		}
+	}
 
 	// Dans le contenu, on distingue chaque section (définie par un titre h2)
 	const sections = mainContent
