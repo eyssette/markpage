@@ -26,6 +26,8 @@ function adjustHeight(element) {
 		if (document.body.classList.contains("noColumns")) {
 			availableHeight = availableHeight - 50;
 		}
+		// On a au minimum une hauteur de 500px pour chaque colonne (nécessaire si on utilise un bandeau avec Lightpad sur petit écran et que le bandeau est long : sinon la colonne ne s'afficherait que dans l'espace restant, qui serait tout petit)
+		availableHeight = Math.max(availableHeight, 500);
 		element.style.height = `${availableHeight}px`;
 		document.body.classList.add("adjustHeightColumns");
 	} else {
