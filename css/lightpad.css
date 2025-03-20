@@ -116,6 +116,10 @@ h1 span.textFitted {
 }
 
 @media screen and (max-width: 500px) {
+	.useBanner #initialMessage {
+		max-height: 100px;
+		overflow-y: auto !important;
+	}
 	h1 {
 		height: 1.5em !important;
 		justify-content: center !important;
