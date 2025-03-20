@@ -51,7 +51,6 @@ export function parseMarkdown(markdownContent) {
 			while ((match = regex.exec(text)) !== null) {
 				matches.add(match[1].trim());
 			}
-
 			return Array.from(matches).sort();
 		}
 		const tags = extractTags(mainContent);
