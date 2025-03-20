@@ -58,12 +58,18 @@ export function handleClicks(baseURL, hash, markpageData) {
 				// On récupère les mots s'il y en a qui sont présents dans le champ de recherche
 				let words = searchInput.value.trim().split(/\s+/).filter(Boolean);
 
+				// On récupère le contenu du bouton
+				// On utilise "_" à la place " " pour permettre les mots composés dans les boutons
+				const buttonContent = this.textContent.trim().replaceAll(" ", "_");
+
 				if (this.classList.toggle("active")) {
 					// Ajouter le texte du bouton aux mots du champ de recherche
-					words.push(this.textContent.trim());
+					// On utilise "_" à la place " " pour permettre les mots composés dans les boutons
+					words.push(buttonContent);
 				} else {
 					// Retirer le texte du bouton aux mots du champ de recherche
-					words = words.filter((word) => word !== this.textContent.trim());
+
+					words = words.filter((word) => word !== buttonContent);
 				}
 
 				// On actualise le champ de recherche et on déclenche la recherche
@@ -75,7 +81,7 @@ export function handleClicks(baseURL, hash, markpageData) {
 		searchInput.addEventListener("input", function () {
 			const words = this.value.trim().split(/\s+/).filter(Boolean);
 			buttons.forEach((button) => {
-				const buttonText = button.textContent.trim();
+				const buttonText = button.textContent.trim().replaceAll(" ", "_");
 				if (words.includes(buttonText)) {
 					button.classList.add("active");
 				} else {

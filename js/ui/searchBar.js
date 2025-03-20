@@ -14,7 +14,8 @@ export function searchBar(hash, markpageData) {
 			let sectionsResults = [];
 			let subSectionsResults = [];
 			let sectionsColumnResults = [];
-			const inputText = searchInput.value.toLowerCase();
+			// On fait la recherche sans prendre en compte la casse et on remplace "_" par " " car les boutons de filtre avec des mots composés utilisent "_"
+			const inputText = searchInput.value.toLowerCase().replaceAll("_", " ");
 			if (inputText.length > 2) {
 				for (let i = 0; i < subSectionsData.length; i++) {
 					// Recherche dans le titre de chaque section + le contenu de chaque section
