@@ -42,8 +42,8 @@ export function parseMarkdown(markdownContent) {
 		markpageTitle = markpageTitle.replace(/<br.*?>/, " – ");
 	}
 	const indexStartTitle = header.indexOf(markpageTitle);
-	let initialMessageContent = header.substring(
-		indexStartTitle + markpageTitle.length + 1,
+	let initialMessageContent = markdownToHTML(
+		header.substring(indexStartTitle + markpageTitle.length + 1),
 	);
 	if (yaml && yaml.lightpad && yaml.autofiltres && yaml.autofiltres != "non") {
 		// Cas où on utilise autofiltres dans lightpad
@@ -60,9 +60,10 @@ export function parseMarkdown(markdownContent) {
 		const tags = extractTags(mainContent);
 		// On transforme ces tags en boutons dans le message initial
 		if (tags.length > 0) {
-			initialMessageContent = tags
-				.map((tag) => `<button>${tag}</button>`)
-				.join("");
+			initialMessageContent =
+				'<div id="autoFilters">' +
+				tags.map((tag) => `<button>${tag}</button>`).join("") +
+				"</div>";
 		}
 	}
 
@@ -155,7 +156,7 @@ export function parseMarkdown(markdownContent) {
 
 	const markpageData = [
 		markdownToHTML(markpageTitle).replace("<p>", "").replace("</p>", ""),
-		markdownToHTML(initialMessageContent),
+		initialMessageContent,
 		sectionsTitles,
 		subSectionsArray,
 	];

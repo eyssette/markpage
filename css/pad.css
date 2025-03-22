@@ -252,8 +252,9 @@ iframe {
 		width: 0px;
 	}
 	#searchBar input:hover,
-	#searchBar input:not(:placeholder-shown) {
-		width: 70vw;
+	#searchBar input:not(:placeholder-shown),
+	#searchBar input.active {
+		width: 70vw !important;
 		background: white;
 		border: 1px solid black;
 		margin-right: 10px;

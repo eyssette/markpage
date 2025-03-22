@@ -92,6 +92,10 @@ h1 span.textFitted {
 	color: black;
 	font-weight: bold;
 	border-radius: 7px;
+	min-width: fit-content;
+}
+#autoFilters {
+	margin: 1em 0;
 }
 .useBanner #initialMessage button:hover {
 	background-color: #aaa !important;
@@ -116,9 +120,24 @@ h1 span.textFitted {
 }
 
 @media screen and (max-width: 500px) {
-	.useBanner #initialMessage {
-		max-height: 100px;
-		overflow-y: auto !important;
+	#autoFilters {
+		position: absolute;
+		background: #fffffff0;
+		z-index: -10;
+		margin-left: -30px;
+		padding: 2em;
+		height: 100vh;
+	}
+	#autoFilters:before {
+		content: "❌";
+		position: absolute;
+		right: 30px;
+		font-size: 1em;
+		top: 10px;
+		opacity: 0.6;
+	}
+	.useBanner #content {
+		margin-top: -2em;
 	}
 	h1 {
 		height: 1.5em !important;

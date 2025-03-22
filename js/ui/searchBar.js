@@ -178,24 +178,43 @@ export function searchBar(hash, markpageData) {
 				});
 			}
 		}
-
-		if (window.matchMedia("(max-width: 500px)").matches) {
+		function displaySearchBar(shouldDisplaySearchBar) {
 			const title = document.querySelector("header h1");
-			function updateTitleVisibility() {
-				const imageInTitle = title.querySelector("img");
-				if (searchInput.matches(":hover") || searchInput.value.trim() !== "") {
-					title.style.color = "transparent";
+			const imageInTitle = title.querySelector("img");
+			const autoFilters = document.querySelector("header #autoFilters");
+			if (shouldDisplaySearchBar) {
+				title.style.color = "transparent";
+				if (imageInTitle) {
 					imageInTitle.style.opacity = "0";
-				} else {
-					title.style.color = "white";
+				}
+				searchInput.classList.add("active");
+				if (autoFilters) {
+					autoFilters.style.zIndex = "100";
+				}
+			} else {
+				title.style.color = "white";
+				if (imageInTitle) {
 					imageInTitle.style.opacity = "1";
 				}
+				searchInput.classList.remove("active");
+				if (autoFilters) {
+					autoFilters.style.zIndex = "-100";
+				}
 			}
-			searchbarElement.addEventListener("mouseover", updateTitleVisibility);
-			searchbarElement.addEventListener("mouseout", updateTitleVisibility);
-			searchInput.addEventListener("input", updateTitleVisibility);
-			searchInput.addEventListener("focus", updateTitleVisibility);
-			searchInput.addEventListener("blur", updateTitleVisibility);
+		}
+		if (window.matchMedia("(max-width: 500px)").matches) {
+			searchbarElement.addEventListener("mouseover", function () {
+				displaySearchBar(true);
+			});
+			/* searchbarElement.addEventListener("mouseout", function () {
+				displaySearchBar(false);
+			}); */
+			searchInput.addEventListener("input", function () {
+				displaySearchBar(true);
+			});
+			searchInput.addEventListener("focus", function () {
+				displaySearchBar(true);
+			});
 		}
 
 		// Gestion de l'input pour faire une recherche dans le contenu
@@ -212,8 +231,31 @@ export function searchBar(hash, markpageData) {
 			}
 		});
 		document.body.addEventListener("click", function (event) {
-			if (event.target !== searchInput && event.target.tagName != "LABEL") {
-				searchInput.blur();
+			if (window.matchMedia("(max-width: 500px)").matches) {
+				if (
+					event.target.parentNode.id == "autoFilters" ||
+					event.target.id == "searchInput"
+				) {
+					displaySearchBar(true);
+				} else {
+					const autoFilters = document.querySelector("header #autoFilters");
+					if (searchInput.value.trim() == "") {
+						displaySearchBar(false);
+					} else {
+						if (autoFilters) {
+							autoFilters.style.zIndex = "-100";
+						}
+					}
+				}
+			} else {
+				if (
+					event.target.id != "searchInput" &&
+					event.target.tagName != "LABEL"
+				) {
+					setTimeout(() => {
+						searchInput.blur();
+					}, 100);
+				}
 			}
 		});
 	} else {
