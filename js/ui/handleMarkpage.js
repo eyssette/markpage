@@ -25,6 +25,9 @@ function adjustHeight(element) {
 	if (availableHeight > 500 || yaml.lightpad) {
 		if (document.body.classList.contains("noColumns")) {
 			availableHeight = availableHeight - 50;
+		} else {
+			const titleColumnsHeight = document.querySelector("h2").clientHeight;
+			availableHeight = availableHeight - titleColumnsHeight - 10;
 		}
 		// On a au minimum une hauteur de 400px pour chaque colonne (nécessaire si on utilise un bandeau avec Lightpad sur petit écran et que le bandeau est long : sinon la colonne ne s'afficherait que dans l'espace restant, qui serait tout petit)
 		availableHeight = Math.max(availableHeight, 400);
