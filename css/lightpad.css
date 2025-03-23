@@ -167,6 +167,15 @@ h1 span.textFitted {
 	span.textFitted {
 		padding-right: 200px;
 	}
+	#autoFilters {
+		position: fixed;
+		width: 95vw;
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.useBanner #content {
+		margin-top: 0;
+	}
 }
 
 @media screen and (max-width: 834px) {

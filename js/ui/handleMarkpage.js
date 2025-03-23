@@ -161,6 +161,22 @@ export function handleMarkpage(markpageData) {
 
 	if (yaml && yaml.pad && yaml.padScroll) {
 		function resizeSectionContentElements() {
+			if (
+				yaml &&
+				yaml.bandeau &&
+				window.matchMedia("(min-width: 500px)").matches
+			) {
+				const contentElement = document.querySelector("#content");
+				const bannerElement = document.querySelector(
+					"#initialMessage > *:first-child",
+				);
+				const bannerElementElementHeight = bannerElement.clientHeight;
+				const adjustHeightDependingOnBannerElement = yaml.autofiltres
+					? bannerElementElementHeight + 20
+					: bannerElementElementHeight - 50;
+				contentElement.style.marginTop =
+					adjustHeightDependingOnBannerElement + "px";
+			}
 			const sectionContentElement =
 				document.querySelectorAll(".sectionContent");
 			sectionContentElement.forEach((element) => {
