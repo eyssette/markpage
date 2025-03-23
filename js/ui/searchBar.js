@@ -246,6 +246,10 @@ export function searchBar(hash, markpageData) {
 							autoFilters.style.zIndex = "-100";
 						}
 					}
+					window.scrollTo({
+						top: 0,
+						behavior: "instant",
+					});
 				}
 			} else {
 				if (

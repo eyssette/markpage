@@ -115,9 +115,6 @@ h1 span.textFitted {
 	padding-top: 0 !important;
 	margin-top: -1.75em;
 }
-.useBanner #innerBox {
-	overflow-y: auto !important;
-}
 
 @media screen and (max-width: 500px) {
 	#autoFilters {
@@ -127,6 +124,7 @@ h1 span.textFitted {
 		margin-left: -30px;
 		padding: 2em;
 		height: 100vh;
+		overflow-y: scroll;
 	}
 	#autoFilters:before {
 		content: "❌";
@@ -138,6 +136,9 @@ h1 span.textFitted {
 	}
 	.useBanner #content {
 		margin-top: -2em;
+	}
+	.useBanner #initialMessage button:last-of-type {
+		margin-bottom: 150px;
 	}
 	h1 {
 		height: 1.5em !important;
