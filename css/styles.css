@@ -409,6 +409,7 @@ details {
 	background-color: #01579b;
 	color: #ffffff;
 	align-items: center;
+	margin-bottom: 0.75em;
 }
 .tag:hover {
 	opacity: 0.7;
