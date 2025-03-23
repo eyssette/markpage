@@ -97,8 +97,10 @@ h1 span.textFitted {
 #autoFilters {
 	margin: 1em 0;
 }
-.useBanner #initialMessage button:hover {
-	background-color: #aaa !important;
+@media (pointer: fine) {
+	.useBanner #initialMessage button:hover {
+		background-color: #aaa !important;
+	}
 }
 .useBanner #initialMessage button.active {
 	background-color: #333 !important;
