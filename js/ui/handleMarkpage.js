@@ -43,11 +43,11 @@ function adjustHeight(element) {
 
 export function handleMarkpage(markpageData) {
 	// Gestion des maths
-	if (yaml.maths) {
+	if (yaml && yaml.maths) {
 		displayMaths();
 	}
 	// Gestion des add-ons
-	if (yaml.addOns && yaml.addOns.includes("kroki")) {
+	if (yaml && yaml.addOns && yaml.addOns.includes("kroki")) {
 		const interval = setInterval(() => {
 			if (window.processKroki) {
 				clearInterval(interval);
@@ -57,7 +57,7 @@ export function handleMarkpage(markpageData) {
 			}
 		}, 200);
 	}
-	if (yaml.addOns && yaml.addOns.includes("lightbox")) {
+	if (yaml && yaml.addOns && yaml.addOns.includes("lightbox")) {
 		const interval = setInterval(() => {
 			if (window.lightbox) {
 				clearInterval(interval);
@@ -74,7 +74,7 @@ export function handleMarkpage(markpageData) {
 		);
 		openLinksInNewTab(linksWithNoLightbox);
 	}
-	if (yaml.addOns && yaml.addOns.includes("text2quiz")) {
+	if (yaml && yaml.addOns && yaml.addOns.includes("text2quiz")) {
 		const interval = setInterval(() => {
 			if (window.processText2quiz) {
 				clearInterval(interval);
@@ -129,7 +129,7 @@ export function handleMarkpage(markpageData) {
 
 	// Affichage si yamlLinkToHomePage d'un lien supplémentaire vers la page d'accueil en haut à droite
 	let linkToHomePageElement;
-	if (yaml.linkToHomePage) {
+	if (yaml && yaml.linkToHomePage) {
 		linkToHomePageElement = document.getElementById("linkToHomePage");
 		linkToHomePageElement.style.display = "block";
 		linkToHomePageElement.addEventListener("click", function (e) {
@@ -159,7 +159,7 @@ export function handleMarkpage(markpageData) {
 
 	handleNavigation(baseURL, hash, params, markpageData);
 
-	if (yaml.pad && yaml.padScroll) {
+	if (yaml && yaml.pad && yaml.padScroll) {
 		function resizeSectionContentElements() {
 			const sectionContentElement =
 				document.querySelectorAll(".sectionContent");
@@ -187,7 +187,7 @@ export function handleMarkpage(markpageData) {
 			}, 200);
 		});
 	}
-	if (yaml.lightpad) {
+	if (yaml && yaml.lightpad) {
 		const titleElement = document.getElementById("title");
 		const interval = setInterval(() => {
 			if (window.textFit) {
