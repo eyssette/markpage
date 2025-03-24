@@ -15,7 +15,7 @@ export let params;
 const headerElement = document.body.querySelector("header");
 const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
 
-function adjustHeight(element) {
+function adjustHeight(element, options) {
 	const headerRect = headerElement.getBoundingClientRect();
 	const headerHeight = isFirefox
 		? headerElement.clientHeight + 10
@@ -27,17 +27,45 @@ function adjustHeight(element) {
 			availableHeight = availableHeight - 50;
 		} else {
 			const titleColumnsHeight = document.querySelector("h2").clientHeight;
-			availableHeight = availableHeight - titleColumnsHeight - 10;
+			availableHeight = availableHeight - titleColumnsHeight - 20;
 		}
 		// On a au minimum une hauteur de 400px pour chaque colonne (nécessaire si on utilise un bandeau avec Lightpad sur petit écran et que le bandeau est long : sinon la colonne ne s'afficherait que dans l'espace restant, qui serait tout petit)
 		availableHeight = Math.max(availableHeight, 400);
-		element.style.height = `${availableHeight}px`;
+		if (options && options.isSubSection) {
+			availableHeight = availableHeight - 100;
+			element.style.maxHeight = `${availableHeight}px`;
+		} else {
+			element.style.height = `${availableHeight}px`;
+		}
 		document.body.classList.add("adjustHeightColumns");
 	} else {
 		document.body.style.height = "unset";
 		document.body.style.overflow = "unset";
 		element.style.height = "unset";
 		document.body.classList.remove("adjustHeightColumns");
+	}
+}
+
+function resizeSectionContentElements() {
+	const hasNoColumns = document.body.classList.contains("noColumns");
+	const sectionContentElement = document.querySelectorAll(".sectionContent");
+	sectionContentElement.forEach((element) => {
+		adjustHeight(element, { isSubSection: false });
+	});
+	if (hasNoColumns && window.matchMedia("(min-width: 500px)").matches) {
+		const subSectionContentElement =
+			document.querySelectorAll(".subSectionContent");
+		subSectionContentElement.forEach((element) => {
+			adjustHeight(element, { isSubSection: true });
+		});
+	}
+	if (yaml && yaml.bandeau && window.matchMedia("(min-width: 500px)").matches) {
+		const contentElement = document.querySelector("#content");
+		const bannerElementHeight = document.querySelector(".banner").offsetHeight;
+		let marginTop = hasNoColumns
+			? bannerElementHeight + 30
+			: bannerElementHeight + 10;
+		contentElement.style.marginTop = `${marginTop}px`;
 	}
 }
 
@@ -160,30 +188,13 @@ export function handleMarkpage(markpageData) {
 	handleNavigation(baseURL, hash, params, markpageData);
 
 	if (yaml && yaml.pad && yaml.padScroll) {
-		function resizeSectionContentElements() {
-			if (
-				yaml &&
-				yaml.bandeau &&
-				window.matchMedia("(min-width: 500px)").matches
-			) {
-				const contentElement = document.querySelector("#content");
-				const bannerElement = document.querySelector(
-					"#initialMessage > *:first-child",
-				);
-				const bannerElementElementHeight = bannerElement.clientHeight;
-				const adjustHeightDependingOnBannerElement = yaml.autofiltres
-					? bannerElementElementHeight + 20
-					: bannerElementElementHeight - 50;
-				contentElement.style.marginTop =
-					adjustHeightDependingOnBannerElement + "px";
+		setTimeout(() => {
+			resizeSectionContentElements();
+			const titleElement = document.getElementById("title");
+			if (window.textFit) {
+				window.textFit(titleElement, { minFontSize: 16, multiLine: true });
 			}
-			const sectionContentElement =
-				document.querySelectorAll(".sectionContent");
-			sectionContentElement.forEach((element) => {
-				adjustHeight(element);
-			});
-		}
-		resizeSectionContentElements();
+		}, 10);
 		headerElement.querySelectorAll("img").forEach((img) => {
 			img.addEventListener("load", () => {
 				setTimeout(() => {

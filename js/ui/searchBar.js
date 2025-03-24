@@ -181,15 +181,15 @@ export function searchBar(hash, markpageData) {
 		function displaySearchBar(shouldDisplaySearchBar) {
 			const title = document.querySelector("header h1");
 			const imageInTitle = title.querySelector("img");
-			const autoFilters = document.querySelector("header #autoFilters");
+			const banner = document.querySelector("header .banner");
 			if (shouldDisplaySearchBar) {
 				title.style.color = "transparent";
 				if (imageInTitle) {
 					imageInTitle.style.opacity = "0";
 				}
 				searchInput.classList.add("active");
-				if (autoFilters) {
-					autoFilters.style.zIndex = "100";
+				if (banner) {
+					banner.style.zIndex = "100";
 				}
 			} else {
 				title.style.color = "white";
@@ -197,8 +197,8 @@ export function searchBar(hash, markpageData) {
 					imageInTitle.style.opacity = "1";
 				}
 				searchInput.classList.remove("active");
-				if (autoFilters) {
-					autoFilters.style.zIndex = "-100";
+				if (banner) {
+					banner.style.zIndex = "-100";
 				}
 			}
 		}
@@ -233,17 +233,18 @@ export function searchBar(hash, markpageData) {
 		document.body.addEventListener("click", function (event) {
 			if (window.matchMedia("(max-width: 500px)").matches) {
 				if (
-					event.target.parentNode.id == "autoFilters" ||
+					(event.target.tagName == "BUTTON" &&
+						event.target.closest(".banner")) ||
 					event.target.id == "searchInput"
 				) {
 					displaySearchBar(true);
 				} else {
-					const autoFilters = document.querySelector("header #autoFilters");
+					const banner = document.querySelector("header .banner");
 					if (searchInput.value.trim() == "") {
 						displaySearchBar(false);
 					} else {
-						if (autoFilters) {
-							autoFilters.style.zIndex = "-100";
+						if (banner) {
+							banner.style.zIndex = "-100";
 						}
 					}
 					window.scrollTo({

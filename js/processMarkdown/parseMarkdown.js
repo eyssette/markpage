@@ -61,11 +61,15 @@ export function parseMarkdown(markdownContent) {
 		// On transforme ces tags en boutons dans le message initial
 		if (tags.length > 0) {
 			initialMessageContent =
-				'<div id="autoFilters">' +
+				'<div id="autoFilters" class="banner">' +
 				tags.map((tag) => `<button>${tag}</button>`).join("") +
 				"</div>";
 		}
 	}
+	initialMessageContent =
+		yaml && yaml.bandeau && !initialMessageContent.includes('class="banner"')
+			? '<div class="banner">' + initialMessageContent + "<div>"
+			: initialMessageContent;
 
 	// Dans le contenu, on distingue chaque section (définie par un titre h2)
 	const sections = mainContent

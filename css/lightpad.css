@@ -94,8 +94,11 @@ h1 span.textFitted {
 	border-radius: 7px;
 	min-width: fit-content;
 }
-#autoFilters {
+.banner {
 	margin: 1em 0;
+}
+.banner > * {
+	margin: 0;
 }
 @media (pointer: fine) {
 	.useBanner #initialMessage button:hover {
@@ -119,7 +122,14 @@ h1 span.textFitted {
 }
 
 @media screen and (max-width: 500px) {
-	#autoFilters {
+	.useBanner.noColumns main {
+		overflow-y: auto;
+		padding-top: 2em;
+		padding-bottom: 0em;
+		height: 75%;
+		margin-top: 2em;
+	}
+	.banner {
 		position: absolute;
 		background: #fffffff0;
 		z-index: -10;
@@ -127,8 +137,9 @@ h1 span.textFitted {
 		padding: 2em;
 		height: 100vh;
 		overflow-y: scroll;
+		min-width: 83%;
 	}
-	#autoFilters:before {
+	.banner:before {
 		content: "❌";
 		position: absolute;
 		right: 30px;
@@ -152,7 +163,7 @@ h1 span.textFitted {
 		margin-right: 0;
 	}
 	h1 span.textFitted {
-		padding-right: 70px;
+		padding-right: 80px;
 	}
 	main {
 		margin-top: 3em;
@@ -167,9 +178,11 @@ h1 span.textFitted {
 	span.textFitted {
 		padding-right: 200px;
 	}
-	#autoFilters {
+	.banner {
 		position: fixed;
 		width: 95vw;
+	}
+	#autoFilters {
 		display: flex;
 		flex-wrap: wrap;
 	}
