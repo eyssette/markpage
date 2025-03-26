@@ -12,15 +12,9 @@ import { setTheme } from "./setTheme";
 
 export let params;
 
-const headerElement = document.body.querySelector("header");
-const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
-
 function adjustHeight(element, options) {
-	const headerRect = headerElement.getBoundingClientRect();
-	const headerHeight = isFirefox
-		? headerElement.clientHeight + 10
-		: headerRect.bottom + 30;
 	const bodyHeight = window.innerHeight;
+	const headerHeight = document.querySelector("header h1").offsetHeight;
 	let availableHeight = bodyHeight - headerHeight;
 	if (availableHeight > 500 || yaml.lightpad) {
 		if (document.body.classList.contains("noColumns")) {
@@ -195,6 +189,7 @@ export function handleMarkpage(markpageData) {
 				window.textFit(titleElement, { minFontSize: 16, multiLine: true });
 			}
 		}, 10);
+		const headerElement = document.body.querySelector("header");
 		headerElement.querySelectorAll("img").forEach((img) => {
 			img.addEventListener("load", () => {
 				setTimeout(() => {
