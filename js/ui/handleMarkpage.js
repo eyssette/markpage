@@ -59,6 +59,7 @@ function resizeSectionContentElements() {
 		let marginTop = hasNoColumns
 			? bannerElementHeight + 30
 			: bannerElementHeight + 10;
+		marginTop = Math.max(70, marginTop);
 		contentElement.style.marginTop = `${marginTop}px`;
 	}
 }
