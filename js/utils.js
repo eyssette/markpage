@@ -156,6 +156,9 @@ export function openLinksInNewTab(links) {
 // Trier un tableau sans prendre en compte la casse et les accents
 export function sortCaseAndAccentInsensitive(array) {
 	return array.sort((a, b) => {
-		return a.localeCompare(b, "fr", { sensitivity: "base" });
+		return a.localeCompare(b, "fr", {
+			sensitivity: "base",
+			numeric: true, // Prend en compte les nombres
+		});
 	});
 }
