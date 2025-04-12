@@ -191,10 +191,12 @@ export function handleMarkpage(markpageData) {
 			}
 		}, 10);
 		const headerElement = document.body.querySelector("header");
+		const titleElement = document.getElementById("title");
 		headerElement.querySelectorAll("img").forEach((img) => {
 			img.addEventListener("load", () => {
 				setTimeout(() => {
 					resizeSectionContentElements();
+					window.textFit(titleElement, { minFontSize: 16, multiLine: true });
 				}, 300);
 			});
 		});
