@@ -159,7 +159,10 @@ export function parseMarkdown(markdownContent) {
 	}
 
 	const markpageData = [
-		markdownToHTML(markpageTitle).replace("<p>", "").replace("</p>", ""),
+		markdownToHTML(markpageTitle)
+			.replace("<p>", "")
+			.replace("</p>", "")
+			.replace('loading="lazy"', ""),
 		initialMessageContent,
 		sectionsTitles,
 		subSectionsArray,
