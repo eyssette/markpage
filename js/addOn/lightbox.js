@@ -112,15 +112,19 @@ function lightbox() {
 		}
 	});
 
-	// Ajoute un écouteur de clic sur chaque image
+	// Ajoute un écouteur de clic sur chaque image sauf si l'image elle-même renvoie vers un lien
 	images.forEach((image) => {
 		image.addEventListener("click", () => {
-			image.classList.add("lightboxAddOn");
-			lightboxImage.src = image.src;
-			lightboxImage.style.height = `${image.naturalHeight * 3}px`;
-			lightboxImage.style.display = "block";
-			lightboxPDF.style.display = "none";
-			openLightbox();
+			const parentElementTagName = image.parentElement.tagName;
+			const isImageWithLink = parentElementTagName == "A";
+			if (!isImageWithLink) {
+				image.classList.add("lightboxAddOn");
+				lightboxImage.src = image.src;
+				lightboxImage.style.height = `${image.naturalHeight * 3}px`;
+				lightboxImage.style.display = "block";
+				lightboxPDF.style.display = "none";
+				openLightbox();
+			}
 		});
 	});
 
