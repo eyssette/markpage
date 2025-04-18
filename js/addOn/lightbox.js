@@ -1,12 +1,14 @@
 // eslint-disable-next-line no-unused-vars
 function lightbox() {
-	// Sélectionne toutes les images et les liens vers des PDF de la page
-
 	// On sélectionne toutes les images sauf les images dont l'URL finit par ?nolightbox
 	const images = document.querySelectorAll(
 		"img[src]:not([src$='?nolightbox'])",
 	);
+	// On sélectionne tous les liens qui vont vers des PDFs
 	const pdfLinks = document.querySelectorAll("a[href$='.pdf']");
+
+	// On sélectionne tous les autres liens
+	const iframeLinks = document.querySelectorAll("a[href]:not([href$='.pdf'])");
 
 	// Crée et configure le conteneur lightbox
 	const lightboxContainer = document.createElement("div");
@@ -52,9 +54,18 @@ function lightbox() {
 	lightboxPDF.style.border = "none";
 	lightboxPDF.setAttribute("type", "application/pdf");
 
-	// Ajoute le conteneur pour l'image ou le PDF
+	// Crée un élément <iframe> pour les autres liens
+	const lightboxIframe = document.createElement("iframe");
+	lightboxIframe.style.width = "90%";
+	lightboxIframe.style.height = "90%";
+	lightboxIframe.style.maxHeight = "none";
+	lightboxIframe.style.border = "none";
+	lightboxIframe.style.display = "none";
+
+	// Ajoute le conteneur pour l'image ou le PDF ou l'iframe
 	lightboxContent.appendChild(lightboxImage);
 	lightboxContent.appendChild(lightboxPDF);
+	lightboxContent.appendChild(lightboxIframe);
 	lightboxContainer.appendChild(lightboxContent);
 
 	// Crée la croix de fermeture
@@ -92,8 +103,10 @@ function lightbox() {
 		lightboxContainer.style.display = "none";
 		lightboxImage.style.display = "none";
 		lightboxPDF.style.display = "none";
+		lightboxIframe.style.display = "none";
 		lightboxImage.src = "";
 		lightboxPDF.src = "";
+		lightboxIframe.src = "";
 		lightboxContainer.classList.add("lightbox-closed");
 		lightboxContainer.classList.remove("lightbox-open");
 	}
@@ -112,7 +125,7 @@ function lightbox() {
 		}
 	});
 
-	// Ajoute un écouteur de clic sur chaque image sauf si l'image elle-même renvoie vers un lien
+	// Ouverture de la lightbox quand on clique sur une image sauf si l'image elle-même renvoie vers un lien
 	images.forEach((image) => {
 		image.addEventListener("click", () => {
 			const parentElementTagName = image.parentElement.tagName;
@@ -123,12 +136,13 @@ function lightbox() {
 				lightboxImage.style.height = `${image.naturalHeight * 3}px`;
 				lightboxImage.style.display = "block";
 				lightboxPDF.style.display = "none";
+				lightboxIframe.style.display = "none";
 				openLightbox();
 			}
 		});
 	});
 
-	// Ajoute un écouteur de clic sur chaque lien PDF
+	// Ouverture de la lightbox quand on clique sur un lien vers un PDF
 	pdfLinks.forEach((link) => {
 		link.classList.add("lightboxAddOn");
 		link.addEventListener("click", (e) => {
@@ -136,7 +150,26 @@ function lightbox() {
 			lightboxPDF.src = link.href;
 			lightboxPDF.style.display = "block";
 			lightboxImage.style.display = "none";
+			lightboxIframe.style.display = "none";
 			openLightbox();
+		});
+	});
+
+	// Ouverture de la lightbox quand on clique sur un lien qui est dans un élément qui a pour classe iframe
+	// Dans le markdown, on peut ainsi indiquer : --iframe:[lien](URL)-- pour utiliser une lightbox
+	iframeLinks.forEach((link) => {
+		link.addEventListener("click", (e) => {
+			const parentElement = link.parentElement;
+			const useIframe = parentElement.classList.contains("iframe");
+			if (useIframe) {
+				const href = link.getAttribute("href");
+				e.preventDefault();
+				lightboxIframe.src = href;
+				lightboxIframe.style.display = "block";
+				lightboxImage.style.display = "none";
+				lightboxPDF.style.display = "none";
+				openLightbox();
+			}
 		});
 	});
 }
