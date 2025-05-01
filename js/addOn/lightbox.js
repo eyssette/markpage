@@ -18,7 +18,7 @@ function lightbox() {
 	lightboxContainer.style.left = "0";
 	lightboxContainer.style.width = "100%";
 	lightboxContainer.style.height = "100%";
-	lightboxContainer.style.backgroundColor = "#000000c4";
+	lightboxContainer.style.backgroundColor = "rgba(0,0,0,0.85)";
 	lightboxContainer.style.display = "none";
 	lightboxContainer.style.justifyContent = "center";
 	lightboxContainer.style.alignItems = "center";
@@ -30,8 +30,8 @@ function lightbox() {
 		lightboxContent.style.width = "100%";
 		lightboxContent.style.height = "100%";
 	} else {
-		lightboxContent.style.width = "85%";
-		lightboxContent.style.height = "85%";
+		lightboxContent.style.width = "90%";
+		lightboxContent.style.height = "95%";
 		lightboxContent.style.border = "10px solid black";
 		lightboxContent.style.borderRadius = "20px";
 	}
@@ -53,6 +53,7 @@ function lightbox() {
 	lightboxPDF.style.height = "90%";
 	lightboxPDF.style.border = "none";
 	lightboxPDF.setAttribute("type", "application/pdf");
+	lightboxPDF.setAttribute("allow", "fullscreen");
 
 	// Crée un élément <iframe> pour les autres liens
 	const lightboxIframe = document.createElement("iframe");
@@ -77,11 +78,11 @@ function lightbox() {
 		closeButton.style.right = "10px";
 		closeButton.style.color = "black";
 	} else {
-		closeButton.style.top = "40px";
-		closeButton.style.right = "50px";
+		closeButton.style.top = "20px";
+		closeButton.style.right = "15px";
 		closeButton.style.color = "white";
 	}
-	closeButton.style.fontSize = "50px";
+	closeButton.style.fontSize = "80px";
 	closeButton.style.cursor = "pointer";
 
 	// Ajoute la croix de fermeture au conteneur
