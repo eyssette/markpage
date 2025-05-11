@@ -63,11 +63,14 @@ export function handleURL(url, options) {
 	return url;
 }
 
-// Fonction générique pour rediriger vers une URL
-export function redirectToUrl(inputElement) {
-	const userUrl = inputElement.value.trim();
-	if (userUrl) {
-		const fullUrl = window.location.origin + `/#${userUrl}`;
+// Fonction générique pour rediriger vers une URL avec un hash
+export function redirectToUrl(input, baseURL = window.location.origin) {
+	const hash = input.value.trim();
+	baseURL = input.getAttribute("data-redirect")
+		? "https://" + input.getAttribute("data-redirect")
+		: baseURL;
+	if (hash) {
+		const fullUrl = baseURL + `#${hash}`;
 		window.open(fullUrl, "_blank");
 	} else {
 		alert("Veuillez entrer une URL valide.");

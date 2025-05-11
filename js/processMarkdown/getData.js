@@ -36,13 +36,15 @@ export function getMarkdownContentAndCreateMarkpage(options) {
 				} else {
 					markpageData = parseMarkdown(md);
 					createMarkpage(markpageData, url);
-					if (sourceMarkpage == "indexLightpad.md") {
-						const urlInput = document.getElementById("urlInput");
-						const okButton = document.getElementById("okButton");
-						okButton.addEventListener("click", () => redirectToUrl(urlInput));
-						urlInput.addEventListener("keypress", (event) => {
+					if (md.includes("ok-redirect")) {
+						const urlInputRedirect = document.getElementById("redirect");
+						const okButtonRedirect = document.getElementById("ok-redirect");
+						okButtonRedirect.addEventListener("click", () =>
+							redirectToUrl(urlInputRedirect),
+						);
+						urlInputRedirect.addEventListener("keypress", (event) => {
 							if (event.key === "Enter") {
-								redirectToUrl(urlInput);
+								redirectToUrl(urlInputRedirect);
 							}
 						});
 					}

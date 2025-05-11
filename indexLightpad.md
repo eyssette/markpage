@@ -19,9 +19,9 @@ Il suffit d'écrire son texte dans un fichier sur [Codimd](https://codimd.apps.e
 
 Votre Lightpad sera ensuite accessible à l'adresse : `https://lightpad.forge.apps.education.fr/#LIEN_DE_VOTRE_FICHIER`
 
-<label for="urlInput">Copiez ici le lien vers votre fichier :</label>
+<label for="redirect">Copiez ici le lien vers votre fichier :</label>
 
-<input type="url" id="urlInput" placeholder="Votre URL"> <button id="okButton">OK</button>
+<input type="url" id="redirect" placeholder="Votre URL"> <button id="ok-redirect">OK</button>
 
 
 ### Exemples de pads
