@@ -12,8 +12,8 @@ tasks:
   npm:build:
     deps: [npm:install]
     sources:
-      - content.md
-      - contentLightpad.md
+      - index.md
+      - indexLightpad.md
       - css/**/*.css
       - js/**/*.js
       - rollup.config.mjs

@@ -1,4 +1,4 @@
-import defaultMD from "../../content.md";
+import defaultMD from "../../index.md";
 import { handleURL, redirectToUrl } from "../utils";
 import { parseMarkdown } from "./parseMarkdown";
 import { createMarkpage } from "../ui/createMarkpage";
@@ -20,7 +20,7 @@ export function getMarkdownContentAndCreateMarkpage(options) {
 		window.location.href.includes("?lightpad");
 	if (sourceMarkpage == "" && isLightpad) {
 		document.title = "Lightpad";
-		sourceMarkpage = "contentLightpad.md";
+		sourceMarkpage = "indexLightpad.md";
 	}
 	if (sourceMarkpage !== "" && !optionUseDefaultMarkpage) {
 		fetch(sourceMarkpage)
@@ -36,7 +36,7 @@ export function getMarkdownContentAndCreateMarkpage(options) {
 				} else {
 					markpageData = parseMarkdown(md);
 					createMarkpage(markpageData, url);
-					if (sourceMarkpage == "contentLightpad.md") {
+					if (sourceMarkpage == "indexLightpad.md") {
 						const urlInput = document.getElementById("urlInput");
 						const okButton = document.getElementById("okButton");
 						okButton.addEventListener("click", () => redirectToUrl(urlInput));
