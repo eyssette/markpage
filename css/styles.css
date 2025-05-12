@@ -603,11 +603,13 @@ hr:last-child {
 	.displaySubSection h2 {
 		width: 86% !important;
 	}
-
 	pre {
 		margin: 2em auto;
-		max-width: 85%;
+		max-width: 75vw;
 		white-space: pre-line;
+	}
+	code {
+		word-break: break-word;
 	}
 	#linkToHomePage {
 		width: 95%;
