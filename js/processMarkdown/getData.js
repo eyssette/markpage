@@ -1,5 +1,5 @@
 import defaultMD from "../../index.md";
-import { handleURL, redirectToUrl } from "../utils";
+import { handleURL } from "../utils";
 import { parseMarkdown } from "./parseMarkdown";
 import { createMarkpage } from "../ui/createMarkpage";
 
@@ -36,18 +36,6 @@ export function getMarkdownContentAndCreateMarkpage(options) {
 				} else {
 					markpageData = parseMarkdown(md);
 					createMarkpage(markpageData, url);
-					if (md.includes("ok-redirect")) {
-						const urlInputRedirect = document.getElementById("redirect");
-						const okButtonRedirect = document.getElementById("ok-redirect");
-						okButtonRedirect.addEventListener("click", () =>
-							redirectToUrl(urlInputRedirect),
-						);
-						urlInputRedirect.addEventListener("keypress", (event) => {
-							if (event.key === "Enter") {
-								redirectToUrl(urlInputRedirect);
-							}
-						});
-					}
 				}
 			})
 			.catch((error) => {
@@ -65,25 +53,5 @@ export function getMarkdownContentAndCreateMarkpage(options) {
 		md = defaultMD;
 		markpageData = parseMarkdown(md);
 		createMarkpage(markpageData);
-		if (md.includes("urlInput1")) {
-			const urlInput1 = document.getElementById("urlInput1");
-			const okButton1 = document.getElementById("okButton1");
-			okButton1.addEventListener("click", () => redirectToUrl(urlInput1));
-			urlInput1.addEventListener("keypress", (event) => {
-				if (event.key === "Enter") {
-					redirectToUrl(urlInput1);
-				}
-			});
-		}
-		if (md.includes("urlInput2")) {
-			const urlInput2 = document.getElementById("urlInput2");
-			const okButton2 = document.getElementById("okButton2");
-			okButton2.addEventListener("click", () => redirectToUrl(urlInput2));
-			urlInput2.addEventListener("keypress", (event) => {
-				if (event.key === "Enter") {
-					redirectToUrl(urlInput2);
-				}
-			});
-		}
 	}
 }

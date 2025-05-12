@@ -21,7 +21,7 @@ Votre Lightpad sera ensuite accessible à l'adresse : `https://lightpad.forge.ap
 
 <label for="redirect">Copiez ici le lien vers votre fichier :</label>
 
-<input type="url" id="redirect" placeholder="Votre URL"> <button id="ok-redirect">OK</button>
+<input type="url" id="redirect" class="redirect-input" placeholder="Votre URL"> <button  class="redirect-button" data-input-id="redirect" >OK</button>
 
 
 ### Exemples de pads

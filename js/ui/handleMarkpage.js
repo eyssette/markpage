@@ -1,6 +1,6 @@
 import { yaml } from "../processMarkdown/yaml";
 import { displayMaths } from "./displayMaths";
-import { getParams, openLinksInNewTab, loadCSS } from "../utils";
+import { getParams, openLinksInNewTab, loadCSS, redirectToUrl } from "../utils";
 import { changeDisplayBasedOnParams } from "./changeDisplayBasedOnParams";
 import { handleNavigation } from "./navigation";
 import { searchBar } from "./searchBar";
@@ -62,6 +62,21 @@ function resizeSectionContentElements() {
 		marginTop = Math.max(70, marginTop);
 		contentElement.style.marginTop = `${marginTop}px`;
 	}
+}
+
+function setUpRedirectListener() {
+	document.addEventListener("click", (e) => {
+		if (e.target.matches(".redirect-button")) {
+			const input = document.querySelector(`#${e.target.dataset.inputId}`);
+			if (input) redirectToUrl(input);
+		}
+	});
+
+	document.addEventListener("keypress", (e) => {
+		if (e.target.matches(".redirect-input") && e.key === "Enter") {
+			redirectToUrl(e.target);
+		}
+	});
 }
 
 export function handleMarkpage(markpageData) {
@@ -221,4 +236,6 @@ export function handleMarkpage(markpageData) {
 			}
 		}, 10);
 	}
+
+	setUpRedirectListener();
 }

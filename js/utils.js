@@ -66,8 +66,8 @@ export function handleURL(url, options) {
 // Fonction générique pour rediriger vers une URL avec un hash
 export function redirectToUrl(input, baseURL = window.location.origin) {
 	const hash = input.value.trim();
-	baseURL = input.getAttribute("data-redirect")
-		? "https://" + input.getAttribute("data-redirect")
+	baseURL = input.getAttribute("data-base-url")
+		? "http://" + input.getAttribute("data-base-url")
 		: baseURL;
 	if (hash) {
 		const fullUrl = baseURL + `#${hash}`;
