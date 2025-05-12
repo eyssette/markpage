@@ -67,7 +67,7 @@ export function handleURL(url, options) {
 export function redirectToUrl(input, baseURL = window.location.origin) {
 	const hash = input.value.trim();
 	baseURL = input.getAttribute("data-base-url")
-		? "http://" + input.getAttribute("data-base-url")
+		? "https://" + input.getAttribute("data-base-url")
 		: baseURL;
 	if (hash) {
 		const fullUrl = baseURL + `#${hash}`;
