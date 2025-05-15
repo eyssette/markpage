@@ -676,3 +676,29 @@ hr:last-child {
 		font-size: 0.9em;
 	}
 }
+
+#scroll-arrow {
+	position: fixed;
+	bottom: 140px;
+	transform: translateX(-50%);
+	font-size: 2rem;
+	opacity: 0.6;
+	font-weight: bold;
+	transition: opacity 0.3s;
+	pointer-events: none;
+	right: 50%;
+	left: 50%;
+	margin-left: calc(var(--maxWidth) / 1.75);
+}
+
+.lightpad #scroll-arrow {
+	left: auto;
+	right: 10px;
+	top: 1.5em;
+}
+
+@media screen and (max-width: 500px) {
+	.lightpad #scroll-arrow {
+		top: 1.65em;
+	}
+}

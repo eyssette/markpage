@@ -9,6 +9,7 @@ import { paramsRemoveH3, paramsRemoveMenu } from "./params";
 import { showOnlyThisElement } from "./showOnlyThisElement";
 import { CSSthemes } from "../config";
 import { setTheme } from "./setTheme";
+import { checkScrollListener } from "./checkScrollListener";
 
 export let params;
 
@@ -240,4 +241,5 @@ export function handleMarkpage(markpageData) {
 	}
 
 	setUpRedirectListener();
+	checkScrollListener();
 }
