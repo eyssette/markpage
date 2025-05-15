@@ -211,7 +211,9 @@ export function handleMarkpage(markpageData) {
 			img.addEventListener("load", () => {
 				setTimeout(() => {
 					resizeSectionContentElements();
-					window.textFit(titleElement, { minFontSize: 16, multiLine: true });
+					if (window.textFit) {
+						window.textFit(titleElement, { minFontSize: 16, multiLine: true });
+					}
 				}, 300);
 			});
 		});
