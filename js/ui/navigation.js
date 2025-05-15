@@ -134,28 +134,21 @@ export function handleNavigation(baseURL, hash, params, markpageData) {
 	function handleTouchEnd(e) {
 		const diffX = e.changedTouches[0].screenX - startX;
 		const diffY = e.changedTouches[0].screenY - startY;
-		const ratioX = Math.abs(diffX / diffY);
-		const ratioY = Math.abs(diffY / diffX);
-		const absDiff = Math.abs(ratioX > ratioY ? diffX : diffY);
+		const absDiffX = Math.abs(diffX);
+		const absDiffY = Math.abs(diffY);
+		const ratioX = absDiffX / (absDiffY || 1);
 
 		// Ignore small movements.
-		if (absDiff < 30) {
+		if (absDiffX < 30 && absDiffY < 30) {
 			return;
 		}
-
-		if (ratioX > ratioY) {
+		if (absDiffX > absDiffY && ratioX >= 2) {
 			if (diffX >= 0) {
 				// Right Swipe
 				moveNextOrPrevious(params, false);
 			} else {
 				// Left Swipe
 				moveNextOrPrevious(params, true);
-			}
-		} else {
-			if (diffY >= 0) {
-				// Down Swipe
-			} else {
-				// Up Swipe
 			}
 		}
 	}
