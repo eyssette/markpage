@@ -1,5 +1,40 @@
 # Changelog
 
+## 4.10.0 (2025-05-19)
+
+### Feat
+
+- **ui**: addOn "highlight" pour la coloration syntaxique
+- **ui**: ajout d'une flèche s'il faut scroller pour afficher la suite
+
+### Fix
+
+- **markdown**: détection des admonitions dans des blocs de code améliorée
+- **ui**: détection du swipe améliorée
+- **ui**: vérification de l'existence de textFit avant de l'appliquer
+- **CSS**: marge verticale pour les boutons sur la page d'accueil
+- **CSS**: pre et code pour petits écrans
+- URL sécurisée pour redirectToUrl
+- fonction pour les redirections : setUpRedirectListener()
+- gestion de l'input de redirection vers une URL : plus générale
+- source par défaut dans le fichier index.md pour Markpage et indexLightpad.md pour Lightpad
+- lightbox plus large et plus haute, croix de fermeture plus grande
+
+### Build
+
+- update package-lock.json
+- script de build avec npx
+
+### Chore
+
+- mise à jour version
+- .editorconfig et configuration commitizen
+- configuration Taskfile
+
+### Doc
+
+- ajout de CHANGELOG.md
+
 ## 4.9.0 (2025-04-18)
 
 ### Feat
