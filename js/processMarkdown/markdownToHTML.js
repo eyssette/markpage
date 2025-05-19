@@ -110,7 +110,7 @@ function showdownExtensionAdmonitions() {
 						title = title.replace("<br />", "").replace("</p>", "");
 						// Vérifier si l'admonition est dans un bloc code en regardant autour
 						const before = text.substring(0, offset);
-						const isInCode = /<code>|<pre>/.test(
+						const isInCode = /<code|<pre/.test(
 							before.slice(before.lastIndexOf("<")),
 						);
 
