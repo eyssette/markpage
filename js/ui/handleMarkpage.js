@@ -123,6 +123,17 @@ export function handleMarkpage(markpageData) {
 			}
 		}, 200);
 	}
+	if (yaml && yaml.addOns && yaml.addOns.includes("highlight")) {
+		const interval = setInterval(() => {
+			if (window.hljs) {
+				clearInterval(interval);
+				window.hljs.configure({
+					ignoreUnescapedHTML: true,
+				});
+				window.hljs.highlightAll();
+			}
+		}, 200);
+	}
 	const hash = window.location.hash.substring(1);
 	const actualURL = window.location.search;
 	params = getParams(actualURL);

@@ -32,6 +32,10 @@ export const allowedAddOns = {
 	textFit: {
 		js: "js/addOn/textFit.min.js",
 	},
+	highlight: {
+		js: "js/addOn/highlight.min.js",
+		css: "js/addOn/highlight-theme-idea.css",
+	},
 };
 
 export const addOnsDependencies = {
