@@ -31,10 +31,6 @@
 - .editorconfig et configuration commitizen
 - configuration Taskfile
 
-### Doc
-
-- ajout de CHANGELOG.md
-
 ## 4.9.0 (2025-04-18)
 
 ### Feat
