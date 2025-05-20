@@ -36,6 +36,9 @@ export const allowedAddOns = {
 		js: "js/addOn/highlight.min.js",
 		css: "js/addOn/highlight-theme-idea.css",
 	},
+	chatmd: {
+		js: "js/addOn/chatmd.js",
+	},
 };
 
 export const addOnsDependencies = {

@@ -134,6 +134,16 @@ export function handleMarkpage(markpageData) {
 			}
 		}, 200);
 	}
+	if (yaml && yaml.addOns && yaml.addOns.includes("chatmd")) {
+		const interval = setInterval(() => {
+			if (window.processChatMD) {
+				clearInterval(interval);
+				document.getElementById("content").innerHTML = window.processChatMD(
+					document.getElementById("content").innerHTML,
+				);
+			}
+		}, 200);
+	}
 	const hash = window.location.hash.substring(1);
 	const actualURL = window.location.search;
 	params = getParams(actualURL);
