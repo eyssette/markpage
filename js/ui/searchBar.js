@@ -230,6 +230,7 @@ export function searchBar(hash, markpageData) {
 				}, 100);
 			}
 		});
+		let isLastClickDisplaySearchBar = false;
 		document.body.addEventListener("click", function (event) {
 			if (window.matchMedia("(max-width: 500px)").matches) {
 				if (
@@ -237,6 +238,7 @@ export function searchBar(hash, markpageData) {
 						event.target.closest(".banner")) ||
 					event.target.id == "searchInput"
 				) {
+					isLastClickDisplaySearchBar = true;
 					displaySearchBar(true);
 				} else {
 					const banner = document.querySelector("header .banner");
@@ -247,10 +249,17 @@ export function searchBar(hash, markpageData) {
 							banner.style.zIndex = "-100";
 						}
 					}
-					window.scrollTo({
-						top: 0,
-						behavior: "instant",
-					});
+					if (
+						yaml.lightpad &&
+						yaml.autofiltres &&
+						isLastClickDisplaySearchBar
+					) {
+						window.scrollTo({
+							top: 0,
+							behavior: "instant",
+						});
+					}
+					isLastClickDisplaySearchBar = false;
 				}
 			} else {
 				if (
