@@ -12,9 +12,13 @@ export function getMarkdownContentAndCreateMarkpage(options) {
 		options && options.useCorsProxy ? options.useCorsProxy : false;
 	const optionUseDefaultMarkpage =
 		options && options.useDefaultMarkpage ? true : false;
+	const optionAddMdExtension = options && options.addMdExtension ? true : false;
 	let sourceMarkpage = handleURL(url, {
 		useCorsProxy: optionUseCorsProxy,
 	});
+	sourceMarkpage = optionAddMdExtension
+		? sourceMarkpage + ".md"
+		: sourceMarkpage;
 	const isLightpad =
 		window.location.href.includes("https://lightpad.forge.apps.education.fr") ||
 		window.location.href.includes("?lightpad");
@@ -29,10 +33,14 @@ export function getMarkdownContentAndCreateMarkpage(options) {
 				md = data;
 				const isNotMarkdown = !md.includes("# ");
 				if (isNotMarkdown) {
-					getMarkdownContentAndCreateMarkpage({ useDefaultMarkpage: true });
-					alert(
-						"Il y a une erreur dans l'URL ou dans la syntaxe du fichier source. Merci de vous assurer que le fichier est bien accessible et qu'il respecte les règles d'écriture de Markpage",
-					);
+					if (!optionAddMdExtension) {
+						getMarkdownContentAndCreateMarkpage({ addMdExtension: true });
+					} else {
+						getMarkdownContentAndCreateMarkpage({ useDefaultMarkpage: true });
+						alert(
+							"Il y a une erreur dans l'URL ou dans la syntaxe du fichier source. Merci de vous assurer que le fichier est bien accessible et qu'il respecte les règles d'écriture de Markpage",
+						);
+					}
 				} else {
 					markpageData = parseMarkdown(md);
 					createMarkpage(markpageData, url);
