@@ -1,5 +1,26 @@
 # Changelog
 
+## 4.11.0 (2025-06-03)
+
+### Feat
+
+- ajout automatique de l'extension .md au nom de fichier si le fetch a échoué une première fois
+- **addOn**: addOn pour ChatMD
+
+### Fix
+
+- résolution d'un problème avec adjustHeight en cas d'utilisation d'un bandeau
+- **ui**: sur petit écran, le scrollTo après clic ne doit avoir lieu que si on vient de fermer le conteneur des boutons de filtre
+- **css**: blocs pre sur petits écrans : white-space = pre-wrap
+
+### CI
+
+- ajout de tous les fichiers du dossier addOn
+
+### Chore
+
+- confiuration commitizen
+
 ## 4.10.0 (2025-05-19)
 
 ### Feat
