@@ -15,14 +15,18 @@ pages:
   script:
     # Installation des outils de compression
     - apk add --no-cache gzip brotli
+
+    # Récupération de tous les fichiers du dépôt, de manière récursive dans un dossier temporaire .public
+    - mkdir .public
+    - cp -r * .public
     
     # Création du dossier public et récupération de l'application
     - mkdir -p public
     - wget https://forge.apps.education.fr/$APP_NAME/$APP_NAME.forge.apps.education.fr/-/archive/main/$APP_NAME.forge.apps.education.fr-main.tar.bz2
     - tar -xjf $APP_NAME.forge.apps.education.fr-main.tar.bz2 --strip-components=1 -C public
 
-    # Copie de tous les fichiers dans public
-    - cp -r * public
+    # Copie de tous les fichiers du dépôt (copiés dans .public) dans public
+    - cp -r .public/* public/
    
     # Construction de l'application
     - cd public
