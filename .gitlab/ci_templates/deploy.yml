@@ -1,0 +1,48 @@
+image: node:18-alpine
+
+# Mise en cache des dépendances pour accélérer les builds
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .npm/
+
+# Fichiers à compresser, et nom de l'application à utiliser
+variables:
+  FILES_TO_COMPRESS: "htm html txt text js css md ico svg"
+  APP_NAME: "markpage"
+
+pages:
+  script:
+    # Installation des outils de compression
+    - apk add --no-cache gzip brotli
+    
+    # Création du dossier public et récupération de l'application
+    - mkdir -p public
+    - wget https://forge.apps.education.fr/$APP_NAME/$APP_NAME.forge.apps.education.fr/-/archive/main/$APP_NAME.forge.apps.education.fr-main.tar.bz2
+    - tar -xjf $APP_NAME.forge.apps.education.fr-main.tar.bz2 --strip-components=1 -C public
+
+    # Copie de tous les fichiers dans public
+    - cp -r * public
+   
+    # Construction de l'application
+    - cd public
+    - npm ci --cache ../.npm --prefer-offline --no-audit
+    - npm run build
+
+    # Suppression des éléments inutiles dans public
+    - rm -r node_modules 
+
+    # Compression des fichiers spécifiés
+    - |
+      echo "Compressing files with extensions: $FILES_TO_COMPRESS"
+      for ext in $FILES_TO_COMPRESS; do
+        find . -type f -name "*.$ext" -exec gzip -k {} \;
+        find . -type f -name "*.$ext" -exec brotli {} \;
+      done
+    
+  artifacts:
+    paths:
+      - public
+
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
