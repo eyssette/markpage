@@ -148,6 +148,7 @@ export function openLinksInNewTab(links) {
 	links = links.filter((link) => {
 		const href = link.getAttribute("href");
 		if (!href) return false;
+		if (href.includes(":~:text")) return false;
 		return !href.startsWith("/");
 	});
 	links.forEach((link) => {

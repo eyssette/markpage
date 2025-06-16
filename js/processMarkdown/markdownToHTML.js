@@ -182,6 +182,79 @@ function showdownExtensionHighlight() {
 	];
 }
 
+// Gestion des notes de bas de page
+function showdownExtensionFootNotes() {
+	const hash = window.location.hash.substring(1).replace(/\?.*/, "");
+	return [
+		{
+			type: "lang",
+			filter: function filter(text) {
+				return text.replace(
+					/^\[\^([\d\w]+)\]:\s*((\n+(\s{2,4}|\t).+)+)$/gm,
+					function (str, name, rawContent, _, padding) {
+						var content = converter.makeHtml(
+							rawContent.replace(new RegExp("^" + padding, "gm"), ""),
+						);
+						return (
+							'<div class="footnote" id="footnote-' +
+							name +
+							'"><a href="#' +
+							hash +
+							":~:text=[" +
+							name +
+							']"><sup>[' +
+							name +
+							"]</sup></a>:" +
+							content +
+							"</div>"
+						);
+					},
+				);
+			},
+		},
+		{
+			type: "lang",
+			filter: function filter(text) {
+				return text.replace(
+					/^\[\^([\d\w]+)\]:( |\n)((.+\n)*.+)$/gm,
+					function (str, name, _, content) {
+						return (
+							'<small class="footnote" id="footnote-' +
+							name +
+							'"><a href="#' +
+							hash +
+							":~:text=[" +
+							name +
+							']"><sup>[' +
+							name +
+							"]</sup></a>: " +
+							content +
+							"</small>"
+						);
+					},
+				);
+			},
+		},
+		{
+			type: "output",
+			filter: function filter(text) {
+				return text.replace(/\[\^([\d\w]+)\]/gm, function (str, id) {
+					return (
+						'<a href="#' +
+						hash +
+						":~:text=[" +
+						id +
+						"]:" +
+						'"><sup>[' +
+						id +
+						"]</sup></a>"
+					);
+				});
+			},
+		},
+	];
+}
+
 // Gestion de la conversion du markdown en HTML
 const converter = new Showdown.Converter({
 	emoji: true,
@@ -194,6 +267,7 @@ const converter = new Showdown.Converter({
 		showdownExtensionAdmonitions,
 		showdownExtensionUnderline,
 		showdownExtensionHighlight,
+		showdownExtensionFootNotes,
 	],
 });
 
