@@ -8,7 +8,7 @@ function processChatMD(md) {
 				.replaceAll("&gt;", ">")
 				.replaceAll("&amp;", "&");
 			source = window.btoa(encodeURIComponent(source));
-			return `<iframe class="iframeText2quiz" src="https://chatmd.forge.apps.education.fr/?raw=1#${source}" style="border:0; width:100vw; height:700px; max-height:none;"></iframe>`;
+			return `<iframe class="iframeChatMD" src="https://chatmd.forge.apps.education.fr/?raw=1#${source}" style="border:0; width:100vw; height:700px; max-height:none;"></iframe>`;
 		},
 	);
 	return md;
