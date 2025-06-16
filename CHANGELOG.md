@@ -1,5 +1,21 @@
 # Changelog
 
+## 4.12.0 (2025-06-16)
+
+### Feat
+
+- gestion des notes de bas de page
+
+### Fix
+
+- classe iframe ChatMD
+- adjustHeight amélioré si bandeau + petit écran
+
+### CI
+
+- fix erreur de récursivité dans le template de déploiement
+- création d'un template pour déployer Markpage dans un autre dépôt
+
 ## 4.11.0 (2025-06-03)
 
 ### Feat

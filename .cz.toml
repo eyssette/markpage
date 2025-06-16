@@ -2,7 +2,7 @@
 name = "cz_customize"
 tag_format = "$version"
 version_scheme = "semver"
-version = "4.11.0"
+version = "4.12.0"
 update_changelog_on_bump = true
 changelog_incremental = true
 version_files = [
