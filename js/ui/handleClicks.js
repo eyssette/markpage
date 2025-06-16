@@ -41,7 +41,7 @@ export function handleClicks(baseURL, hash, markpageData) {
 						})
 						.join("&") +
 					"#" +
-					hash;
+					hash.replace("?footnote", "");
 			}
 			history.pushState({ path: newURL }, "", newURL);
 			changeDisplayBasedOnParams(params, markpageData);

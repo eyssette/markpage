@@ -133,10 +133,13 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 				});
 			}
 		} else {
-			window.scrollTo({
-				top: 0,
-				behavior: "smooth",
-			});
+			const isFoonoteLink = window.location.href.includes("?footnote");
+			if (!isFoonoteLink) {
+				window.scrollTo({
+					top: 0,
+					behavior: "smooth",
+				});
+			}
 		}
 	} else {
 		showOnlyThisElement(undefined, "sections");

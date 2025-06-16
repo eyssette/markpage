@@ -212,12 +212,12 @@ export function handleMarkpage(markpageData) {
 			delete params.subsec;
 			showOnlyThisElement(undefined, "sections");
 			showOnlyThisElement(undefined, "subsections");
-			changeDisplayBasedOnParams(params, markpageData);
 			history.pushState(
-				{ path: baseURL + "#" + hash },
+				{ path: baseURL + "#" + hash.replace("?footnote", "") },
 				"",
-				baseURL + "#" + hash,
+				baseURL + "#" + hash.replace("?footnote", ""),
 			);
+			changeDisplayBasedOnParams(params, markpageData);
 		});
 	}
 	// On peut ajouter un paramètre dans l'URL pour cacher le menu du bas et l'icône de page d'accueil

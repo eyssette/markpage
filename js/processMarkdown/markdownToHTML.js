@@ -200,7 +200,7 @@ function showdownExtensionFootNotes() {
 							name +
 							'"><a href="#' +
 							hash +
-							":~:text=[" +
+							"?footnote:~:text=[" +
 							name +
 							']"><sup>[' +
 							name +
@@ -223,7 +223,7 @@ function showdownExtensionFootNotes() {
 							name +
 							'"><a href="#' +
 							hash +
-							":~:text=[" +
+							"?footnote:~:text=[" +
 							name +
 							']"><sup>[' +
 							name +
@@ -242,7 +242,7 @@ function showdownExtensionFootNotes() {
 					return (
 						'<a href="#' +
 						hash +
-						":~:text=[" +
+						"?footnote:~:text=[" +
 						id +
 						"]:" +
 						'"><sup>[' +
