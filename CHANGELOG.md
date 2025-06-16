@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.12.1 (2025-06-16)
+
+### Fix
+
+- changement de l'historique de l'URL avant de faire changeDisplayBasedOnParams
+- gestion de la navigation si on utilise des footnotes
+
 ## 4.12.0 (2025-06-16)
 
 ### Feat
