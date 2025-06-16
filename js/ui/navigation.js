@@ -2,6 +2,30 @@ import { changeDisplayBasedOnParams } from "./changeDisplayBasedOnParams";
 import { showOnlyThisElement } from "./showOnlyThisElement";
 import { yaml } from "../processMarkdown/yaml";
 
+function changeURLhistory(options) {
+	const params = options && options.params;
+	const paramsURL = options && options.paramsURL;
+	const baseURL = options && options.baseURL;
+	const hash = options && options.hash;
+	// On change l'historique dans l'URL sans changer la page
+	let newURL;
+	if (params.sec || paramsURL.sec != 1 || paramsURL.subsec != 1) {
+		newURL =
+			baseURL +
+			"?" +
+			Object.keys(params)
+				.map(function (key) {
+					return key + "=" + encodeURIComponent(params[key]);
+				})
+				.join("&") +
+			"#" +
+			hash.replace("?footnote", "");
+	} else {
+		newURL = baseURL + "#" + hash.replace("?footnote", "");
+	}
+	history.pushState({ path: newURL }, "", newURL);
+}
+
 export function handleNavigation(baseURL, hash, params, markpageData) {
 	const sectionsTitle = markpageData[2];
 	const numberOfSections = sectionsTitle.length;
@@ -22,11 +46,23 @@ export function handleNavigation(baseURL, hash, params, markpageData) {
 				if (paramsSubsecInt < numberOfSubsections) {
 					// s'il y a encore une sous-section après : on avance d'une sous-section
 					paramsURL.subsec = paramsSubsecInt + 1;
+					changeURLhistory({
+						params: params,
+						paramsURL: paramsURL,
+						baseURL: baseURL,
+						hash: hash,
+					});
 					changeDisplayBasedOnParams(params, markpageData);
 				} else if (paramsSecInt < numberOfSections) {
 					// Sinon on passe à la section d'après et à la première sous-section
 					paramsURL.sec = paramsSecInt + 1;
 					paramsURL.subsec = 1;
+					changeURLhistory({
+						params: params,
+						paramsURL: paramsURL,
+						baseURL: baseURL,
+						hash: hash,
+					});
 					changeDisplayBasedOnParams(params, markpageData);
 				}
 			} else {
@@ -34,11 +70,23 @@ export function handleNavigation(baseURL, hash, params, markpageData) {
 				if (paramsSubsecInt > 1) {
 					// Si on n'est pas à la première sous-section : on recule d'une sous-section
 					paramsURL.subsec = paramsSubsecInt - 1;
+					changeURLhistory({
+						params: params,
+						paramsURL: paramsURL,
+						baseURL: baseURL,
+						hash: hash,
+					});
 					changeDisplayBasedOnParams(params, markpageData);
 				} else if (paramsSecInt > 1) {
 					// Sinon : on passe à la section d'avant (sauf si on est à la première section)
 					paramsURL.sec = paramsSecInt - 1;
 					paramsURL.subsec = subSectionsData[paramsURL.sec - 1].length;
+					changeURLhistory({
+						params: params,
+						paramsURL: paramsURL,
+						baseURL: baseURL,
+						hash: hash,
+					});
 					changeDisplayBasedOnParams(params, markpageData);
 				} else {
 					// Si on est à la première section : on revient à la page d'accueil
@@ -46,6 +94,12 @@ export function handleNavigation(baseURL, hash, params, markpageData) {
 					delete params.subsec;
 					showOnlyThisElement(undefined, "sections");
 					showOnlyThisElement(undefined, "subsections");
+					changeURLhistory({
+						params: params,
+						paramsURL: paramsURL,
+						baseURL: baseURL,
+						hash: hash,
+					});
 					changeDisplayBasedOnParams(params, markpageData);
 				}
 			}
@@ -57,6 +111,12 @@ export function handleNavigation(baseURL, hash, params, markpageData) {
 					// S'il reste une section après : on va à la prochaine section et à la première sous-section
 					paramsURL.sec = paramsSecInt + 1;
 					paramsURL.subsec = 1;
+					changeURLhistory({
+						params: params,
+						paramsURL: paramsURL,
+						baseURL: baseURL,
+						hash: hash,
+					});
 					changeDisplayBasedOnParams(params, markpageData);
 				} // Sinon, on ne fait rien, on reste sur la page
 			} else {
@@ -65,6 +125,12 @@ export function handleNavigation(baseURL, hash, params, markpageData) {
 					// Si on n'est pas à la première section, on va à la section d'avant
 					paramsURL.sec = paramsSecInt - 1;
 					paramsURL.subsec = subSectionsData[paramsSecInt - 1].length;
+					changeURLhistory({
+						params: params,
+						paramsURL: paramsURL,
+						baseURL: baseURL,
+						hash: hash,
+					});
 					changeDisplayBasedOnParams(params, markpageData);
 				} else {
 					// Si on est à la première section : on va à la page d'accueil
@@ -72,6 +138,12 @@ export function handleNavigation(baseURL, hash, params, markpageData) {
 					delete paramsURL.subsec;
 					showOnlyThisElement(undefined, "sections");
 					showOnlyThisElement(undefined, "subsections");
+					changeURLhistory({
+						params: params,
+						paramsURL: paramsURL,
+						baseURL: baseURL,
+						hash: hash,
+					});
 					changeDisplayBasedOnParams(params, markpageData);
 				}
 			}
@@ -79,25 +151,14 @@ export function handleNavigation(baseURL, hash, params, markpageData) {
 			// Si on était à la page d'accueil, on va à la première section et à la première sous-section
 			paramsURL.sec = 1;
 			paramsURL.subsec = 1;
+			changeURLhistory({
+				params: params,
+				paramsURL: paramsURL,
+				baseURL: baseURL,
+				hash: hash,
+			});
 			changeDisplayBasedOnParams(params, markpageData);
 		}
-		// On change l'historique dans l'URL sans changer la page
-		let newURL;
-		if (params.sec || paramsURL.sec != 1 || paramsURL.subsec != 1) {
-			newURL =
-				baseURL +
-				"?" +
-				Object.keys(params)
-					.map(function (key) {
-						return key + "=" + encodeURIComponent(params[key]);
-					})
-					.join("&") +
-				"#" +
-				hash;
-		} else {
-			newURL = baseURL + "#" + hash;
-		}
-		history.pushState({ path: newURL }, "", newURL);
 	}
 
 	// Navigation avec les touches de navigation
