@@ -148,6 +148,16 @@ export function handleMarkpage(markpageData) {
 			}
 		}, 200);
 	}
+	if (yaml && yaml.addOns && yaml.addOns.includes("myMarkmap")) {
+		const interval = setInterval(() => {
+			if (window.processMyMarkmap) {
+				clearInterval(interval);
+				document.getElementById("content").innerHTML = window.processMyMarkmap(
+					document.getElementById("content").innerHTML,
+				);
+			}
+		}, 200);
+	}
 	const hash = window.location.hash.substring(1);
 	const actualURL = window.location.search;
 	params = getParams(actualURL);

@@ -39,6 +39,9 @@ export const allowedAddOns = {
 	chatmd: {
 		js: "js/addOn/chatmd.js",
 	},
+	myMarkmap: {
+		js: "js/addOn/myMarkmap.js",
+	},
 };
 
 export const addOnsDependencies = {
