@@ -27,7 +27,7 @@ Votre Lightpad sera ensuite accessible à l'adresse : `https://lightpad.forge.ap
 ### Exemples de pads
 
 - [Un recueil de procédures de calcul réfléchi au cycle 2](https://lightpad.forge.apps.education.fr/?theme=digipad#https://codimd.apps.education.fr/BcCdVm8vRUW0X-TNKZP9zQ) <span>(Arnaud Champollion)</span>
-- [Un dictionnaire en SVT](https://lightpad.forge.apps.education.fr/#https://codimd.apps.education.fr/s_7J0ekaRqmT7sHslSc19w) <span>(Jacques-Olivier Boudier)</span>
+- [Un dictionnaire en SVT](https://lightpad.forge.apps.education.fr/#https://codimd.apps.education.fr/RQTs-9nOQHC_sXhJHw5g_g) <span>(Jacques-Olivier Boudier)</span>
 - [Un cahier de texte](https://lightpad.forge.apps.education.fr/#https://codimd.apps.education.fr/s/c6dPX8ZhT) <span>(Cyril Iaconelli)</span>
 
 ### Modèle
