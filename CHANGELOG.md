@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.13.0 (2025-07-18)
+
+### Feat
+
+- ajout des tâches en Markdown
+
+### Fix
+
+- possibilité d'utiliser Kroki dans le message initial
+- handlClicks doit être relancé pour certains addOns
+- paramètres dans l'URL des boutons de navigation
+- bouton de navigation maintenant cliquables sur toute la longueur
+- lien vers l'exemple Lightpad avec des tags
+
 ## 4.12.1 (2025-06-16)
 
 ### Fix
