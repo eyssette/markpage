@@ -85,6 +85,11 @@ function setUpRedirectListener() {
 }
 
 export function handleMarkpage(markpageData) {
+	const baseURL = window.location.origin + window.location.pathname;
+	const hash = window.location.hash.substring(1);
+	const actualURL = window.location.search;
+	params = getParams(actualURL);
+
 	// Gestion des maths
 	if (yaml && yaml.maths) {
 		displayMaths();
@@ -97,6 +102,7 @@ export function handleMarkpage(markpageData) {
 				document.getElementById("content").innerHTML = window.processKroki(
 					document.getElementById("content").innerHTML,
 				);
+				handleClicks(baseURL, hash, markpageData);
 			}
 		}, 200);
 	}
@@ -124,6 +130,7 @@ export function handleMarkpage(markpageData) {
 				document.getElementById("content").innerHTML = window.processText2quiz(
 					document.getElementById("content").innerHTML,
 				);
+				handleClicks(baseURL, hash, markpageData);
 			}
 		}, 200);
 	}
@@ -145,6 +152,7 @@ export function handleMarkpage(markpageData) {
 				document.getElementById("content").innerHTML = window.processChatMD(
 					document.getElementById("content").innerHTML,
 				);
+				handleClicks(baseURL, hash, markpageData);
 			}
 		}, 200);
 	}
@@ -155,12 +163,11 @@ export function handleMarkpage(markpageData) {
 				document.getElementById("content").innerHTML = window.processMyMarkmap(
 					document.getElementById("content").innerHTML,
 				);
+				handleClicks(baseURL, hash, markpageData);
 			}
 		}, 200);
 	}
-	const hash = window.location.hash.substring(1);
-	const actualURL = window.location.search;
-	params = getParams(actualURL);
+
 	// S'il y a un paramètre dans l'URL pour définir un thème, on définit le thème via ce paramètre
 	if (params.theme) {
 		const styleThemeElement = document.getElementById("styleTheme");
@@ -183,7 +190,6 @@ export function handleMarkpage(markpageData) {
 			styleOneByOneElement.remove();
 		}
 	}
-	const baseURL = window.location.origin + window.location.pathname;
 
 	changeDisplayBasedOnParams(params, markpageData);
 	handleClicks(baseURL, hash, markpageData);
