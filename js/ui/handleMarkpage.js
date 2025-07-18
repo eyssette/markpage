@@ -102,6 +102,10 @@ export function handleMarkpage(markpageData) {
 				document.getElementById("content").innerHTML = window.processKroki(
 					document.getElementById("content").innerHTML,
 				);
+				document.getElementById("initialMessage").innerHTML =
+					window.processKroki(
+						document.getElementById("initialMessage").innerHTML,
+					);
 				handleClicks(baseURL, hash, markpageData);
 			}
 		}, 200);
