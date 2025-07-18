@@ -38,12 +38,19 @@ export function createMarkpage(markpageData, urlSourceMarkpage) {
 		// On récupère le contenu de chaque section
 		const sectionContent = sectionsContent[i];
 		// On va utiliser des paramètres dans l'URL pour naviguer entre sections
-		const paramInit = "?sec=" + sectionID + "&subsec=1";
-		param = urlSourceMarkpage ? paramInit + "#" + urlSourceMarkpage : paramInit;
+		const paramInit = "?sec=" + sectionID;
+		const paramInitH2 = paramInit + "&subsec=1";
+		const paramH2 = urlSourceMarkpage
+			? paramInitH2 + "#" + urlSourceMarkpage
+			: paramInitH2;
 		// On commence le HTML pour chaque section, avec le titre de chaque section et un lien vers la section correspondante
 		sectionsHTML = sectionsHTML + '<section id="section-' + sectionID + '">';
 		const linkH2 =
-			'<a href="' + param + '" class="navigationLink">' + sectionTitle + "</a>";
+			'<a href="' +
+			paramH2 +
+			'" class="navigationLink">' +
+			sectionTitle +
+			"</a>";
 		sectionsHTML = sectionsHTML + "<h2>" + linkH2 + "</h2>";
 		footerHTML = footerHTML + linkH2;
 
