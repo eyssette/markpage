@@ -55,6 +55,9 @@ h2 {
 	display: block;
 	margin: auto;
 }
+h3 a {
+	width: auto;
+}
 h3 img + a {
 	width: unset;
 }

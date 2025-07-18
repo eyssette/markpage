@@ -219,7 +219,7 @@ h3 .large img {
 h3 a {
 	color: #200d33;
 	text-decoration: none;
-	width: auto;
+	width: inherit;
 }
 h3 img + a {
 	width: 130px;
