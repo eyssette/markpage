@@ -3,7 +3,8 @@ import defaultMD from "../../index.md";
 import { parseMarkdown } from "./parseMarkdown.js";
 import { createMarkpage } from "../ui/createMarkpage.js";
 import { resolveSourceURL } from "./helpers/resolveSourceURL.js";
-import { fetchSource } from "./helpers/fetch.js";
+import { fetchSource, fetchFromMultipleSources } from "./helpers/fetch.js";
+import { processYAML, yaml } from "./yaml";
 
 const defaultOptions = {
 	useCorsProxy: false,
@@ -27,7 +28,7 @@ export async function getMarkdownContentAndCreateMarkpage(newOptions = {}) {
 
 	try {
 		// On récupère le contenu de la source dans le hash
-		const md = await fetchSource(source);
+		let md = await fetchSource(source);
 
 		// On vérifie que la source est bien un fichier Markdown
 		const looksLikeMarkdown = md.includes("# ");
@@ -52,7 +53,17 @@ export async function getMarkdownContentAndCreateMarkpage(newOptions = {}) {
 			}
 		} else {
 			// Si on a bien récupéré la source Markdown et qu'elle est correcte, on affiche le site Markpage correspondant
-			const markpageData = parseMarkdown(md);
+			md = processYAML(md);
+			if (yaml && yaml.include) {
+				// Cas où on doit inclure le contenu d'autres fichiers à la suite du premier (fichiers définis dans l'en-tête YAML du premier fichier, avec le paramètre "include")
+				const includes =
+					typeof yaml.include === "object"
+						? Object.values(yaml.include)
+						: { include: yaml.include };
+				const contentToInclude = await fetchFromMultipleSources(includes);
+				md = md + "\n\n" + contentToInclude;
+			}
+			const markpageData = parseMarkdown(md, yaml);
 			return createMarkpage(markpageData, hash);
 		}
 	} catch (error) {

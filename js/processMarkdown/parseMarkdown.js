@@ -1,4 +1,3 @@
-import { processYAML, yaml } from "./yaml";
 import { markdownToHTML } from "./markdownToHTML";
 import {
 	filterElementWithNoContent,
@@ -17,9 +16,7 @@ function restoreHashesInCodeAndCommentsBlocks(markdown) {
 	});
 }
 
-export function parseMarkdown(markdownContent) {
-	markdownContent = processYAML(markdownContent);
-
+export function parseMarkdown(markdownContent, yaml) {
 	// Suppression des caractères "#" dans les blocs codes
 	markdownContent = replaceHashesInCodeAndCommentBlocks(markdownContent);
 	// On distingue le header et le contenu
