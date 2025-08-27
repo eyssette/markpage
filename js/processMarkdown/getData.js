@@ -40,6 +40,7 @@ export async function getMarkdownContentAndCreateMarkpage(newOptions = {}) {
 				return getMarkdownContentAndCreateMarkpage({
 					...options,
 					addMdExtension: true,
+					useCorsProxy: false,
 				});
 			} else {
 				// Si ça ne marche toujours pas, on affiche le site Markpage par défaut
