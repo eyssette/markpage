@@ -1,5 +1,16 @@
 # Changelog
 
+## 4.14.0 (2025-08-27)
+
+### Feat
+
+- propriété include dans le YAML pour pouvoir répartir la source du site Markpage dans plusieurs fichiers
+
+### Fix
+
+- pas de proxy Cors si on utilise un fichier source sur une forge avec ajout automatique de l'extension ".md"
+- refactoring du fetch des données source
+
 ## 4.13.0 (2025-07-18)
 
 ### Feat
