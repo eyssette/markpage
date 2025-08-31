@@ -10,7 +10,6 @@ export let yaml = {
 };
 
 export async function processYAML(markdownContent) {
-	const styleThemeElement = document.getElementById("styleTheme");
 	// Gestion de l'en-tête YAML
 	try {
 		if (
@@ -70,6 +69,7 @@ export async function processYAML(markdownContent) {
 			]);
 		}
 		// Gestion des styles personnalisés
+		const styleThemeElement = document.getElementById("styleTheme");
 		if (yaml.theme) {
 			await setTheme(yaml.theme, CSSthemes, styleThemeElement);
 		} else {

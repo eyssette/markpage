@@ -22,7 +22,8 @@ export async function getMarkdownContentAndCreateMarkpage(newOptions = {}) {
 
 	// Cas : pas de source dans le hash ou usage forcé du site Markpage par défaut
 	if (!source || options.useDefaultMarkpage) {
-		const markpageData = parseMarkdown(defaultMD);
+		const md = await processYAML(defaultMD);
+		const markpageData = parseMarkdown(md);
 		return createMarkpage(markpageData);
 	}
 
