@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.14.1 (2025-08-31)
+
+### Fix
+
+- processYAML aussi sur le fichier source par défaut index.md
+- processYAML => await setTheme
+
 ## 4.14.0 (2025-08-27)
 
 ### Feat

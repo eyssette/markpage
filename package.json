@@ -1,6 +1,6 @@
 {
   "name": "markpage",
-  "version": "4.14.0",
+  "version": "4.14.1",
   "description": "Un outil libre et gratuit qui permet de créer facilement un minisite web ou une application pour smarphone, à partir d'un simple fichier en Markdown",
   "main": "script.min.js",
   "devDependencies": {
