@@ -9,7 +9,7 @@ export let yaml = {
 	linkToHomePage: false,
 };
 
-export function processYAML(markdownContent) {
+export async function processYAML(markdownContent) {
 	const styleThemeElement = document.getElementById("styleTheme");
 	// Gestion de l'en-tête YAML
 	try {
@@ -71,7 +71,7 @@ export function processYAML(markdownContent) {
 		}
 		// Gestion des styles personnalisés
 		if (yaml.theme) {
-			setTheme(yaml.theme, CSSthemes, styleThemeElement);
+			await setTheme(yaml.theme, CSSthemes, styleThemeElement);
 		} else {
 			styleThemeElement.textContent = "";
 			document.body.className = document.body.className.replace(/theme-.*/, "");

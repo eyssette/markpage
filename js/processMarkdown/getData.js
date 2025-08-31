@@ -54,7 +54,7 @@ export async function getMarkdownContentAndCreateMarkpage(newOptions = {}) {
 			}
 		} else {
 			// Si on a bien récupéré la source Markdown et qu'elle est correcte, on affiche le site Markpage correspondant
-			md = processYAML(md);
+			md = await processYAML(md);
 			if (yaml && yaml.include) {
 				// Cas où on doit inclure le contenu d'autres fichiers à la suite du premier (fichiers définis dans l'en-tête YAML du premier fichier, avec le paramètre "include")
 				const includes =
