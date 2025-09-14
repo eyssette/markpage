@@ -10,7 +10,9 @@ function titleLinks() {
 
 			// On précise le lien en récupérant le contenu avant et après le titre
 			let prefix = "";
-			let prevNode = header.previousSibling.previousSibling;
+			let prevNode = header.previousSibling
+				? header.previousSibling.previousSibling
+				: undefined;
 			if (prevNode) {
 				const text = prevNode.textContent.trimEnd();
 				const words = text.split(/\s+/);
@@ -20,7 +22,9 @@ function titleLinks() {
 					: "";
 			}
 			let suffix = "";
-			let nextNode = header.nextSibling.nextSibling;
+			let nextNode = header.nextSibling
+				? header.nextSibling.nextSibling
+				: undefined;
 			if (nextNode) {
 				const text = nextNode.textContent.trimEnd();
 				const words = text.split(/\s+/);
