@@ -12,6 +12,10 @@ function titleLinks() {
 			const fullUrl = `${baseUrlWithHash}:~:text=${encoded}`;
 			try {
 				await navigator.clipboard.writeText(fullUrl);
+				header.setAttribute("data-copied", "true");
+				setTimeout(() => {
+					header.removeAttribute("data-copied");
+				}, 3000);
 			} catch (err) {
 				console.error("Échec de la copie :", err);
 			}

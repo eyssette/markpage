@@ -19,6 +19,14 @@ h6:hover:before {
 	width: 100%;
 }
 
+h4[data-copied]:hover:before,
+h5[data-copied]:hover:before,
+h6[data-copied]:hover:before {
+	content: "Lien copié dans le presse-papier !";
+	color: green;
+	font-weight: bold;
+}
+
 ::target-text {
 	background-color: yellow;
 }
