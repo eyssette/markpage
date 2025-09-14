@@ -171,6 +171,19 @@ export function handleMarkpage(markpageData) {
 			}
 		}, 200);
 	}
+	if (
+		yaml &&
+		!yaml.lightpad &&
+		yaml.addOns &&
+		yaml.addOns.includes("titleLinks")
+	) {
+		const interval = setInterval(() => {
+			if (window.titleLinks) {
+				clearInterval(interval);
+				window.titleLinks();
+			}
+		}, 200);
+	}
 
 	// S'il y a un paramètre dans l'URL pour définir un thème, on définit le thème via ce paramètre
 	if (params.theme) {

@@ -1,0 +1,18 @@
+h4:hover:before,
+h5:hover:before,
+h6:hover:before {
+	content: "cliquer le titre pour copier le lien vers cette section";
+	position: absolute;
+	color: grey;
+	font-size: 12px;
+	margin-top: 27px;
+	margin-left: -5px;
+	font-weight: normal;
+	background: white;
+	padding-left: 2em;
+	width: 100%;
+}
+
+::target-text {
+	background-color: yellow;
+}

@@ -42,6 +42,10 @@ export const allowedAddOns = {
 	myMarkmap: {
 		js: "js/addOn/myMarkmap.js",
 	},
+	titleLinks: {
+		js: "js/addOn/titleLinks.js",
+		css: "js/addOn/titleLinks.css",
+	},
 };
 
 export const addOnsDependencies = {
