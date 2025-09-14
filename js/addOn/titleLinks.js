@@ -15,7 +15,9 @@ function titleLinks() {
 				const text = prevNode.textContent.trimEnd();
 				const words = text.split(/\s+/);
 				const lastWords = words.slice(-3).join(" ").trim();
-				prefix = lastWords ? encodeURIComponent(lastWords) + "-," : "";
+				prefix = lastWords
+					? encodeURIComponent(lastWords).replaceAll("-", "%2D") + "-,"
+					: "";
 			}
 			let suffix = "";
 			let nextNode = header.nextSibling.nextSibling;
@@ -23,7 +25,9 @@ function titleLinks() {
 				const text = nextNode.textContent.trimEnd();
 				const words = text.split(/\s+/);
 				const firstWords = words.slice(0, 3).join(" ").trim();
-				suffix = firstWords ? ",-" + encodeURIComponent(firstWords) : "";
+				suffix = firstWords
+					? ",-" + encodeURIComponent(firstWords).replaceAll("-", "%2D")
+					: "";
 			}
 
 			const fragment = `${prefix}${title}${suffix}`;
