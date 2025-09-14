@@ -1,3 +1,9 @@
+h4:hover,
+h5:hover,
+h6:hover {
+	cursor: pointer;
+}
+
 h4:hover:before,
 h5:hover:before,
 h6:hover:before {
