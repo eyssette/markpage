@@ -69,22 +69,32 @@ export async function getMarkdownContentAndCreateMarkpage(newOptions = {}) {
 			return createMarkpage(markpageData, hash);
 		}
 	} catch (error) {
-		// En cas d'erreur avec la récupération du contenu, on essaie d'utiliser un proxy CORS, et si ça ne marche pas, on affiche le site Markpage par défaut
-		if (!options.useCorsProxy) {
+		// … On essaie d'abord d'ajouter l'extension ".md"
+		// Si on déploie un site Markpage avec des fichiers dans son dépôt, on peut alors utiliser des URLs plus significatives, sans avoir à ajouter le .md dans l'URL
+		if (!options.addMdExtension) {
 			return getMarkdownContentAndCreateMarkpage({
 				...options,
-				useCorsProxy: true,
+				addMdExtension: true,
+				useCorsProxy: false,
 			});
 		} else {
-			alert(
-				"Il y a une erreur dans l'URL ou bien votre fichier n'est pas accessible",
-			);
-			console.log(error);
+			// En cas d'erreur avec la récupération du contenu, on essaie d'utiliser un proxy CORS, et si ça ne marche pas, on affiche le site Markpage par défaut
+			if (!options.useCorsProxy) {
+				return getMarkdownContentAndCreateMarkpage({
+					...options,
+					useCorsProxy: true,
+				});
+			} else {
+				alert(
+					"Il y a une erreur dans l'URL ou bien votre fichier n'est pas accessible",
+				);
+				console.log(error);
 
-			return getMarkdownContentAndCreateMarkpage({
-				...options,
-				useDefaultMarkpage: true,
-			});
+				return getMarkdownContentAndCreateMarkpage({
+					...options,
+					useDefaultMarkpage: true,
+				});
+			}
 		}
 	}
 }
