@@ -1,5 +1,21 @@
 # Changelog
 
+## 4.15.0 (2025-09-16)
+
+### Feat
+
+- addOn "titleLinks" pour pouvoir copier un lien vers une sous-section (titres niveaux 4, 5 et 6)
+
+### Fix
+
+- si on utilise un proxy Cors pour la source, on n'ajoute pas ".md" à la source
+- ajout de l'extension .md avant l'utilisation d'un proxy CORS
+- addOn titleLinks - résolution du cas où il n'y a pas de préfixe avant le textFragment (pas de contenu avant le titre)
+- addOn titleLinks - résolution problème si suffixe ou préfixe textFragment contient "-"
+- addOn titleLinks - précision du textFragment avec un préfixe et un suffixe (contenu avant et après le titre)
+- addOn titleLinks - message pour prévenir que le lien a été copié
+- CSS cursor pointer sur les titres h4, h5, h6 si on utilise l'addOn titleLinks
+
 ## 4.14.1 (2025-08-31)
 
 ### Fix
