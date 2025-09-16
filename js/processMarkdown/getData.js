@@ -82,6 +82,7 @@ export async function getMarkdownContentAndCreateMarkpage(newOptions = {}) {
 			if (!options.useCorsProxy) {
 				return getMarkdownContentAndCreateMarkpage({
 					...options,
+					addMdExtension: false,
 					useCorsProxy: true,
 				});
 			} else {
