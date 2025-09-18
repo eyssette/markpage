@@ -34,7 +34,19 @@ export function createMarkpage(markpageData, urlSourceMarkpage) {
 	for (let i = 0; i < sections.length; i++) {
 		const sectionID = i + 1;
 		// On récupère le titre de chaque section
-		const sectionTitle = sections[i];
+		let sectionTitle = sections[i];
+		let sectionTitleInitialTag = "<h2>";
+		// Si le titre H2 de section contient une classe générée par un attribut générique de type {.maClasse}, on attribue cette classe au titre h2 lui-même, et non pas à son contenu.
+		if (sectionTitle.includes("class=")) {
+			const sectionTitlematch = sectionTitle.match(
+				/<p class="([^>]*)">(.*?)<\/p>/i,
+			);
+			sectionTitle = sectionTitlematch ? sectionTitlematch[2] : sectionTitle;
+			sectionTitleInitialTag = sectionTitlematch
+				? `<h2 class="${sectionTitlematch[1]}">`
+				: sectionTitleInitialTag;
+		}
+
 		// On récupère le contenu de chaque section
 		const sectionContent = sectionsContent[i];
 		// On va utiliser des paramètres dans l'URL pour naviguer entre sections
@@ -51,7 +63,7 @@ export function createMarkpage(markpageData, urlSourceMarkpage) {
 			'" class="navigationLink">' +
 			sectionTitle +
 			"</a>";
-		sectionsHTML = sectionsHTML + "<h2>" + linkH2 + "</h2>";
+		sectionsHTML = sectionsHTML + sectionTitleInitialTag + linkH2 + "</h2>";
 		footerHTML = footerHTML + linkH2;
 
 		sectionsHTML = sectionsHTML + '<div class="sectionContent">';
@@ -68,7 +80,7 @@ export function createMarkpage(markpageData, urlSourceMarkpage) {
 					subSectionID +
 					'">';
 				// … on récupère le titre, l'image et le contenu
-				const titleH3 = subSection[0];
+				let titleH3 = subSection[0];
 				const imageH3 = subSection[1].replace("<p>", "").replace("</p>", "");
 				const contentH3 = subSection[2];
 				// … on insère un lien dans le titre avec un paramètre dans l'URL pour naviguer entre les sous-sections
@@ -76,9 +88,18 @@ export function createMarkpage(markpageData, urlSourceMarkpage) {
 				param = urlSourceMarkpage
 					? paramWithoutHash + "#" + urlSourceMarkpage
 					: paramWithoutHash;
+				let titleH3initialTag = "<h3>";
+				// Si le titre H3 contient une classe générée par un attribut générique de type {.maClasse}, on attribue cette classe au titre h3 lui-même, et non pas à son contenu.
+				if (titleH3.includes("class=")) {
+					const titleH3match = titleH3.match(/<p class="([^>]*)">(.*?)<\/p>/i);
+					titleH3 = titleH3match ? titleH3match[2] : titleH3;
+					titleH3initialTag = titleH3match
+						? `<h3 class="${titleH3match[1]}">`
+						: titleH3initialTag;
+				}
 				sectionsHTML =
 					sectionsHTML +
-					"<h3>" +
+					titleH3initialTag +
 					imageH3 +
 					'<a href="' +
 					param +
