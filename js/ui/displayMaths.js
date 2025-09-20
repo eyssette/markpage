@@ -9,10 +9,12 @@ export function displayMaths() {
 			const initialMessageElementBaseContent = initialMessageElement.innerHTML;
 			const useFiltersButtons =
 				initialMessageElementBaseContent.includes("<button>");
-			if (yaml && yaml.lightpad && !useFiltersButtons) {
-				initialMessageElement.innerHTML = convertLatexExpressions(
-					initialMessageElementBaseContent,
-				);
+			if (yaml) {
+				if (!yaml.lightpad || (yaml.lightpad && !useFiltersButtons)) {
+					initialMessageElement.innerHTML = convertLatexExpressions(
+						initialMessageElementBaseContent,
+					);
+				}
 			}
 			const sectionContent = document.querySelectorAll(".sectionContent");
 			for (const section of sectionContent) {
