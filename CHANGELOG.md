@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.15.1 (2025-09-20)
+
+### Fix
+
+- **processMarkdown**: gestion des erreurs de Katex
+- **ui**: gestion du Latex dans le message initial
+- **ui**: gestion des attributs génériques dans les titres de niveau 2 et 3
+
 ## 4.15.0 (2025-09-16)
 
 ### Feat
