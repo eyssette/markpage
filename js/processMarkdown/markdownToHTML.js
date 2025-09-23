@@ -263,6 +263,7 @@ const converter = new Showdown.Converter({
 	simplifiedAutoLink: true,
 	simpleLineBreaks: true,
 	tables: true,
+	strikethrough: true,
 	extensions: [
 		showdownExtensionGenericAttributes,
 		showdownExtensionAdmonitions,
