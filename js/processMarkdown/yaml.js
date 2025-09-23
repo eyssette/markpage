@@ -47,6 +47,10 @@ export async function processYAML(markdownContent) {
 			} else {
 				yaml.addOns = "lightbox";
 			}
+			if (yaml.tailleColonnes) {
+				const styleColumns = `<style>@media screen and (min-width: 1400px) {#content>section {min-width: ${yaml.tailleColonnes};}}</style>`;
+				loadCSS(styleColumns);
+			}
 		}
 		if (yaml.padScroll === true) {
 			loadCSS("<style>body{height:100vw;overflow-y:hidden;}</style>");
