@@ -182,6 +182,7 @@ export function searchBar(hash, markpageData) {
 			const title = document.querySelector("header h1");
 			const imageInTitle = title.querySelector("img");
 			const banner = document.querySelector("header .banner");
+			const titleInitialColor = title.style.color;
 			if (shouldDisplaySearchBar) {
 				title.style.color = "transparent";
 				if (imageInTitle) {
@@ -192,7 +193,7 @@ export function searchBar(hash, markpageData) {
 					banner.style.zIndex = "100";
 				}
 			} else {
-				title.style.color = "white";
+				title.style.color = titleInitialColor;
 				if (imageInTitle) {
 					imageInTitle.style.opacity = "1";
 				}
