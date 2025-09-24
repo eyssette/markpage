@@ -1,5 +1,16 @@
 # Changelog
 
+## 4.16.0 (2025-09-24)
+
+### Feat
+
+- **lightpad**: propriété "tailleColonnes" dans le YAML pour personnaliser la taille de chaque colonne (en pourcentage, pixel, ou autre expression en CSS).
+
+### Fix
+
+- **ui**: résolution du bug de couleur du titre après retour à la page initiale dans certains cas
+- ajout de l'option strikethrough pour permettre d'avoir du texte barré en Markdown
+
 ## 4.15.1 (2025-09-20)
 
 ### Fix
