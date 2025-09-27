@@ -4,13 +4,15 @@ style: img{border-radius:10px}
 
 # Markpage
 
-<div style="float:left; margin-right:2em; margin-bottom:2em;" markdown> ![](favicon.svg =100x100)</div> 
+<div style="float:left; margin-right:2em; margin-bottom:5em;" markdown> ![](favicon.svg =150x150)</div> 
  
 Markpage est un outil **libre** et **gratuit**, créé par [Cédric Eyssette](https://eyssette.forge.apps.education.fr/) sur [LaForgeÉdu](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr), qui permet de créer facilement un minisite web ou une application pour smartphone, à partir d'un simple fichier en Markdown.
 
 On peut l'utiliser notamment pour créer des petits modules de formation ou de révision.
 
 <label for="urlInput1">Entrez l'URL de votre fichier en Markdown pour accéder à votre minisite :</label> <input type="url" id="urlInput1" class="redirect-input" placeholder="Votre URL"> <button class="redirect-button" data-input-id="urlInput1">OK</button>
+
+Vous pouvez également tester l'éditeur en ligne : <button class="openEditor">ouvrir l'éditeur</button>
 
 ## Comment ça marche ?
 

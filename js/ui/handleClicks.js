@@ -94,7 +94,9 @@ export function handleClicks(baseURL, hash, markpageData) {
 	// Possibilité de se déplacer à gauche ou à droite avec un clic maintenu sur la souris
 	// (Dans le mode "pad")
 	if (yaml.pad) {
-		document.addEventListener("mousedown", function (event) {
+		const innerBox = document.querySelector("#innerBox");
+		document;
+		innerBox.addEventListener("mousedown", function (event) {
 			// Liste de tags à ignorer car ils représentent des éléments potentiellement interactifs
 			const ignoredTags = [
 				"IMG",
@@ -142,12 +144,12 @@ export function handleClicks(baseURL, hash, markpageData) {
 
 			function onMouseUp() {
 				isDragging = false;
-				document.removeEventListener("mousemove", onMouseMove);
-				document.removeEventListener("mouseup", onMouseUp);
+				innerBox.removeEventListener("mousemove", onMouseMove);
+				innerBox.removeEventListener("mouseup", onMouseUp);
 			}
 
-			document.addEventListener("mousemove", onMouseMove);
-			document.addEventListener("mouseup", onMouseUp);
+			innerBox.addEventListener("mousemove", onMouseMove);
+			innerBox.addEventListener("mouseup", onMouseUp);
 		});
 	}
 }

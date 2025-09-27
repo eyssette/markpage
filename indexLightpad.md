@@ -23,6 +23,8 @@ Votre Lightpad sera ensuite accessible à l'adresse : `https://lightpad.forge.ap
 
 <input type="url" id="redirect" class="redirect-input" placeholder="Votre URL"> <button  class="redirect-button" data-input-id="redirect" >OK</button>
 
+Vous pouvez également tester l'éditeur en ligne : <button class="openEditor">ouvrir l'éditeur</button>
+
 
 ### Exemples de pads
 

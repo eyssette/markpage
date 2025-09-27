@@ -1,4 +1,5 @@
 import defaultMD from "../../index.md";
+import { initialConfig } from "./helpers/initialConfig.js";
 
 import { parseMarkdown } from "./parseMarkdown.js";
 import { createMarkpage } from "../ui/createMarkpage.js";
@@ -12,6 +13,8 @@ const defaultOptions = {
 	addMdExtension: false,
 };
 
+initialConfig.md = defaultMD;
+
 export async function getMarkdownContentAndCreateMarkpage(newOptions = {}) {
 	const options = { ...defaultOptions, ...newOptions };
 
@@ -23,6 +26,7 @@ export async function getMarkdownContentAndCreateMarkpage(newOptions = {}) {
 	// Cas : pas de source dans le hash ou usage forcé du site Markpage par défaut
 	if (!source || options.useDefaultMarkpage) {
 		const md = await processYAML(defaultMD);
+		initialConfig.md = md;
 		const markpageData = parseMarkdown(md);
 		return createMarkpage(markpageData);
 	}
@@ -56,6 +60,7 @@ export async function getMarkdownContentAndCreateMarkpage(newOptions = {}) {
 		} else {
 			// Si on a bien récupéré la source Markdown et qu'elle est correcte, on affiche le site Markpage correspondant
 			md = await processYAML(md);
+			initialConfig.md = md;
 			if (yaml && yaml.include) {
 				// Cas où on doit inclure le contenu d'autres fichiers à la suite du premier (fichiers définis dans l'en-tête YAML du premier fichier, avec le paramètre "include")
 				const includes =

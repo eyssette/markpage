@@ -82,9 +82,13 @@ export async function processYAML(markdownContent) {
 		}
 		// Gestion des styles personnalisés
 		if (yaml.style) {
-			const styleElement = document.createElement("style");
+			const hasCustomCSS = document.querySelector("#customCSS");
+			const styleElement = hasCustomCSS || document.createElement("style");
+			styleElement.id = "customCSS";
 			styleElement.innerHTML = yaml.style.replaceAll("\\", "");
-			document.body.appendChild(styleElement);
+			if (!hasCustomCSS) {
+				document.body.appendChild(styleElement);
+			}
 		}
 		// Possibilité de ne pas avoir la searchbar
 		if (yaml.searchbar == false || yaml.recherche == false) {

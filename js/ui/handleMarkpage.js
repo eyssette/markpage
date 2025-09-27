@@ -10,6 +10,7 @@ import { showOnlyThisElement } from "./showOnlyThisElement";
 import { CSSthemes } from "../config";
 import { setTheme } from "./setTheme";
 import { checkScrollListener } from "./checkScrollListener";
+import { initEditorButtonEvents } from "./editor/eventClickEditorButton";
 
 export let params;
 
@@ -300,4 +301,5 @@ export function handleMarkpage(markpageData) {
 
 	setUpRedirectListener();
 	checkScrollListener();
+	initEditorButtonEvents();
 }
