@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.17.0 (2025-09-27)
+
+### Feat
+
+- ajout d'un éditeur en ligne
+
 ## 4.16.0 (2025-09-24)
 
 ### Feat
