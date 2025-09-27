@@ -15,7 +15,7 @@ export function initEditorButtonEvents() {
 			}
 			document.body.classList.add("editMode");
 			const editorWrapper = document.querySelector(".editor-wrapper");
-			loadCSS("/css/editor.css", "editor-style");
+			loadCSS("/css/editor.min.css", "editor-style");
 			if (editorWrapper === null) {
 				initMarkdownEditor();
 			} else {
