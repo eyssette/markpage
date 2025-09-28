@@ -111,35 +111,50 @@ export function removeTagsFromStringButKeepAltImages(str) {
 		.replace(/<[^>]+?>/gi, ""); // Supprime toutes les autres balises
 }
 
-export function loadScript(src) {
+export function loadScript(src, name) {
+	const prefixScript = "script-";
 	// Fonction pour charger des scripts
+	const alreadyLoaded = document.querySelector("#" + prefixScript + name);
 	return new Promise((resolve, reject) => {
-		const script = document.createElement("script");
-		script.src = src;
-		script.onload = resolve;
-		script.onerror = reject;
-		document.head.appendChild(script);
+		if (!alreadyLoaded) {
+			const script = document.createElement("script");
+			script.src = src;
+			script.id = prefixScript + name;
+			script.onload = resolve;
+			script.onerror = reject;
+			document.head.appendChild(script);
+		} else {
+			resolve();
+		}
 	});
 }
 
-export function loadCSS(src) {
-	return new Promise((resolve, reject) => {
-		let styleElement;
-		if (src.startsWith("<style>")) {
-			styleElement = document.createElement("style");
-			styleElement.textContent = src
-				.replace("<style>", "")
-				.replace("</style>", "");
-		} else {
-			styleElement = document.createElement("link");
-			styleElement.href = src;
-			styleElement.rel = "stylesheet";
-			styleElement.type = "text/css";
-			styleElement.onload = resolve;
-			styleElement.onerror = reject;
-		}
-		document.head.appendChild(styleElement);
-	});
+export function loadCSS(src, name) {
+	const prefixCSS = "css-";
+	// Fonction pour charger des CSS
+	const cssElement = document.querySelector("#" + prefixCSS + name);
+	if (!cssElement) {
+		return new Promise((resolve, reject) => {
+			let styleElement;
+			if (src.startsWith("<style>")) {
+				styleElement = document.createElement("style");
+				styleElement.id = prefixCSS + name;
+				styleElement.textContent = src
+					.replace("<style>", "")
+					.replace("</style>", "");
+				resolve();
+			} else {
+				styleElement = document.createElement("link");
+				styleElement.href = src;
+				styleElement.id = prefixCSS + name;
+				styleElement.rel = "stylesheet";
+				styleElement.type = "text/css";
+				styleElement.onload = resolve;
+				styleElement.onerror = reject;
+			}
+			document.head.appendChild(styleElement);
+		});
+	}
 }
 
 export function openLinksInNewTab(links) {
