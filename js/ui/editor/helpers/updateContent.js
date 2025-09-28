@@ -20,8 +20,8 @@ export async function updateContent() {
 	const editorElement = document.querySelector(".editor");
 	const editorContent =
 		editorElement && editorElement.textContent ? editorElement.textContent : "";
-	const md = await processYAML(editorContent);
-	const markpageData = md ? parseMarkdown(md) : null;
+	const md = editorContent ? await processYAML(editorContent) : "";
+	const markpageData = md.trim() ? parseMarkdown(md) : null;
 	return markpageData ? createMarkpage(markpageData) : null;
 }
 
