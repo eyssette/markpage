@@ -60,7 +60,19 @@ export async function processYAML(markdownContent) {
 			}
 			if (yaml.tailleColonnes) {
 				const styleColumns = `<style>@media screen and (min-width: 1400px) {#content>section {min-width: ${yaml.tailleColonnes};}}</style>`;
-				loadCSS(styleColumns, "styleColumns");
+				const cssStyleColumnsElement =
+					document.querySelector("#css-styleColumns");
+				if (cssStyleColumnsElement) {
+					cssStyleColumnsElement.innerHTML = styleColumns.replace(
+						/<\/?style>/,
+						"",
+					);
+				} else {
+					loadCSS(styleColumns, "styleColumns");
+				}
+			} else {
+				const cssStyleColumns = document.querySelector("#css-styleColumns");
+				if (cssStyleColumns) cssStyleColumns.remove();
 			}
 		} else {
 			const cssPad = document.querySelector("#css-pad");
