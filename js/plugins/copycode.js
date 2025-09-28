@@ -1,4 +1,4 @@
-setTimeout(() => {
+function copycode() {
 	// Sélectionne tous les blocs <pre><code>
 	const codeBlocks = document.querySelectorAll("pre code");
 	codeBlocks.forEach((block) => {
@@ -37,4 +37,4 @@ setTimeout(() => {
 		// Ajoute le bouton au conteneur <pre>
 		pre.appendChild(copyButton);
 	});
-}, 300);
+}

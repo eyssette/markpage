@@ -16,35 +16,35 @@ export const CSSthemes = ["colors.css", "digipad.css"];
 
 // Gestion des add-ons
 export const allowedPlugins = {
-	pako: { js: "js/addOn/pako.min.js" },
-	kroki: { js: "js/addOn/kroki.js" },
+	pako: { js: "js/plugins/pako.min.js" },
+	kroki: { js: "js/plugins/kroki.js" },
 	lightbox: {
-		js: "js/addOn/lightbox.js",
+		js: "js/plugins/lightbox.js",
 		css: "<style>img[src]:not([src$='?nolightbox']){cursor: pointer}#lightbox img{max-width:90%!important;max-height:90%!important}</style>",
 	},
 	text2quiz: {
-		js: "js/addOn/text2quiz.js",
+		js: "js/plugins/text2quiz.js",
 		css: "<style>.iframeText2quiz{width:700px; height:750px; max-width: 100%; border:none} @media screen and (max-width: 834px){.iframeText2quiz{height:65vh;}}</style>",
 	},
 	copycode: {
-		js: "js/addOn/copycode.js",
+		js: "js/plugins/copycode.js",
 	},
 	textFit: {
-		js: "js/addOn/textFit.min.js",
+		js: "js/plugins/textFit.min.js",
 	},
 	highlight: {
-		js: "js/addOn/highlight.min.js",
-		css: "js/addOn/highlight-theme-idea.css",
+		js: "js/plugins/highlight.min.js",
+		css: "js/plugins/highlight-theme-idea.css",
 	},
 	chatmd: {
-		js: "js/addOn/chatmd.js",
+		js: "js/plugins/chatmd.js",
 	},
 	myMarkmap: {
-		js: "js/addOn/myMarkmap.js",
+		js: "js/plugins/myMarkmap.js",
 	},
 	titleLinks: {
-		js: "js/addOn/titleLinks.js",
-		css: "js/addOn/titleLinks.css",
+		js: "js/plugins/titleLinks.js",
+		css: "js/plugins/titleLinks.css",
 	},
 };
 

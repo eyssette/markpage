@@ -132,7 +132,7 @@ function lightbox() {
 			const parentElementTagName = image.parentElement.tagName;
 			const isImageWithLink = parentElementTagName == "A";
 			if (!isImageWithLink) {
-				image.classList.add("lightboxAddOn");
+				image.classList.add(".lightboxPlugin");
 				lightboxImage.src = image.src;
 				lightboxImage.style.height = `${image.naturalHeight * 3}px`;
 				lightboxImage.style.display = "block";
@@ -145,7 +145,7 @@ function lightbox() {
 
 	// Ouverture de la lightbox quand on clique sur un lien vers un PDF
 	pdfLinks.forEach((link) => {
-		link.classList.add("lightboxAddOn");
+		link.classList.add(".lightboxPlugin");
 		link.addEventListener("click", (e) => {
 			e.preventDefault();
 			lightboxPDF.src = link.href;
