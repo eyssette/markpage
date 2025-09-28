@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.17.3 (2025-09-28)
+
+### Fix
+
+- ajout d'un bouton pour copier le contenu dans l'éditeur en ligne
+- suppression  du paramètre "editor" dans l'URL. Permet de sortir du mode édition si on y est arrivé via une URL contenant le paramètre "editor"
+
 ## 4.17.2 (2025-09-28)
 
 ### Fix
