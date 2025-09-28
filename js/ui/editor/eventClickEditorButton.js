@@ -1,6 +1,7 @@
 import { loadCSS } from "../../utils";
 import { initMarkdownEditor } from "./editor";
 import { updateContent } from "./helpers/updateContent";
+import { resetYamlToDefault } from "../../processMarkdown/yaml";
 
 export function initEditorButtonEvents() {
 	const openEditorButton = document.querySelector("button.openEditor");
@@ -13,9 +14,10 @@ export function initEditorButtonEvents() {
 				);
 				return;
 			}
+			resetYamlToDefault();
 			document.body.classList.add("editMode");
 			const editorWrapper = document.querySelector(".editor-wrapper");
-			loadCSS("/css/editor.min.css", "editor-style");
+			loadCSS("/css/editor.min.css", "editor");
 			if (editorWrapper === null) {
 				initMarkdownEditor();
 			} else {

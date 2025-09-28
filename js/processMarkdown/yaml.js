@@ -3,14 +3,17 @@ import { deepMerge, loadScript, loadCSS } from "../utils.js";
 import { CSSthemes, allowedPlugins, pluginsDependencies } from "../config.js";
 import { setTheme } from "../ui/setTheme.js";
 
-export let yaml = {
+export const defaultYaml = {
 	searchbar: true,
 	oneByOne: true,
 	linkToHomePage: false,
 };
 
+export let yaml;
+
 export async function processYAML(markdownContent) {
 	// Gestion de l'en-tête YAML
+	yaml = { ...defaultYaml };
 	try {
 		if (
 			markdownContent.split("---").length > 2 &&
@@ -26,7 +29,7 @@ export async function processYAML(markdownContent) {
 			yaml.plugins = yaml.addOns;
 		}
 		if (yaml.lightpad === true || isLightpadWebsite) {
-			loadCSS("./css/lightpad.min.css");
+			loadCSS("./css/lightpad.min.css", "lightpad");
 			document.body.classList.add("lightpad");
 			yaml.lightpad = true;
 			yaml.pad = true;
@@ -41,10 +44,10 @@ export async function processYAML(markdownContent) {
 			}
 		}
 		if (yaml.pad === true) {
-			loadCSS("./css/pad.min.css");
+			loadCSS("./css/pad.min.css", "pad");
 			yaml.oneByOne = false;
 			yaml.linkToHomePage = false;
-			// Par défaut on ajoute l'addOn lightbox si on est dans le mode pad (car les images sont de toute façon petites dans chaque colonne)
+			// Par défaut on ajoute le plugin lightbox si on est dans le mode pad (car les images sont de toute façon petites dans chaque colonne)
 			if (yaml.plugins && !yaml.plugins.includes("lightbox")) {
 				yaml.plugins = yaml.plugins + ", lightbox";
 			} else {
@@ -52,15 +55,18 @@ export async function processYAML(markdownContent) {
 			}
 			if (yaml.tailleColonnes) {
 				const styleColumns = `<style>@media screen and (min-width: 1400px) {#content>section {min-width: ${yaml.tailleColonnes};}}</style>`;
-				loadCSS(styleColumns);
+				loadCSS(styleColumns, "styleColumns");
 			}
 		}
 		if (yaml.padScroll === true) {
-			loadCSS("<style>body{height:100vw;overflow-y:hidden;}</style>");
+			loadCSS(
+				"<style>body{height:100vw;overflow-y:hidden;}</style>",
+				"padScroll",
+			);
 		}
 		// Possibilité d'activer ou désactiver l'affichage oneByOne (avec les boutons de navigation en bas)
 		if (yaml.oneByOne == true) {
-			loadCSS("./css/oneByOne.min.css");
+			loadCSS("./css/oneByOne.min.css", "oneByOne");
 		} else {
 			yaml.oneByOne == false;
 		}
@@ -71,8 +77,12 @@ export async function processYAML(markdownContent) {
 			Promise.all([
 				loadScript(
 					"https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js",
+					"katex",
 				),
-				loadCSS("https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"),
+				loadCSS(
+					"https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css",
+					"katex",
+				),
 			]);
 		}
 		// Gestion des styles personnalisés
@@ -107,6 +117,7 @@ export async function processYAML(markdownContent) {
 		}
 		// Gestion des add-ons (scripts et css en plus)
 		if (yaml.plugins) {
+			yaml.plugins = yaml.plugins.toString();
 			yaml.plugins = yaml.plugins.replaceAll(" ", "").split(",");
 			let pluginsDependenciesArray = [];
 			// On ajoute aussi les dépendances pour chaque add-on
@@ -126,17 +137,34 @@ export async function processYAML(markdownContent) {
 				const addDesiredPlugin = allowedPlugins[desiredPlugin];
 				if (addDesiredPlugin) {
 					if (addDesiredPlugin.js) {
-						pluginsPromises.push(loadScript(addDesiredPlugin.js));
+						pluginsPromises.push(
+							loadScript(addDesiredPlugin.js, desiredPlugin),
+						);
 					}
 					if (addDesiredPlugin.css) {
-						pluginsPromises.push(loadCSS(addDesiredPlugin.css));
+						pluginsPromises.push(loadCSS(addDesiredPlugin.css, desiredPlugin));
 					}
 					Promise.all(pluginsPromises);
 				}
 			}
 		}
 	} catch (e) {
+		const styleThemeElement = document.getElementById("styleTheme");
+		styleThemeElement.textContent = "";
+		document.body.className = document.body.className.replace(/theme-.*/, "");
 		console.log("erreur processYAML : " + e);
 	}
 	return markdownContent;
+}
+
+export function resetYamlToDefault() {
+	// Supprime toutes les clés existantes
+	for (const key of Object.keys(yaml)) {
+		delete yaml[key];
+	}
+
+	// Copie toutes les clés de defaultYaml
+	for (const [key, value] of Object.entries(defaultYaml)) {
+		yaml[key] = value;
+	}
 }
