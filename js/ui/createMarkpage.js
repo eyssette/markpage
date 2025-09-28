@@ -123,7 +123,9 @@ export function createMarkpage(markpageData, urlSourceMarkpage) {
 	}
 
 	// On affiche le mini site
-	titleElement.innerHTML = title;
+	if (titleElement.textContent != title) {
+		titleElement.innerHTML = title;
+	}
 	document.title = title
 		.replace("<span>", " – ")
 		.replace(/<[^>]*>?/gm, "")
