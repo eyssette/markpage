@@ -28,7 +28,6 @@ Contenu
 `;
 
 const defaultMDLightpad = `---
-lightpad: true
 theme: base
 ---
 
