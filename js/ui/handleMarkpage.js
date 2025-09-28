@@ -96,6 +96,15 @@ export function handleMarkpage(markpageData) {
 		displayMaths();
 	}
 	// Gestion des add-ons
+	if (yaml && yaml.plugins && yaml.plugins.includes("copycode")) {
+		const interval = setInterval(() => {
+			if (window.copycode) {
+				clearInterval(interval);
+				window.copycode();
+				handleClicks(baseURL, hash, markpageData);
+			}
+		}, 200);
+	}
 	if (yaml && yaml.plugins && yaml.plugins.includes("kroki")) {
 		const interval = setInterval(() => {
 			if (window.processKroki) {
@@ -117,7 +126,7 @@ export function handleMarkpage(markpageData) {
 				clearInterval(interval);
 				window.lightbox();
 				const linksWithNoLightbox = document.querySelectorAll(
-					"a:not(.lightboxAddOn):not(.navigationLink)",
+					"a:not(.lightboxPlugin):not(.navigationLink)",
 				);
 				openLinksInNewTab(linksWithNoLightbox);
 			}
@@ -193,12 +202,15 @@ export function handleMarkpage(markpageData) {
 	}
 	if (!yaml.padScroll && params.padscroll && params.padscroll == 1) {
 		// Cas où on veut que le scroll se fasse colonne par colonne dans le mode pad
-		loadCSS("<style>body{height:100vw;overflow-y:hidden;}</style>");
+		loadCSS(
+			"<style>body{height:100vw;overflow-y:hidden;}</style>",
+			"padScrollColumnByColumn",
+		);
 		yaml.padScroll = true;
 		params.pad = true;
 	}
 	if (!yaml.pad && params.pad && params.pad == 1) {
-		loadCSS("./css/pad.min.css");
+		loadCSS("./css/pad.min.css", "pad");
 		yaml.pad = true;
 		// On supprime les styles oneByOne si on utilise le mode pad
 		const styleOneByOneElement = document.querySelector(
