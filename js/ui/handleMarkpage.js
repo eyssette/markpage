@@ -313,5 +313,5 @@ export function handleMarkpage(markpageData) {
 
 	setUpRedirectListener();
 	checkScrollListener();
-	initEditorButtonEvents();
+	initEditorButtonEvents(params);
 }
