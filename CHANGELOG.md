@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.17.2 (2025-09-28)
+
+### Fix
+
+- on ne recrée pas le container pour la lightbox si il existe déjà (fix pour l'éditeur en ligne)
+- possibilité d'utiliser "lightpad: true" dans l'éditeur en ligne
+- lancement de l'éditeur en ligne également avec le paramètre"editor" dans l'URL
+- defaultMD pour l'éditeur en ligne en mode Lightpad
+
 ## 4.17.1 (2025-09-28)
 
 ### Fix
