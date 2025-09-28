@@ -1,6 +1,6 @@
 import { load as loadYAML } from "../externals/js-yaml.js";
 import { deepMerge, loadScript, loadCSS } from "../utils.js";
-import { CSSthemes, allowedAddOns, addOnsDependencies } from "../config.js";
+import { CSSthemes, allowedPlugins, pluginsDependencies } from "../config.js";
 import { setTheme } from "../ui/setTheme.js";
 
 export let yaml = {
@@ -22,16 +22,19 @@ export async function processYAML(markdownContent) {
 		const isLightpadWebsite = window.location.href.includes("lightpad")
 			? true
 			: false;
+		if (yaml.addOns) {
+			yaml.plugins = yaml.addOns;
+		}
 		if (yaml.lightpad === true || isLightpadWebsite) {
 			loadCSS("./css/lightpad.min.css");
 			document.body.classList.add("lightpad");
 			yaml.lightpad = true;
 			yaml.pad = true;
 			yaml.padScroll = true;
-			if (yaml.addOns && !yaml.addOns.includes("textFit")) {
-				yaml.addOns = yaml.addOns + ", textFit";
+			if (yaml.plugins && !yaml.plugins.includes("textFit")) {
+				yaml.plugins = yaml.plugins + ", textFit";
 			} else {
-				yaml.addOns = "textFit";
+				yaml.plugins = "textFit";
 			}
 			if ((yaml.bandeau && yaml.bandeau != "non") || yaml.banner) {
 				document.body.classList.add("useBanner");
@@ -42,10 +45,10 @@ export async function processYAML(markdownContent) {
 			yaml.oneByOne = false;
 			yaml.linkToHomePage = false;
 			// Par défaut on ajoute l'addOn lightbox si on est dans le mode pad (car les images sont de toute façon petites dans chaque colonne)
-			if (yaml.addOns && !yaml.addOns.includes("lightbox")) {
-				yaml.addOns = yaml.addOns + ", lightbox";
+			if (yaml.plugins && !yaml.plugins.includes("lightbox")) {
+				yaml.plugins = yaml.plugins + ", lightbox";
 			} else {
-				yaml.addOns = "lightbox";
+				yaml.plugins = "lightbox";
 			}
 			if (yaml.tailleColonnes) {
 				const styleColumns = `<style>@media screen and (min-width: 1400px) {#content>section {min-width: ${yaml.tailleColonnes};}}</style>`;
@@ -103,32 +106,32 @@ export async function processYAML(markdownContent) {
 				: yaml.linkToHomePage;
 		}
 		// Gestion des add-ons (scripts et css en plus)
-		if (yaml.addOns) {
-			yaml.addOns = yaml.addOns.replaceAll(" ", "").split(",");
-			let addOnsDependenciesArray = [];
+		if (yaml.plugins) {
+			yaml.plugins = yaml.plugins.replaceAll(" ", "").split(",");
+			let pluginsDependenciesArray = [];
 			// On ajoute aussi les dépendances pour chaque add-on
-			for (const [addOn, addOnDependencies] of Object.entries(
-				addOnsDependencies,
+			for (const [plugin, pluginDependencies] of Object.entries(
+				pluginsDependencies,
 			)) {
-				if (yaml.addOns.includes(addOn)) {
-					for (const addOnDependencie of addOnDependencies) {
-						addOnsDependenciesArray.push(addOnDependencie);
+				if (yaml.plugins.includes(plugin)) {
+					for (const pluginDependencie of pluginDependencies) {
+						pluginsDependenciesArray.push(pluginDependencie);
 					}
 				}
 			}
-			yaml.addOns.push(...addOnsDependenciesArray);
+			yaml.plugins.push(...pluginsDependenciesArray);
 			// Pour chaque add-on, on charge le JS ou le CSS correspondant
-			for (const desiredAddOn of yaml.addOns) {
-				const addOnsPromises = [];
-				const addDesiredAddOn = allowedAddOns[desiredAddOn];
-				if (addDesiredAddOn) {
-					if (addDesiredAddOn.js) {
-						addOnsPromises.push(loadScript(addDesiredAddOn.js));
+			for (const desiredPlugin of yaml.plugins) {
+				const pluginsPromises = [];
+				const addDesiredPlugin = allowedPlugins[desiredPlugin];
+				if (addDesiredPlugin) {
+					if (addDesiredPlugin.js) {
+						pluginsPromises.push(loadScript(addDesiredPlugin.js));
 					}
-					if (addDesiredAddOn.css) {
-						addOnsPromises.push(loadCSS(addDesiredAddOn.css));
+					if (addDesiredPlugin.css) {
+						pluginsPromises.push(loadCSS(addDesiredPlugin.css));
 					}
-					Promise.all(addOnsPromises);
+					Promise.all(pluginsPromises);
 				}
 			}
 		}

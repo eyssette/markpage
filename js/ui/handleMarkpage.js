@@ -96,7 +96,7 @@ export function handleMarkpage(markpageData) {
 		displayMaths();
 	}
 	// Gestion des add-ons
-	if (yaml && yaml.addOns && yaml.addOns.includes("kroki")) {
+	if (yaml && yaml.plugins && yaml.plugins.includes("kroki")) {
 		const interval = setInterval(() => {
 			if (window.processKroki) {
 				clearInterval(interval);
@@ -111,7 +111,7 @@ export function handleMarkpage(markpageData) {
 			}
 		}, 200);
 	}
-	if (yaml && yaml.addOns && yaml.addOns.includes("lightbox")) {
+	if (yaml && yaml.plugins && yaml.plugins.includes("lightbox")) {
 		const interval = setInterval(() => {
 			if (window.lightbox) {
 				clearInterval(interval);
@@ -128,7 +128,7 @@ export function handleMarkpage(markpageData) {
 		);
 		openLinksInNewTab(linksWithNoLightbox);
 	}
-	if (yaml && yaml.addOns && yaml.addOns.includes("text2quiz")) {
+	if (yaml && yaml.plugins && yaml.plugins.includes("text2quiz")) {
 		const interval = setInterval(() => {
 			if (window.processText2quiz) {
 				clearInterval(interval);
@@ -139,7 +139,7 @@ export function handleMarkpage(markpageData) {
 			}
 		}, 200);
 	}
-	if (yaml && yaml.addOns && yaml.addOns.includes("highlight")) {
+	if (yaml && yaml.plugins && yaml.plugins.includes("highlight")) {
 		const interval = setInterval(() => {
 			if (window.hljs) {
 				clearInterval(interval);
@@ -150,7 +150,7 @@ export function handleMarkpage(markpageData) {
 			}
 		}, 200);
 	}
-	if (yaml && yaml.addOns && yaml.addOns.includes("chatmd")) {
+	if (yaml && yaml.plugins && yaml.plugins.includes("chatmd")) {
 		const interval = setInterval(() => {
 			if (window.processChatMD) {
 				clearInterval(interval);
@@ -161,7 +161,7 @@ export function handleMarkpage(markpageData) {
 			}
 		}, 200);
 	}
-	if (yaml && yaml.addOns && yaml.addOns.includes("myMarkmap")) {
+	if (yaml && yaml.plugins && yaml.plugins.includes("myMarkmap")) {
 		const interval = setInterval(() => {
 			if (window.processMyMarkmap) {
 				clearInterval(interval);
@@ -175,8 +175,8 @@ export function handleMarkpage(markpageData) {
 	if (
 		yaml &&
 		!yaml.lightpad &&
-		yaml.addOns &&
-		yaml.addOns.includes("titleLinks")
+		yaml.plugins &&
+		yaml.plugins.includes("titleLinks")
 	) {
 		const interval = setInterval(() => {
 			if (window.titleLinks) {

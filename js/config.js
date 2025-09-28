@@ -15,7 +15,7 @@ export const corsProxy = "https://corsproxy.io/?url=";
 export const CSSthemes = ["colors.css", "digipad.css"];
 
 // Gestion des add-ons
-export const allowedAddOns = {
+export const allowedPlugins = {
 	pako: { js: "js/addOn/pako.min.js" },
 	kroki: { js: "js/addOn/kroki.js" },
 	lightbox: {
@@ -48,6 +48,6 @@ export const allowedAddOns = {
 	},
 };
 
-export const addOnsDependencies = {
+export const pluginsDependencies = {
 	kroki: ["pako"],
 };

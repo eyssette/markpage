@@ -1,4 +1,5 @@
 ---
+plugins: copycode
 style: img{border-radius:10px}
 ---
 
@@ -93,7 +94,7 @@ oneByOne: false
 - `recherche: false` permet de supprimer la barre de recherche en haut à gauche
 - `lienPageAccueil: true` permet d'ajouter un lien vers la page d'accueil en haut à droite
 - `oneByOne: false` permet de changer le mode de navigation sur mobile : par défaut, le paramètre est sur `true`, une seule sous-section est affichée et on navigue avec un mouvement de swipe ou bien via des boutons de navigation. Avec `false`, seul le contenu de la section active est affiché, mais tous les titres de sous-section sont présents et on peut scroller pour cliquer sur la sous-section qui nous intéresse.
-- `addOns: kroki, lightbox` permet d'utiliser des add-ons, ici _kroki_ pour pouvoir générer des graphiques avec mermaid, tikz… et _lightbox_ pour pouvoir afficher en grand une image quand on clique dessus
+- `plugins: kroki, lightbox` permet d'utiliser des add-ons, ici _kroki_ pour pouvoir générer des graphiques avec mermaid, tikz… et _lightbox_ pour pouvoir afficher en grand une image quand on clique dessus
 - `pathImages: URL` permet d'indiquer le chemin vers les images quand on veut utiliser des adresses relatives dans la source de son fichier Markdown
 
 ### Thèmes et Styles CSS
@@ -177,7 +178,7 @@ Contenu
 
 Vous pouvez utiliser des add-ons pour gérer des contenus ou des fonctionnalités spécifiques.
 
-Il suffit de les indiquer dans l'en-tête YAML ainsi : `addOns: kroki, lightbox` par exemple pour ajouter kroki et lightbox.
+Il suffit de les indiquer dans l'en-tête YAML ainsi : `plugins: kroki, lightbox` par exemple pour ajouter kroki et lightbox.
 
 Les add-ons disponibles sont les suivants :
 
