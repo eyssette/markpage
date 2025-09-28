@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.17.1 (2025-09-28)
+
+### Fix
+
+- reset du YAML aux valeurs par défaut quand on lance l'éditeur en ligne
+- vérification du contenu de l'éditeur avant de lancer la conversion en site Markpage
+- plugin copycode sous forme de fonction appelée dans handleMarkpage (permet l'utilisation avec l'éditeur en ligne)
+- dossier "addOn" renommé en "plugins"
+- loadScript & loadCSS : vérification si le script ou le CSS existent avant de le charger
+- "addOns" renommé en "plugins" dans le yaml
+- coloration syntaxique pour le yaml dans l'éditeur en ligne
+- minification style editor.css
+
 ## 4.17.0 (2025-09-27)
 
 ### Feat
