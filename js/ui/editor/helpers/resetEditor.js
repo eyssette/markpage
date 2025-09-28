@@ -7,10 +7,6 @@ export function resetEditor(jar, editorWrapper, closeEditorButton) {
 	closeEditorButton.style.display = "none";
 	editorWrapper.style.display = "none";
 
-	// const footer = document.querySelector("footer");
-	// footer.style.display = "block";
-	// footer.style.top = "25vh";
-
 	const style = document.querySelector("style#customCSS");
 	jar.updateCode(initialConfig.md);
 	updateContent();

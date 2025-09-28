@@ -9,8 +9,6 @@ export function initMarkdownEditor(md = "") {
 	document.body.insertBefore(editorWrapper, document.body.firstChild);
 
 	setTimeout(() => {
-		//const footer = document.querySelector("footer");
-		//footer.style.top = "50vh";
 		const defaultMD = getDefaultMD();
 		const jar = initJar(editor, md ? md : defaultMD);
 		createCloseButton(editorWrapper, jar);
