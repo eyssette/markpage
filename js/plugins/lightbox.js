@@ -11,7 +11,9 @@ function lightbox() {
 	const iframeLinks = document.querySelectorAll("a[href]:not([href$='.pdf'])");
 
 	// Crée et configure le conteneur lightbox
-	const lightboxContainer = document.createElement("div");
+	const lightboxContainer = document.querySelector("#lightbox")
+		? document.querySelector("#lightbox")
+		: document.createElement("div");
 	lightboxContainer.id = "lightbox";
 	lightboxContainer.style.position = "fixed";
 	lightboxContainer.style.top = "0";
