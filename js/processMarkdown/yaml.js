@@ -42,6 +42,11 @@ export async function processYAML(markdownContent) {
 			if ((yaml.bandeau && yaml.bandeau != "non") || yaml.banner) {
 				document.body.classList.add("useBanner");
 			}
+		} else {
+			document.body.classList.remove("lightpad");
+			document.body.classList.remove("useBanner");
+			const cssLightpad = document.querySelector("#css-lightpad");
+			if (cssLightpad) cssLightpad.remove();
 		}
 		if (yaml.pad === true) {
 			loadCSS("./css/pad.min.css", "pad");
@@ -57,18 +62,28 @@ export async function processYAML(markdownContent) {
 				const styleColumns = `<style>@media screen and (min-width: 1400px) {#content>section {min-width: ${yaml.tailleColonnes};}}</style>`;
 				loadCSS(styleColumns, "styleColumns");
 			}
+		} else {
+			const cssPad = document.querySelector("#css-pad");
+			if (cssPad) cssPad.remove();
+			const cssStyleColumns = document.querySelector("#css-styleColumns");
+			if (cssStyleColumns) cssStyleColumns.remove();
 		}
 		if (yaml.padScroll === true) {
 			loadCSS(
 				"<style>body{height:100vw;overflow-y:hidden;}</style>",
 				"padScroll",
 			);
+		} else {
+			const cssPadScroll = document.querySelector("#css-padScroll");
+			if (cssPadScroll) cssPadScroll.remove();
 		}
 		// Possibilité d'activer ou désactiver l'affichage oneByOne (avec les boutons de navigation en bas)
 		if (yaml.oneByOne == true) {
 			loadCSS("./css/oneByOne.min.css", "oneByOne");
 		} else {
 			yaml.oneByOne == false;
+			const cssOneByOne = document.querySelector("#css-oneByOne");
+			if (cssOneByOne) cssOneByOne.remove();
 		}
 		// Gestion des mathématiques
 		if (yaml.maths === true) {
