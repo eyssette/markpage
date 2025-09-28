@@ -196,6 +196,7 @@ h3 {
 	align-items: center;
 	cursor: pointer;
 	flex-wrap: wrap;
+	border-radius: 10px;
 }
 
 h3 img {
