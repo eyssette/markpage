@@ -27,6 +27,12 @@ body.editMode .close-editor-button {
 	top: 10px;
 }
 
+body.editMode .copy-content-button {
+	position: absolute;
+	top: 10px;
+	left: 125px;
+}
+
 body.editMode .editor {
 	padding-top: 40px;
 	width: 100%;
