@@ -30,7 +30,7 @@ export function eventKeyUpDebounceUpdateContent() {
 	const editorElement = document.querySelector(".editor");
 	const debouncedUpdateContent = debounce(async () => {
 		await updateContent();
-	}, 300);
+	}, 600);
 	editorElement.addEventListener("keyup", () => {
 		debouncedUpdateContent();
 	});
