@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.17.4 (2025-10-01)
+
+### Fix
+
+- refactorisation des événements pour l'éditeur et ajout d'un événement pour détecter si on ferme la fenêtre (afin de ne pas perdre le contenu de l'éditeur par erreur)
+- éditeur en ligne - délai plus important pour mettre à jour le contenu (sinon il y a du lag)
+- gestion de la propriété YAML "tailleColonnes" dans l'éditeur en ligne
+- pour l'éditeur en ligne, pas de réinitialisation du contenu du titre s'il n'a pas changé
+- **markpage**: border-radius pour les titres h3 dans le thème de base
+
 ## 4.17.3 (2025-09-28)
 
 ### Fix
