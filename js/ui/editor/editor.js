@@ -4,6 +4,7 @@ import { initJar } from "./helpers/initCodeJar.js";
 import { initKeyboardEvents } from "./events/keyboard.js";
 import { getDefaultMD } from "./helpers/defaultMD.js";
 import { createCopyContentButton } from "./dom/createCopyContentButton.js";
+import { eventCloseWindow } from "./events/closeWindow.js";
 
 export function initMarkdownEditor(md = "") {
 	const { editorWrapper, editor } = createEditor();
@@ -15,5 +16,6 @@ export function initMarkdownEditor(md = "") {
 		createCloseButton(editorWrapper, jar);
 		createCopyContentButton(editorWrapper, editor);
 		initKeyboardEvents();
+		eventCloseWindow(true);
 	}, 100);
 }
