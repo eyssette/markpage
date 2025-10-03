@@ -192,7 +192,7 @@ function showdownExtensionFootNotes() {
 				return text.replace(
 					/^\[\^([\d\w]+)\]:\s*((\n+(\s{2,4}|\t).+)+)$/gm,
 					function (str, name, rawContent, _, padding) {
-						var content = converter.makeHtml(
+						let content = converter.makeHtml(
 							rawContent.replace(new RegExp("^" + padding, "gm"), ""),
 						);
 						return (
@@ -205,7 +205,9 @@ function showdownExtensionFootNotes() {
 							']"><sup>[' +
 							name +
 							"]</sup></a>:" +
-							content +
+							converter
+								.makeHtml(content)
+								.replace(/^<p>([\s\S]*)<\/p>\s*$/, "$1") +
 							"</div>"
 						);
 					},
@@ -228,7 +230,9 @@ function showdownExtensionFootNotes() {
 							']"><sup>[' +
 							name +
 							"]</sup></a>: " +
-							content +
+							converter
+								.makeHtml(content)
+								.replace(/^<p>([\s\S]*)<\/p>\s*$/, "$1") +
 							"</small>"
 						);
 					},
