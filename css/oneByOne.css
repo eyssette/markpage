@@ -10,16 +10,4 @@
 		margin: 2em auto;
 		width: 80%;
 	}
-	body:not(.displayHomepage) nav #navButtons {
-		display: flex;
-		text-align: center;
-		gap: 70px;
-		justify-content: center;
-		margin-top: 2em;
-	}
-	nav button {
-		border: none;
-		font-size: 1.5em;
-		background-color: transparent;
-	}
 }

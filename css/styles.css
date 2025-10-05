@@ -155,6 +155,19 @@ nav {
 	display: none;
 }
 
+body:not(.displayHomepage) nav #navButtons {
+	display: flex;
+	text-align: center;
+	gap: 70px;
+	justify-content: center;
+	margin-top: 2em;
+}
+nav button {
+	border: none;
+	font-size: 1.5em;
+	background-color: transparent;
+}
+
 #navButtons button {
 	color: #0268df;
 }
