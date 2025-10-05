@@ -162,14 +162,13 @@ body:not(.displayHomepage) nav #navButtons {
 	justify-content: center;
 	margin-top: 2em;
 }
-nav button {
-	border: none;
-	font-size: 1.5em;
-	background-color: transparent;
-}
 
 #navButtons button {
 	color: #0268df;
+	border: none;
+	font-size: 1.5em;
+	background-color: transparent;
+	cursor: pointer;
 }
 
 .displaySubSection .subSection:not(.visible) .subSectionContent {
