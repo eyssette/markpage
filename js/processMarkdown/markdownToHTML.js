@@ -300,8 +300,17 @@ function resolveImagePath(md) {
 
 // Gestion du Markdown dans un bloc div
 function markdownInDiv(md) {
-	md = md.replace(/<div(.*)?>/g, "<div markdown$1>");
-	return md;
+	// On sépare le texte en segments pour pouvoir repérer les blocs de code
+	const segments = md.split(/(```[\s\S]*?```)/g);
+
+	// On transforme les balises <div> en <div markdown>, mais seulement dans les segments qui ne sont pas un bloc de code
+	for (let i = 0; i < segments.length; i++) {
+		if (!segments[i].startsWith("```")) {
+			segments[i] = segments[i].replace(/<div(.*?)>/g, "<div markdown$1>");
+		}
+	}
+
+	return segments.join("");
 }
 
 export function markdownToHTML(text) {
