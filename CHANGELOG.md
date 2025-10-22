@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.17.5 (2025-10-22)
+
+### Fix
+
+- gestion du Markdown dans un bloc div => pas pour les balises div dans un bloc de code
+- test pour savoir si on est sur le site Lightpad plus précis
+- CSS pour les boutons de navigation (pointeur de souris)
+- CSS des boutons de navigation dans la feuille générale de style et non pas dans la feuille pour l'option oneByOne
+- correction bug en cas de lien au format Markdown dans une note de bas de page
+
 ## 4.17.4 (2025-10-01)
 
 ### Fix
