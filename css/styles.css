@@ -424,6 +424,10 @@ details {
 	align-items: center;
 	margin-bottom: 0.75em;
 }
+.katex-html .tag {
+	background: none;
+	color: initial;
+}
 .tag:hover {
 	opacity: 0.7;
 }

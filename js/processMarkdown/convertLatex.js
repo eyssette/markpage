@@ -1,7 +1,16 @@
 // gestion des mathématiques en Latex
 export function convertLatexExpressions(string) {
 	string = string
-		.replace(/\$\$(.*?)\$\$/g, "&#92;[$1&#92;]")
+		.replace(/\$\$(.*?)\$\$/gs, function (_, latexContent) {
+			latexContent = latexContent
+				.replace(/<\/?p>/g, "")
+				.replace(/<\/?pre>/g, "")
+				.replace(/<\/?code>/g, "")
+				.replace(/<\/?sup>/g, "")
+				.replace(/<br>/g, "")
+				.replace(/\n/g, " ");
+			return "&#92;[" + latexContent + "&#92;]";
+		})
 		.replace(/\$(.*?)\$/g, "&#92;($1&#92;)");
 	let expressionsLatex = string.match(
 		new RegExp(/&#92;\[.*?&#92;\]|&#92;\(.*?&#92;\)/g),
