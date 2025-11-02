@@ -362,47 +362,104 @@ input {
 	text-align: center;
 }
 
+/* Admonitions */
+
 .admonition {
-	border: 2px solid black;
-	border-radius: 5px;
-	padding: 0.5em 1em;
-	background-color: #eee;
-	margin-bottom: 1em;
+	--info-icon: "📝";
+	--info-color-border: #1505a1;
+	--info-color-bg: rgb(1 125 255 / 7%);
+	--info-color-title: #004996;
+	--success-icon: "🌱";
+	--success-color-border: #02461f;
+	--success-color-bg: rgb(0 200 83 / 5%);
+	--success-color-title: #115525;
+	--warning-icon: "❗";
+	--warning-color-border: #b94a48;
+	--warning-color-bg: rgb(255 0 0 / 5%);
+	--warning-color-title: #992222;
+	margin: 1.5em 0em;
+	padding: 0.75em 1em;
+	border: 1px solid grey;
+	border-left-width: 3px;
+	border-radius: 0.25em;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+	background-color: rgb(255 255 255 / 25%);
+	font-size: 0.9em;
 }
 
-.admonition.info {
-	border-color: #1505a1;
-	background-color: #f6f7ff;
-}
-.admonition.tip,
-.admonition.success {
-	border-color: #02461f;
-	background-color: #f7fff6;
-}
-.admonition.warning,
-.admonition.danger {
-	border-color: #b94a48;
-	background-color: #fff6f6;
-}
-
-.admonitionContent {
-	font-size: 0.95em;
+@media screen and (min-width: 500px) {
+	.admonition {
+		font-size: 0.95em;
+	}
 }
 
 .admonitionTitle {
 	font-weight: bold;
-	font-size: 0.9em;
-	margin-bottom: 0.5em;
+	letter-spacing: 0.02em;
+	margin-bottom: 1em;
 }
 
-.info .admonitionTitle {
-	color: #0b0258;
+.admonitionTitle:before {
+	font-weight: 300;
+	margin-right: 0.75em;
+	font-size: 1.15em;
 }
-.tip .admonitionTitle {
-	color: #012e14;
+
+.admonitionTitle:empty {
+	display: none;
 }
-.warning .admonitionTitle {
-	color: #470302;
+
+.info .admonitionTitle:before,
+.note .admonitionTitle:before,
+.spoiler .admonitionTitle:before {
+	content: var(--info-icon);
+}
+.warning .admonitionTitle:before,
+.danger .admonitionTitle:before,
+.bug .admonitionTitle:before {
+	content: var(--warning-icon);
+}
+
+.tip .admonitionTitle:before,
+.success .admonitionTitle:before {
+	content: var(--success-icon);
+}
+
+.admonition.info,
+.admonition.note,
+.admonition.spoiler {
+	border-color: var(--info-color-border);
+	background: var(--info-color-bg);
+}
+
+.admonition.info .admonitionTitle,
+.admonition.note .admonitionTitle,
+.admonition.spoiler .admonitionTitle {
+	color: var(--info-color-title);
+}
+
+.admonition.success,
+.admonition.tip {
+	border-color: var(--success-color-border);
+	background: var(--success-color-bg);
+}
+
+.admonition.success .admonitionTitle,
+.admonition.tip .admonitionTitle {
+	color: var(--success-color-title);
+}
+
+.admonition.bug,
+.admonition.danger,
+.admonition.warning {
+	border-color: var(--warning-color-border);
+	background: var(--warning-color-bg);
+}
+
+.admonition.bug .admonitionTitle,
+.admonition.danger .admonitionTitle,
+.admonition.warning .admonitionTitle {
+	color: var(--warning-color-title);
 }
 
 details {
