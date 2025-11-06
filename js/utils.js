@@ -10,7 +10,7 @@ export function getParams(URL) {
 	return paramsObject;
 }
 
-// Pour gérer l'URL de la source du flipbook
+// Pour gérer l'URL de la source en Markdown
 export function handleURL(url, options) {
 	if (url !== "") {
 		let addCorsProxy = options && options.useCorsProxy ? true : false;

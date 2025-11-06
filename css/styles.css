@@ -84,9 +84,13 @@ footer a.navigationLink:last-of-type {
 footer span {
 	display: none;
 }
+footer span.katex,
+footer span.katex span {
+	display: inline;
+}
 
 #footerContent {
-	max-width: var(--maxWidth);
+	max-width: 75%;
 	margin: auto;
 	display: flex;
 	flex-direction: row;
@@ -304,6 +308,24 @@ h3 a:empty:before {
 .displaySubSection h2 aside {
 	font-size: 0.75em;
 }
+
+/* Si l'utilisateur utilise une liste, ordonnée ou non, pour les titres de section ou sous-section */
+h2 ol,
+h2 ul,
+h3 ol,
+h3 ul,
+.navigationLink ol,
+.navigationLink ul {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+}
+footer .navigationLink ol,
+footer .navigationLink ul {
+	display: inline;
+	list-style-type: none;
+}
+
 .subSectionContent h3 {
 	visibility: hidden;
 	height: 20px;
@@ -563,8 +585,9 @@ hr:last-child {
 	}
 
 	footer a {
-		min-width: 60px;
+		min-width: fit-content;
 	}
+
 	footer a.navigationLink:first-of-type {
 		padding-left: 0em;
 	}

@@ -16,6 +16,16 @@ export function displayMaths() {
 					);
 				}
 			}
+			// Possibilité d'utiliser du Latex dans les titres de section ou sous-section
+			const sectionTitles = document.querySelectorAll(
+				"h2, h3, .navigationLink",
+			);
+			for (const sectionTitle of sectionTitles) {
+				sectionTitle.innerHTML = convertLatexExpressions(
+					sectionTitle.innerHTML,
+				);
+			}
+
 			const sectionContent = document.querySelectorAll(".sectionContent");
 			for (const section of sectionContent) {
 				const subSectionsContent =
