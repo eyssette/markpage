@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.17.6 (2025-11-06)
+
+### Fix
+
+- **ui**: paramètre "searchbar=0" dans l'URL pour cacher la barre de recherche
+- **css**: titre admonitions - petite amélioration
+- **css**: style pour les admonitions amélioré (comme pour ChatMD)
+- gestion du Latex multilignes
+
 ## 4.17.5 (2025-10-22)
 
 ### Fix
