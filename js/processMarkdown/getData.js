@@ -25,8 +25,17 @@ export async function getMarkdownContentAndCreateMarkpage(newOptions = {}) {
 
 	// Cas : pas de source dans le hash ou usage forcé du site Markpage par défaut
 	if (!source || options.useDefaultMarkpage) {
-		const md = await processYAML(defaultMD);
+		let md = await processYAML(defaultMD);
 		initialConfig.md = md;
+		if (yaml && yaml.include) {
+			// Cas où on doit inclure le contenu d'autres fichiers à la suite du premier (fichiers définis dans l'en-tête YAML du premier fichier, avec le paramètre "include")
+			const includes =
+				typeof yaml.include === "object"
+					? Object.values(yaml.include)
+					: { include: yaml.include };
+			const contentToInclude = await fetchFromMultipleSources(includes);
+			md = md + "\n\n" + contentToInclude;
+		}
 		const markpageData = parseMarkdown(md);
 		return createMarkpage(markpageData);
 	}
