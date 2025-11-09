@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.17.7 (2025-11-09)
+
+### Fix
+
+- **css**: amélioration CSS footer
+- possibilité d'utiliser "include" dans le yaml même dans le fichier index.md
+- meilleur affichage du footer et gestion du Latex dans les titres de section ou sous-section
+
 ## 4.17.6 (2025-11-06)
 
 ### Fix
