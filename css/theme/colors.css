@@ -33,9 +33,15 @@
 	display: none;
 }
 
-.subSectionContent a {
+#initialMessage a,
+main a:not(.navigationLink),
+main a:not(.navigationLink):visited {
 	color: darkred;
-	text-decoration: grey underline;
+	border: none;
+}
+main a:not(.navigationLink):hover,
+main a:not(.navigationLink):hover {
+	border-bottom: 1px solid grey;
 }
 
 h3 {

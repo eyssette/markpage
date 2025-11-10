@@ -14,7 +14,7 @@ body {
 
 #innerBox,
 #backgroundInnerBox {
-	background-color: rgb(235, 239, 248);
+	background: transparent;
 }
 
 #innerBox {
@@ -46,6 +46,16 @@ header {
 	margin-bottom: 3em;
 	padding: 0 10px;
 	max-width: 700px;
+	line-height: 1.25em;
+}
+
+#initialMessage a,
+main a:not(.navigationLink),
+main a:not(.navigationLink):visited {
+	border-bottom: 1px solid grey;
+	color: #00008b;
+	padding-bottom: 0.05em;
+	text-decoration: none;
 }
 
 img {
@@ -57,6 +67,7 @@ img {
 
 main {
 	text-align: left;
+	line-height: 1.25em;
 }
 
 footer {
@@ -206,7 +217,7 @@ h2 aside {
 
 h3 {
 	flex-shrink: 0;
-	width: 180px;
+	max-width: 180px;
 	padding: 5px 20px;
 	margin: 10px 0;
 	display: flex;
@@ -743,7 +754,7 @@ hr:last-child {
 		top: 30px;
 	}
 	h3 {
-		margin-left: -20px;
+		margin-left: -25px;
 	}
 	h3 aside {
 		font-size: 0.65em;
@@ -759,7 +770,7 @@ hr:last-child {
 		overflow-x: hidden;
 		overflow-y: auto;
 		padding-right: 20px;
-		background-color: #ebeff8;
+		background-color: transparent;
 	}
 
 	.subSectionContent img {
