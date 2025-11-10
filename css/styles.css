@@ -72,12 +72,12 @@ main {
 
 footer {
 	width: 100vw;
-	height: 4em;
-	min-height: 60px;
+	height: 1.5em;
+	min-height: 3em;
 	margin: 0;
 	position: fixed;
 	padding: 20px 0px;
-	font-size: min(1.4vw, 0.9em);
+	font-size: min(1.5vw, 18px);
 	text-align: center;
 	bottom: 0px;
 	background-color: white;
@@ -102,7 +102,7 @@ footer span.katex span {
 }
 
 #footerContent {
-	max-width: 75%;
+	max-width: 95%;
 	margin: auto;
 	display: flex;
 	flex-direction: row;
@@ -585,7 +585,7 @@ hr:last-child {
 	}
 
 	footer {
-		font-size: 10px;
+		font-size: 16px;
 		height: auto;
 		min-height: auto;
 	}
