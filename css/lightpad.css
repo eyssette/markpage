@@ -1,3 +1,8 @@
+html {
+	max-height: none;
+	overflow-y: unset;
+}
+
 h1,
 #searchBar {
 	position: fixed !important;
