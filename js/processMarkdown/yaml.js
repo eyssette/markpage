@@ -30,6 +30,10 @@ export async function processYAML(markdownContent) {
 		if (yaml.addOns) {
 			yaml.plugins = yaml.addOns;
 		}
+		if (yaml.favicon) {
+			const faviconElement = document.getElementById("favicon");
+			faviconElement.href = yaml.favicon;
+		}
 		if (yaml.lightpad === true || isLightpadWebsite) {
 			loadCSS("./css/lightpad.min.css", "lightpad");
 			document.body.classList.add("lightpad");
