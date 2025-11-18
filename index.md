@@ -80,6 +80,7 @@ Vous pouvez au début de votre fichier ajouter un en-tête YAML de ce type :
 ```
 ---
 maths: true
+favicon: URL_image
 theme: colors
 style: a{color:red}
 recherche: false
@@ -89,6 +90,7 @@ oneByOne: false
 ```
 
 - `maths: true` permet d'écrire des formules mathématiques en Latex avec la syntaxe `$Latex$` ou `$$Latex$$`
+- `favicon: URL_image` permet de personnaliser l'image de _favicon_ du site
 - `theme: colors` permet d'utiliser un thème personnalisé (thèmes possibles : seulement _colors_ pour le moment)
 - `style: a{color:red}` permet d'ajouter des styles CSS personnalisés
 - `recherche: false` permet de supprimer la barre de recherche en haut à gauche
