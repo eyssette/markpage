@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.17.8 (2025-11-18)
+
+### Fix
+
+- **ui**: amélioration affichage (pas de barre de scroll + pas de flèche vers le bas non nécessaires sur la page d'accueil)
+- **css**: amélioration footer (taille police selon taille écran)
+- **css**: petites améliorations du thème par défaut (liens, taille h3 …)
+
 ## 4.17.7 (2025-11-09)
 
 ### Fix
