@@ -27,7 +27,7 @@ export function checkScrollListener() {
 		window.addEventListener("scroll", checkScroll);
 	}
 
-	window.addEventListener("load", checkScroll);
+	checkScroll();
 	window.addEventListener("resize", checkScroll);
 	window.addEventListener("click", checkScroll);
 	window.addEventListener("keydown", checkScroll);
