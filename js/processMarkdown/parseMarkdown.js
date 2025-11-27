@@ -163,6 +163,7 @@ export function parseMarkdown(markdownContent, yaml) {
 		initialMessageContent,
 		sectionsTitles,
 		subSectionsArray,
+		markdownContent,
 	];
 
 	return markpageData;

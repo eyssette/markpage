@@ -1,4 +1,5 @@
 ---
+editor: true
 plugins: copycode
 style: img{border-radius:10px}
 ---

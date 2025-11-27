@@ -1,4 +1,5 @@
 ---
+editor: true
 plugins: copycode
 style: a.selectTheme{display:inline-block;margin:0.5em 0.5em;}ul span{font-size:0.9em;display:block;color:#333}
 ---
