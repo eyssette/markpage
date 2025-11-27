@@ -1,5 +1,17 @@
 # Changelog
 
+## 4.18.0 (2025-11-27)
+
+### Feat
+
+- possibilité de partager son site en mode éditable avec editor: true dans le YAML et le paramètre ?editor dans l'URL
+- possibilité de personnaliser le favicon dans le YAML
+
+### Fix
+
+- **css**: html pas de max-height, pas d'overflow-y pour lightpad
+- documentation de la configuration du favicon dans le YAML
+
 ## 4.17.8 (2025-11-18)
 
 ### Fix
