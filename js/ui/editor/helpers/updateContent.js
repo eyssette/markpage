@@ -1,4 +1,4 @@
-import { processYAML } from "../../../processMarkdown/yaml";
+import { processYAML, yaml } from "../../../processMarkdown/yaml";
 import { parseMarkdown } from "../../../processMarkdown/parseMarkdown";
 import { createMarkpage } from "../../createMarkpage";
 
@@ -21,7 +21,7 @@ export async function updateContent() {
 	const editorContent =
 		editorElement && editorElement.textContent ? editorElement.textContent : "";
 	const md = editorContent ? await processYAML(editorContent) : "";
-	const markpageData = md.trim() ? parseMarkdown(md) : null;
+	const markpageData = md.trim() ? parseMarkdown(md, yaml) : null;
 	return markpageData ? createMarkpage(markpageData) : null;
 }
 
