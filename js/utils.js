@@ -181,3 +181,10 @@ export function sortCaseAndAccentInsensitive(array) {
 		});
 	});
 }
+
+export function isLightpad() {
+	return (
+		window.location.href.includes("https://lightpad.forge.apps.education.fr") ||
+		window.location.href.includes("?lightpad")
+	);
+}

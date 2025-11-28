@@ -1,5 +1,5 @@
 import { load as loadYAML } from "../externals/js-yaml.js";
-import { deepMerge, loadScript, loadCSS } from "../utils.js";
+import { deepMerge, loadScript, loadCSS, isLightpad } from "../utils.js";
 import { CSSthemes, allowedPlugins, pluginsDependencies } from "../config.js";
 import { setTheme } from "../ui/setTheme.js";
 
@@ -22,11 +22,7 @@ export async function processYAML(markdownContent) {
 			const yamlData = loadYAML(markdownContent.split("---")[1]);
 			yaml = yamlData ? deepMerge(yaml, yamlData) : yaml;
 		}
-		const isLightpadWebsite =
-			window.location.href.includes("lightpad.") ||
-			window.location.href.includes("?lightpad")
-				? true
-				: false;
+		const isLightpadWebsite = isLightpad();
 		if (yaml.addOns) {
 			yaml.plugins = yaml.addOns;
 		}
@@ -199,5 +195,9 @@ export function resetYamlToDefault() {
 	// Copie toutes les clés de defaultYaml
 	for (const [key, value] of Object.entries(defaultYaml)) {
 		yaml[key] = value;
+	}
+	const isLightpadWebsite = isLightpad();
+	if (isLightpadWebsite) {
+		yaml.lightpad = true;
 	}
 }

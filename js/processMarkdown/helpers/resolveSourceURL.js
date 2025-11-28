@@ -1,4 +1,4 @@
-import { handleURL } from "../../utils";
+import { handleURL, isLightpad } from "../../utils";
 
 export function resolveSourceURL(hash, options) {
 	let source = handleURL(hash, { useCorsProxy: options.useCorsProxy });
@@ -8,11 +8,9 @@ export function resolveSourceURL(hash, options) {
 		source += ".md";
 	}
 
-	const isLightpad =
-		window.location.href.includes("https://lightpad.forge.apps.education.fr") ||
-		window.location.href.includes("?lightpad");
+	const isLightpadWebsite = isLightpad();
 
-	if (!source && isLightpad) {
+	if (!source && isLightpadWebsite) {
 		document.title = "Lightpad";
 		return "indexLightpad.md";
 	}

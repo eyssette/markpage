@@ -1,8 +1,8 @@
+import { isLightpad } from "../../../utils";
+
 export function getDefaultMD() {
-	const isLightpad =
-		window.location.href.includes("https://lightpad.forge.apps.education.fr") ||
-		window.location.href.includes("?lightpad");
-	return isLightpad ? defaultMDLightpad : defaultMDMarkpage;
+	const isLightpadWebsite = isLightpad();
+	return isLightpadWebsite ? defaultMDLightpad : defaultMDMarkpage;
 }
 
 const defaultMDMarkpage = `# Titre
