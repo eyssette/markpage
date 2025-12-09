@@ -2,6 +2,10 @@ import { handleURL } from "../../utils";
 
 export async function fetchSource(source) {
 	const response = await fetch(source);
+	if (response.status === 404) {
+		console.warn(`Fichier non trouvé (404) : ${source} — ignoré.`);
+		return "";
+	}
 	if (!response.ok) {
 		throw new Error(`Erreur lors de la récupération du fichier : ${source}`);
 	}
