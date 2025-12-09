@@ -29,6 +29,7 @@ export function paramsRemoveMenu(linkToHomePageElement) {
 	const footerElement = menuElement.parentElement;
 	footerElement.style.height = "0px";
 	footerElement.style.padding = "0px";
+	footerElement.style.backgroundColor = "transparent";
 	if (yaml.linkToHomePage) {
 		linkToHomePageElement.style.display = "none";
 	}
