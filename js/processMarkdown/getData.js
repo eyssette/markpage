@@ -48,7 +48,7 @@ export async function getMarkdownContentAndCreateMarkpage(newOptions = {}) {
 		const looksLikeMarkdown = md.includes("# ");
 		if (!looksLikeMarkdown) {
 			// Si ce n'est pas un fichier Markdown …
-			if (!options.addMdExtension) {
+			if (!options.addMdExtension && !source.endsWith(".md")) {
 				// … On essaie d'abord d'ajouter l'extension ".md"
 				// Si on déploie un site Markpage avec des fichiers dans son dépôt, on peut alors utiliser des URLs plus significatives, sans avoir à ajouter le .md dans l'URL
 				return getMarkdownContentAndCreateMarkpage({
@@ -85,7 +85,7 @@ export async function getMarkdownContentAndCreateMarkpage(newOptions = {}) {
 	} catch (error) {
 		// … On essaie d'abord d'ajouter l'extension ".md"
 		// Si on déploie un site Markpage avec des fichiers dans son dépôt, on peut alors utiliser des URLs plus significatives, sans avoir à ajouter le .md dans l'URL
-		if (!options.addMdExtension) {
+		if (!options.addMdExtension && !source.endsWith(".md")) {
 			return getMarkdownContentAndCreateMarkpage({
 				...options,
 				addMdExtension: true,
