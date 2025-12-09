@@ -1,5 +1,17 @@
 # Changelog
 
+## 4.18.1 (2025-12-09)
+
+### Fix
+
+- recherche des tags corrigée pour les mots composés
+- dans l'éditeur en ligne, highlight pour les propriétés "bandeau" et "autofiltres" dans le YAML
+- récupération du yaml dans l'éditeur en ligne également
+
+### Chore
+
+- fonction à part pour tester si on est en mode Lightpad
+
 ## 4.18.0 (2025-11-27)
 
 ### Feat
