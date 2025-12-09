@@ -23,8 +23,8 @@ export function searchBar(hash, markpageData) {
 		let sectionsResults = [];
 		let subSectionsResults = [];
 		let sectionsColumnResults = [];
-		// On fait la recherche sans prendre en compte la casse et on remplace "_" par " " car les boutons de filtre avec des mots composés utilisent "_"
-		const inputText = searchInput.value.toLowerCase().replaceAll("_", " ");
+		// On fait la recherche sans prendre en compte la casse
+		const inputText = searchInput.value.toLowerCase();
 		if (inputText.length > 2) {
 			for (let i = 0; i < subSectionsData.length; i++) {
 				// Recherche dans le titre de chaque section + le contenu de chaque section
@@ -34,7 +34,12 @@ export function searchBar(hash, markpageData) {
 					sectionsTitle[i].toString().toLowerCase() + contentSection;
 				textSection = removeTagsFromStringButKeepAltImages(textSection);
 				// Diviser inputText en plusieurs termes si nécessaire
-				let terms = inputText.toLowerCase().trim().split(/\s+/);
+				let terms = inputText
+					.toLowerCase()
+					.trim()
+					.split(/\s+/)
+					// on remplace "_" par " " car les boutons de filtre de tags avec des mots composés utilisent "_"
+					.map((t) => t.replaceAll("_", " "));
 
 				if (terms.every((term) => textSection.includes(term))) {
 					// On a trouvé tous les termes dans la section
