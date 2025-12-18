@@ -108,6 +108,10 @@ h1 span.textFitted {
 .banner > * {
 	margin: 0;
 }
+.banner div p {
+	margin: 0;
+}
+
 @media (pointer: fine) {
 	.useBanner #initialMessage button:hover {
 		background-color: #aaa !important;
