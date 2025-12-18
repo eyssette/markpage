@@ -1,5 +1,24 @@
 # Changelog
 
+## 4.19.0 (2025-12-18)
+
+### Feat
+
+- **ui**: regroupement possible des tags pour la barre de recherche avec AND ou OR, grâce à l'attribut "data-logic"
+- **ui**: barre de recherche - utilisation possible d'opérateurs logiques AND et OR, avec éventiuellement des parenthèses imbriquées
+
+### Fix
+
+- **css**: affichage multiligne de tags avec data-logic
+- **css**: affichage corrigé pour les tags sur petit écran
+- **ui**: si on supprime le menu du bas dans le footer, le footer doit être transparent
+- pas d'essai d'ajout de l'extension .md si elle existe déjà dans la source
+- si on utilise yaml.include et qu'un fichier n'existe pas, on évite une boucle et on renvoie un contenu vide pour ce fichier
+
+### Chore
+
+- refactorisation de la gestion des tags pour la recherche
+
 ## 4.18.1 (2025-12-09)
 
 ### Fix
