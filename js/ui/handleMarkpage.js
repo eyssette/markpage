@@ -3,7 +3,7 @@ import { displayMaths } from "./displayMaths";
 import { getParams, openLinksInNewTab, loadCSS, redirectToUrl } from "../utils";
 import { changeDisplayBasedOnParams } from "./changeDisplayBasedOnParams";
 import { handleNavigation } from "./navigation";
-import { searchBar } from "./searchBar";
+import { handleSearch } from "./searchBar/handleSearch";
 import { handleClicks } from "./handleClicks";
 import { paramsRemoveH3, paramsRemoveMenu } from "./params";
 import { showOnlyThisElement } from "./showOnlyThisElement";
@@ -265,7 +265,7 @@ export function handleMarkpage(markpageData) {
 		paramsRemoveH3(params);
 	}
 
-	searchBar(hash, markpageData);
+	handleSearch(hash, markpageData);
 
 	handleNavigation(baseURL, hash, params, markpageData);
 

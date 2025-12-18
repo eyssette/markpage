@@ -1,8 +1,10 @@
-import { yaml } from "../processMarkdown/yaml";
-import { removeTagsFromStringButKeepAltImages } from "../utils";
+import { yaml } from "../../processMarkdown/yaml";
+import { removeTagsFromStringButKeepAltImages } from "../../utils";
+import { evaluateComplexExpression } from "./evaluateComplexSearch";
+import { parseSearchQuery } from "./parseSearchQuery";
 
 // Gestion de la searchBar
-export function searchBar(hash, markpageData) {
+export function handleSearch(hash, markpageData) {
 	const sectionsTitle = markpageData[2];
 	const subSectionsData = markpageData[3];
 	const searchbarElement = document.getElementById("searchBar");
@@ -23,9 +25,10 @@ export function searchBar(hash, markpageData) {
 		let sectionsResults = [];
 		let subSectionsResults = [];
 		let sectionsColumnResults = [];
-		// On fait la recherche sans prendre en compte la casse
-		const inputText = searchInput.value.toLowerCase();
+		const inputText = searchInput.value;
 		if (inputText.length > 2) {
+			const query = parseSearchQuery(inputText);
+
 			for (let i = 0; i < subSectionsData.length; i++) {
 				// Recherche dans le titre de chaque section + le contenu de chaque section
 				const titleSection = sectionsTitle[i].toString().toLowerCase();
@@ -33,15 +36,23 @@ export function searchBar(hash, markpageData) {
 				let textSection =
 					sectionsTitle[i].toString().toLowerCase() + contentSection;
 				textSection = removeTagsFromStringButKeepAltImages(textSection);
-				// Diviser inputText en plusieurs termes si nécessaire
-				let terms = inputText
-					.toLowerCase()
-					.trim()
-					.split(/\s+/)
-					// on remplace "_" par " " car les boutons de filtre de tags avec des mots composés utilisent "_"
-					.map((t) => t.replaceAll("_", " "));
 
-				if (terms.every((term) => textSection.includes(term))) {
+				let sectionMatches = false;
+
+				if (query.type === "simple") {
+					// Recherche simple : tous les termes doivent être présents
+					sectionMatches = query.terms.every((term) =>
+						textSection.includes(term),
+					);
+				} else {
+					// Recherche complexe : évaluer l'expression booléenne
+					sectionMatches = evaluateComplexExpression(
+						query.expression,
+						textSection,
+					);
+				}
+
+				if (sectionMatches) {
 					// On a trouvé tous les termes dans la section
 					if (subSectionsData[i].length > 0) {
 						// S'il y a des sous-sections, on affine la recherche dans chaque sous-section
@@ -53,12 +64,37 @@ export function searchBar(hash, markpageData) {
 							textSubSection =
 								removeTagsFromStringButKeepAltImages(textSubSection);
 
-							if (terms.every((term) => textSubSection.includes(term))) {
+							let subSectionMatches = false;
+
+							if (query.type === "simple") {
+								subSectionMatches = query.terms.every((term) =>
+									textSubSection.includes(term),
+								);
+							} else {
+								subSectionMatches = evaluateComplexExpression(
+									query.expression,
+									textSubSection,
+								);
+							}
+
+							if (subSectionMatches) {
 								subSectionsResults.push([i, j]);
 							}
 						}
 						// Cas où on a trouvé les termes dans le titre de la section : du coup c'est toute la colonne qu'il faut afficher
-						if (terms.every((term) => titleSection.includes(term))) {
+						let titleMatches = false;
+						if (query.type === "simple") {
+							titleMatches = query.terms.every((term) =>
+								titleSection.includes(term),
+							);
+						} else {
+							titleMatches = evaluateComplexExpression(
+								query.expression,
+								titleSection,
+							);
+						}
+
+						if (titleMatches) {
 							sectionsColumnResults.push(i);
 						}
 					} else {
