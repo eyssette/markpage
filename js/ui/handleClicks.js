@@ -52,34 +52,154 @@ export function handleClicks(baseURL, hash, markpageData) {
 	if (yaml.lightpad) {
 		const searchInput = document.querySelector("#searchInput");
 		const buttons = document.querySelectorAll("#initialMessage button");
-		// Si on clique sur un boutons de filtre, alors on ajoute le contenu de ce bouton dans le champ de recherche
-		buttons.forEach((button) => {
-			button.addEventListener("click", function () {
-				// On récupère les mots s'il y en a qui sont présents dans le champ de recherche
-				let words = searchInput.value.trim().split(/\s+/).filter(Boolean);
 
-				// On récupère le contenu du bouton
-				// On utilise "_" à la place " " pour permettre les mots composés dans les boutons
-				const buttonContent = this.textContent.trim().replaceAll(" ", "_");
+		// Fonction pour construire la requête avec la logique AND/OR
+		function buildSearchQuery() {
+			const activeButtons = Array.from(buttons).filter((btn) =>
+				btn.classList.contains("active"),
+			);
 
-				if (this.classList.toggle("active")) {
-					// Ajouter le texte du bouton aux mots du champ de recherche
-					// On utilise "_" à la place " " pour permettre les mots composés dans les boutons
-					words.push(buttonContent);
-				} else {
-					// Retirer le texte du bouton aux mots du champ de recherche
+			if (activeButtons.length === 0) {
+				return "";
+			}
 
-					words = words.filter((word) => word !== buttonContent);
+			// Grouper les boutons par leur conteneur parent avec data-logic
+			const groups = new Map();
+
+			activeButtons.forEach((button) => {
+				const buttonContent = button.textContent.trim().replaceAll(" ", "_");
+
+				// Trouver le parent direct avec data-logic
+				let parent = button.parentElement;
+				while (parent && !parent.hasAttribute("data-logic")) {
+					parent = parent.parentElement;
 				}
 
+				if (parent) {
+					const logic = parent.getAttribute("data-logic");
+					const parentId = parent; // Utiliser l'élément lui-même comme clé
+
+					if (!groups.has(parentId)) {
+						groups.set(parentId, {
+							logic: logic,
+							terms: [],
+							parent: parent,
+						});
+					}
+					groups.get(parentId).terms.push(buttonContent);
+				} else {
+					// Si pas de parent avec data-logic, traiter individuellement
+					groups.set(button, {
+						logic: null,
+						terms: [buttonContent],
+						parent: null,
+					});
+				}
+			});
+
+			// Construire la requête hiérarchiquement
+			function buildFromElement(element) {
+				const logic = element.getAttribute("data-logic");
+				const childGroups = [];
+
+				// Trouver tous les enfants directs avec data-logic
+				const childElements = Array.from(element.children).filter((child) =>
+					child.hasAttribute("data-logic"),
+				);
+
+				if (childElements.length > 0) {
+					// Traiter récursivement les enfants
+					childElements.forEach((child) => {
+						const childQuery = buildFromElement(child);
+						if (childQuery) {
+							childGroups.push(childQuery);
+						}
+					});
+				} else {
+					// Pas d'enfants avec data-logic, récupérer les boutons actifs directs
+					const directButtons = Array.from(
+						element.querySelectorAll("button"),
+					).filter(
+						(btn) =>
+							btn.classList.contains("active") &&
+							// Avant : btn.parentElement === element
+							// Maintenant : s'assurer que le plus proche ancêtre avec data-logic est bien `element`
+							btn.closest("[data-logic]") === element,
+					);
+
+					directButtons.forEach((btn) => {
+						childGroups.push(btn.textContent.trim().replaceAll(" ", "_"));
+					});
+				}
+
+				if (childGroups.length === 0) {
+					return "";
+				}
+
+				if (childGroups.length === 1) {
+					return childGroups[0];
+				}
+
+				return `(${childGroups.join(` ${logic} `)})`;
+			}
+
+			// Trouver l'élément racine avec data-logic
+			const rootElements = Array.from(
+				document.querySelectorAll("#initialMessage [data-logic]"),
+			).filter((el) => {
+				// Trouver les éléments qui ne sont pas enfants d'autres éléments data-logic
+				let parent = el.parentElement;
+				while (parent && parent.id !== "initialMessage") {
+					if (parent.hasAttribute("data-logic")) {
+						return false;
+					}
+					parent = parent.parentElement;
+				}
+				return true;
+			});
+
+			const queries = rootElements
+				.map((root) => buildFromElement(root))
+				.filter(Boolean);
+
+			if (queries.length === 0) {
+				return activeButtons
+					.map((btn) => btn.textContent.trim().replaceAll(" ", "_"))
+					.join(" ");
+			}
+
+			return queries.length === 1 ? queries[0] : queries.join(" ");
+		}
+
+		// Si on clique sur un bouton de filtre
+		buttons.forEach((button) => {
+			button.addEventListener("click", function () {
+				// Toggle l'état actif du bouton
+				this.classList.toggle("active");
+
+				// Construire la requête complète avec la logique
+				const query = buildSearchQuery();
+
 				// On actualise le champ de recherche et on déclenche la recherche
-				searchInput.value = words.join(" ");
+				searchInput.value = query;
 				searchInput.dispatchEvent(new Event("input", { bubbles: true }));
 			});
 		});
-		// Réciproquement : si on édite le champ de recherche et qu'on supprime ou qu'on ajoute un filtre, alors le bouton correspondant doit avoir ou perdre le statut "active"
+		// Réciproquement : si on édite le champ de recherche et qu'on supprime ou qu'on ajoute un filtre,
+		// alors le bouton correspondant doit avoir ou perdre le statut "active"
 		searchInput.addEventListener("input", function () {
-			const words = this.value.trim().split(/\s+/).filter(Boolean);
+			const searchValue = this.value.trim();
+
+			// Extraire tous les termes de la requête (en ignorant les parenthèses et opérateurs logiques)
+			// On retire les parenthèses, AND, OR et on split sur les espaces
+			const cleanedValue = searchValue
+				.replace(/\(/g, " ")
+				.replace(/\)/g, " ")
+				.replace(/\bAND\b/g, " ")
+				.replace(/\bOR\b/g, " ");
+
+			const words = cleanedValue.trim().split(/\s+/).filter(Boolean);
+
 			buttons.forEach((button) => {
 				const buttonText = button.textContent.trim().replaceAll(" ", "_");
 				if (words.includes(buttonText)) {
