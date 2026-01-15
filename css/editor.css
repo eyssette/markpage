@@ -11,7 +11,7 @@ body.editMode footer {
 }
 
 body.editMode .editor-wrapper {
-	height: 100%;
+	height: 95%;
 	width: var(--editorWidth);
 	background: white;
 	color: black;
