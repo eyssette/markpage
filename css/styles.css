@@ -435,7 +435,7 @@ input {
 .admonitionTitle {
 	font-weight: bold;
 	letter-spacing: 0.02em;
-	margin-bottom: 0.95em;
+	padding-bottom: 0.95em;
 	font-size: 0.95em;
 }
 
