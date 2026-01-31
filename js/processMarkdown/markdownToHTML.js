@@ -202,9 +202,9 @@ function showdownExtensionFootNotes() {
 							hash +
 							"?footnote:~:text=[" +
 							name +
-							']"><sup>[' +
+							']"><span>[' +
 							name +
-							"]</sup></a>:" +
+							"] :</span></a> " +
 							converter
 								.makeHtml(content)
 								.replace(/^<p>([\s\S]*)<\/p>\s*$/, "$1") +
@@ -227,9 +227,9 @@ function showdownExtensionFootNotes() {
 							hash +
 							"?footnote:~:text=[" +
 							name +
-							']"><sup>[' +
+							']"><span>[' +
 							name +
-							"]</sup></a>: " +
+							"] :</span></a> " +
 							converter
 								.makeHtml(content)
 								.replace(/^<p>([\s\S]*)<\/p>\s*$/, "$1") +
@@ -248,7 +248,7 @@ function showdownExtensionFootNotes() {
 						hash +
 						"?footnote:~:text=[" +
 						id +
-						"]:" +
+						"] :" +
 						'"><sup>[' +
 						id +
 						"]</sup></a>"
