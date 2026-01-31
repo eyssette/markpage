@@ -61,7 +61,7 @@ export async function processYAML(markdownContent) {
 				yaml.plugins = "lightbox";
 			}
 			if (yaml.tailleColonnes) {
-				const styleColumns = `<style>@media screen and (min-width: 1400px) {.noColumns .subSection, #content>section {min-width: ${yaml.tailleColonnes};}}</style>`;
+				const styleColumns = `<style>@media screen and (min-width: 1000px) {.noColumns .subSection, #content>section {min-width: ${yaml.tailleColonnes};}}</style>`;
 				const cssStyleColumnsElement =
 					document.querySelector("#css-styleColumns");
 				if (cssStyleColumnsElement) {
