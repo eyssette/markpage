@@ -9,6 +9,15 @@ export async function fetchSource(source) {
 	if (!response.ok) {
 		throw new Error(`Erreur lors de la récupération du fichier : ${source}`);
 	}
+	if (source.includes("docs.numerique.gouv.fr/")) {
+		// Cas particulier des fichiers hébergés sur Docs de La Suite numérique
+		// Le contenu est un JSON qu'il faut traiter pour en extraire le Markdown
+		const content = await response.json().then((data) => {
+			const markdownContent = `${data.content}`.replaceAll("***", "---");
+			return markdownContent;
+		});
+		return content;
+	}
 	return await response.text();
 }
 

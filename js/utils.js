@@ -58,6 +58,15 @@ export function handleURL(url, options) {
 			addCorsProxy = false;
 			url = url.replace(/\?.*/, "") + "/export/txt";
 		}
+		// gestion des fichiers hébergés sur Docs de La Suite numérique
+		if (url.includes("docs.numerique.gouv.fr")) {
+			const documentIdMatch = url.match(/docs\/([a-z0-9-]+)\//);
+			if (documentIdMatch) {
+				const documentId = documentIdMatch[1];
+				addCorsProxy = true;
+				url = `https://docs.numerique.gouv.fr/api/v1.0/documents/${documentId}/content/?content_format=markdown`;
+			} else url = "";
+		}
 		url = addCorsProxy ? corsProxy + url : url;
 	}
 	return url;
