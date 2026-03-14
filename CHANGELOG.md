@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.20.0 (2026-03-14)
+
+### Feat
+
+- **processMarkdown**: gestion des fichiers hébergés sur Docs de La Suite numérique
+
+### Fix
+
+- **yaml**: tailleColonnes pris en compte à partir de 1000px de largeur
+- **markdown**: amélioration notes de bas de page
+- **css**: padding plutôt que margin pour le titre des admonitions
+- **css**: ajustement hauteur editorWrapper
+- gestion de tailleColonnes dans le yaml quand on n'a pas de titres h2 dans Lightpad
+
 ## 4.19.0 (2025-12-18)
 
 ### Feat
