@@ -46,6 +46,9 @@ export const allowedPlugins = {
 		js: "js/plugins/titleLinks.js",
 		css: "js/plugins/titleLinks.css",
 	},
+	flashmd: {
+		js: "js/plugins/flashmd.js",
+	},
 };
 
 export const pluginsDependencies = {

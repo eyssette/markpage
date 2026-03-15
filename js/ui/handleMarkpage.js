@@ -181,6 +181,17 @@ export function handleMarkpage(markpageData) {
 			}
 		}, 200);
 	}
+	if (yaml && yaml.plugins && yaml.plugins.includes("flashmd")) {
+		const interval = setInterval(() => {
+			if (window.processFlashMD) {
+				clearInterval(interval);
+				document.getElementById("content").innerHTML = window.processFlashMD(
+					document.getElementById("content").innerHTML,
+				);
+				handleClicks(baseURL, hash, markpageData);
+			}
+		}, 200);
+	}
 	if (
 		yaml &&
 		!yaml.lightpad &&
