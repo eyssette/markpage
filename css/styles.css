@@ -816,6 +816,6 @@ hr:last-child {
 
 @media screen and (max-width: 500px) {
 	.lightpad #scroll-arrow {
-		top: 1.65em;
+		top: 1.95em;
 	}
 }

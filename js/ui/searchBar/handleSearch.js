@@ -222,16 +222,17 @@ export function handleSearch(hash, markpageData) {
 			});
 		}
 	}
+	const title = document.querySelector("header h1");
+	const titleInitialColor = title.style.color;
 	function displaySearchBar(shouldDisplaySearchBar) {
-		const title = document.querySelector("header h1");
 		const imageInTitle = title.querySelector("img");
 		const banner = document.querySelector("header .banner");
-		const titleInitialColor = title.style.color;
 		if (shouldDisplaySearchBar) {
 			title.style.color = "transparent";
 			if (imageInTitle) {
 				imageInTitle.style.opacity = "0";
 			}
+			document.body.classList.add("searchActive");
 			searchInput.classList.add("active");
 			if (banner) {
 				banner.style.zIndex = "100";
@@ -241,6 +242,7 @@ export function handleSearch(hash, markpageData) {
 			if (imageInTitle) {
 				imageInTitle.style.opacity = "1";
 			}
+			document.body.classList.remove("searchActive");
 			searchInput.classList.remove("active");
 			if (banner) {
 				banner.style.zIndex = "-100";

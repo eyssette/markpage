@@ -141,7 +141,13 @@ h1 span.textFitted {
 		height: 75%;
 		margin-top: 2em;
 	}
-	.banner {
+	#autoFilters {
+		display: none;
+	}
+	.searchActive #autoFilters {
+		display: block;
+	}
+	.searchActive .banner {
 		position: absolute;
 		background: #fffffff0;
 		z-index: -10;
@@ -151,7 +157,7 @@ h1 span.textFitted {
 		overflow-y: scroll;
 		min-width: 83%;
 	}
-	.banner:before {
+	.searchActive .banner:before {
 		content: "❌";
 		position: absolute;
 		right: 30px;
