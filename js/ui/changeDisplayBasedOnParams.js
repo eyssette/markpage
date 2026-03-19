@@ -113,8 +113,7 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 				let scrollToElement = isModeLightpadNoColums
 					? subSectionElement
 					: subSectionElement.parentNode;
-				const WindowWidth = window.innerWidth;
-				const offsetWindow = WindowWidth / 3;
+				const offsetWindow = window.innerWidth / 3;
 				window.scrollTo({
 					top: 0,
 					behavior: "instant",
