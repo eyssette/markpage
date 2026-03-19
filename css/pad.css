@@ -267,6 +267,7 @@ iframe {
 	.noColumns .sectionContent {
 		flex-direction: row;
 		margin-bottom: -3em;
+		overflow: auto;
 	}
 	.noColumns .subSection,
 	.noColumns .noSubSections {
