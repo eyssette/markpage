@@ -71,13 +71,31 @@ export function parseMarkdown(markdownContent, yaml) {
 	// S'il y a un ou plusieurs titres h4 qui contiennent la classe "menu"
 	// Syntaxe : #### Titre {.menu}
 	// On récupère la section correspondante (du titre h4 jusqu'au prochain titre h3 ou de niveau supérieur) et on décale tous les titres de cette section d'un niveau vers le haut (les titres h4 deviennent des titres h3, les titres h5 deviennent des titres h4, etc.) pour que ces titres soient pris en compte dans la construction du menu
-	const menuSectionRegex =
-		/(^#### .*\{\.menu.*\}[\s\S]*?)(?=^#### |^### |^## |^# |$)/gm;
-	mainContent = mainContent.replace(menuSectionRegex, (menuSection) => {
-		return menuSection.replace(/^(#{4,})(?=\s)/gm, (match) => {
-			return "#".repeat(match.length - 1);
-		});
-	});
+	const menuTitleRegex = /^\s{0,3}#### .*\{\.menu.*\}/;
+	const menuBoundaryRegex = /^\s{0,3}(?:####|###|##|#)\s/;
+	const menuHeadingRegex = /^([ \t]{0,3})(#{4,})(?=\s|$)/;
+	const mainContentLines = mainContent.split("\n");
+	let isInsideMenuSection = false;
+
+	mainContent = mainContentLines
+		.map((line) => {
+			if (isInsideMenuSection && menuBoundaryRegex.test(line)) {
+				isInsideMenuSection = false;
+			}
+
+			if (menuTitleRegex.test(line)) {
+				isInsideMenuSection = true;
+			}
+
+			if (!isInsideMenuSection) {
+				return line;
+			}
+
+			return line.replace(menuHeadingRegex, (match, indent, hashes) => {
+				return indent + "#".repeat(hashes.length - 1);
+			});
+		})
+		.join("\n");
 
 	// Dans le contenu, on distingue chaque section (définie par un titre h2)
 	const sections = mainContent
