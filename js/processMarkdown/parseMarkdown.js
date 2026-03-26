@@ -30,7 +30,7 @@ export function parseMarkdown(markdownContent, yaml) {
 	// Le header se situe du début jusqu'au premier titre principal (h2 ou h3)
 	const header = markdownContent.substring(0, indexContentFirstTitle);
 	// Le contenu principal se situe à partir du premier titre principal (h2 ou h3)
-	const mainContent = markdownContent.substring(indexContentFirstTitle);
+	let mainContent = markdownContent.substring(indexContentFirstTitle);
 
 	// Dans le header, on distingue le titre (défini par un titre h1) et le message initial
 
@@ -67,6 +67,17 @@ export function parseMarkdown(markdownContent, yaml) {
 		yaml && yaml.bandeau && !initialMessageContent.includes('class="banner"')
 			? '<div class="banner">' + initialMessageContent + "<div>"
 			: initialMessageContent;
+
+	// S'il y a un ou plusieurs titres h4 qui contiennent la classe "menu"
+	// Syntaxe : #### Titre {.menu}
+	// On récupère la section correspondante (du titre h4 jusqu'au prochain titre h3 ou de niveau supérieur) et on décale tous les titres de cette section d'un niveau vers le haut (les titres h4 deviennent des titres h3, les titres h5 deviennent des titres h4, etc.) pour que ces titres soient pris en compte dans la construction du menu
+	const menuSectionRegex =
+		/(^#### .*\{\.menu.*\}[\s\S]*?)(?=^#### |^### |^## |^# |$)/gm;
+	mainContent = mainContent.replace(menuSectionRegex, (menuSection) => {
+		return menuSection.replace(/^(#{4,})(?=\s)/gm, (match) => {
+			return "#".repeat(match.length - 1);
+		});
+	});
 
 	// Dans le contenu, on distingue chaque section (définie par un titre h2)
 	const sections = mainContent

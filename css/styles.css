@@ -579,6 +579,13 @@ hr:last-child {
 	display: none;
 }
 
+.groupDisplay {
+	display: none;
+}
+.groupDisplay.visible {
+	display: block;
+}
+
 @media screen and (max-width: 834px) {
 	html,
 	footer {
