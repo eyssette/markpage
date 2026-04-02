@@ -6,6 +6,7 @@ import { createMarkpage } from "../ui/createMarkpage.js";
 import { resolveSourceURL } from "./helpers/resolveSourceURL.js";
 import { fetchSource, fetchFromMultipleSources } from "./helpers/fetch.js";
 import { processYAML, yaml } from "./yaml";
+import { decodeString, getParams } from "../utils.js";
 
 const defaultOptions = {
 	useCorsProxy: false,
@@ -20,6 +21,24 @@ export async function getMarkdownContentAndCreateMarkpage(newOptions = {}) {
 
 	// On récupère la source du site Markpage dans le hash s'il y en a une
 	const hash = window.location.hash.substring(1).replace(/\?.*/, "");
+
+	const params = getParams(window.location.href);
+	if (params.raw) {
+		let md = decodeString(hash);
+		md = await processYAML(md);
+		initialConfig.md = md;
+		if (yaml && yaml.include) {
+			// Cas où on doit inclure le contenu d'autres fichiers à la suite du premier (fichiers définis dans l'en-tête YAML du premier fichier, avec le paramètre "include")
+			const includes =
+				typeof yaml.include === "object"
+					? Object.values(yaml.include)
+					: { include: yaml.include };
+			const contentToInclude = await fetchFromMultipleSources(includes);
+			md = md + "\n\n" + contentToInclude;
+		}
+		const markpageData = parseMarkdown(md);
+		return createMarkpage(markpageData);
+	}
 
 	const source = resolveSourceURL(hash, options);
 

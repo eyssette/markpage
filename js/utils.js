@@ -197,3 +197,7 @@ export function isLightpad() {
 		window.location.href.includes("?lightpad")
 	);
 }
+
+export function decodeString(str) {
+	return decodeURIComponent(window.atob(str));
+}
