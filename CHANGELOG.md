@@ -1,5 +1,24 @@
 # Changelog
 
+## 4.21.0 (2026-04-02)
+
+### Feat
+
+- gestion des titres h4 avec la classe .menu et éventuellement la classe .groupDisplay
+- **plugins**: plugin pour pouvoir utiliser flashMD (insertion de flashcards)
+
+### Fix
+
+- suppression  attribut "disabled" dans les listes de tâches
+- prise en compte titres h5 et h6 dans le décalage de niveau des titres en cas d'utilisation de {.menu} dans un titre h4
+- **css**: affichage améliorée sur mobile des titres h3
+- **css**: affichage amélioré pour lightpad en mode 1 colonne sur mobile
+- **lightpad**: amélioration affichage du bandeau et des tags sur petit écran
+
+### Refactor
+
+- déplacement des fonctions de redimensionnement dans un dossier et des fichiers à part
+
 ## 4.20.0 (2026-03-14)
 
 ### Feat
