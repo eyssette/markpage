@@ -16,6 +16,8 @@ export function resizeElements() {
 	}
 	if (yaml && yaml.bandeau && window.matchMedia("(min-width: 500px)").matches) {
 		const contentElement = document.querySelector("#content");
+		const bannerElement = document.querySelector(".banner");
+		if (!contentElement || !bannerElement) return;
 		const bannerElementHeight = document.querySelector(".banner").offsetHeight;
 		let marginTop = hasNoColumns
 			? bannerElementHeight + 30
