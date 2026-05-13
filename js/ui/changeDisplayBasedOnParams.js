@@ -1,22 +1,15 @@
 import { showOnlyThisElement } from "./showOnlyThisElement";
 import { yaml } from "../processMarkdown/yaml";
+import { handleIframes } from "./iframes";
 
 const bodyElement = document.body;
 const progressBarElement = document.getElementById("progressBar");
-let previousIframes = [];
-
-// Pour forcer le reload d'une iframe
-function resetIframe(iframe) {
-	const srcIframe = iframe.src;
-	if (!yaml.pad) {
-		iframe.src = "";
-		iframe.src = srcIframe;
-	}
-}
+const initialMessageElement = document.getElementById("initialMessage");
+let previousSection = initialMessageElement;
 
 // Fonction pour changer l'affichage en fonction des paramètres dans l'objet param (qui correspond aux paramètres dans l'URL)
 export function changeDisplayBasedOnParams(param, markpageData) {
-	let visibleElement;
+	let visibleElement = initialMessageElement;
 	const sectionsTitle = markpageData[2];
 	const numberOfSections = sectionsTitle.length;
 	const subSectionsData = markpageData[3];
@@ -74,27 +67,16 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 					bodyElement.classList.remove("displayHomepage");
 					bodyElement.classList.remove("displaySection");
 					bodyElement.classList.add("displaySubSection");
+					visibleElement = document.body;
 				} else {
 					bodyElement.classList.remove("displaySection");
 					bodyElement.classList.remove("displaySubSection");
 					bodyElement.classList.add("displayHomepage");
+					visibleElement = initialMessageElement;
 				}
 			}
 		}
-		// Gestion des iframes
-		const allIframes = document.querySelectorAll("iframe");
-		// Reset des iframes qui étaient présentes sur la page précédente
-		if (visibleElement) {
-			if (previousIframes) {
-				for (const iframe of previousIframes) {
-					resetIframe(iframe);
-				}
-			}
-			const iframesInElement = Array.from(allIframes).filter((iframe) =>
-				visibleElement.contains(iframe),
-			);
-			previousIframes = iframesInElement;
-		}
+
 		// Gestion du scroll vers l'élément cible
 		if (
 			subSectionElement &&
@@ -158,4 +140,7 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 			behavior: scrollTopBehavior,
 		});
 	}
+	// Gestion des iframes
+	handleIframes(visibleElement, previousSection, { isPad: yaml && yaml.pad });
+	previousSection = visibleElement;
 }

@@ -1,5 +1,6 @@
 import { yaml } from "../processMarkdown/yaml";
 import { handleMarkpage } from "./handleMarkpage";
+import { convertIframeHTMLelementsToIframeCodes } from "./iframes";
 
 export function createMarkpage(markpageData, urlSourceMarkpage) {
 	const titleElement = document.getElementById("title");
@@ -136,7 +137,7 @@ export function createMarkpage(markpageData, urlSourceMarkpage) {
 	} else {
 		initialMessageElement.style.display = "none";
 	}
-	mainElement.innerHTML = sectionsHTML;
+	mainElement.innerHTML = convertIframeHTMLelementsToIframeCodes(sectionsHTML);
 	footerContentElement.innerHTML = footerHTML;
 	handleMarkpage(markpageData);
 }
