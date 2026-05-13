@@ -36,7 +36,7 @@ export async function getMarkdownContentAndCreateMarkpage(newOptions = {}) {
 			const contentToInclude = await fetchFromMultipleSources(includes);
 			md = md + "\n\n" + contentToInclude;
 		}
-		const markpageData = parseMarkdown(md);
+		const markpageData = parseMarkdown(md, yaml);
 		return createMarkpage(markpageData);
 	}
 
@@ -55,7 +55,7 @@ export async function getMarkdownContentAndCreateMarkpage(newOptions = {}) {
 			const contentToInclude = await fetchFromMultipleSources(includes);
 			md = md + "\n\n" + contentToInclude;
 		}
-		const markpageData = parseMarkdown(md);
+		const markpageData = parseMarkdown(md, yaml);
 		return createMarkpage(markpageData);
 	}
 
