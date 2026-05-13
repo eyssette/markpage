@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.21.1 (2026-05-13)
+
+### Fix
+
+- amélioration de la gestion des iframes (surtout dans Markpage)
+- utilisation du paramètre yaml dans parseMarkdown
+- gestion des erreurs dans resizeElements
+- utilisation possible de ?raw dans l'URL pour charger comme source un contenu encodé dans le hash
+
 ## 4.21.0 (2026-04-02)
 
 ### Feat
