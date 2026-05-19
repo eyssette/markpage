@@ -186,6 +186,8 @@ export function handleMarkpage(markpageData) {
 		if (isLightbox) {
 			// Cas où on revient en arrière alors qu'on vient d'ouvrir une lightbox
 			isLightbox.style.display = "none";
+			// Le retour en arrière a changé l'URL, mais on voulait en fait juste fermer la lightbox, donc on revient à l'URL précédente dans l'historique pour éviter d'avoir une URL qui ne correspond pas à l'affichage
+			history.go(1);
 		} else {
 			let actualURL = window.location.search;
 			params = getParams(actualURL, hash);
