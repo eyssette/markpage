@@ -48,11 +48,16 @@ export function handleIframes(visibleElement, previousSection, options) {
 			const previousIframes = previousSection.querySelectorAll(
 				"div[data-iframe], iframe",
 			);
-			previousIframes.forEach((iframe) => {
-				iframe.parentElement.innerHTML = convertIframeHTMLelementsToIframeCodes(
-					iframe.parentElement.innerHTML,
-				);
-			});
+			if (previousIframes.length > 0) {
+				previousIframes.forEach((iframe) => {
+					if (iframe && iframe.parentElement) {
+						iframe.parentElement.innerHTML =
+							convertIframeHTMLelementsToIframeCodes(
+								iframe.parentElement.innerHTML,
+							);
+					}
+				});
+			}
 		}
 	}
 }
