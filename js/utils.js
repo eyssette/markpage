@@ -81,7 +81,7 @@ export function handleURL(url, options) {
 			if (documentIdMatch) {
 				const documentId = documentIdMatch[1];
 				addCorsProxy = true;
-				url = `https://docs.numerique.gouv.fr/api/v1.0/documents/${documentId}/content/?content_format=markdown`;
+				url = `https://docs.numerique.gouv.fr/api/v1.0/documents/${documentId}/formatted-content/?content_format=markdown`;
 			} else url = "";
 		}
 		url = addCorsProxy ? corsProxy + url : url;
