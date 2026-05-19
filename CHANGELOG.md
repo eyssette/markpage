@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.21.2 (2026-05-19)
+
+### Fix
+
+- gestion améliorée des erreurs quand on cherche à convertir des codes iframes
+- gestion améliorée du retour en arrière quand on avait ouvert une lightbox
+- si l'URL est validée, on ne doit pas essayer d'autres moyens de la fetcher
+- amélioration récupération et gestion des paramètres dans l'URL
+- résolution problème de conversion des codes iframes  qui était incompatible avec le paramètre maths: true dans le YAML
+
 ## 4.21.1 (2026-05-13)
 
 ### Fix
