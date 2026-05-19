@@ -24,7 +24,10 @@ export async function fetchSource(source) {
 // Pour récupérer le contenu de plusieurs fichiers à partir d'un tableau d'URLS
 export async function fetchFromMultipleSources(urls) {
 	const contents = await Promise.all(
-		urls.map((url) => fetchSource(handleURL(url))),
+		urls.map((url) => {
+			const { url: resolvedUrl } = handleURL(url);
+			return fetchSource(resolvedUrl);
+		}),
 	);
 	return contents.join("\n");
 }

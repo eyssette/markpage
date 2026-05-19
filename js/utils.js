@@ -22,21 +22,25 @@ export function getParams(
 
 // Pour gérer l'URL de la source en Markdown
 export function handleURL(url, options) {
+	let isValidUrl = false;
 	if (url !== "") {
 		let addCorsProxy = options && options.useCorsProxy ? true : false;
 		// Vérification de la présence d'un raccourci
 		const shortcut = shortcuts.find((element) => element[0] == url);
 		if (shortcut) {
+			isValidUrl = true;
 			url = shortcut[1];
 			// Si on a un raccourci, on n'a pas besoin de traiter correctement l'url
-			return url;
+			return { url: url, isValidUrl: isValidUrl };
 		}
 		// Gestion des fichiers hébergés sur la forge et publiés sur une page web
 		if (url.includes(".forge")) {
+			isValidUrl = true;
 			addCorsProxy = false;
 		}
 		// Gestion des fichiers hébergés sur github
 		if (url.startsWith("https://github.com")) {
+			isValidUrl = true;
 			addCorsProxy = false;
 			url = url.replace(
 				"https://github.com",
@@ -51,6 +55,7 @@ export function handleURL(url, options) {
 			url.includes("hedgedoc") ||
 			url.includes("digipage")
 		) {
+			isValidUrl = true;
 			addCorsProxy = false;
 			url = url
 				.replace("?edit", "")
@@ -65,11 +70,13 @@ export function handleURL(url, options) {
 			(url.includes("framapad") || url.includes("digidoc")) &&
 			!url.endsWith("/export/txt")
 		) {
+			isValidUrl = true;
 			addCorsProxy = false;
 			url = url.replace(/\?.*/, "") + "/export/txt";
 		}
 		// gestion des fichiers hébergés sur Docs de La Suite numérique
 		if (url.includes("docs.numerique.gouv.fr")) {
+			isValidUrl = true;
 			const documentIdMatch = url.match(/docs\/([a-z0-9-]+)\//);
 			if (documentIdMatch) {
 				const documentId = documentIdMatch[1];
@@ -79,7 +86,7 @@ export function handleURL(url, options) {
 		}
 		url = addCorsProxy ? corsProxy + url : url;
 	}
-	return url;
+	return { url: url, isValidUrl: isValidUrl };
 }
 
 // Fonction générique pour rediriger vers une URL avec un hash
