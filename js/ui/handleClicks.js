@@ -22,14 +22,18 @@ export function handleClicks(baseURL, hash, markpageData) {
 			const linkURL = link.href.replace(link.hash, "");
 			let newURL;
 			if (linkURL == baseURL || linkURL + "index.html" == baseURL) {
+				// Si le lien est un lien vers la page d'accueil, on enlève les paramètres "sec" et "subsec" de l'URL et on affiche tout le contenu
 				newURL = baseURL + "#" + hash;
 				delete params.sec;
 				delete params.subsec;
 				showOnlyThisElement(undefined, "sections");
 				showOnlyThisElement(undefined, "subsections");
 			} else {
-				Object.assign(params, getParams(linkURL));
-				if (!("subsec" in getParams(linkURL))) {
+				// Sinon, on récupère les paramètres "sec" et "subsec" du lien cliqué et on les ajoute à l'URL, puis on affiche la section ou la sous-section correspondante
+				const linkURLWithoutBase = linkURL.replace(baseURL, "");
+				const linkParams = getParams(linkURLWithoutBase, hash);
+				Object.assign(params, linkParams);
+				if (!("subsec" in linkParams)) {
 					params.subsec = 1;
 				}
 				// Changement de l'historique de l'URL

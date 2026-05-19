@@ -22,7 +22,7 @@ export async function getMarkdownContentAndCreateMarkpage(newOptions = {}) {
 	// On récupère la source du site Markpage dans le hash s'il y en a une
 	const hash = window.location.hash.substring(1).replace(/\?.*/, "");
 
-	const params = getParams(window.location.href);
+	const params = getParams();
 	if (params.raw) {
 		let md = decodeString(hash);
 		md = await processYAML(md);

@@ -1,13 +1,23 @@
 import { shortcuts, corsProxy } from "./config";
 
 // Pour récupérer les paramètres de navigation dans l'URL
-export function getParams(URL) {
-	const urlSearchParams = new URLSearchParams(URL.split("?")[1]);
-	const paramsObject = {};
-	urlSearchParams.forEach(function (value, key) {
-		paramsObject[key] = value;
-	});
-	return paramsObject;
+export function getParams(
+	queryString = window.location.search,
+	urlHash = window.location.hash,
+) {
+	const paramsFromQuery = Object.fromEntries(new URLSearchParams(queryString));
+	// Version sécurisée (hashHasParams) : les paramètres sont dans le hash et ne sont donc pas envoyés au serveur
+	const hashHasParams = urlHash.includes("?") && urlHash.includes("=");
+	const hashQueryPart = hashHasParams ? urlHash.split("?")[1] : "";
+	const paramsFromHash = hashHasParams
+		? Object.fromEntries(new URLSearchParams(hashQueryPart))
+		: {};
+
+	// Les paramètres dans le hash (#hash?p=1) écrasent les paramètres classiques dans l'URL (?p=2)
+	return {
+		...paramsFromQuery,
+		...paramsFromHash,
+	};
 }
 
 // Pour gérer l'URL de la source en Markdown

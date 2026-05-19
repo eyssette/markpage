@@ -34,7 +34,7 @@ export function handleMarkpage(markpageData) {
 	const baseURL = window.location.origin + window.location.pathname;
 	const hash = window.location.hash.substring(1);
 	const actualURL = window.location.search;
-	params = getParams(actualURL);
+	params = getParams(actualURL, hash);
 
 	// Gestion des maths
 	if (yaml && yaml.maths) {
@@ -188,7 +188,7 @@ export function handleMarkpage(markpageData) {
 			isLightbox.style.display = "none";
 		} else {
 			let actualURL = window.location.search;
-			params = getParams(actualURL);
+			params = getParams(actualURL, hash);
 			changeDisplayBasedOnParams(params, markpageData);
 		}
 	});
