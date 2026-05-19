@@ -1,5 +1,6 @@
 import { yaml } from "../processMarkdown/yaml";
 import { convertLatexExpressions } from "../processMarkdown/convertLatex";
+import { convertIframeCodesToIframeHTMLElements } from "./iframes";
 
 export function displayMaths() {
 	const interval = setInterval(() => {
@@ -39,6 +40,10 @@ export function displayMaths() {
 				} else {
 					section.innerHTML = convertLatexExpressions(section.innerHTML);
 				}
+			}
+			// Si on est en mode Pad, après avoir converti les expressions en Latex, on convertit les codes d'iframe en iframes réelles
+			if (yaml.pad) {
+				convertIframeCodesToIframeHTMLElements(document.body, { delay: true });
 			}
 		}
 	}, 200);

@@ -1,3 +1,5 @@
+import { yaml } from "../processMarkdown/yaml";
+
 export function convertIframeHTMLelementsToIframeCodes(html) {
 	// On convertit dans le HTML (en texte) les éléments HTML iframe en un élément div qui contient le code de l'iframe dans un attribut data-iframe : [iframe src="url" …]
 	return html.replace(
@@ -34,6 +36,8 @@ export function handleIframes(visibleElement, previousSection, options) {
 	if (isPad) {
 		if (!alreadyConvertedIframes) {
 			// En mode Pad, on convertit tous les codes d'iframe en iframes réelles dès le début, mais avec un délai entre chaque conversion pour éviter les problèmes de performance quand il y a beaucoup d'iframes à convertir
+			// Si on utilise des mathématiques, on ne convertit pas les iframes tout de suite, mais seulement après avoir converti les expressions en Latex
+			if (yaml && yaml.maths) return;
 			convertIframeCodesToIframeHTMLElements(document.body, { delay: true });
 			alreadyConvertedIframes = true;
 		}
