@@ -15,7 +15,7 @@ function debounce(func, wait) {
 	};
 }
 
-// Fonction pour mettre à jour les cartes
+// Fonction pour mettre à jour le contenu de la page en fonction du contenu de l'éditeur
 export async function updateContent() {
 	const editorElement = document.querySelector(".editor");
 	const editorContent =
