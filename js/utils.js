@@ -183,14 +183,28 @@ export function loadCSS(src, name) {
 	}
 }
 
-export function openLinksInNewTab(links) {
-	// On filtre les liens pour que les liens internes ne s'ouvrent pas dans un autre onglet
+function fixInternalLinkWithNoHash(link) {
+	const href = link.getAttribute("href");
+	if (href && href.startsWith("/") && !href.includes("#")) {
+		link.setAttribute("href", href + window.location.hash);
+	}
+}
+
+export function handleLinks(links) {
+	// On ouvre tous les liens externes (sauf Lightbox, déjà filtrés) dans un nouvel onglet, et on laisse les liens internes fonctionner normalement
 	links = Array.from(links);
+
+	// On laisse les liens internes fonctionner normalement
 	links = links.filter((link) => {
 		const href = link.getAttribute("href");
 		if (!href) return false;
 		if (href.includes(":~:text")) return false;
-		return !href.startsWith("/");
+		if (href.startsWith("/")) {
+			// Si on a un lien interne (par exemple /?sec=1&subsec=2), on ajoute le hash de la source s'il n'était pas présent, pour qu'il puisse fonctionner
+			fixInternalLinkWithNoHash(link);
+			return false;
+		}
+		return true;
 	});
 	links.forEach((link) => {
 		link.setAttribute("target", "_blank");

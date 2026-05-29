@@ -1,6 +1,6 @@
 import { yaml } from "../processMarkdown/yaml";
 import { displayMaths } from "./displayMaths";
-import { getParams, openLinksInNewTab, loadCSS, redirectToUrl } from "../utils";
+import { getParams, handleLinks, loadCSS, redirectToUrl } from "../utils";
 import { changeDisplayBasedOnParams } from "./changeDisplayBasedOnParams";
 import { handleNavigation } from "./navigation";
 import { handleSearch } from "./searchBar/handleSearch";
@@ -73,14 +73,14 @@ export function handleMarkpage(markpageData) {
 				const linksWithNoLightbox = document.querySelectorAll(
 					"a:not(.lightboxPlugin):not(.navigationLink)",
 				);
-				openLinksInNewTab(linksWithNoLightbox);
+				handleLinks(linksWithNoLightbox);
 			}
 		}, 500);
 	} else {
 		const linksWithNoLightbox = document.querySelectorAll(
 			"a:not(.navigationLink)",
 		);
-		openLinksInNewTab(linksWithNoLightbox);
+		handleLinks(linksWithNoLightbox);
 	}
 	if (yaml && yaml.plugins && yaml.plugins.includes("text2quiz")) {
 		const interval = setInterval(() => {
