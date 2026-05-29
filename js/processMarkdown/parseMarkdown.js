@@ -4,6 +4,7 @@ import {
 	removeUselessCarriages,
 	sortCaseAndAccentInsensitive,
 } from "../utils";
+import { paramsRemoveMenu } from "../ui/params";
 function replaceHashesInCodeAndCommentBlocks(markdown) {
 	return markdown.replace(/(```[\s\S]*?```|<!--[\s\S]*?-->)/g, (match) => {
 		return match.replace(/#/g, "\uE000"); // Utilisation d'un caractère Unicode spécial
@@ -20,17 +21,26 @@ export function parseMarkdown(markdownContent, yaml) {
 	// Suppression des caractères "#" dans les blocs codes
 	markdownContent = replaceHashesInCodeAndCommentBlocks(markdownContent);
 	// On distingue le header et le contenu
+	let indexEndHeader;
 	const indexfirstH2title = markdownContent.indexOf("## ");
 	const indexfirstH3title = markdownContent.indexOf("### ");
 	const hasNoH2title = indexfirstH2title == indexfirstH3title + 1;
-	// S'il n'y a pas de titre H2, le début du contenu se fait à partir du premier titre H2
-	const indexContentFirstTitle = hasNoH2title
-		? indexfirstH3title
-		: indexfirstH2title;
+	// S'il n'y ni titre H2 ni titre H3, on considère que tout le markdown est du header : on est dans le mode Page unique (singlePage)
+	if (indexfirstH2title == -1 && indexfirstH3title == -1) {
+		indexEndHeader = markdownContent.length;
+		// On désactive le menu et la barre de recherche, qui n'ont pas de sens dans ce mode
+		yaml.menu = false;
+		paramsRemoveMenu();
+		yaml.searchbar = false;
+		document.body.classList.add("singlePage");
+	} else {
+		// S'il n'y a pas de titre H2, mais un titre H3, le début du contenu se fait à partir du premier titre H3
+		indexEndHeader = hasNoH2title ? indexfirstH3title : indexfirstH2title;
+	}
 	// Le header se situe du début jusqu'au premier titre principal (h2 ou h3)
-	const header = markdownContent.substring(0, indexContentFirstTitle);
+	const header = markdownContent.substring(0, indexEndHeader);
 	// Le contenu principal se situe à partir du premier titre principal (h2 ou h3)
-	let mainContent = markdownContent.substring(indexContentFirstTitle);
+	let mainContent = markdownContent.substring(indexEndHeader);
 
 	// Dans le header, on distingue le titre (défini par un titre h1) et le message initial
 
