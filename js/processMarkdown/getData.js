@@ -106,7 +106,7 @@ export async function getMarkdownContentAndCreateMarkpage(newOptions = {}) {
 			if (isValidUrl) {
 				// Si l'URL est valide, on essaie d'afficher le site Markpage, mais s'il y a une erreur (qui peut être dû à d'autres cas qu'une erreur de fetch de la source), on ne cherche pas à relancer la récupération du contenu : on catche l'erreur et on affiche seulement un message d'erreur dans la console.
 				try {
-					createMarkpage(markpageData, hash);
+					return createMarkpage(markpageData, hash);
 				} catch (error) {
 					console.log(error);
 				}
@@ -117,7 +117,7 @@ export async function getMarkdownContentAndCreateMarkpage(newOptions = {}) {
 	} catch (error) {
 		// … On essaie d'abord d'ajouter l'extension ".md"
 		// Si on déploie un site Markpage avec des fichiers dans son dépôt, on peut alors utiliser des URLs plus significatives, sans avoir à ajouter le .md dans l'URL
-		if (!options.addMdExtension && !source.endsWith(".md")) {
+		if (!isValidUrl && !options.addMdExtension && !source.endsWith(".md")) {
 			return getMarkdownContentAndCreateMarkpage({
 				...options,
 				addMdExtension: true,
@@ -125,7 +125,7 @@ export async function getMarkdownContentAndCreateMarkpage(newOptions = {}) {
 			});
 		} else {
 			// En cas d'erreur avec la récupération du contenu, on essaie d'utiliser un proxy CORS, et si ça ne marche pas, on affiche le site Markpage par défaut
-			if (!options.useCorsProxy) {
+			if (!isValidUrl && !options.useCorsProxy) {
 				return getMarkdownContentAndCreateMarkpage({
 					...options,
 					addMdExtension: false,
