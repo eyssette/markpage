@@ -87,6 +87,7 @@ style: a{color:red}
 recherche: false
 lienPageAccueil: true
 oneByOne: false
+singlePage: true
 ---
 ```
 
@@ -97,8 +98,9 @@ oneByOne: false
 - `recherche: false` permet de supprimer la barre de recherche en haut à gauche
 - `lienPageAccueil: true` permet d'ajouter un lien vers la page d'accueil en haut à droite
 - `oneByOne: false` permet de changer le mode de navigation sur mobile : par défaut, le paramètre est sur `true`, une seule sous-section est affichée et on navigue avec un mouvement de swipe ou bien via des boutons de navigation. Avec `false`, seul le contenu de la section active est affiché, mais tous les titres de sous-section sont présents et on peut scroller pour cliquer sur la sous-section qui nous intéresse.
-- `plugins: kroki, lightbox` permet d'utiliser des add-ons, ici _kroki_ pour pouvoir générer des graphiques avec mermaid, tikz… et _lightbox_ pour pouvoir afficher en grand une image quand on clique dessus
+- `plugins: kroki, lightbox` permet d'utiliser des plugins, ici _kroki_ pour pouvoir générer des graphiques avec mermaid, tikz… et _lightbox_ pour pouvoir afficher en grand une image quand on clique dessus
 - `pathImages: URL` permet d'indiquer le chemin vers les images quand on veut utiliser des adresses relatives dans la source de son fichier Markdown
+- `singlePage: true` permet d'afficher tout le contenu du fichier Markdown sur une seule page
 
 ### Thèmes et Styles CSS
 
@@ -135,9 +137,9 @@ La classe `{.center}` permet de centrer un paragraphe.
 
 La classe `{.large}` après une image sous un titre de sous-section permet d'avoir une grande image plutôt qu'une petit icône.
 
-### Admonitions
+### Encadrés (Admonitions)
 
-Les admonitions sont des sortes d'encadrés qui permettent de mettre en avant certaines informations.
+Les encadrés (admonitions) permettent de mettre en avant certaines informations.
 
 :::info Exemple d'admonition de type "info"
 Contenu
@@ -177,17 +179,17 @@ Bloc de texte en Markdown multiligne caché par défaut
 Contenu
 :::
 
-### Add-ons
+### Plugins
 
-Vous pouvez utiliser des add-ons pour gérer des contenus ou des fonctionnalités spécifiques.
+Vous pouvez utiliser des plugins pour gérer des contenus ou des fonctionnalités spécifiques.
 
 Il suffit de les indiquer dans l'en-tête YAML ainsi : `plugins: kroki, lightbox` par exemple pour ajouter kroki et lightbox.
 
-Les add-ons disponibles sont les suivants :
+Les plugins disponibles sont les suivants :
 
 #### Kroki
 
-Mot-clé pour ajouter cet add-on : `kroki`
+Mot-clé pour ajouter ce plugin : `kroki`
 
 _Kroki_ permet de générer automatiquement des graphiques avec la syntaxe suivante : Tikz, Mermaid, PlantUML, Graphviz, Excalidraw, Vega ou Vegalite.
 
@@ -202,7 +204,7 @@ On met ici son graphique avec la syntaxe mermaid
 
 #### Lightbox
 
-Mot-clé pour ajouter cet add-on : `lightbox`
+Mot-clé pour ajouter ce plugin : `lightbox`
 
 _Lightbox_ permet d'afficher en grand une image ou un PDF quand on clique dessus.
 
@@ -210,7 +212,7 @@ Si on veut désactiver l'effet de lightbox pour un PDF, on ajoute simplement `?n
 
 #### Text2quiz
 
-Mot-clé pour ajouter cet add-on : `text2quiz`
+Mot-clé pour ajouter ce plugin : `text2quiz`
 
 [Text2quiz](https://text2quiz.vercel.app/) est un logiciel libre et gratuit qui permet de gérer des exercices à partir d'un fichier texte, en respectant une syntaxe particulière.
 
@@ -227,7 +229,7 @@ On met ici ses exercices avec la syntaxe text2quiz
 
 #### Copycode
 
-Mot-clé pour ajouter cet add-on : `copycode`
+Mot-clé pour ajouter ce plugin : `copycode`
 
 Cet add-on permet d'avoir un bouton cliquable pour copier dans le presse-papier le texte contenu dans un bloc code (avec la syntaxe markdown ci-dessous).
 
@@ -241,7 +243,7 @@ contenu du bloc code
 
 #### TitleLinks
 
-Mot-clé pour ajouter cet add-on : `titleLinks`
+Mot-clé pour ajouter ce plugin : `titleLinks`
 
 Cet add-on permet de partager des liens vers une sous-section spécifique.
 Si on clique sur un titre de niveau 4, 5 ou 6, un lien vers ce titre est copié dans le presse-papier (les titres des autres niveaux existent déjà sous forme de liens dans Markpage).

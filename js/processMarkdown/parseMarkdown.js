@@ -26,7 +26,7 @@ export function parseMarkdown(markdownContent, yaml) {
 	const indexfirstH3title = markdownContent.indexOf("### ");
 	const hasNoH2title = indexfirstH2title == indexfirstH3title + 1;
 	// S'il n'y ni titre H2 ni titre H3, on considère que tout le markdown est du header : on est dans le mode Page unique (singlePage)
-	if (indexfirstH2title == -1 && indexfirstH3title == -1) {
+	if ((indexfirstH2title == -1 && indexfirstH3title == -1) || yaml.singlePage) {
 		indexEndHeader = markdownContent.length;
 		// On désactive le menu et la barre de recherche, qui n'ont pas de sens dans ce mode
 		yaml.menu = false;
