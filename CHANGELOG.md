@@ -1,5 +1,26 @@
 # Changelog
 
+## 4.22.0 (2026-05-30)
+
+### Feat
+
+- utilisation possible de Markpage pour afficher une seule page
+
+### Fix
+
+- activation possible du mode "singlePage" dans les paramètres URL
+- activation possible du mode "singlePage" dans le YAML
+- pour les fichiers Docs, ajout du titre du document comme titre de niveau H1 dans le contenu s'il n'y en a pas déjà
+- pas utile de lancer un proxy ou bien d'ajouter ".md" à la fin si on avait une URL déjà valide
+- changement de proxy CORS
+- amélioration de la gestion des liens internes
+- gestion de l'élément visible en cas d'URL qui indique la présence d'une sous-section alors qu'il n'y en a pas
+- changement d'URL de l'API de Docs de LaSuite
+
+### Chore
+
+- renommage des fonctions pour supprimer des éléments
+
 ## 4.21.2 (2026-05-19)
 
 ### Fix
