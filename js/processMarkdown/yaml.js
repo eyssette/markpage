@@ -1,5 +1,11 @@
 import { load as loadYAML } from "../externals/js-yaml.js";
-import { deepMerge, loadScript, loadCSS, isLightpad } from "../utils.js";
+import {
+	deepMerge,
+	loadScript,
+	loadCSS,
+	isLightpad,
+	getParams,
+} from "../utils.js";
 import { CSSthemes, allowedPlugins, pluginsDependencies } from "../config.js";
 import { setTheme } from "../ui/setTheme.js";
 
@@ -7,13 +13,18 @@ export const defaultYaml = {
 	searchbar: true,
 	oneByOne: true,
 	linkToHomePage: false,
+	singlePage: false,
 };
 
 export let yaml;
 
 export async function processYAML(markdownContent) {
+	const params = getParams();
 	// Gestion de l'en-tête YAML
 	yaml = { ...defaultYaml };
+	if (params.singlePage != undefined) {
+		yaml.singlePage = true;
+	}
 	try {
 		if (
 			markdownContent.split("---").length > 2 &&
