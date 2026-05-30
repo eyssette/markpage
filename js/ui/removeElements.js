@@ -1,6 +1,6 @@
 import { yaml } from "../processMarkdown/yaml";
 
-export function paramsRemoveH3(params) {
+export function removeH3(params) {
 	const h3Elements = document.querySelectorAll("h3");
 	for (const h3Element of h3Elements) {
 		h3Element.style.display = "none";
@@ -23,7 +23,7 @@ export function paramsRemoveH3(params) {
 	document.head.appendChild(styleSheet);
 }
 
-export function paramsRemoveMenu(linkToHomePageElement) {
+export function removeMenu(linkToHomePageElement) {
 	const menuElement = document.getElementById("footerContent");
 	menuElement.style.display = "none";
 	const footerElement = menuElement.parentElement;

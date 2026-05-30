@@ -4,7 +4,7 @@ import {
 	removeUselessCarriages,
 	sortCaseAndAccentInsensitive,
 } from "../utils";
-import { paramsRemoveMenu } from "../ui/params";
+import { removeMenu } from "../ui/removeElements";
 function replaceHashesInCodeAndCommentBlocks(markdown) {
 	return markdown.replace(/(```[\s\S]*?```|<!--[\s\S]*?-->)/g, (match) => {
 		return match.replace(/#/g, "\uE000"); // Utilisation d'un caractère Unicode spécial
@@ -30,7 +30,7 @@ export function parseMarkdown(markdownContent, yaml) {
 		indexEndHeader = markdownContent.length;
 		// On désactive le menu et la barre de recherche, qui n'ont pas de sens dans ce mode
 		yaml.menu = false;
-		paramsRemoveMenu();
+		removeMenu();
 		yaml.searchbar = false;
 		document.body.classList.add("singlePage");
 	} else {
