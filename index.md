@@ -141,19 +141,19 @@ La classe `{.large}` après une image sous un titre de sous-section permet d'avo
 
 Les encadrés (admonitions) permettent de mettre en avant certaines informations.
 
-:::info Exemple d'admonition de type "info"
+:::info Exemple d'encadré de type "info"
 Contenu
 :::
 
-:::tip Exemple d'admonition de type "tip"
+:::tip Exemple d'encadré de type "tip"
 Contenu
 :::
 
-:::warning Exemple d'admonition de type "warning"
+:::warning Exemple d'encadré de type "warning"
 Contenu
 :::
 
-Dans votre fichier, vous pouvez utiliser les "admonitions" avec la syntaxe suivante, dans laquelle typeAdmonition est le type de l'admonition (les types "info", "tip" et "warning" ont déjà un style CSS par défaut, mais vous pouvez en utiliser d'autres). Le titre de l'admonition peut contenir des espaces.
+Dans votre fichier, vous pouvez utiliser les "encadrés" avec la syntaxe suivante, dans laquelle `typeAdmonition` est le type de l'encadré (les types "info", "tip" et "warning" ont déjà un style CSS par défaut, mais vous pouvez en utiliser d'autres). Le titre de l'encadré peut contenir des espaces.
 
 ```
 :::typeAdmonition titre
@@ -163,9 +163,9 @@ Bloc de texte en Markdown multiligne
 :::
 ```
 
-#### Admonitions dépliables
+#### Encadrés dépliables
 
-Si vous voulez que votre admonition soit caché par défaut et dépliable en cliquant dessus, il faut ajouter `collapsible` à la première ligne
+Si vous voulez que votre encadré soit caché par défaut et dépliable en cliquant dessus, il faut ajouter `collapsible` à la première ligne
 
 ```
 :::typeAdmonition collapsible titre
@@ -175,7 +175,7 @@ Bloc de texte en Markdown multiligne caché par défaut
 :::
 ```
 
-:::info collapsible Admonition dépliable
+:::info collapsible Encadré dépliable
 Contenu
 :::
 
