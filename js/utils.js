@@ -183,9 +183,15 @@ export function loadCSS(src, name) {
 	}
 }
 
+function isLinkToSectionOrSubsection(href) {
+	return (
+		href.includes("sec=") && (href.startsWith("/") || href.startsWith("./"))
+	);
+}
+
 function fixInternalLinkWithNoHash(link) {
 	const href = link.getAttribute("href");
-	if (href && href.startsWith("/") && !href.includes("#")) {
+	if (href && isLinkToSectionOrSubsection(href) && !href.includes("#")) {
 		link.setAttribute("href", href + window.location.hash);
 	}
 }
@@ -199,7 +205,7 @@ export function handleLinks(links) {
 		const href = link.getAttribute("href");
 		if (!href) return false;
 		if (href.includes(":~:text")) return false;
-		if (href.startsWith("/")) {
+		if (isLinkToSectionOrSubsection(href)) {
 			// Si on a un lien interne (par exemple /?sec=1&subsec=2), on ajoute le hash de la source s'il n'était pas présent, pour qu'il puisse fonctionner
 			fixInternalLinkWithNoHash(link);
 			return false;
