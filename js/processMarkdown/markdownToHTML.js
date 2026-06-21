@@ -275,6 +275,7 @@ const converter = new Showdown.Converter({
 		showdownExtensionHighlight,
 		showdownExtensionFootNotes,
 	],
+	disableForced4SpacesIndentedSublists: true,
 });
 
 // Gestion des dimensions des images
