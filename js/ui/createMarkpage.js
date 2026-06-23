@@ -140,4 +140,10 @@ export function createMarkpage(markpageData, urlSourceMarkpage) {
 	mainElement.innerHTML = convertIframeHTMLelementsToIframeCodes(sectionsHTML);
 	footerContentElement.innerHTML = footerHTML;
 	handleMarkpage(markpageData);
+	if (yaml.export) {
+		// On ouvre la fenêtre d'impression en PDF
+		setTimeout(() => {
+			window.print();
+		}, 100);
+	}
 }

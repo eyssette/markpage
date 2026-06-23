@@ -22,6 +22,10 @@ export async function processYAML(markdownContent) {
 	const params = getParams();
 	// Gestion de l'en-tête YAML
 	yaml = { ...defaultYaml };
+	if (params.export != undefined) {
+		params.singlePage = true;
+		yaml.export = true;
+	}
 	if (params.singlePage != undefined) {
 		yaml.singlePage = true;
 		loadCSS("./css/singlePage.min.css", "singlePage");
