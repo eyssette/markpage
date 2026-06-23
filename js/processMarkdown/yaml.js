@@ -41,7 +41,7 @@ export async function processYAML(markdownContent) {
 			const yamlData = loadYAML(markdownContent.split("---")[1]);
 			yaml = yamlData ? deepMerge(yaml, yamlData) : yaml;
 		}
-		const isLightpadWebsite = isLightpad();
+		const isLightpadWebsite = isLightpad() && !yaml.singlePage;
 		if (yaml.addOns) {
 			yaml.plugins = yaml.addOns;
 		}
