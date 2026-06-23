@@ -1,0 +1,31 @@
+.singlePage #backgroundInnerBox,
+.singlePage #innerBox {
+	background-color: transparent;
+}
+
+.singlePage h3 {
+	max-width: none;
+}
+
+.singlePage img {
+	max-width: 100%;
+}
+
+.singlePage h2 {
+	border-top: 4px solid black;
+	padding-top: 3em;
+	margin-top: 3em;
+}
+
+.singlePage h1 img {
+	max-height: 1.25em;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+/* Pour afficher les encadrés (admonitions) en mode "déroulé" quand on imprime */
+@media print {
+	.singlePage ::details-content {
+		content-visibility: visible;
+	}
+}

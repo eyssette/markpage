@@ -24,6 +24,10 @@ export async function processYAML(markdownContent) {
 	yaml = { ...defaultYaml };
 	if (params.singlePage != undefined) {
 		yaml.singlePage = true;
+		loadCSS("./css/singlePage.min.css", "singlePage");
+	} else {
+		const cssSinglePage = document.querySelector("#css-singlePage");
+		if (cssSinglePage) cssSinglePage.remove();
 	}
 	try {
 		if (
