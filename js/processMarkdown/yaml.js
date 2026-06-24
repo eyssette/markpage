@@ -25,6 +25,10 @@ export async function processYAML(markdownContent) {
 	if (params.export != undefined) {
 		params.singlePage = true;
 		yaml.export = true;
+		document.body.classList.add("export");
+	} else {
+		yaml.export = false;
+		document.body.classList.remove("export");
 	}
 	if (params.singlePage != undefined) {
 		yaml.singlePage = true;
