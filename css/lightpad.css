@@ -141,10 +141,10 @@ h1 span.textFitted {
 		height: 75%;
 		margin-top: 2em;
 	}
-	#autoFilters {
+	.banner {
 		display: none;
 	}
-	.searchActive #autoFilters {
+	.searchActive .banner {
 		display: block;
 	}
 	.searchActive .banner {
@@ -197,7 +197,7 @@ h1 span.textFitted {
 		position: fixed;
 		width: 95vw;
 	}
-	#autoFilters {
+	.banner {
 		display: flex;
 		flex-wrap: wrap;
 	}
