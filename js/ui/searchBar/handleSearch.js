@@ -2,6 +2,7 @@ import { yaml } from "../../processMarkdown/yaml";
 import { removeTagsFromStringButKeepAltImages } from "../../utils";
 import { evaluateComplexExpression } from "./evaluateComplexSearch";
 import { parseSearchQuery } from "./parseSearchQuery";
+import { updateButtonsAndSelectElements } from "./updateButtonsAndSelectElements";
 
 // Gestion de la searchBar
 export function handleSearch(hash, markpageData) {
@@ -220,6 +221,8 @@ export function handleSearch(hash, markpageData) {
 					}
 				}
 			});
+			// On met à jour les boutons et les éléments SELECT pour refléter les filtres actifs
+			updateButtonsAndSelectElements(inputText);
 		}
 	}
 	const title = document.querySelector("header h1");
