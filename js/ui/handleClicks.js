@@ -4,6 +4,7 @@ import { getParams } from "../utils";
 import { params } from "./handleMarkpage";
 import { yaml } from "../processMarkdown/yaml";
 import { handleTags } from "./searchBar/handleTags";
+import { handleSelectElements } from "./searchBar/handleSelectElements";
 
 export function handleClicks(baseURL, hash, markpageData) {
 	// On détecte les clics sur les liens
@@ -56,6 +57,7 @@ export function handleClicks(baseURL, hash, markpageData) {
 	// Gestion des boutons de filtres dans Lightpad
 	if (yaml.lightpad) {
 		handleTags();
+		handleSelectElements();
 	}
 
 	// Possibilité de se déplacer à gauche ou à droite avec un clic maintenu sur la souris

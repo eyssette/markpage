@@ -9,8 +9,10 @@ export function handleTags() {
 			// Toggle l'état actif du bouton
 			this.classList.toggle("active");
 
-			// Construire la requête complète avec la logique
-			const query = buildTagQuery(buttons);
+			// On récupère tous les boutons actifs, car certains boutons ont peut-être été créés si des éléments SELECT ont été utilisés, et on veut les prendre en compte dans la requête
+			const allButtons = document.querySelectorAll("#initialMessage button");
+			// On construit la requête complète
+			const query = buildTagQuery(allButtons);
 
 			// On actualise le champ de recherche et on déclenche la recherche
 			searchInput.value = query;
@@ -32,7 +34,8 @@ export function handleTags() {
 
 		const words = cleanedValue.trim().split(/\s+/).filter(Boolean);
 
-		buttons.forEach((button) => {
+		const allButtons = document.querySelectorAll("#initialMessage button");
+		allButtons.forEach((button) => {
 			const buttonText = button.textContent.trim().replaceAll(" ", "_");
 			if (words.includes(buttonText)) {
 				button.classList.add("active");
