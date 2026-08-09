@@ -17,18 +17,18 @@
 	background-color: white !important;
 }
 
+#backgroundInnerBox{
+	border:none;
+}
+
 .displayHomepage blockquote {
 	font-size: 1.35em;
 }
 
-.displayHomepage h2 a:hover {
-	background-color: #f1f1f1f1;
-	border-color: #b2a889;
-	color: black;
-}
 .displayHomepage h2 a {
-	background-color: white;
+	border-radius:12px;
 }
+
 .displayHomepage footer {
 	display: none;
 }
@@ -44,7 +44,7 @@ main a:not(.navigationLink):hover {
 	border-bottom: 1px solid grey;
 }
 
-h3 {
+h3, .subSection.visible h3 {
 	border-radius: 15px;
 }
 
