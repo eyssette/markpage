@@ -1,0 +1,6 @@
+{
+	"extends": ["html-validate:recommended", "html-validate:prettier"],
+	"rules": {
+		"empty-heading": "off"
+	}
+}
