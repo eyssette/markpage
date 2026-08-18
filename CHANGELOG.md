@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.23.2 (2026-08-18)
+
+### Fix
+
+- **css**: amélioration du thème par défaut (fond très légèrement grisé, et section principale en blanc)
+
+### Chore
+
+- configuration de Stylelint et corrections des erreurs de lint pour la feuille de style principale
+
 ## 4.23.1 (2026-08-18)
 
 ### Fix
