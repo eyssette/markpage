@@ -254,7 +254,7 @@ function showdownExtensionFootNotes() {
 						"?footnote:~:text=[" +
 						id +
 						"] :" +
-						'"><sup>[' +
+						'" class="footnoteLink"><sup>[' +
 						id +
 						"]</sup></a>"
 					);

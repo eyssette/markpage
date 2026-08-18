@@ -884,3 +884,16 @@ hr:last-child {
 		top: 1.95em;
 	}
 }
+
+main a.footnoteLink,
+/* stylelint-disable-next-line no-descending-specificity */
+main .footnote a:nth-of-type(1) {
+	border-bottom: none;
+	margin-left: 0.25em;
+}
+
+main a.footnoteLink:hover,
+/* stylelint-disable-next-line no-descending-specificity */
+main .footnote a:nth-of-type(1):hover {
+	border-bottom: 1px solid #567c9c;
+}
