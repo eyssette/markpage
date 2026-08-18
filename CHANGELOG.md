@@ -1,5 +1,16 @@
 # Changelog
 
+## 4.23.1 (2026-08-18)
+
+### Fix
+
+- **html**: correctifs mineurs pour la validation du HTML avec html-validate
+
+### Chore
+
+- passage de ESlint à OXlint et correction des erreurs les plus importantes
+- passage de Prettier à Oxfmt
+
 ## 4.23.0 (2026-08-18)
 
 ### Feat
