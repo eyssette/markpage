@@ -1,5 +1,23 @@
 # Changelog
 
+## 4.23.0 (2026-08-18)
+
+### Feat
+
+- gestion des éléments SELECT pour construire des filtres personnalisés dans le bandeau
+
+### Fix
+
+- **css**: amélioration de l'affichage pour le thème par défaut de Markpage
+- gestion de la mise à jour des boutons et des éléments SELECT en fonction de ce qui est écrit dans la barre de recherche
+- sur mobile, le bandeau (.banner), par défaut, ne doit pas s'afficher dans tous les cas
+- amélioration mode "export" pour forcer ouverture des "details"
+- en mode singlePage, on ne doit pas déclencher le mode Lightpad
+- possibilité d'obtenir un export SinglePage d'un site avec le paramètre "export" dans l'URL
+- amélioration de la gestion du paramètre singlePage (styles CSS dédiés)
+- pas besoin de 4 espaces pour faire des sous listes indentées
+- amélioration de la gestion des liens internes
+
 ## 4.22.0 (2026-05-30)
 
 ### Feat
