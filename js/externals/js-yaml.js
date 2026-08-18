@@ -547,18 +547,18 @@ var bool = new type("tag:yaml.org,2002:bool", {
 
 function isHexCode(c) {
 	return (
-		(0x30 /* 0 */ <= c && c <= 0x39 /* 9 */) ||
-		(0x41 /* A */ <= c && c <= 0x46 /* F */) ||
-		(0x61 /* a */ <= c && c <= 0x66 /* f */)
+		(0x30 /* 0 */ <= c && c <= 0x39) /* 9 */ ||
+		(0x41 /* A */ <= c && c <= 0x46) /* F */ ||
+		(0x61 /* a */ <= c && c <= 0x66) /* f */
 	);
 }
 
 function isOctCode(c) {
-	return 0x30 /* 0 */ <= c && c <= 0x37 /* 7 */;
+	return 0x30 /* 0 */ <= c && c <= 0x37; /* 7 */
 }
 
 function isDecCode(c) {
-	return 0x30 /* 0 */ <= c && c <= 0x39 /* 9 */;
+	return 0x30 /* 0 */ <= c && c <= 0x39; /* 9 */
 }
 
 function resolveYamlInteger(data) {
@@ -1225,11 +1225,11 @@ function _class(obj) {
 }
 
 function is_EOL(c) {
-	return c === 0x0a /* LF */ || c === 0x0d /* CR */;
+	return c === 0x0a /* LF */ || c === 0x0d; /* CR */
 }
 
 function is_WHITE_SPACE(c) {
-	return c === 0x09 /* Tab */ || c === 0x20 /* Space */;
+	return c === 0x09 /* Tab */ || c === 0x20; /* Space */
 }
 
 function is_WS_OR_EOL(c) {
@@ -3381,8 +3381,8 @@ function isPlainSafe(c, prev, inblock) {
 	var cIsNsCharOrWhitespace = isNsCharOrWhitespace(c);
 	var cIsNsChar = cIsNsCharOrWhitespace && !isWhitespace(c);
 	return (
-		(// ns-plain-safe
-		(inblock // c = flow-in
+		// ns-plain-safe
+		((inblock // c = flow-in
 			? cIsNsCharOrWhitespace
 			: cIsNsCharOrWhitespace &&
 				// - c-flow-indicator
