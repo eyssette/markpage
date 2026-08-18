@@ -19,6 +19,8 @@ body {
 	font-size: 1.1em;
 	margin-bottom: 120px;
 	overflow-wrap: break-word;
+	background: #f6f8fa;
+	color: #171717;
 }
 
 #innerBox,
@@ -54,7 +56,7 @@ header {
 	margin: auto;
 	margin-bottom: 3em;
 	padding: 0 10px;
-	max-width: 800px;
+	max-width: 725px;
 	line-height: 1.25em;
 }
 
@@ -63,7 +65,7 @@ header {
 main a:not(.navigationLink),
 /* stylelint-disable-next-line no-descending-specificity */
 main a:not(.navigationLink):visited {
-	border-bottom: 1px solid grey;
+	border-bottom: 1px solid #567c9c;
 	color: #00008b;
 	padding-bottom: 0.05em;
 	text-decoration: none;
@@ -175,7 +177,7 @@ footer {
 	font-size: min(1.5vw, 18px);
 	text-align: center;
 	bottom: 0;
-	background-color: white;
+	background-color: #f6f8fa;
 	display: flex;
 	z-index: 10;
 	overflow-x: auto;
@@ -569,6 +571,7 @@ pre {
 	width: fit-content;
 	box-shadow: 1px 1px 1px 1px #aaa;
 	margin: 2em auto;
+	min-width: 50%;
 }
 
 mark {
@@ -694,6 +697,7 @@ hr:last-child {
 
 	.displayHomepage #innerBox {
 		padding: 0 !important;
+		background-color: white;
 	}
 
 	.displaySubSection .subSection {
@@ -709,7 +713,7 @@ hr:last-child {
 	}
 
 	.displayHomepage {
-		background-color: rgb(246 246 248);
+		background-color: white;
 	}
 
 	.displaySubSection main {
@@ -810,7 +814,7 @@ hr:last-child {
 	}
 
 	#backgroundInnerBox {
-		background-color: #f6f8fab0;
+		background-color: white;
 		border: 1px solid #ddd;
 		min-height: 100vh;
 	}
@@ -849,7 +853,7 @@ hr:last-child {
 	}
 
 	pre {
-		max-width: 95%;
+		max-width: 92%;
 		overflow: auto hidden;
 		font-size: 0.9em;
 	}

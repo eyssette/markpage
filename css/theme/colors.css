@@ -11,6 +11,10 @@
 	--color5light: #d7f2ee;
 }
 
+body {
+	background-color: white;
+}
+
 #innerBox,
 #backgroundInnerBox,
 .subSectionContent {

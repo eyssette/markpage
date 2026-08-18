@@ -1,14 +1,16 @@
 ---
 editor: true
 plugins: copycode
-style: img{border-radius:10px}
+style: |
+  img{border-radius:10px}
+  #initialMessage {max-width: 800px;}
+  @media (min-width: 835px) {#markpage-icon{ float: left; margin-right: 3em; margin-bottom: 5em;} }
+  @media (max-width: 834px) { #markpage-icon{display: flex; justify-content: center;} }
 ---
 
 # Markpage
 
 <div id="markpage-icon" markdown> ![](favicon.svg =150x150)</div> 
-
-<style>@media (min-width: 835px) {#markpage-icon{ float: left; margin-right: 3em; margin-bottom: 5em;} } @media (max-width: 834px) { #markpage-icon{display: flex; justify-content: center;} }</style>
 
 Markpage est un outil **libre** et **gratuit**, créé par [Cédric Eyssette](https://eyssette.forge.apps.education.fr/) sur [LaForgeÉdu](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr), qui permet de créer facilement un minisite web ou une application pour smartphone, à partir d'un simple fichier en Markdown.
 
