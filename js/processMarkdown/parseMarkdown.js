@@ -1,4 +1,4 @@
-import { markdownToHTML } from "./markdownToHTML";
+import { markdownToHTML } from "./markdownToHtml";
 import {
 	filterElementWithNoContent,
 	removeUselessCarriages,

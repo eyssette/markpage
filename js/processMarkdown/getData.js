@@ -3,7 +3,7 @@ import { initialConfig } from "./helpers/initialConfig.js";
 
 import { parseMarkdown } from "./parseMarkdown.js";
 import { createMarkpage } from "../ui/createMarkpage.js";
-import { resolveSourceURL } from "./helpers/resolveSourceURL.js";
+import { resolveSourceURL } from "./helpers/resolveSourceUrl.js";
 import { fetchSource, fetchFromMultipleSources } from "./helpers/fetch.js";
 import { processYAML, yaml } from "./yaml";
 import { decodeString, getParams } from "../utils.js";

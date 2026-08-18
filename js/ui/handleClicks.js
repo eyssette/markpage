@@ -64,7 +64,6 @@ export function handleClicks(baseURL, hash, markpageData) {
 	// (Dans le mode "pad")
 	if (yaml.pad) {
 		const innerBox = document.querySelector("#innerBox");
-		document;
 		innerBox.addEventListener("mousedown", function (event) {
 			// Liste de tags à ignorer car ils représentent des éléments potentiellement interactifs
 			const ignoredTags = [

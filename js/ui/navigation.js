@@ -26,6 +26,7 @@ function changeURLhistory(options) {
 	history.pushState({ path: newURL }, "", newURL);
 }
 
+// oxlint-disable-next-line max-lines-per-function max-params
 export function handleNavigation(baseURL, hash, params, markpageData) {
 	const sectionsTitle = markpageData[2];
 	const numberOfSections = sectionsTitle.length;

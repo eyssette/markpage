@@ -118,6 +118,7 @@ export async function processYAML(markdownContent) {
 		if (yaml.oneByOne == true) {
 			loadCSS("./css/oneByOne.min.css", "oneByOne");
 		} else {
+			// oxlint-disable-next-line no-unused-expressions
 			yaml.oneByOne == false;
 			const cssOneByOne = document.querySelector("#css-oneByOne");
 			if (cssOneByOne) cssOneByOne.remove();

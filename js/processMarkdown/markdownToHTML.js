@@ -1,6 +1,6 @@
 import Showdown from "../externals/showdown.js";
-import { yaml } from "./yaml.js";
 import { getCSScolor } from "../ui/colors.js";
+import { yaml } from "./yaml.js";
 
 // Extensions pour Showdown
 
@@ -67,6 +67,7 @@ function showdownExtensionGenericAttributes() {
 				// Traitement des attributs génériques en fin de ligne
 				modifiedText = modifiedText.replace(
 					genericAttributesRegexBlock,
+					// oxlint-disable-next-line max-params
 					(match, tag, attrs, content, _, classes) => {
 						// Vérifier si l'élément est dans un <code>
 						if (match.includes("<code>")) return match;
@@ -79,6 +80,7 @@ function showdownExtensionGenericAttributes() {
 				// Traitement des attributs génériques pour un élément inline
 				modifiedText = modifiedText.replace(
 					genericAttributesRegexInline,
+					// oxlint-disable-next-line max-params
 					(match, tag, attrs, content, classes) => {
 						const classAttribute = ` class="${classes.replace(/\./g, " ").trim()}"`;
 						return `<${tag}${attrs}${classAttribute}>${content}</${tag}>`;
@@ -106,6 +108,7 @@ function showdownExtensionAdmonitions() {
 				// Traiter chaque match de l'admonition
 				text = text.replace(
 					regex,
+					// oxlint-disable-next-line max-params
 					(match, type, collapsible, title, content, offset) => {
 						title = title.replace("<br />", "").replace("</p>", "");
 						// Vérifier si l'admonition est dans un bloc code en regardant autour
@@ -191,6 +194,7 @@ function showdownExtensionFootNotes() {
 			filter: function filter(text) {
 				return text.replace(
 					/^\[\^([\d\w]+)\]:\s*((\n+(\s{2,4}|\t).+)+)$/gm,
+					// oxlint-disable-next-line max-params
 					function (str, name, rawContent, _, padding) {
 						let content = converter.makeHtml(
 							rawContent.replace(new RegExp("^" + padding, "gm"), ""),
@@ -219,6 +223,7 @@ function showdownExtensionFootNotes() {
 			filter: function filter(text) {
 				return text.replace(
 					/^\[\^([\d\w]+)\]:( |\n)((.+\n)*.+)$/gm,
+					// oxlint-disable-next-line max-params
 					function (str, name, _, content) {
 						return (
 							'<small class="footnote" id="footnote-' +

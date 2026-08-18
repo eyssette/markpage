@@ -71,3 +71,60 @@ tasks:
       - package-lock.json
     cmds:
       - cz bump
+
+  format:
+    desc: Formate les fichiers avec Oxfmt
+    cmds:
+      - npx oxfmt --config .oxfmtrc.json .
+
+  format:check:
+    desc: Vérifie le format des fichiers avec Oxfmt
+    cmds:
+      - npx oxfmt --config .oxfmtrc.json --check .
+
+  format:staged:
+    desc: Formate uniquement les fichiers staged (pour le hook pre-commit)
+    silent: true
+    cmds:
+      - |
+        FILES=$(git diff --cached --name-only --diff-filter=ACM)
+        if [ -z "$FILES" ]; then
+          exit 0
+        fi
+        npx oxfmt --config .oxfmtrc.json $FILES
+    ignore_error: true
+
+  html-validate:
+    desc: Vérifie la validité des fichiers HTML avec html-validate
+    cmds:
+      - npx html-validate "{{.APP_FOLDER}}/**/*.html" --preset recommended,prettier
+
+  lint:
+    desc: Lint les fichiers .mjs avec Oxlint, en affichant uniquement les erreurs principales
+    silent: true
+    cmds:
+      - SHOW_MAIN_ERRORS_ONLY=1 npx oxlint --config oxlint.config.mjs . -f stylish
+
+  lint:staged:
+    desc: Lint uniquement les fichiers .mjs staged (pour le hook pre-commit)
+    silent: true
+    cmds:
+      - |
+        FILES=$(git diff --cached --name-only --diff-filter=ACM -- '{{.APP_FOLDER}}/**/*.mjs')
+        if [ -z "$FILES" ]; then
+          exit 0
+        fi
+        SHOW_MAIN_ERRORS_ONLY=1 npx oxlint --config oxlint.config.mjs $FILES -f stylish
+    ignore_error: true
+
+  lint:errors:
+    desc: Lint les fichiers .mjs avec Oxlint, en affichant seulement les erreurs bloquantes
+    silent: true
+    cmds:
+      - SHOW_MAIN_ERRORS_ONLY=1 npx oxlint --config oxlint.config.mjs --quiet . -f stylish
+
+  lint:all:
+    desc: Lint tous les fichiers .mjs avec Oxlint, en affichant toutes les erreurs, même les simples warnings
+    silent: true
+    cmds:
+      - npx oxlint --config oxlint.config.mjs --report-unused-disable-directives-severity "warn" . -f stylish

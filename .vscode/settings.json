@@ -18,5 +18,19 @@
 	"oxc.enable.oxlint": true,
 	"oxc.disableNestedConfig": true,
 	"oxc.configPath": "oxlint.config.mjs",
-	"oxc.fmt.configPath": ".oxfmtrc.json"
+	"oxc.fmt.configPath": ".oxfmtrc.json",
+	"editor.semanticTokenColorCustomizations": {
+		"enabled": true,
+		"rules": {
+			"variable": { "underline": true },
+			"variable.local": { "underline": false },
+			"variable.defaultLibrary": { "underline": false },
+			"property.declaration": { "underline": false }
+		}
+	},
+	"workbench.colorCustomizations": {
+		"editorWarning.foreground": "#00000000" /* Désactive le soulignement des erreurs de type simplement "warning" */
+	},
+	"html-validate.validate": ["html"],
+	"html-validate.configFile": ".htmlvalidate.json"
 }

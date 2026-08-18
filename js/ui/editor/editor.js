@@ -2,7 +2,7 @@ import { createEditor } from "./dom/createEditor.js";
 import { createCloseButton } from "./dom/createCloseButton.js";
 import { initJar } from "./helpers/initCodeJar.js";
 import { initKeyboardEvents } from "./events/keyboard.js";
-import { getDefaultMD } from "./helpers/defaultMD.js";
+import { getDefaultMD } from "./helpers/defaultMd.js";
 import { createCopyContentButton } from "./dom/createCopyContentButton.js";
 import { eventCloseWindow } from "./events/closeWindow.js";
 

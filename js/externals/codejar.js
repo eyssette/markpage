@@ -1,3 +1,6 @@
+// oxlint-disable-next-line unicorn/no-abusive-eslint-disable
+// oxlint-disable
+
 const globalWindow = window;
 
 export function CodeJar(editor, highlight, opt = {}) {

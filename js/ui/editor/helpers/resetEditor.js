@@ -1,6 +1,6 @@
 import { initialConfig } from "../../../processMarkdown/helpers/initialConfig";
 import { updateContent } from "./updateContent";
-import { getDefaultMD } from "./defaultMD";
+import { getDefaultMD } from "./defaultMd";
 
 export function resetEditor(jar, editorWrapper, closeEditorButton) {
 	document.body.classList.remove("editMode");

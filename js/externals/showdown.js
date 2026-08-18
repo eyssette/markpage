@@ -1,3 +1,5 @@
+// oxlint-disable-next-line unicorn/no-abusive-eslint-disable
+/* oxlint-disable */
 /*! showdown v 2.0.0-alpha1 - 08-03-2019 */
 /* https://github.com/showdownjs/showdown/blob/8f1aaa079be5efe7de1e7a5035fd05bd4679831a/dist/showdown.esm.js */
 
