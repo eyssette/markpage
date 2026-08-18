@@ -32,5 +32,6 @@
 		"editorWarning.foreground": "#00000000" /* Désactive le soulignement des erreurs de type simplement "warning" */
 	},
 	"html-validate.validate": ["html"],
-	"html-validate.configFile": ".htmlvalidate.json"
+	"html-validate.configFile": ".htmlvalidate.json",
+	"stylelint.configFile": "stylelint.config.mjs"
 }
