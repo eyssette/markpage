@@ -229,8 +229,8 @@ export function CodeJar(editor, highlight, opt = {}) {
 		});
 
 		if (!startNode)
-			(startNode = editor), (startOffset = editor.childNodes.length);
-		if (!endNode) (endNode = editor), (endOffset = editor.childNodes.length);
+			((startNode = editor), (startOffset = editor.childNodes.length));
+		if (!endNode) ((endNode = editor), (endOffset = editor.childNodes.length));
 
 		// Flip back the selection
 		if (pos.dir == "<-") {

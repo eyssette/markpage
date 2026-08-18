@@ -19,7 +19,7 @@ pages:
     # Récupération de tous les fichiers du dépôt, de manière récursive dans un dossier temporaire .public
     - mkdir .public
     - cp -r * .public
-    
+
     # Création du dossier public et récupération de l'application
     - mkdir -p public
     - wget https://forge.apps.education.fr/$APP_NAME/$APP_NAME.forge.apps.education.fr/-/archive/main/$APP_NAME.forge.apps.education.fr-main.tar.bz2
@@ -27,14 +27,14 @@ pages:
 
     # Copie de tous les fichiers du dépôt (copiés dans .public) dans public
     - cp -r .public/* public/
-   
+
     # Construction de l'application
     - cd public
     - npm ci --cache ../.npm --prefer-offline --no-audit
     - npm run build
 
     # Suppression des éléments inutiles dans public
-    - rm -r node_modules 
+    - rm -r node_modules
 
     # Compression des fichiers spécifiés
     - |
@@ -43,7 +43,7 @@ pages:
         find . -type f -name "*.$ext" -exec gzip -k {} \;
         find . -type f -name "*.$ext" -exec brotli {} \;
       done
-    
+
   artifacts:
     paths:
       - public

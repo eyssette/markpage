@@ -1,12 +1,22 @@
 {
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"editor.formatOnSave": false,
-	"[javascript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
-		"editor.formatOnSave": true,
+	"editor.defaultFormatter": "oxc.oxc-vscode",
+	"editor.formatOnSave": true,
+	"[html]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
 	},
 	"[css]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
-		"editor.formatOnSave": true,
-	}
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	},
+	"[markdown]": {
+		"editor.formatOnSave": false
+	},
+	"oxc.enable": true,
+	"oxc.enable.oxfmt": true,
+	"oxc.enable.oxlint": true,
+	"oxc.disableNestedConfig": true,
+	"oxc.configPath": "oxlint.config.mjs",
+	"oxc.fmt.configPath": ".oxfmtrc.json"
 }

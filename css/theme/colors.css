@@ -17,8 +17,8 @@
 	background-color: white !important;
 }
 
-#backgroundInnerBox{
-	border:none;
+#backgroundInnerBox {
+	border: none;
 }
 
 .displayHomepage blockquote {
@@ -26,7 +26,7 @@
 }
 
 .displayHomepage h2 a {
-	border-radius:12px;
+	border-radius: 12px;
 }
 
 .displayHomepage footer {
@@ -44,7 +44,8 @@ main a:not(.navigationLink):hover {
 	border-bottom: 1px solid grey;
 }
 
-h3, .subSection.visible h3 {
+h3,
+.subSection.visible h3 {
 	border-radius: 15px;
 }
 
