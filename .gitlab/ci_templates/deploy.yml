@@ -10,6 +10,8 @@ cache:
 variables:
   FILES_TO_COMPRESS: "htm html txt text js css md ico svg"
   APP_NAME: "markpage"
+  # On peut spécifier un dossier source pour la construction de l'application, par exemple "src". Si on ne spécifie pas de dossier source, on prend la racine du dépôt.
+  SOURCE_FOLDER: ""
 
 pages:
   script:
@@ -18,7 +20,13 @@ pages:
 
     # Récupération de tous les fichiers du dépôt, de manière récursive dans un dossier temporaire .public
     - mkdir .public
-    - cp -r * .public
+    - |
+      if [ -z "$SOURCE_FOLDER" ] || [ "$SOURCE_FOLDER" = "/" ]; then
+        cp -r * .public
+      else
+        CLEAN_SOURCE_FOLDER="${SOURCE_FOLDER%/}"
+        cp -r "$CLEAN_SOURCE_FOLDER"/* .public
+      fi
 
     # Création du dossier build_dir et récupération de l'application
     - mkdir -p build_dir
