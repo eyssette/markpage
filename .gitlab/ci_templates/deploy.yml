@@ -48,7 +48,7 @@ pages:
 
     # Compression des fichiers spécifiés
     - cd ..
-    - sh scripts/deploy/compress-assets.sh "build_dir/dist" "$FILES_TO_COMPRESS"
+    - sh build_dir/scripts/deploy/compress-assets.sh "build_dir/dist" "$FILES_TO_COMPRESS"
 
     # On déplace le contenu de build_dir/dist dans public, car GitLab Pages ne publie que le contenu du dossier public
     - mv build_dir/dist public
