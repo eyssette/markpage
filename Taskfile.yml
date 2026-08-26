@@ -147,6 +147,7 @@ tasks:
       GIT_REPO_NAMES: [apps, markpage, lightpad, github]
     cmds:
       - task: lint
+      - task: build
       - task: tests
       - for: { var: GIT_REPO_NAMES }
         cmd: git push {{.ITEM}} && git push {{.ITEM}} --tags
