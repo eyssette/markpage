@@ -5,9 +5,15 @@ version_scheme = "semver"
 version = "4.23.2"
 update_changelog_on_bump = true
 changelog_incremental = true
-version_files = ["VERSION", "package.json:version"]
+version_files = [
+	"VERSION",
+	"package.json:version",
+	"app/pwa/service-worker/swConfig.mjs:APP_VERSION",
+]
 pre_bump_hooks = "npx task build"
 use_shortcuts = true
+template = "scripts/bump/CHANGELOG.md.j2"
+extras = { "commit_url" = "https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/" }
 [tool.commitizen.customize]
 message_template = "{{change_type}}{% if scope %}({{scope}}){% endif %}{% if breaking %}!{% endif %}: {{message}}"
 commit_parser = '^((?P<change_type>feat|fix|refactor|perf|style|test|ci|build|doc|docs|chore|BREAKING CHANGE)(?:\((?P<scope>[^()\r\n]*)\)|\()?(?P<breaking>!)?|\w+!):\s(?P<message>.*)?'
@@ -47,7 +53,12 @@ types = [
 	{ type = "docs", description = "Documentation only changes" },
 	{ type = "refactor", description = "Code changes without bug fix or feature" },
 	{ type = "test", description = "Add or fix tests" },
+	{ type = "style", description = "Changes that do not affect code meaning" },
+	{ type = "perf", description = "Code changes that improve performance" },
+	{ type = "build", description = "Changes that affect the build system or external dependencies" },
+	{ type = "ci", description = "Changes to CI configuration files and scripts" },
 	{ type = "chore", description = "Other changes" },
+	{ type = "revert", description = "Reverts a previous commit" },
 ]
 
 [[tool.commitizen.customize.questions]]
@@ -66,6 +77,8 @@ choices = [
 	{ value = "build", name = "build: Changes that affect the build system or external dependencies", key = "b" },
 	{ value = "ci", name = "ci: Changes to CI configuration files and scripts", key = "c" },
 	{ value = "edit", name = "edit: Internal change (not in changelog)", key = "e" },
+	{ value = "chore", name = "chore: Other changes that don't modify src or test files", key = "h" },
+	{ value = "revert", name = "revert: Reverts a previous commit", key = "v" },
 ]
 
 

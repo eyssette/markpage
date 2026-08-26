@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Hors ligne</title>
+		<style>
+			body {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 100vh;
+				margin: 0;
+				font-family:
+					system-ui,
+					-apple-system,
+					sans-serif;
+				background: #f5f5f5;
+				color: #222;
+				text-align: center;
+				padding: 2rem;
+			}
+			.box {
+				max-width: 28rem;
+			}
+			h1 {
+				font-size: 1.4rem;
+				margin-bottom: 0.5rem;
+			}
+			p {
+				color: #666;
+				line-height: 1.5;
+			}
+			button {
+				margin-top: 1.5rem;
+				padding: 0.6rem 1.4rem;
+				border: none;
+				border-radius: 6px;
+				background: #222;
+				color: #fff;
+				font-size: 0.95rem;
+				cursor: pointer;
+			}
+			button:hover {
+				background: #444;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<h1>Pas de connexion</h1>
+			<p>
+				Cette page n'est pas disponible hors ligne pour le moment. Vérifie ta
+				connexion et réessaie.
+			</p>
+			<button onclick="location.reload()" type="button">Réessayer</button>
+		</div>
+	</body>
+</html>

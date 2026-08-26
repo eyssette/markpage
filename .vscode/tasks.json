@@ -4,11 +4,44 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
+			"label": "Debug: Start",
+			"type": "shell",
+			"command": "npx task debug",
+			"isBackground": true,
+			"problemMatcher": {
+				"owner": "custom",
+				"pattern": {
+					"regexp": "^(?:ERROR|Error|error|✘)\\s*(.*)$",
+					"message": 1
+				},
+				"background": {
+					"activeOnStart": true,
+					"beginsPattern": ".",
+					"endsPattern": "(Rebuilt dist in|Finished in)"
+				}
+			}
+		},
+		{
+			"label": "Debug: Stop",
+			"hide": true,
+			"type": "shell",
+			"command": "npx task debug:stop"
+		},
+		{
 			"label": "Build",
 			"type": "shell",
 			"command": "npx task build",
 			"group": {
 				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"label": "Test",
+			"type": "shell",
+			"command": "npx task tests",
+			"group": {
+				"kind": "test",
 				"isDefault": true
 			}
 		}

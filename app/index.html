@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Markpage</title>
+		<meta
+			name="description"
+			content="Un outil pour créer un mini site web ou une appli pour smartphone à partir d'un fichier en Markdown" />
+		<meta name="author" content="Cédric Eyssette" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, interactive-widget=resizes-content" />
+		<link rel="stylesheet" href="css/styles.min.css" />
+		<link id="favicon" rel="icon" href="favicon.svg" />
+		<style id="styleTheme"></style>
+	</head>
+
+	<body class="displayHomepage">
+		<div id="innerBox">
+			<div id="backgroundInnerBox"></div>
+			<div id="linkToHomePage">
+				<a href="." aria-label="Lien vers la page d'accueil"
+					><span class="homeIcon"></span
+				></a>
+			</div>
+			<header>
+				<h1 id="title"></h1>
+				<div id="initialMessage"></div>
+			</header>
+			<div id="searchBar">
+				<label for="searchInput">🔍</label>
+				<input
+					type="text"
+					id="searchInput"
+					placeholder="Recherche"
+					name="search"
+					size="10"
+					tabindex="0" />
+				<div id="displayResults"></div>
+			</div>
+			<main>
+				<div id="content"></div>
+				<nav id="nav">
+					<progress id="progressBar" value="1" max="3"></progress>
+					<div id="navButtons">
+						<button id="previousButton" type="button">&lt;</button>
+						<button id="nextButton" type="button">&gt;</button>
+					</div>
+				</nav>
+				<div id="scroll-arrow">↓</div>
+			</main>
+		</div>
+		<footer>
+			<div id="footerContent"></div>
+		</footer>
+		<script src="./iifeFallback.js" defer></script>
+		<script type="module" src="./chunks/main.js" id="main-module"></script>
+	</body>
+</html>

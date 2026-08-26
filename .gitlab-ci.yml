@@ -1,23 +1,200 @@
-variables:
-  FILES_TO_COMPRESS: "htm html txt text js css md ico svg"
+default:
+  image: node:22-alpine
+  interruptible: true
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
 
-pages:
-  image: alpine:latest
-  before_script:
-    - apk update && apk add gzip brotli
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+stages:
+  - prepare
+  - code
+  - build
+  - test
+  - deploy
+
+variables:
+  DIST_FOLDER: "dist"
+  FILES_TO_COMPRESS: "htm html txt text js css md ico svg"
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+
+cache:
+  key:
+    files:
+      - package-lock.json
+  paths:
+    - .npm/
+    - node_modules/
+  policy: pull
+
+prepare:
+  stage: prepare
+  cache:
+    policy: pull-push
   script:
-    - mkdir -p .public .public/css/ .public/css/theme/ .public/js/ .public/js/plugins/ .public/assets .public/assets/img
-    - cp assets/img/* .public/assets/img
-    - cp *.svg index.html script.min.js script.min.js.map .public/
-    - cp css/*.min.css .public/css/
-    - cp css/theme/* .public/css/theme
-    - cp js/plugins/* .public/js/plugins/
-    - cp indexLightpad.md .public/
-    - mv .public public
-    - for ext in $FILES_TO_COMPRESS; do find public -type f -name "*.$ext" -exec gzip -f -k {} \;; done
-    - for ext in $FILES_TO_COMPRESS; do find public -type f -name "*.$ext" -exec brotli -f -k {} \;; done
+    - npm ci --cache .npm --prefer-offline --no-audit
+  artifacts:
+    paths:
+      - node_modules
+    expire_in: 1 hour
+
+format-check:
+  stage: code
+  needs:
+    - job: prepare
+      artifacts: true
+  script:
+    - npx task format:check
+
+lint:
+  stage: code
+  needs:
+    - job: prepare
+      artifacts: true
+  script:
+    - npx task lint
+
+ecma-source:
+  stage: code
+  needs:
+    - job: prepare
+      artifacts: true
+  script:
+    - npx task ecma:source
+
+build-application:
+  stage: build
+  needs:
+    - job: prepare
+      artifacts: true
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - $DIST_FOLDER
+    expire_in: 1 day
+
+tests-unit:
+  stage: test
+  needs:
+    - job: prepare
+      artifacts: true
+  script:
+    - npx task tests:unit
+
+ecma-dist:
+  stage: test
+  needs:
+    - job: prepare
+      artifacts: true
+    - job: build-application
+      artifacts: true
+  script:
+    - npx task ecma:dist
+
+build-docs:
+  stage: build
+  # On peut démarrer immédiatement la tâche de génération de la documentation, sans attendre d'autres jobs, car elle est indépendante
+  needs: []
+  interruptible: false
+  allow_failure: true
+  # Cache pour les dépendances npm spécifiques à la génération de la documentation
+  cache:
+    - key: docs-npm-cache
+      paths:
+        - docs/markpage/.npm
+      policy: pull-push
+  # On vérifie d'abord si le fichier docs/.deploy-docs-with-markpage existe
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      exists:
+        - docs/.deploy-docs-with-markpage
+  # On se place dans le dossier docs, et on va récupérer le script de déploiement de Markpage pour générer la documentation et la déployer sur GitLab Pages
+  script:
+    - cd docs
+    # 1. Sauvegarde des fichiers source de la documentation
+    - mkdir -p .docs_source
+    - cp -r * .docs_source
+    # 2. Téléchargement et extraction de l'application Markpage
+    - mkdir -p markpage
+    - wget https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/archive/main/markpage.forge.apps.education.fr-main.tar.bz2 -O markpage.tar.bz2
+    - tar -xjf markpage.tar.bz2 --strip-components=1 -C markpage
+    # 3. Copie des fichiers sources de la documentation dans l'application Markpage (pour remplacer les fichiers par défaut)
+    # S'il y a un dossier "app" dans markpage, on copie le contenu de .docs_source dans markpage/app, sinon on copie le contenu de .docs_source dans markpage
+    - |
+      if [ -d "markpage/app" ]; then
+        cp -r .docs_source/* markpage/app/
+      else
+        cp -r .docs_source/* markpage/
+      fi
+    # 4. Construction du site de documentation
+    - cd markpage
+    - npm ci --cache .npm --prefer-offline --no-audit
+    - npm run build
+    # 5. On crée le dossier de sortie pour la documentation générée
+    - mkdir -p ../website
+    # Si un dossier "dist" existe dans la documentation générée (nouvelle version de Markpage), on met tout le contenu de dist dans le dossier de sortie, sinon (ancienne version de Markpage) on met tout le contenu du dossier markpage
+    - |
+      if [ -d "dist" ]; then
+        cp -r dist/* ../website/
+      else
+        # On supprime les dossiers et fichiers inutiles pour ne garder que les fichiers de documentation
+        rm -rf node_modules .git .gitignore
+        find . -type f ! -name "*.html" ! -name "*.htm" ! -name "*.css" ! -name "*.js" ! -name "*.map" ! -name "*.md" ! -name "*.ico" ! -name "*.png" ! -name "*.jpg" ! -name "*.jpeg" ! -name "*.gif" ! -name "*.svg" ! -name "*.woff" ! -name "*.woff2" ! -name "*.ttf" ! -name "*.eot" -delete
+        find . -type d -empty -delete
+        cp -r . ../website/
+      fi
+    - cd ../..
+  artifacts:
+    paths:
+      - docs/website/
+    expire_in: 1 day
+
+compress:
+  stage: deploy
+  needs:
+    - job: build-application
+      artifacts: true
+    - job: build-docs
+      artifacts: true
+      optional: true
+  script:
+    # Installation de gzip et brotli pour la compression des fichiers
+    - apk add --no-cache gzip brotli
+    # Si la documentation a été générée, on la copie dans le dossier de distribution
+    - if [ -d "docs/website" ]; then
+      mkdir -p $DIST_FOLDER/docs;
+      cp -r docs/website/* $DIST_FOLDER/docs/;
+      fi
+    # Compression des fichiers avec gzip et brotli
+    - sh scripts/deploy/compress-assets.sh "$DIST_FOLDER" "$FILES_TO_COMPRESS"
+  artifacts:
+    paths:
+      - "$DIST_FOLDER"
+    expire_in: 1 day
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+deploy:
+  stage: deploy
+  interruptible: false
+  needs:
+    - job: tests-unit
+    - job: compress
+      artifacts: true
+  script:
+    # Déplacement du dossier de distribution vers le dossier public pour GitLab Pages
+    - mv "$DIST_FOLDER" public
+  pages: true
   artifacts:
     paths:
       - public
+    expire_in: 7 days
   rules:
-    - if: $CI_COMMIT_BRANCH == "main"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

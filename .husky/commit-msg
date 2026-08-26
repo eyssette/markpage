@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if ! npx --no -- commitlint --edit "$1" > /tmp/commit-check_output.txt 2>&1; then
+  echo ""
+  echo "❌ Message de commit invalide"
+  echo ""
+  echo "Cause :"
+  grep '^✖' /tmp/commit-check_output.txt | grep -v 'found'
+  echo ""
+  exit 1
+fi

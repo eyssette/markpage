@@ -1,4 +1,4 @@
-image: node:18-alpine
+image: node:22-alpine
 
 # Mise en cache des dépendances pour accélérer les builds
 cache:
@@ -20,33 +20,43 @@ pages:
     - mkdir .public
     - cp -r * .public
 
-    # Création du dossier public et récupération de l'application
-    - mkdir -p public
+    # Création du dossier build_dir et récupération de l'application
+    - mkdir -p build_dir
     - wget https://forge.apps.education.fr/$APP_NAME/$APP_NAME.forge.apps.education.fr/-/archive/main/$APP_NAME.forge.apps.education.fr-main.tar.bz2
-    - tar -xjf $APP_NAME.forge.apps.education.fr-main.tar.bz2 --strip-components=1 -C public
+    - tar -xjf $APP_NAME.forge.apps.education.fr-main.tar.bz2 --strip-components=1 -C build_dir
 
-    # Copie de tous les fichiers du dépôt (copiés dans .public) dans public
-    - cp -r .public/* public/
+    # Copie de tous les fichiers du dépôt (copiés dans .public) dans build_dir/app
+    # Permet de remplacer les fichiers statiques de l'application par ceux du dépôt, pour que le site soit à jour
+    - cp -r .public/* build_dir/app/
+
+    # On se place dans le dossier build_dir pour construire l'application
+    - cd build_dir
+
+    # Mise à jour du service worker
+    # on change dans le fichier app/pwa/service-worker/swConfig.mjs la variable SW_VERSION pour lui mettre comme valeur le timestamp du dernier commit, afin de forcer le navigateur à recharger le service worker et donc les fichiers statiques
+    - |
+      if [ -f "app/pwa/service-worker/swConfig.mjs" ]; then
+        NEW_SW_VERSION=$(date -d "$CI_COMMIT_TIMESTAMP" +%s)
+        sed -i "s/export const SW_VERSION = .*/export const SW_VERSION = \"$NEW_SW_VERSION\";/" app/pwa/service-worker/swConfig.mjs
+      else
+        echo "Warning - swConfig.mjs not found"
+      fi
 
     # Construction de l'application
-    - cd public
     - npm ci --cache ../.npm --prefer-offline --no-audit
     - npm run build
 
-    # Suppression des éléments inutiles dans public
-    - rm -r node_modules
-
     # Compression des fichiers spécifiés
-    - |
-      echo "Compressing files with extensions: $FILES_TO_COMPRESS"
-      for ext in $FILES_TO_COMPRESS; do
-        find . -type f -name "*.$ext" -exec gzip -k {} \;
-        find . -type f -name "*.$ext" -exec brotli {} \;
-      done
+    - cd ..
+    - sh scripts/deploy/compress-assets.sh "build_dir/dist" "$FILES_TO_COMPRESS"
+
+    # On déplace le contenu de build_dir/dist dans public, car GitLab Pages ne publie que le contenu du dossier public
+    - mv build_dir/dist public
 
   artifacts:
     paths:
       - public
+    expire_in: 3 days
 
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

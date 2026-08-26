@@ -1,0 +1,21 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "editor-browser",
+			"request": "launch",
+			"name": "Debug",
+			"url": "http://localhost:10001/",
+			"preLaunchTask": "Debug: Start",
+			"postDebugTask": "Debug: Stop",
+			"webRoot": "${workspaceFolder}/dist",
+			"sourceMapPathOverrides": {
+				"../app/*": "${workspaceFolder}/app/*",
+				"./*": "${workspaceFolder}/*"
+			}
+		}
+	]
+}

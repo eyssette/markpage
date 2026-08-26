@@ -2,29 +2,137 @@
 
 version: "3"
 
+vars:
+  APP_NAME: "Markpage"
+  MAIN_REPO_URL: "https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr"
+  APP_FOLDER: "app"
+  DIST_FOLDER: "dist"
+  TEST_FOLDER: "tests"
+  FEATURES_FOLDER: "features"
+  PORT_DEV_SERVER: 10001
+  PORT_DEV_SERVER_WITH_SW: 20002
+  PORT_TESTS_SERVER: 8888
+  CURRENT_E2E_TEST: "@CURRENT"
+  REPORT_DIR: ".report"
+  ECMA_VERSION: "es2020"
+
 tasks:
   build:
     aliases:
       - default
+    desc: Compile le projet
     cmds:
-      - task: npm:build
+      - task: rolldown:build
 
-  npm:build:
+  rolldown:build:
+    desc: Compile le projet avec Rolldown
+    deps: [npm:install, paraglide:compile]
+    sources:
+      - "{{.APP_FOLDER}}/**/*"
+      - i18n/messages/**/*.json
+      - i18n/project.inlang/**/*.json
+      - rolldown.config.mjs
+      - Taskfile.yml
+    generates:
+      - "{{.DIST_FOLDER}}/chunks/main.js"
+      - "{{.DIST_FOLDER}}/css/styles.min.css"
+      - "{{.DIST_FOLDER}}/script.min.js"
+      - "{{.DIST_FOLDER}}/script.min.js.map"
+      - "{{.DIST_FOLDER}}/index.html"
+      - "{{.DIST_FOLDER}}/iifeFallback.js"
+      - "{{.DIST_FOLDER}}/sw.js"
+    method: timestamp
+    cmds:
+      - npx rolldown --config
+
+  paraglide:compile:
+    desc: Compile les fichiers de traduction Paraglide
     deps: [npm:install]
     sources:
-      - index.md
-      - indexLightpad.md
-      - css/**/*.css
-      - js/**/*.js
-      - rollup.config.mjs
+      - "{{.APP_FOLDER}}/**/*"
+      - i18n/messages/**/*.json
+      - i18n/project.inlang/**/*.json
+      - rolldown.config.mjs
     generates:
-      - css/*.min.css
-      - script.min.js
-      - script.min.js.map
+      - "{{.APP_FOLDER}}/js/lib/paraglide/messages.js"
+      - "{{.APP_FOLDER}}/js/lib/paraglide/runtime.js"
+    status:
+      - test -f "{{.APP_FOLDER}}/js/lib/paraglide/messages.js"
+      - test -f "{{.APP_FOLDER}}/js/lib/paraglide/runtime.js"
+      - test -f "{{.APP_FOLDER}}/js/lib/paraglide/registry.js"
+      - test -f "{{.APP_FOLDER}}/js/lib/paraglide/server.js"
+      - test -f "{{.APP_FOLDER}}/js/lib/paraglide/messages/_index.js"
+    method: timestamp
+    silent: true
     cmds:
-      - npm run build
+      - npx paraglide-js compile --project ./i18n/project.inlang --outdir ./app/js/lib/paraglide --no-emit-ts-declarations --output-structure locale-modules
+
+  dev:
+    desc: Lance le serveur de développement avec Rolldown en mode watch
+    deps: [npm:install, paraglide:compile]
+    silent: true
+    cmds:
+      # On crée le fichier project_id pour éviter un message de WARN de ParaglideJS
+      - mkdir -p ./i18n/project.inlang && touch ./i18n/project.inlang/project_id
+      - |
+        bash -c '
+          node ./scripts/build/watch-txt-files.mjs ./app ./app/js/main.mjs &
+          watch_txt_files_pid=$!
+          npx paraglide-js compile --project ./i18n/project.inlang --outdir ./app/js/lib/paraglide --no-emit-ts-declarations --output-structure locale-modules --watch &
+          paraglide_pid=$!
+          trap "kill \"$paraglide_pid\" \"$watch_txt_files_pid\" 2>/dev/null" EXIT INT TERM
+          NODE_ENV=development npx rolldown --config --watch
+        '
+
+  dev:stop:
+    desc: Arrête le serveur de développement
+    aliases:
+      - debug:stop
+    cmds:
+      - bash -c 'kill $(lsof -ti :{{.PORT_DEV_SERVER}}) 2>/dev/null' || true
+
+  dev:sw:
+    desc: Lance le serveur de développement avec le service worker
+    deps: [npm:install, paraglide:compile]
+    silent: true
+    cmds:
+      # On crée le fichier project_id pour éviter un message de WARN de ParaglideJS
+      - mkdir -p ./i18n/project.inlang && touch ./i18n/project.inlang/project_id
+      - |
+        bash -c '
+          node ./scripts/build/watch-txt-files.mjs ./app ./app/js/main.mjs &
+          watch_txt_files_pid=$!
+          npx paraglide-js compile --project ./i18n/project.inlang --outdir ./app/js/lib/paraglide --no-emit-ts-declarations --output-structure locale-modules --watch &
+          paraglide_pid=$!
+          trap "kill \"$paraglide_pid\" \"$watch_txt_files_pid\" 2>/dev/null" EXIT INT TERM
+          NODE_ENV=development-with-service-worker npx rolldown --config --watch
+          '
+
+  dev:sw:stop:
+    desc: Arrête le serveur de développement avec le service worker
+    cmds:
+      - bash -c 'kill $(lsof -ti :{{.PORT_DEV_SERVER_WITH_SW}}) 2>/dev/null' || true
+
+  debug:
+    desc: Lance le serveur de développement avec Rolldown en mode watch et debug
+    deps: [npm:install, paraglide:compile]
+    silent: true
+    cmds:
+      - task: dev:stop
+      # On crée le fichier project_id pour éviter un message de WARN de ParaglideJS
+      - mkdir -p ./i18n/project.inlang && touch ./i18n/project.inlang/project_id
+      - |
+        bash -c '
+          node ./scripts/build/watch-txt-files.mjs ./app ./app/js/main.mjs &
+          watch_txt_files_pid=$!
+          npx paraglide-js compile --project ./i18n/project.inlang --outdir ./app/js/lib/paraglide --no-emit-ts-declarations --output-structure locale-modules --watch &
+          paraglide_pid=$!
+          trap "kill \"$paraglide_pid\" \"$watch_txt_files_pid\" 2>/dev/null" EXIT INT TERM
+          NODE_ENV=debug npx rolldown --config --watch
+        '
 
   npm:install:
+    desc: Installe les dépendances du projet
     sources:
       - package.json
       - package-lock.json
@@ -34,22 +142,21 @@ tasks:
       - npm install
 
   push:
+    desc: Pousse le code sur les dépôts Git
+    vars:
+      GIT_REPO_NAMES: [apps, markpage, lightpad, github]
     cmds:
-      - git push apps
-      - git push apps --tags
-      - git push markpage
-      - git push markpage --tags
-      - git push lightpad
-      - git push lightpad --tags
-      - git push github
-      - git push github --tags
+      - task: lint
+      - task: tests
+      - for: { var: GIT_REPO_NAMES }
+        cmd: git push {{.ITEM}} && git push {{.ITEM}} --tags
 
   tag:
     desc: "Crée un tag avec pour date du tag la date du commit (usage: task tag -- <commit> <tag>)"
     cmds:
       - |
         bash -c '
-        set -- {{.CLI_ARGS}}
+        set -- "{{.CLI_ARGS}}"
         COMMIT=$1
         TAG=$2
 
@@ -64,13 +171,173 @@ tasks:
         '
     silent: false
 
+  tests:
+    desc: Lance les tests unitaires et e2e, et vérifie la compatibilité ECMAScript
+    cmds:
+      - task: ecma
+      - task: tests:unit
+      # On lance la tâche tests:e2e:check-if-can-run et si il n'y a pas de code d'erreur, on lance la tâche tests:e2e.
+      # Sinon, on ne lance pas les tests e2e et on retourne un code de sortie 0 pour ne pas bloquer le processus de build.
+      # On demande à l'utilisateur s'il veut continuer malgré tout, et si il répond "y", on retourne un code de sortie 0 pour ne pas bloquer le processus de build, sinon on retourne un code de sortie 1 pour bloquer le processus de build.
+      - cmd: |
+          if task tests:e2e:check-if-can-run; then
+            task tests:e2e
+          else
+            read -p "❌ Les tests e2e ne peuvent pas être lancés. Voulez-vous continuer malgré tout ? (y/n) " CONTINUE
+            if [ "$CONTINUE" = "y" ]; then
+              echo "⚠️ Vous avez choisi de continuer malgré l'impossibilité de lancer les tests e2e."
+              exit 0
+            else
+              echo "❌ Arrêt du processus de build à cause de l'impossibilité de lancer les tests e2e."
+              exit 1
+            fi
+          fi
+        silent: true
+
+  tests:e2e:
+    desc: Lance les tests e2e avec CodeceptJS
+    aliases:
+      - tests:codeceptjs
+    sources:
+      - "{{.APP_FOLDER}}/css/**/*.css"
+      - "{{.APP_FOLDER}}/js/**/*.mjs"
+      - "{{.APP_FOLDER}}/js/**/*.js"
+      - "{{.APP_FOLDER}}/index.html"
+      - "{{.TEST_FOLDER}}/e2e/**/*.js"
+      - "{{.TEST_FOLDER}}/e2e/**/*.mjs"
+      - "{{.FEATURES_FOLDER}}/**/*.feature"
+    cmds:
+      - task: tests:e2e:check-if-can-run
+      # On vérifie avant qu'il n'y ait pas le terme "@CURRENT" dans les fichiers tests e2e
+      - cmd: |
+          bash -c '
+            set -e
+            if grep -R --line-number --exclude-dir=node_modules "{{.CURRENT_E2E_TEST}}" tests/e2e features; then
+              echo "❌ {{.CURRENT_E2E_TEST}} trouvé dans les tests e2e — supprimez-le avant de lancer les tests."
+              exit 1
+            fi
+          '
+        silent: true
+      - task: server:start
+      - defer: { task: server:stop }
+      - npx codeceptjs run --steps --grep '(?=.*)^(?!.*@WIP)'
+
+  tests:e2e:current:
+    desc: Lance les tests e2e pour le test courant (utile pour le développement des tests e2e)
+    cmds:
+      - task: tests:e2e:check-if-can-run
+      - task: server:start
+      - defer: { task: server:stop }
+      - npx codeceptjs run --steps --verbose --grep '(?=.*)^(?!.*@WIP)(?=.*{{.CURRENT_E2E_TEST}})'
+
+  tests:e2e:check-if-can-run:
+    desc: Vérifie si les tests e2e peuvent être lancés dans l'environnement actuel
+    silent: true
+    cmds:
+      - cmd: |
+          if ! npx playwright install; then
+            bash scripts/test/check-playwright-browsers.sh
+          fi
+        silent: true
+
+  tests:unit:
+    desc: Lance les tests unitaires avec Jasmine
+    aliases:
+      - tests:jasmine
+    sources:
+      - "{{.APP_FOLDER}}/js/**/*.mjs"
+      - "{{.TEST_FOLDER}}/unit/**/*.mjs"
+    cmds:
+      - npx jasmine --config='tests/unit/.config/jasmine.mjs'
+
+  tests:coverage:
+    desc: Génère un rapport de couverture de code avec c8 et Jasmine
+    aliases:
+      - coverage
+    silent: true
+    cmds:
+      # On crée un rapport de couverture de code avec c8, dans le dossier .report/coverage
+      - npx c8 --reporter=lcov --reporter=html --reporter=text-summary --include='app/js/**/*.mjs' --exclude='tests/**' --report-dir '.report/coverage' jasmine --config=tests/unit/.config/jasmine.mjs --random=false
+      # On ouvre le rapport de couverture dans le navigateur par défaut
+      - cmd: |
+          if command -v xdg-open > /dev/null; then
+            xdg-open .report/coverage/index.html
+          elif command -v open > /dev/null; then
+            open .report/coverage/index.html
+          else
+            echo "❌ Impossible d'ouvrir le rapport de couverture automatiquement. Veuillez ouvrir le fichier .report/coverage/index.html manuellement."
+          fi
+        silent: true
+
   bump:
+    desc: Incrémente la version du projet et met à jour le CHANGELOG.md
     generates:
       - VERSION
       - package.json
       - package-lock.json
+      - CHANGELOG.md
     cmds:
+      - task: lint
+      - task: tests
       - cz bump
+
+  server:start:
+    desc: Lance le serveur local pour les tests e2e
+    cmds:
+      - node {{.TEST_FOLDER}}/e2e/server.mjs {{.PORT_TESTS_SERVER}} & # On lance le serveur en arrière-plan
+      - until nc -z localhost {{.PORT_TESTS_SERVER}}; do sleep 1; done # On attend que le port soit ouvert avant de lancer la suite
+
+  server:stop:
+    desc: Arrête le serveur local pour les tests e2e
+    cmds:
+      - bash -c 'kill $(lsof -ti :{{.PORT_TESTS_SERVER}}) 2>/dev/null' || true
+
+  ecma:
+    desc: Vérifie la compatibilité ECMAScript des fichiers sources et des fichiers compilés dans le dossier dist
+    sources:
+      - "{{.APP_FOLDER}}/js/**/*.mjs"
+      - "{{.DIST_FOLDER}}/script.min.js"
+      - Taskfile.yml
+    cmds:
+      - task: ecma:dist
+      - cmd: |
+          echo "✅ Les fichiers compilés dans le dossier dist sont compatibles avec la version ECMAScript {{.ECMA_VERSION}}"
+        silent: true
+      - task: ecma:source
+      - cmd: |
+          echo "✅ Les fichiers sources sont compatibles avec la version ECMAScript {{.ECMA_VERSION}}"
+        silent: true
+
+  ecma:source:
+    desc: Vérifie la compatibilité ECMAScript des fichiers .mjs sources
+    aliases:
+      - ecma:src
+    sources:
+      - "{{.APP_FOLDER}}/js/**/*.mjs"
+      - Taskfile.yml
+    cmds:
+      - npx es-check {{.ECMA_VERSION}} "{{.APP_FOLDER}}/js/**/*.mjs" --module
+
+  ecma:dist:
+    desc: Vérifie la compatibilité ECMAScript des fichiers compilés dans le dossier dist
+    sources:
+      - "{{.DIST_FOLDER}}/script.min.js"
+      - Taskfile.yml
+    deps:
+      - task: build
+    cmds:
+      - npx es-check {{.ECMA_VERSION}} "{{.DIST_FOLDER}}/script.min.js"
+
+  ecma:staged:
+    desc: Vérifie la compatibilité ECMAScript des fichiers source .mjs staged (pour le hook pre-commit)
+    silent: true
+    cmds:
+      - |
+        FILES=$(git diff --cached --name-only --diff-filter=ACM -- '{{.APP_FOLDER}}/js/**/*.mjs')
+        if [ -z "$FILES" ]; then
+          exit 0
+        fi
+        npx es-check {{.ECMA_VERSION}} $FILES --module
 
   format:
     desc: Formate les fichiers avec Oxfmt
@@ -82,8 +349,8 @@ tasks:
     cmds:
       - npx oxfmt --config .oxfmtrc.json --check .
 
-  format:staged:
-    desc: Formate uniquement les fichiers staged (pour le hook pre-commit)
+  format:check:staged:
+    desc: Vérifie le format des fichiers staged avec Oxfmt (pour le hook pre-commit)
     silent: true
     cmds:
       - |
@@ -91,8 +358,7 @@ tasks:
         if [ -z "$FILES" ]; then
           exit 0
         fi
-        npx oxfmt --config .oxfmtrc.json $FILES
-    ignore_error: true
+        npx oxfmt --config .oxfmtrc.json --check $FILES --no-error-on-unmatched-pattern
 
   html-validate:
     desc: Vérifie la validité des fichiers HTML avec html-validate
@@ -115,7 +381,6 @@ tasks:
           exit 0
         fi
         SHOW_MAIN_ERRORS_ONLY=1 npx oxlint --config oxlint.config.mjs $FILES -f stylish
-    ignore_error: true
 
   lint:errors:
     desc: Lint les fichiers .mjs avec Oxlint, en affichant seulement les erreurs bloquantes
@@ -128,3 +393,304 @@ tasks:
     silent: true
     cmds:
       - npx oxlint --config oxlint.config.mjs --report-unused-disable-directives-severity "warn" . -f stylish
+
+  compress:png:
+    desc: Compresse les images PNG avec pngquant
+    cmds:
+      - |
+        set -euo pipefail
+        echo "Compressing PNGs in {{.APP_FOLDER}}..."
+        find "{{.APP_FOLDER}}" -type f -iname "*.png" -exec sh -c '
+          for f; do
+            echo "Compressing: $f"
+            pngquant --force --ext .png --quality=65-80 "$f"
+          done
+        ' _ {} +
+    silent: true
+
+  compress:jpg:
+    desc: Compresse les images JPG avec jpegoptim
+    cmds:
+      - |
+        set -euo pipefail
+        echo "Compressing JPGs in {{.APP_FOLDER}}..."
+        find "{{.APP_FOLDER}}" -type f -iname "*.jpg" -exec sh -c '
+          for f; do
+            echo "Compressing: $f"
+            jpegoptim --max=80 --strip-all "$f"
+          done
+        ' _ {} +
+      - |
+        set -euo pipefail
+        echo "Compressing JPGs in {{.APP_FOLDER}}..."
+        find "{{.APP_FOLDER}}" -type f -iname "*.jpeg" -exec sh -c '
+          for f; do
+            echo "Compressing: $f"
+            jpegoptim --max=80 --strip-all "$f"
+          done
+        ' _ {} +
+    silent: true
+
+  compress:svg:
+    desc: Compresse les images SVG avec SVGO
+    cmds:
+      - npx svgo "{{.APP_FOLDER}}/"
+
+  compress:images:
+    desc: Compresse les images PNG, JPG et SVG
+    cmds:
+      - compress:svg
+      - compress:png
+      - compress:jpg
+
+  tree:
+    desc: Affiche l'arborescence du projet
+    cmds:
+      - tree -a -I '.git|.task|node_modules|_'
+
+  # Tâche pour vérifier les dépendances
+  deps:check:
+    desc: Vérifie les versions des dépendances du projet
+    cmds:
+      # Vérifie les versions des dépendances
+      - npm outdated
+
+  a11y:check:
+    desc: Vérifie l'accessibilité d'une URL avec Pa11y
+    cmds:
+      - |
+        ARGS="{{.CLI_ARGS}}"
+        if [ -z "$ARGS" ]; then
+          npx pa11y-ci http://localhost:{{.PORT_DEV_SERVER}}
+        elif [ "${ARGS#/}" != "$ARGS" ]; then
+          npx pa11y-ci "http://localhost:{{.PORT_DEV_SERVER}}$ARGS"
+        else
+          npx pa11y-ci "$ARGS"
+        fi
+    silent: true
+
+  a11y:
+    desc: Vérifie l'accessibilité d'une URL avec Pa11y, en lançant d'abord le serveur de développement si nécessaire
+    cmds:
+      # S'il y a un argument passé à la tâche et que cet argument ne commence pas par "/" (ce qui signifie qu'il s'agit d'une URL), on lance directement la tâche "a11y:check" avec cet argument, et on ne lance pas la suite de la tâche
+      # Si le port du serveur de développement n'est pas ouvert, on lance la tâche "dev", puis quand le port est ouvert, on lance la tâche "a11y:check", puis on arrête le serveur de développement
+      # Si le port du serveur de développement est déjà ouvert, on lance directement la tâche "a11y:check"
+      - |
+        ARGS="{{.CLI_ARGS}}"
+        if [[ -n "$ARGS" && "$ARGS" != /* ]]; then
+          task a11y:check -- "$ARGS"
+          exit $?
+        elif nc -z localhost {{.PORT_DEV_SERVER}}; then
+          echo "Le serveur de développement est déjà ouvert. Lancement de la tâche \"a11y:check\"..."
+          if [ -n "$ARGS" ]; then
+            task a11y:check -- "$ARGS"
+          else 
+            task a11y:check
+          fi
+        else
+          echo "Le serveur de développement n'est pas ouvert. Lancement de la tâche \"dev\"..."
+          task npm:install
+          task dev &
+          until nc -z localhost {{.PORT_DEV_SERVER}}; do
+            sleep 1
+          done
+          STATUS=0
+          if [ -n "$ARGS" ]; then
+            task a11y:check -- "$ARGS" || STATUS=$?
+          else
+            task a11y:check || STATUS=$?
+          fi
+          echo "Arrêt du serveur de développement..."
+          task dev:stop
+          exit "$STATUS"
+        fi
+    silent: true
+
+  security:
+    desc: Vérifie la sécurité du projet avec l'ensemble des outils de sécurité
+    cmds:
+      - cmd: task security:npm-audit
+        ignore_error: true
+      - cmd: task security:semgrep
+        ignore_error: true
+      - cmd: task security:bearer
+        ignore_error: true
+      - cmd: task security:trivy
+        ignore_error: true
+
+  security:npm-audit:
+    desc: Vérifie la sécurité des dépendances avec npm audit
+    cmds:
+      - npm audit --audit-level=high
+
+  security:semgrep:
+    desc: Vérifie la sécurité du code avec Semgrep
+    cmds:
+      - semgrep scan
+
+  security:bearer:
+    desc: Vérifie la sécurité du code avec Bearer
+    cmds:
+      - bearer scan .
+
+  security:trivy:
+    desc: Vérifie la sécurité du code avec Trivy
+    cmds:
+      - trivy fs --exit-code 1 --include-dev-deps .
+
+  perf:
+    desc: Vérifie les performances d'une URL avec Lighthouse
+    # On invite l'utilisateur à utiliser soit "perf:desktop" soit "perf:mobile"
+    cmds:
+      - cmd: task select-perf-mode --interactive
+
+  select-perf-mode:
+    desc: "Sélectionne le mode de performance (desktop ou mobile) pour la tâche perf"
+    interactive: true
+    # On demande à l'utilisateur de choisir entre le mode desktop et le mode mobile, puis on demande à l'utilisateur de saisir l'URL à tester (ou on utilise l'URL par défaut http://localhost:{{.PORT_DEV_SERVER}} si aucune URL n'est saisie), puis on lance la tâche "perf:desktop" ou "perf:mobile" en fonction du choix de l'utilisateur
+    cmds:
+      - |
+        echo "Sélectionnez le mode de performance :"
+        echo "1) desktop"
+        echo "2) mobile"
+        while true; do
+          printf "Votre choix (1 ou 2) : "
+          if ! IFS= read -r CHOICE; then
+            echo
+            echo "Interruption demandée. Arrêt de la sélection du mode de performance."
+            exit 130
+          fi
+
+          case "$CHOICE" in
+            1)
+              MODE="desktop"
+              break
+              ;;
+            2)
+              MODE="mobile"
+              break
+              ;;
+            *)
+              echo "Sélection invalide. Veuillez choisir 1 ou 2."
+              ;;
+          esac
+        done
+
+        echo "Vous avez sélectionné le mode : $MODE"
+        printf "Entrez l'URL à tester (ou appuyez sur Entrée pour utiliser l'URL par défaut http://localhost:{{.PORT_DEV_SERVER}}) : "
+        if ! IFS= read -r URL; then
+          echo
+          echo "Interruption demandée. Arrêt de la sélection du mode de performance."
+          exit 130
+        fi
+        if [ -z "$URL" ]; then
+          URL="http://localhost:{{.PORT_DEV_SERVER}}"
+        fi
+        task perf:"$MODE" -- "$URL"
+    silent: true
+
+  perf:*:
+    desc: Vérifie les performances d'une URL avec Lighthouse et permet de choisir le mode (desktop ou mobile) en fonction de l'argument passé à la tâche
+    aliases:
+      - performance:*
+    cmds:
+      - |
+        MODE="{{index .MATCH 0}}"
+        if [ -z "$MODE" ]; then
+          echo "❌ Veuillez utiliser soit \"perf:desktop\" soit \"perf:mobile\""
+          exit 1
+        elif [ "$MODE" = "desktop" ] || [ "$MODE" = "mobile" ]; then
+          URL="{{.CLI_ARGS}}"
+          if [ -z "$URL" ]; then
+            URL="http://localhost:{{.PORT_DEV_SERVER}}"
+            task lighthouse:"$MODE" -- "$URL"
+          fi
+          if [ "${URL#/}" != "$URL" ]; then
+            task lighthouse:"$MODE" -- "http://localhost:{{.PORT_DEV_SERVER}}$URL"
+          else
+            task lighthouse:"$MODE" -- "$URL"
+          fi 
+        else
+          echo "❌ Argument invalide pour la tâche \"lighthouse\". Veuillez indiquer soit \"desktop\" soit \"mobile\" comme argument."
+          exit 1
+        fi
+    silent: true
+
+  lighthouse:desktop:
+    desc: Vérifie les performances d'une URL avec Lighthouse en mode desktop
+    cmds:
+      - mkdir -p {{.REPORT_DIR}}/lighthouse
+      - lighthouse {{.CLI_ARGS}} --output html --output-path {{.REPORT_DIR}}/lighthouse/lighthouse-report-desktop.html --chrome-flags="--headless" --view --preset=desktop
+
+  lighthouse:mobile:
+    desc: Vérifie les performances d'une URL avec Lighthouse en mode mobile
+    cmds:
+      - mkdir -p {{.REPORT_DIR}}/lighthouse
+      - lighthouse {{.CLI_ARGS}} --output html --output-path {{.REPORT_DIR}}/lighthouse/lighthouse-report-mobile.html --chrome-flags="--headless" --view --throttling-method=simulate --throttling.rttMs=150 --throttling.throughputKbps=1638.4 --throttling.uploadThroughputKbps=750 --throttling.cpuSlowdownMultiplier=4
+
+  bundle-size:
+    desc: Visualise la taille des différents modules du projet avec le plugin rollup-plugin-visualizer
+    aliases:
+      - size
+    cmds:
+      - ANALYZE=true npx rolldown -c
+      # On ouvre le rapport de visualisation du bundle dans le navigateur par défaut
+      - cmd: |
+          if command -v xdg-open > /dev/null; then
+            xdg-open .report/bundle-size/rollup-visualizer.html
+          elif command -v open > /dev/null; then
+            open .report/bundle-size/rollup-visualizer.html
+          else
+            echo "❌ Impossible d'ouvrir le rapport de visualisation du bundle automatiquement. Veuillez ouvrir le fichier .report/bundle-size/rollup-visualizer.html manuellement."
+          fi
+        silent: true
+
+  get-changes:changelog:
+    desc: Récupère les changements entre deux tags
+    silent: true
+    cmds:
+      - bash scripts/release/get-changes-changelog.sh {{.CLI_ARGS}}
+
+  get-changes:changelog:details:
+    desc: Récupère le diff du fichier CHANGELOG.md entre deux tags et la liste des fichiers modifiés pour chaque commit mentionné dans le diff du fichier CHANGELOG.md
+    silent: true
+    cmds:
+      - bash scripts/release/get-changes-changelog-details.sh {{.CLI_ARGS}}
+
+  create-zipped-dist-from-tag:
+    desc: "Crée un fichier zip du dossier dist à partir des sources correspondant à un tag Git donné (usage: task create-zipped-dist-from-tag -- <tag>) et le place dans le dossier .release/dist"
+    silent: true
+    cmds:
+      - bash scripts/release/create-zipped-dist-from-tag.sh {{.CLI_ARGS}}
+
+  release-draft:
+    desc: "Crée un brouillon de release à partir de l'ancien tag et du nouveau tag (usage: task release-draft -- <old_tag> <new_tag>)"
+    vars:
+      VERSION:
+        # Le numéro de la version correspond au nouveau tag (deuxième argument de la tâche), sans le préfixe "v" s'il est présent
+        sh: echo "{{.CLI_ARGS}}" | awk '{print $2}' | sed 's/^v//'
+      RELEASE_DATE:
+        # La date correspond à la date du commit associé au nouveau tag (deuxième argument de la tâche)
+        sh: git show -s --date=format:'%d/%m/%Y' --format=%ad "$(echo "{{.CLI_ARGS}}" | awk '{print $2}')"
+      CHANGELOG_URL: "{{.MAIN_REPO_URL}}/-/blob/main/CHANGELOG.md"
+      ISSUES_URL: "{{.MAIN_REPO_URL}}/-/work_items"
+    cmds:
+      - node scripts/release/create-release-note-draft.mjs "{{.APP_NAME}}" "{{.VERSION}}" "{{.RELEASE_DATE}}" "{{.CHANGELOG_URL}}" "{{.ISSUES_URL}}" {{.CLI_ARGS}}
+
+  review:file:
+    desc: "Crée un rapport de revue de code pour un fichier donné (usage: task review:file -- <file_path>)"
+    silent: true
+    cmds:
+      - bash scripts/review/review-file.sh {{.CLI_ARGS}} {{.ECMA_VERSION}}
+
+  get-commit-hash:
+    desc: "Récupère le hash du commit correspondant à un message"
+    silent: true
+    cmds:
+      - python3 scripts/bump/get_commit_hash.py "{{.CLI_ARGS}}"
+
+  init:
+    desc: "Initialise la création d'un nouveau projet à partir de ce template"
+    silent: true
+    cmds:
+      - bash scripts/init/init.sh

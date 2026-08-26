@@ -1,0 +1,38 @@
+{
+	"name": "markpage",
+	"short_name": "markpage",
+	"description": "Un outil pour créer un mini site web ou une appli pour smartphone à partir d'un fichier en Markdown",
+	"id": "./",
+	"start_url": "./",
+	"scope": "./",
+	"orientation": "natural",
+	"display": "standalone",
+	"background_color": "#ffffff",
+	"theme_color": "#202229",
+	"icons": [
+		{
+			"src": "./icon-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"purpose": "any"
+		},
+		{
+			"src": "./icon-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "any"
+		},
+		{
+			"src": "./maskable-icon-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"purpose": "maskable"
+		},
+		{
+			"src": "./maskable-icon-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "maskable"
+		}
+	]
+}

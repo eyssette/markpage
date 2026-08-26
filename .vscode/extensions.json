@@ -1,0 +1,12 @@
+{
+	"recommendations": [
+		"oxc.oxc-vscode" /* Lint et formattage du code javascript avec oxlint et oxfmt */,
+		"stylelint.vscode-stylelint" /* Vérification du CSS */,
+		"html-validate.vscode-html-validate" /* Vérification du HTML */,
+		"svelte.svelte-vscode" /* Gestion du code Svelte */,
+		"ampcpmgp.cognitive-complexity-show" /* Affiche la complexité cognitive des fonctions */,
+		"alexkrechik.cucumberautocomplete" /* Autocomplétion des steps Cucumber */,
+		"streetsidesoftware.code-spell-checker" /* Vérification orthographique */,
+		"streetsidesoftware.code-spell-checker-french" /* Vérification orthographique en français */
+	]
+}

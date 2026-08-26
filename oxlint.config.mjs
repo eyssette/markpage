@@ -176,12 +176,12 @@ const config = {
 	overrides: [
 		// Configuration de base pour tous les fichiers Javascript dans le dossier "app"
 		{
-			files: ["js/*.{js,mjs}"],
+			files: ["app/js/*.{js,mjs}"],
 			rules: appFolderOverridesRules,
 			env: { [ECMA_VERSION]: true, browser: true },
 		},
 		{
-			files: ["js/plugins/*.{js,mjs}", "js/externals/*.{js,mjs}"],
+			files: ["app/js/plugins/*.{js,mjs}", "app/js/externals/*.{js,mjs}"],
 			rules: {
 				"eslint/no-undef": "off",
 				"eslint/no-unused-vars": "off",
