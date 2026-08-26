@@ -1,5 +1,24 @@
 # Changelog
 
+## 5.0.0 (2026-08-26)
+
+### Fix
+
+- **task**: ajout de la tâche build avant les tests ECMA dans la tâche bump [(efa0e01)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/efa0e011ef5e028746a31a09061d4c91d6a8d1d3)
+- **css**: font-family par défaut améliorée (plus standard) [(e1d46e2)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/e1d46e2aa8d29f0da29581603c3a9db4ea047cfc)
+- **task**: ajout de la tâche build dans la tâche push pour éviter que les tests Ecma (vérification conformité du build) ne fonctionnent pas [(622df64)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/622df648bce92b56044807038ae5370a72c06d31)
+- **css**: fix pour le background de innerBox et backgroundInnerBox en mode "pad" [(d9d7d11)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/d9d7d11348e170a342eb1cbedf9dfee8f7bd12a4)
+- **ci_template**: pour le service worker, on change aussi APP_NAME pour mettre le nom du projet + son id [(ca7f1d5)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/ca7f1d5a3d3c807c1aa4651d6195dc2fa3d0361a)
+- **ci_template**: erreur sur l'URL du script pour comprimer les assets [(069a5e6)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/069a5e6f729886a3f3511debb13396123f0a92f5)
+- **ci_template**: on utilise le sha du commit plutôt qu'une date pour indiquer la version qui force le service worker à se recharger [(0b66f5d)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/0b66f5dfc949ceca58ee87907c574d7d301881e1)
+- **css**: body / overflow-y mis sur auto [(f8fc30d)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/f8fc30d2230014857106d4e40870cf47b9f48e82)
+- **css**: amélioration pour le style des footnotes [(2652921)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/2652921c944367f5097c2ce1653df0a45e4b7da5)
+- **build**: changement de casse pour les noms de certains fichiers [(cb1906e)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/cb1906e2167fba3d13a5d9fb8f833583921f0065)
+
+### Chore
+
+- migration de l'environnement de développement vers JS-template [(f77af5b)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/f77af5b569fa41900e646c744712e81bd506435e)
+
 ## 4.23.2 (2026-08-18)
 
 ### Fix
