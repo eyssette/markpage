@@ -195,7 +195,7 @@ iframe {
 	flex-direction: column;
 	flex-wrap: wrap;
 	gap: 1em;
-	overflow-y: unset;
+	overflow-y: unset !important;
 }
 .noColumns h2 {
 	display: none !important;
