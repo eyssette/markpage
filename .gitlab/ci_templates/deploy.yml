@@ -33,11 +33,14 @@ pages:
     - cd build_dir
 
     # Mise à jour du service worker
-    # on change dans le fichier app/pwa/service-worker/swConfig.mjs la variable SW_VERSION pour lui mettre comme valeur le SHA du dernier commit, afin de forcer le navigateur à recharger le service worker et donc les fichiers statiques
+    # on change dans le fichier app/pwa/service-worker/swConfig.mjs les variables APP_NAME et SW_VERSION
+    # - pour APP_NAME, on met comme valeur le nom du projet GitLab, suivi de l'ID du projet (unique pour chaque projet), afin que le service worker soit unique pour chaque projet
+    # - pour SW_VERSION, on met comme valeur le SHA du dernier commit, afin de forcer le navigateur à recharger le service worker à chaque commit
     - |
       if [ -f "app/pwa/service-worker/swConfig.mjs" ]; then
         NEW_SW_VERSION=$(echo $CI_COMMIT_SHA | cut -c1-8)
         sed -i "s/export const SW_VERSION = .*/export const SW_VERSION = \"$NEW_SW_VERSION\";/" app/pwa/service-worker/swConfig.mjs
+        sed -i "s/export const APP_NAME = .*/export const APP_NAME = \"$CI_PROJECT_NAME-$CI_PROJECT_ID\";/" app/pwa/service-worker/swConfig.mjs
       else
         echo "Warning - swConfig.mjs not found"
       fi
