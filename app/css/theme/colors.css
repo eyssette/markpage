@@ -50,7 +50,7 @@ main a:not(.navigationLink):hover {
 
 h3,
 .subSection.visible h3 {
-	border-radius: 15px;
+	border-radius: 12px;
 }
 
 h4 {
