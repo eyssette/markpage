@@ -53,6 +53,19 @@
 		"stylelint-config-standard": "^40.0.0",
 		"unplugin-raw": "^0.7.0"
 	},
+	"overrides": {
+		"axios": ">=1.19.0",
+		"brace-expansion": ">=5.0.8",
+		"diff": ">=8.0.3",
+		"fast-uri": ">=3.1.5",
+		"fsevents": ">=2.3.3",
+		"hono": ">=4.12.34",
+		"js-yaml": ">=4.3.1",
+		"serialize-javascript": ">=7.0.7",
+		"tar": ">=7.5.22",
+		"undici": ">=6.27.0",
+		"uuid": ">=11.1.1"
+	},
 	"volta": {
 		"node": "24.18.1",
 		"npm": "11.16.0"
