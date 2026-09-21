@@ -94,54 +94,100 @@ function showdownExtensionGenericAttributes() {
 }
 
 // Gestion des admonitions
+
+function fixSpoilerAdmonitionCodi(text) {
+	// Dans CodiMD on peut définir le type de l'admonition spoiler en la mettant avant dans un autre admonition
+	const spoilerInAdmonitionRegex =
+		/<div class="admonition \w*?"><div class="admonitionTitle"><\/div><div class="admonitionContent">\n(<div class="admonition spoiler">`.*?`<\/div>\n<\/div>)<\/div>/s;
+	const spoilerMatch = text.match(spoilerInAdmonitionRegex);
+	if (spoilerMatch) {
+		text = text.replace(spoilerMatch[0], spoilerMatch[1]);
+	}
+	return text;
+}
+
+// Fonction pour remplacer les admonitions en Markdown par leur équivalent en HTML
+function processAdmonition(text, level) {
+	const colons = ":".repeat(level);
+	// Regex pour capturer les admonitions
+	const admonitionRegex = new RegExp(`${colons}(.+?)\n${colons}(\n|$)`, "gms");
+	const admonitions = text.match(admonitionRegex);
+
+	if (admonitions) {
+		let lastAdmonitionPosition = 0;
+		admonitions.forEach((admonition) => {
+			// On enregistre la position de l'admonition dans le texte pour pouvoir plus tard vérifier si l'admonition est dans un bloc code
+			const admonitionPosition = text.indexOf(admonition[0]);
+			// On récupère les informations de l'admonition qui sont dans la première ligne
+			// On récupère le type de l'admonition, l'effet collapsible s'il est utilisé, et le titre de l'admonition s'il est utilisé
+			const getAdmonitionInfosRegex = /:::(\w+)( collapsible)?( .*)?/;
+			const admonitionFirstLine = admonition.slice(0, admonition.indexOf("\n"));
+			const admonitionInfos = admonitionFirstLine.match(
+				getAdmonitionInfosRegex,
+			);
+			if (admonitionInfos) {
+				// Récupération du type de l'admonition
+				const typeAdmonition = admonitionInfos[1] ? admonitionInfos[1] : "";
+				// Récupération de l'effet collapsible (optionnel)
+				const isCollapsible =
+					admonitionInfos[2] || typeAdmonition == "spoiler" ? true : false;
+				// Récupération du titre (optionnel)
+				const titleAdmonition = admonitionInfos[3]
+					? admonitionInfos[3].trim()
+					: isCollapsible
+						? "Détails"
+						: "";
+				// Vérifie si l'admonition est dans un bloc code en regardant autour
+				const before = text.substring(
+					lastAdmonitionPosition,
+					admonitionPosition,
+				);
+				lastAdmonitionPosition = admonitionPosition;
+				const isInCode = /<code>|<pre>/.test(
+					before.slice(before.lastIndexOf("<")),
+				);
+				// Si l'admonition est dans un bloc de code, on ne fait rien
+				if (isInCode) {
+					return;
+				}
+				// On construit le HTML de l'admonition
+				let contentAdmonition = admonition
+					.replace(admonitionFirstLine, "")
+					.trim();
+				// On supprime dans le contenu la dernière ligne, qui correspond à la fermeture en Markdown de l'admonition
+				contentAdmonition = contentAdmonition.substring(
+					0,
+					contentAdmonition.lastIndexOf("\n"),
+				);
+				// On convertit le contenu de l'admonition en HTML
+				const admonitionHTML = isCollapsible
+					? `<div class="admonition ${typeAdmonition}"><details><summary class="admonitionTitle">${titleAdmonition}</summary><div class="admonitionContent">\n${contentAdmonition}\n</div></details></div>\n`
+					: `<div class="admonition ${typeAdmonition}"><div class="admonitionTitle">${titleAdmonition}</div><div class="admonitionContent">\n${contentAdmonition}\n</div></div>\n`;
+
+				text = text.replace(admonition, admonitionHTML);
+			}
+		});
+	}
+	// On applique le fix pour l'utilisation de spoiler avec CodiMD
+	text = fixSpoilerAdmonitionCodi(text);
+	return text;
+}
+
 function showdownExtensionAdmonitions() {
 	return [
 		{
 			type: "output",
 			filter: (text) => {
-				// Supprimer les balises <p> autour des admonitions
-				text = text.replace(/<p>:::(.*?)(<\/p>)?/g, ":::$1");
-
-				// Expression régulière pour capturer le contenu des admonitions
-				const regex = /:::(\w+)(?:\s+(collapsible)?)?\s*(.*?)\n([\s\S]*?):::/g;
-
-				// Traiter chaque match de l'admonition
-				text = text.replace(
-					regex,
-					// oxlint-disable-next-line max-params
-					(match, type, collapsible, title, content, offset) => {
-						title = title.replace("<br />", "").replace("</p>", "");
-						// Vérifier si l'admonition est dans un bloc code en regardant autour
-						const before = text.substring(0, offset);
-						const isInCode = /<code|<pre/.test(
-							before.slice(before.lastIndexOf("<")),
-						);
-
-						if (isInCode) {
-							// Si l'admonition est dans un bloc de code, on ne fait rien
-							return match;
-						}
-
-						// Retirer "collapsible" du titre si présent
-						if (collapsible) title = title.replace("collapsible", "").trim();
-
-						// Construire le HTML de l'admonition
-						if (collapsible) {
-							return `<div class="admonition ${type}">
-							<details>
-								<summary class="admonitionTitle">${title}</summary>
-								<div class="admonitionContent">${content.trim()}</div>
-							</details>
-						</div>`;
-						} else {
-							return `<div class="admonition ${type}">
-							<div class="admonitionTitle">${title}</div>
-							<div class="admonitionContent">${content.trim()}</div>
-						</div>`;
-						}
-					},
-				);
-
+				// Fix pour les admonitions qui finissent par une balise particulière
+				text = text.replace(/:::(<\/li>)/g, "$1\n:::");
+				// Supprimer les balises <p> ou les balises <br /> autour ou à la fin des admonitions
+				text = text.replace(/(<p>)?(:::.*?)(<\/p>|<br \/>)/g, "$2");
+				let level = 3;
+				text = processAdmonition(text, level);
+				while (text.includes(":".repeat(level + 1))) {
+					level = level + 1;
+					text = processAdmonition(text, level);
+				}
 				return text;
 			},
 		},
