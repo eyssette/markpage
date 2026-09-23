@@ -117,7 +117,10 @@ function processAdmonition(text, level) {
 		let lastAdmonitionPosition = 0;
 		admonitions.forEach((admonition) => {
 			// On enregistre la position de l'admonition dans le texte pour pouvoir plus tard vérifier si l'admonition est dans un bloc code
-			const admonitionPosition = text.indexOf(admonition[0]);
+			const admonitionPosition = text.indexOf(
+				admonition,
+				lastAdmonitionPosition,
+			);
 			// On récupère les informations de l'admonition qui sont dans la première ligne
 			// On récupère le type de l'admonition, l'effet collapsible s'il est utilisé, et le titre de l'admonition s'il est utilisé
 			const getAdmonitionInfosRegex = /:::(\w+)( collapsible)?( .*)?/;
@@ -142,10 +145,11 @@ function processAdmonition(text, level) {
 					lastAdmonitionPosition,
 					admonitionPosition,
 				);
-				lastAdmonitionPosition = admonitionPosition;
-				const isInCode = /<code>|<pre>/.test(
-					before.slice(before.lastIndexOf("<")),
-				);
+				// On récupère l'index de la dernière balise ouvrante avant l'admonition
+				// Si on ne trouve pas de balise ouvrante, on prend le début du texte
+				const lastOpenTagIndex = before.lastIndexOf("<");
+				const sliceStart = lastOpenTagIndex === -1 ? 0 : lastOpenTagIndex;
+				const isInCode = /<code>|<pre>/.test(before.slice(sliceStart));
 				// Si l'admonition est dans un bloc de code, on ne fait rien
 				if (isInCode) {
 					return;
@@ -164,7 +168,13 @@ function processAdmonition(text, level) {
 					? `<div class="admonition ${typeAdmonition}"><details><summary class="admonitionTitle">${titleAdmonition}</summary><div class="admonitionContent">\n${contentAdmonition}\n</div></details></div>\n`
 					: `<div class="admonition ${typeAdmonition}"><div class="admonitionTitle">${titleAdmonition}</div><div class="admonitionContent">\n${contentAdmonition}\n</div></div>\n`;
 
-				text = text.replace(admonition, admonitionHTML);
+				// On remplace l'occurrence trouvée
+				text =
+					text.slice(0, admonitionPosition) +
+					admonitionHTML +
+					text.slice(admonitionPosition + admonition.length);
+				// On met à jour la position de la dernière admonition
+				lastAdmonitionPosition = admonitionPosition + admonitionHTML.length;
 			}
 		});
 	}
