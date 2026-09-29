@@ -35,6 +35,12 @@ export function handleNavigation(baseURL, hash, params, markpageData) {
 	const nextButton = document.getElementById("nextButton");
 	// Une fonction pour gérer le déplacement d'une section ou d'une sous-section à une autre
 	function moveNextOrPrevious(paramsURL, next) {
+		// On désactive la navigation si on a enlevé les titres h2 ou h3 (cas où on veut afficher une seule section)
+		const isNavigationActive =
+			paramsURL && (paramsURL.h2 == 0 || paramsURL.h3 == 0) ? false : true;
+		if (!isNavigationActive) {
+			return;
+		}
 		let paramsSecInt;
 		let paramsSubsecInt;
 		if (paramsURL && paramsURL.subsec) {
