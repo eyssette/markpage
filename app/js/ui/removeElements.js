@@ -1,5 +1,16 @@
 import { yaml } from "../processMarkdown/yaml";
 
+export function removeH2() {
+	const h2Elements = document.querySelectorAll("h2");
+	for (const h2Element of h2Elements) {
+		h2Element.style.display = "none";
+	}
+	// On recale correctement le contenu
+	const innerBoxElement = document.getElementById("innerBox");
+	innerBoxElement.style.marginTop = "0px";
+	innerBoxElement.style.paddingTop = "0px";
+}
+
 export function removeH3(params) {
 	const h3Elements = document.querySelectorAll("h3");
 	for (const h3Element of h3Elements) {

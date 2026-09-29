@@ -5,7 +5,7 @@ import { changeDisplayBasedOnParams } from "./changeDisplayBasedOnParams";
 import { handleNavigation } from "./navigation";
 import { handleSearch } from "./searchBar/handleSearch";
 import { handleClicks } from "./handleClicks";
-import { removeH3, removeMenu } from "./removeElements";
+import { removeH2, removeH3, removeMenu } from "./removeElements";
 import { showOnlyThisElement } from "./showOnlyThisElement";
 import { CSSthemes } from "../config";
 import { setTheme } from "./setTheme";
@@ -217,6 +217,10 @@ export function handleMarkpage(markpageData) {
 	// On peut ajouter un paramètre dans l'URL pour cacher le menu du bas et l'icône de page d'accueil
 	if (params.menu && params.menu == 0) {
 		removeMenu(linkToHomePageElement);
+	}
+	// On peut enlever les titres h2
+	if (params.h2 && params.h2 == 0) {
+		removeH2();
 	}
 	// On peut enlever les titres h3 sur le côté
 	if (params.h3 && params.h3 == 0) {
