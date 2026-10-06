@@ -10,7 +10,7 @@ export const shortcuts = [
 	],
 ];
 
-export const corsProxy = "https://api.codetabs.com/v1/proxy/?quest=";
+export const corsProxy = "https://cors.bwa.workers.dev/";
 
 export const CSSthemes = ["colors.css", "digipad.css"];
 
