@@ -12,7 +12,7 @@ export const shortcuts = [
 
 export const corsProxy = "https://api.codetabs.com/v1/proxy/?quest=";
 
-export const CSSthemes = ["colors.css", "digipad.css"];
+export const CSSthemes = ["colors.css", "digipad.css", "light.css"];
 
 // Gestion des add-ons
 export const allowedPlugins = {

@@ -112,9 +112,10 @@ singlePage: true
 
 Pour changer de thème, il est recommandé d'utiliser l'en-tête yaml, mais vous pouvez aussi utiliser le paramètre `?theme=themeName` dans l'URL.
 
-Pour le moment un seul thème est disponible : le thème colors
+Pour le moment, deux thèmes sont disponibles : le thème `colors` et le thème `light`.
 
 - [voir ce site avec le thème colors](?theme=colors&sec=2&subsec=2)
+- [voir ce site avec le thème light](?theme=light&sec=2&subsec=2)
 - [voir ce site avec le thème par défaut](?sec=2&subsec=2)
 
 #### Styles CSS
