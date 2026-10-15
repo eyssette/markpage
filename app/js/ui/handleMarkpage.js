@@ -12,6 +12,7 @@ import { setTheme } from "./setTheme";
 import { checkScrollListener } from "./checkScrollListener";
 import { checkInitEditor } from "./editor/checkInitEditor";
 import { resizeElements } from "./resize/resizeElements";
+import { convertNavigationParam } from "./convertParam";
 
 export let params;
 
@@ -35,6 +36,7 @@ export function handleMarkpage(markpageData) {
 	const hash = window.location.hash.substring(1);
 	const actualURL = window.location.search;
 	params = getParams(actualURL, hash);
+	params = convertNavigationParam(params, markpageData);
 
 	// Gestion des maths
 	if (yaml && yaml.maths) {

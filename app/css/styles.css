@@ -917,3 +917,8 @@ main a.footnoteLink:hover,
 main .footnote a:nth-of-type(1):hover {
 	border-bottom: 1px solid #567c9c;
 }
+
+.highlighted {
+	background-color: #ffff99;
+	transition: background-color 0.5s ease;
+}

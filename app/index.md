@@ -246,13 +246,6 @@ contenu du bloc code
 ```
 ````
 
-#### TitleLinks
-
-Mot-clé pour ajouter ce plugin : `titleLinks`
-
-Cet add-on permet de partager des liens vers une sous-section spécifique.
-Si on clique sur un titre de niveau 4, 5 ou 6, un lien vers ce titre est copié dans le presse-papier (les titres des autres niveaux existent déjà sous forme de liens dans Markpage).
-
 ## Exemples d'utilisation
 
 #### Création d'un minisite
