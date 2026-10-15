@@ -1,0 +1,19 @@
+pre .code-scroll {
+	overflow: auto;
+	max-height: 300px;
+	padding-right: 60px;
+}
+
+pre .copy-button {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	padding: 5px 10px;
+	font-size: 12px;
+	cursor: pointer;
+	border: none;
+	border-radius: 3px;
+	background-color: #0071f0;
+	color: white;
+	z-index: 10;
+}

@@ -28,6 +28,7 @@ export const allowedPlugins = {
 	},
 	copycode: {
 		js: "js/plugins/copycode.js",
+		css: "js/plugins/copycode.css",
 	},
 	textFit: {
 		js: "js/plugins/textFit.min.js",
