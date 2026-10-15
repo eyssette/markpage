@@ -1,5 +1,15 @@
 # Changelog
 
+## 5.2.0 (2026-10-15)
+
+### Feat
+
+- **nav**: utilisation possible des paramètres dans l'URL pour naviguer vers une section, sous-section, et même partie précise, avec le titre et non l'ID [(0fff9c3)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/0fff9c3a555d2c3d1fd2319bab5482cbde9236fc)
+
+### Chore
+
+- **task**: task build forcé si le fichier script.min.js n'existe pas [(2f51a3f)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/2f51a3f5c2e035e1144221aa45f6a3f02303827b)
+
 ## 5.1.2 (2026-10-15)
 
 ### Fix
