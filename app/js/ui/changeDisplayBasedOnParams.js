@@ -135,7 +135,8 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 			} else {
 				if (partElement) {
 					// On scrolle pour que l'élément partElement soit visible tout en haut de la fenêtre
-					partElement.scrollIntoView({
+					window.scrollTo({
+						top: partElement.offsetTop - 20,
 						behavior: "smooth",
 					});
 					// On met en surbrillance l'élément partElement de manière temporaire pour indiquer à l'utilisateur où il se trouve dans la sous-section
