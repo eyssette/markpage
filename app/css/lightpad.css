@@ -45,7 +45,15 @@ main {
 	margin-top: -0.75em !important;
 	box-sizing: border-box;
 	width: 95% !important;
+	max-height: 95%;
 }
+
+@media screen and (width >= 1400px) {
+	.sectionContent {
+		max-height: 94%;
+	}
+}
+
 .sectionContent,
 h2 {
 	margin-left: auto;

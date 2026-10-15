@@ -2,6 +2,7 @@ pre .code-scroll {
 	overflow: auto;
 	max-height: 300px;
 	padding-right: 60px;
+	padding-bottom: 0.5em;
 }
 
 pre .copy-button {

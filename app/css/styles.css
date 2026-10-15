@@ -35,6 +35,7 @@ body {
 	overflow-wrap: break-word;
 	background: #f6f8fa;
 	color: #171717;
+	scrollbar-color: #8c97a4 transparent;
 }
 
 #innerBox,
@@ -580,12 +581,17 @@ details {
 }
 
 pre {
-	background-color: white;
-	padding: 2em 1.5em;
-	width: fit-content;
-	box-shadow: 1px 1px 1px 1px #aaa;
+	position: relative;
 	margin: 2em auto;
+	padding: 1.5em 1.5em;
+	overflow: hidden;
 	min-width: 50%;
+	width: fit-content;
+	background-color: white;
+	color: #333;
+	box-shadow: none;
+	border: 1px solid silver;
+	border-radius: 5px;
 }
 
 mark {
