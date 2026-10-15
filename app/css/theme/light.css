@@ -5,7 +5,6 @@ body,
 }
 
 .lightpad #searchBar {
-	padding: 0.5em;
 	border-radius: 15px;
 }
 
@@ -18,8 +17,7 @@ body,
 .lightpad h1 {
 	background: white;
 	color: black;
-	height: 0.75em;
-	padding: 0.5em !important;
+	height: 1.25em;
 }
 
 .lightpad main {
