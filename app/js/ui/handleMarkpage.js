@@ -43,7 +43,11 @@ export function handleMarkpage(markpageData) {
 	// Gestion des add-ons
 	if (yaml && yaml.plugins && yaml.plugins.includes("copycode")) {
 		const interval = setInterval(() => {
-			if (window.copycode) {
+			// On attend que le script copycode.js et le CSS copycode.css soient chargés avant d'exécuter la fonction copycode()
+			if (
+				window.copycode &&
+				document.querySelector('link[href*="copycode.css"]')
+			) {
 				clearInterval(interval);
 				window.copycode();
 				handleClicks(baseURL, hash, markpageData);
