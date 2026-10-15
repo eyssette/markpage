@@ -9,9 +9,14 @@ export function convertNavigationParam(param, markpageData) {
 			.replace(/#.*/, "")
 			.replace(/[^a-zA-Z0-9À-ÿ]/g, "")
 			.toLowerCase();
+		console.log(sectionTitleParam);
 		const sectionTitles = markpageData[2].map((section) =>
-			section.replace(/[^a-zA-Z0-9À-ÿ]/g, "").toLowerCase(),
+			section
+				.replace(/&[^;]*;/g, "")
+				.replace(/[^a-zA-Z0-9À-ÿ]/g, "")
+				.toLowerCase(),
 		);
+		console.log(sectionTitles);
 
 		// On cherche l'ID de la section correspondante
 		// C'est le numéro de l'élément qui est dans markpageData[2]
@@ -37,6 +42,7 @@ export function convertNavigationParam(param, markpageData) {
 		const subSectionTitleParam = param.subsec
 			.toString()
 			.replace(/#.*/, "")
+			.replace(/&[^;]*;/g, "")
 			.replace(/[^a-zA-Z0-9À-ÿ]/g, "")
 			.toLowerCase();
 		const sectionID = param.sec ? parseInt(param.sec) : null;
@@ -91,6 +97,7 @@ export function convertNavigationParam(param, markpageData) {
 						markpageData[3][sectionID - 1][currentSubSectionIndex];
 					const currentSubSectionTitle = currentSubSection[0]
 						.replace(/<[^>]*>/g, "")
+						.replace(/&[^;]*;/g, "")
 						.replace(/[^a-zA-Z0-9À-ÿ]/g, "")
 						.toLowerCase();
 					if (currentSubSectionTitle === partTitleParam) {
@@ -122,7 +129,10 @@ export function convertNavigationParam(param, markpageData) {
 								const title = line.replace(/<[^>]*>/g, "");
 								// On supprime tous les caractères qui ne sont pas des lettres ou des chiffres
 								// On ne supprime pas les lettres accentuées
-								return title.replace(/[^a-zA-Z0-9À-ÿ]/g, "").toLowerCase();
+								return title
+									.replace(/&[^;]*;/g, "")
+									.replace(/[^a-zA-Z0-9À-ÿ]/g, "")
+									.toLowerCase();
 							});
 						partIndex = partTitles.findIndex(
 							(title) => title === subpartTitleParam,
@@ -140,7 +150,10 @@ export function convertNavigationParam(param, markpageData) {
 						const title = line.replace(/<[^>]*>/g, "");
 						// On supprime tous les caractères qui ne sont pas des lettres ou des chiffres
 						// On ne supprime pas les lettres accentuées
-						return title.replace(/[^a-zA-Z0-9À-ÿ]/g, "").toLowerCase();
+						return title
+							.replace(/&[^;]*;/g, "")
+							.replace(/[^a-zA-Z0-9À-ÿ]/g, "")
+							.toLowerCase();
 					});
 				partIndex = partTitles.findIndex((title) => title === partTitleParam);
 			}
