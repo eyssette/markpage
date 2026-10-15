@@ -896,7 +896,7 @@ hr:last-child {
 .lightpad #scroll-arrow {
 	left: auto;
 	right: 10px;
-	top: 1.5em;
+	top: 2em;
 }
 
 @media screen and (width <= 500px) {
