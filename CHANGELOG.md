@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.3.0 (2026-10-15)
+
+### Feat
+
+- **nav**: copie possible du lien vers une section spécifique avec clic+alt sur un titre h2 à h6 [(ff2e342)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/ff2e342d0856fa5580fd39e946a93e840d552961)
+
 ## 5.2.0 (2026-10-15)
 
 ### Feat
