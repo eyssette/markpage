@@ -79,22 +79,47 @@ export function convertNavigationParam(param, markpageData) {
 			markpageData[3][sectionID - 1] &&
 			markpageData[3][sectionID - 1][subSectionID - 1]
 		) {
-			const subSectionContent =
-				markpageData[3][sectionID - 1][subSectionID - 1][2];
-			// On recherche dans le contenu de la sous-section les titres des parties (qui sont des titres h4 ou h5)
-			const partTitles = subSectionContent
-				.split("\n")
-				.filter((line) => line.startsWith("<h4") || line.startsWith("<h5"))
-				.map((line) => {
-					// On récupère le texte du titre en supprimant les balises HTML
-					const title = line.replace(/<[^>]*>/g, "");
-					// On supprime tous les caractères qui ne sont pas des lettres ou des chiffres
-					// On ne supprime pas les lettres accentuées
-					return title.replace(/[^a-zA-Z0-9À-ÿ]/g, "").toLowerCase();
-				});
-			const partIndex = partTitles.findIndex(
-				(title) => title === partTitleParam,
-			);
+			let partIndex = -1;
+			const subSection = markpageData[3][sectionID - 1][subSectionID - 1];
+			if (param.groupDisplay) {
+				// Si le paramètre "groupDisplay" est présent,
+				// On a l'id de la première .subSection avant le groupDisplay, c'est subSectionID
+				// On va ensuite avancer dans les .subSection suivantes, regarder le h3 de cette .subSection, dont la classe est "groupDisplay", et regarder si le h3 correspond au titre du paramètre partTitleParam
+				let currentSubSectionIndex = subSectionID - 1;
+				while (currentSubSectionIndex < markpageData[3][sectionID - 1].length) {
+					const currentSubSection =
+						markpageData[3][sectionID - 1][currentSubSectionIndex];
+					const currentSubSectionTitle = currentSubSection[0]
+						.replace(/<[^>]*>/g, "")
+						.replace(/[^a-zA-Z0-9À-ÿ]/g, "")
+						.toLowerCase();
+					if (currentSubSectionTitle === partTitleParam) {
+						partIndex = currentSubSectionIndex + 1;
+						break;
+					}
+					currentSubSectionIndex++;
+				}
+				if (partIndex === -1) {
+					// Si on ne trouve pas la partie correspondante, on supprime le paramètre "part"
+					delete param.part;
+				} else {
+					param.subsec = partIndex;
+				}
+			} else {
+				// On recherche dans le contenu de la sous-section les titres des parties (qui sont des titres h4 ou h5)
+				const subSectionContent = subSection[2];
+				const partTitles = subSectionContent
+					.split("\n")
+					.filter((line) => line.startsWith("<h4") || line.startsWith("<h5"))
+					.map((line) => {
+						// On récupère le texte du titre en supprimant les balises HTML
+						const title = line.replace(/<[^>]*>/g, "");
+						// On supprime tous les caractères qui ne sont pas des lettres ou des chiffres
+						// On ne supprime pas les lettres accentuées
+						return title.replace(/[^a-zA-Z0-9À-ÿ]/g, "").toLowerCase();
+					});
+				partIndex = partTitles.findIndex((title) => title === partTitleParam);
+			}
 			if (partIndex !== -1) {
 				// On remplace le paramètre "part" par l'ID de la partie correspondante
 				param.part = partIndex + 1;

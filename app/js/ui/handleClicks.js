@@ -16,12 +16,33 @@ function copySectionLinkToClipboard(event, hash) {
 	let sectionTitle = "";
 	let subSectionTitle = "";
 	let partTitle = "";
+	let isGroupDisplay = false;
 
 	if (sectionElement) {
 		sectionTitle = sectionElement.querySelector("h2").textContent;
 	}
 	if (subSectionElement) {
-		subSectionTitle = subSectionElement.querySelector("h3").textContent;
+		// On vérifie si la sous-section est affichée dans un groupe de sous-sections (avec la classe "groupDisplay")
+		const parentSubSectionElement = event.target.parentElement;
+		isGroupDisplay = parentSubSectionElement.classList.contains("groupDisplay");
+		// Si c'est le cas, on met pour subsectionTitle, le titre h3 le plus proche en haut qui n'a pas la classe "groupDisplay" (c'est le titre de la sous-section)
+		if (isGroupDisplay) {
+			// On remonte vers la section précédente
+			const parentSectionElement = parentSubSectionElement.closest("section");
+			// On regarde le titre h3 dans cette section et on regarde s'il a la classe "groupDisplay". Si c'est le cas, on remonte encore vers la section précédente, et ainsi de suite jusqu'à trouver un titre h3 qui n'a pas la classe "groupDisplay
+			let currentSectionElement = parentSectionElement;
+			while (currentSectionElement) {
+				const h3Element = currentSectionElement.querySelector("h3");
+				if (h3Element && !h3Element.classList.contains("groupDisplay")) {
+					subSectionTitle = h3Element.textContent;
+					break;
+				}
+				currentSectionElement = currentSectionElement.previousElementSibling;
+			}
+			partTitle = subSectionElement.querySelector("h3").textContent;
+		} else {
+			subSectionTitle = subSectionElement.querySelector("h3").textContent;
+		}
 	}
 
 	// Si l'élément cliqué est un titre h4, h5 ou h6, c'est le titre de la partie
@@ -30,7 +51,27 @@ function copySectionLinkToClipboard(event, hash) {
 		titleElement.tagName === "H5" ||
 		titleElement.tagName === "H6"
 	) {
-		partTitle = titleElement.textContent;
+		// On vérifie si on est dans un groupe de sous-sections (avec la classe "groupDisplay")
+		const parentSubSectionElement = titleElement.closest(".subSection");
+		isGroupDisplay = parentSubSectionElement
+			.querySelector("h3")
+			.classList.contains("groupDisplay");
+		if (isGroupDisplay) {
+			partTitle = subSectionTitle;
+			// On remonte de sous-section en sous-section jusqu'à trouver le titre h3 qui n'a pas la classe "groupDisplay"
+			let currentSubSectionElement = parentSubSectionElement;
+			while (currentSubSectionElement) {
+				const h3Element = currentSubSectionElement.querySelector("h3");
+				if (h3Element && !h3Element.classList.contains("groupDisplay")) {
+					subSectionTitle = h3Element.textContent;
+					break;
+				}
+				currentSubSectionElement =
+					currentSubSectionElement.previousElementSibling;
+			}
+		} else {
+			partTitle = titleElement.textContent;
+		}
 	}
 
 	// On transforme les titres pour qu'ils soient compatibles avec l'URL
@@ -55,6 +96,12 @@ function copySectionLinkToClipboard(event, hash) {
 	]) {
 		urlObject.searchParams.delete(key);
 		if (value) urlObject.searchParams.set(key, value);
+	}
+	// On ajoute le paramètre groupDisplay si nécessaire
+	if (isGroupDisplay) {
+		urlObject.searchParams.set("groupDisplay", "true");
+	} else {
+		urlObject.searchParams.delete("groupDisplay");
 	}
 	const url = urlObject.href;
 
