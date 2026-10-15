@@ -16,6 +16,7 @@ function copySectionLinkToClipboard(event, hash) {
 	let sectionTitle = "";
 	let subSectionTitle = "";
 	let partTitle = "";
+	let subPartTitle = "";
 	let isGroupDisplay = false;
 
 	if (sectionElement) {
@@ -64,6 +65,7 @@ function copySectionLinkToClipboard(event, hash) {
 				const h3Element = currentSubSectionElement.querySelector("h3");
 				if (h3Element && !h3Element.classList.contains("groupDisplay")) {
 					subSectionTitle = h3Element.textContent;
+					subPartTitle = titleElement.textContent;
 					break;
 				}
 				currentSubSectionElement =
@@ -85,6 +87,7 @@ function copySectionLinkToClipboard(event, hash) {
 	const sectionParam = transformTitleForURL(sectionTitle);
 	const subSectionParam = transformTitleForURL(subSectionTitle);
 	const partParam = transformTitleForURL(partTitle);
+	const subPartParam = transformTitleForURL(subPartTitle);
 
 	// On conserve les autres paramètres de l'URL et on remplace sec, subsec et part
 	const urlObject = new URL(window.location.href);
@@ -93,6 +96,7 @@ function copySectionLinkToClipboard(event, hash) {
 		["sec", sectionParam],
 		["subsec", subSectionParam],
 		["part", partParam],
+		["subpart", subPartParam],
 	]) {
 		urlObject.searchParams.delete(key);
 		if (value) urlObject.searchParams.set(key, value);

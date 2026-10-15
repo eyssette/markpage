@@ -104,6 +104,30 @@ export function convertNavigationParam(param, markpageData) {
 					delete param.part;
 				} else {
 					param.subsec = partIndex;
+					if (param.subpart) {
+						const subpartTitleParam = param.subpart
+							.toString()
+							.replace(/#.*/, "")
+							.replace(/[^a-zA-Z0-9À-ÿ]/g, "")
+							.toLowerCase();
+						const subSectionContent =
+							markpageData[3][sectionID - 1][partIndex - 1][2];
+						const partTitles = subSectionContent
+							.split("\n")
+							.filter(
+								(line) => line.startsWith("<h4") || line.startsWith("<h5"),
+							)
+							.map((line) => {
+								// On récupère le texte du titre en supprimant les balises HTML
+								const title = line.replace(/<[^>]*>/g, "");
+								// On supprime tous les caractères qui ne sont pas des lettres ou des chiffres
+								// On ne supprime pas les lettres accentuées
+								return title.replace(/[^a-zA-Z0-9À-ÿ]/g, "").toLowerCase();
+							});
+						partIndex = partTitles.findIndex(
+							(title) => title === subpartTitleParam,
+						);
+					}
 				}
 			} else {
 				// On recherche dans le contenu de la sous-section les titres des parties (qui sont des titres h4 ou h5)
