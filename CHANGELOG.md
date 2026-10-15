@@ -1,5 +1,15 @@
 # Changelog
 
+## 5.1.1 (2026-10-15)
+
+### Fix
+
+- **doc**: référence à Ticképad dans la doc de Lightpad [(82cf214)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/82cf21446f510592a550d44e6205fda6e72004af)
+- **plugin**: on attend le CSS de copycode avant de lancer la création des boutons copycode [(4139bb7)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/4139bb7faea0f2653d338a8cca85da5138b061ab)
+- **doc**: reformulations dans la doc de Lightpad [(d7c5a92)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/d7c5a92b5acd18f5da45f3558b0f9f4bb0991195)
+- **css**: scrollbar et blocs pre améliorés [(b011c7a)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/b011c7ae4fcb4cfc3f96d6866b6707934a4c02ec)
+- **plugin**: plugin copycode / le scroll du bloc "pre" ne déplace pas le bouton "copier" [(144aed9)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/144aed98f80678721342fb1877b59aaac44ded60)
+
 ## 5.1.0 (2026-10-15)
 
 ### Feat
