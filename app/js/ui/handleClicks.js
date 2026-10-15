@@ -129,8 +129,6 @@ export function handleClicks(baseURL, hash, markpageData) {
 	// Si c'est un clic avec la touche alt du clavier sur un titre de section, on copie dans le presse-papier l'URL de la section correspondante
 	const clickableTitles = document.querySelectorAll("h2, h3, h4, h5, h6");
 	clickableTitles.forEach(function (title) {
-		if (title.dataset.altClickListener) return;
-		title.dataset.altClickListener = "true";
 		title.addEventListener("click", function (event) {
 			if (event.altKey) {
 				event.preventDefault();
