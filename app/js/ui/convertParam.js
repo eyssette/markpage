@@ -1,22 +1,22 @@
+function normalizeTitle(title) {
+	return title
+		.toString()
+		.replace(/#.*/, "")
+		.replace(/<[^>]*>/g, "")
+		.replace(/&[^;]*;/g, "")
+		.replace(/[^a-zA-Z0-9À-ÿ]/g, "")
+		.toLowerCase();
+}
+
 export function convertNavigationParam(param, markpageData) {
 	// Si le paramètre "sec" existe et s'il ne se convertit pas en un nombre, c'est un texte qui désigne une section par son titre. On va donc chercher l'ID de la section correspondante à ce titre.
 	if (param.sec && isNaN(param.sec)) {
 		// On récupère le titre de la section à partir du paramètre "sec"
 		// On supprime tous les caractères qui ne sont pas des lettres ou des chiffres
 		// On ne supprime pas les lettres accentuées
-		const sectionTitleParam = param.sec
-			.toString()
-			.replace(/#.*/, "")
-			.replace(/[^a-zA-Z0-9À-ÿ]/g, "")
-			.toLowerCase();
+		const sectionTitleParam = normalizeTitle(param.sec);
 		console.log(sectionTitleParam);
-		const sectionTitles = markpageData[2].map((section) =>
-			section
-				.replace(/&[^;]*;/g, "")
-				.replace(/[^a-zA-Z0-9À-ÿ]/g, "")
-				.toLowerCase(),
-		);
-		console.log(sectionTitles);
+		const sectionTitles = markpageData[2].map((title) => normalizeTitle(title));
 
 		// On cherche l'ID de la section correspondante
 		// C'est le numéro de l'élément qui est dans markpageData[2]
@@ -39,17 +39,11 @@ export function convertNavigationParam(param, markpageData) {
 	}
 	if (param.subsec && isNaN(param.subsec)) {
 		// On récupère le titre de la sous-section à partir du paramètre "subsec"
-		const subSectionTitleParam = param.subsec
-			.toString()
-			.replace(/#.*/, "")
-			.replace(/&[^;]*;/g, "")
-			.replace(/[^a-zA-Z0-9À-ÿ]/g, "")
-			.toLowerCase();
+		const subSectionTitleParam = normalizeTitle(param.subsec);
 		const sectionID = param.sec ? parseInt(param.sec) : null;
 		if (sectionID && markpageData[3][sectionID - 1]) {
 			const subSectionTitles = markpageData[3][sectionID - 1].map(
-				(subSection) =>
-					subSection[0].replace(/[^a-zA-Z0-9À-ÿ]/g, "").toLowerCase(),
+				(subSection) => normalizeTitle(subSection[0]),
 			);
 			const subSectionIndex = subSectionTitles.findIndex(
 				(title) => title === subSectionTitleParam,
@@ -72,11 +66,7 @@ export function convertNavigationParam(param, markpageData) {
 	}
 	if (param.part && isNaN(param.part)) {
 		// On récupère le titre de la partie à partir du paramètre "part"
-		const partTitleParam = param.part
-			.toString()
-			.replace(/#.*/, "")
-			.replace(/[^a-zA-Z0-9À-ÿ]/g, "")
-			.toLowerCase();
+		const partTitleParam = normalizeTitle(param.part);
 		const sectionID = param.sec ? parseInt(param.sec) : null;
 		const subSectionID = param.subsec ? parseInt(param.subsec) : null;
 		if (
@@ -95,11 +85,7 @@ export function convertNavigationParam(param, markpageData) {
 				while (currentSubSectionIndex < markpageData[3][sectionID - 1].length) {
 					const currentSubSection =
 						markpageData[3][sectionID - 1][currentSubSectionIndex];
-					const currentSubSectionTitle = currentSubSection[0]
-						.replace(/<[^>]*>/g, "")
-						.replace(/&[^;]*;/g, "")
-						.replace(/[^a-zA-Z0-9À-ÿ]/g, "")
-						.toLowerCase();
+					const currentSubSectionTitle = normalizeTitle(currentSubSection[0]);
 					if (currentSubSectionTitle === partTitleParam) {
 						partIndex = currentSubSectionIndex + 1;
 						break;
@@ -112,11 +98,7 @@ export function convertNavigationParam(param, markpageData) {
 				} else {
 					param.subsec = partIndex;
 					if (param.subpart) {
-						const subpartTitleParam = param.subpart
-							.toString()
-							.replace(/#.*/, "")
-							.replace(/[^a-zA-Z0-9À-ÿ]/g, "")
-							.toLowerCase();
+						const subpartTitleParam = normalizeTitle(param.subpart);
 						const subSectionContent =
 							markpageData[3][sectionID - 1][partIndex - 1][2];
 						const partTitles = subSectionContent
@@ -126,13 +108,9 @@ export function convertNavigationParam(param, markpageData) {
 							)
 							.map((line) => {
 								// On récupère le texte du titre en supprimant les balises HTML
-								const title = line.replace(/<[^>]*>/g, "");
 								// On supprime tous les caractères qui ne sont pas des lettres ou des chiffres
 								// On ne supprime pas les lettres accentuées
-								return title
-									.replace(/&[^;]*;/g, "")
-									.replace(/[^a-zA-Z0-9À-ÿ]/g, "")
-									.toLowerCase();
+								return normalizeTitle(line);
 							});
 						partIndex = partTitles.findIndex(
 							(title) => title === subpartTitleParam,
@@ -147,13 +125,9 @@ export function convertNavigationParam(param, markpageData) {
 					.filter((line) => line.startsWith("<h4") || line.startsWith("<h5"))
 					.map((line) => {
 						// On récupère le texte du titre en supprimant les balises HTML
-						const title = line.replace(/<[^>]*>/g, "");
 						// On supprime tous les caractères qui ne sont pas des lettres ou des chiffres
 						// On ne supprime pas les lettres accentuées
-						return title
-							.replace(/&[^;]*;/g, "")
-							.replace(/[^a-zA-Z0-9À-ÿ]/g, "")
-							.toLowerCase();
+						return normalizeTitle(line);
 					});
 				partIndex = partTitles.findIndex((title) => title === partTitleParam);
 			}
