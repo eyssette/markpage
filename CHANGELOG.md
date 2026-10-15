@@ -1,5 +1,18 @@
 # Changelog
 
+## 5.3.2 (2026-10-15)
+
+### Fix
+
+- **nav**: suppression des paramètres de navigation interne une fois qu'on les a utilisés pour déterminer l'affichage initial [(3a96313)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/3a96313e21ebf46fb6922525c199346476ffbbd6)
+- **nav**: les écouteurs pour le alt+clic sur les titres doivent pouvoir être remis après certains plugins qui changent le contenu et suppriment les écouteurs du départ [(d797aa9)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/d797aa908e2b90aaa151a2752341fd26f714be05)
+- **nav**: correctif pour les liens vers une section en cas d'utilisation de codes HTML dans les titres [(5ac17a0)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/5ac17a0a7efa1fb79aa6047808b026cfa82fadb5)
+- **css**: titres h3 au premier plan pour éviter les difficultés avec le alt+clic pour récupérer le lien dans le presse-papier [(adcf9aa)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/adcf9aa316800311be968a0333cd117447d4fae0)
+
+### Chore
+
+- refactorisation (extraction de la fonction de normalisation des titres de section) [(07bfe83)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/07bfe8394987b99a70fdaa3b432d2ad59d984083)
+
 ## 5.3.1 (2026-10-15)
 
 ### Fix
