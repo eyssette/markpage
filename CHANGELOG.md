@@ -1,5 +1,18 @@
 # Changelog
 
+## 5.3.1 (2026-10-15)
+
+### Fix
+
+- **scroll**: ajustement du scroll vers une section spécifique [(037a630)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/037a6303e59e83fe278b9cc1a9b6eb22b907eff8)
+- **nav**: possibilité d'avoir un lien vers une section avec groupDisplay + une subpart dans cette section [(90f08b8)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/90f08b8eba2d88105c6ee7c717aba21c291214e8)
+- **nav**: ajout des liens possibles vers une section avec groupDisplay [(91155ca)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/91155ca3dcd07938e803698b3a59ef3425668ba7)
+
+### Chore
+
+- refactorisation de copySectionLinkToClipboard [(f03a2e4)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/f03a2e48dbc5f618437e246788db8b565681b8a1)
+- simplification css [(1fe26e4)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/1fe26e4932eb2e312199c285f242ade471a7680b)
+
 ## 5.3.0 (2026-10-15)
 
 ### Feat
