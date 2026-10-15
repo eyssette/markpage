@@ -184,6 +184,10 @@ Bloc de texte en Markdown multiligne caché par défaut
 Contenu
 :::
 
+### Lien vers une section spécifique
+
+Pour créer un lien vers une section spécifique, il suffit de faire un clic avec la touche `alt` du clavier sur le titre de la section : cela va copier dans le presse-papier l'URL de la section.
+
 ### Plugins
 
 Vous pouvez utiliser des plugins pour gérer des contenus ou des fonctionnalités spécifiques.
