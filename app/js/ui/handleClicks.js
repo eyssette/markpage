@@ -9,7 +9,6 @@ import { handleSelectElements } from "./searchBar/handleSelectElements";
 // Pour créer un lien vers une section spécifique, il suffit de faire un clic avec la touche alt du clavier sur le titre de la section : cela va copier dans le presse-papier l'URL de la section, avec les paramètres "sec", "subsec" et éventuellement "part" dans l'URL, et comme valeurs les titres de la section, de la sous-section et de la partie correspondantes. Ces titres sont transformés pour être compatibles avec l'URL (on enlève les espaces, on garde seulement les lettres (éventuellement accentuées) et les chiffres, on met tout en minuscules).
 
 function copySectionLinkToClipboard(event, hash) {
-	console.log(event);
 	const titleElement = event.target;
 	const sectionElement = titleElement.closest("#content > section");
 	const subSectionElement = titleElement.closest(".subSection");
