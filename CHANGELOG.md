@@ -1,5 +1,24 @@
 # Changelog
 
+## 5.1.0 (2026-10-15)
+
+### Feat
+
+- **css**: thème "light" [(aac7c7f)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/aac7c7f7d14f25aa87027ac8ce69ee03c174f6b7)
+
+### Fix
+
+- **css**: amélioration titres h2 et h3 pour le thème "light" [(4883e5f)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/4883e5fbdc34923a375c38c28a10b4ac559a9507)
+- **css**: topPosition de la section remise à 0 si on supprime h2 et h3 via les paramètres URL [(507f391)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/507f391b6c41b3224d0d1596721c7e777d37676a)
+- **nav**: on désactive la navigation par le clavier quand on utilise les paramètres dans l'URL pour désactiver les pages h2 ou h3 [(3916ecf)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/3916ecf379a2601af55f9f4e8690d8afcf852d23)
+- **params**: possibilité de supprimer aussi les titres h2 avec un paramètre URL (h2=0) [(3b93b8c)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/3b93b8c72c02313c7e2f247ae5fc4023434c0383)
+- **admonitions**: correction d'un bug avec les admonitions dans des blocs code [(43e6c26)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/43e6c26b971ac5816a79ef8536c6a13c0249b5e6)
+- **admonitions**: gestion des admonitions imbriquées et des admonitions codimd de type spoiler [(147ed1e)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/147ed1e87094cb1c2cb90f76b3106351bc753437)
+- **ci_template**: ajout d'une variable SOURCE_FOLDER que l'on peut surcharger pour déployer Markpage à partir d'un dossier de sources Markdown déterminé [(96a9842)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/96a9842c3e6e416c78edc76f879cc72faaf4caed)
+- **css**: thème colors - border-radius h3 un peu moins important [(340a15b)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/340a15bc37bc926a0a1a790c210c3e8431a9650d)
+- **css**: en mode noColumns, overflow-y pour .sectionContent doit être prioritaire [(75a47a1)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/75a47a10c872fd3858d84643c5a4aeeedfdef1dd)
+- **package**: overrides de version pour la sécurité [(cf388ca)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/cf388ca3a8cdd8e9b3ba78740cfec5ee3a307b60)
+
 ## 5.0.0 (2026-08-26)
 
 ### Fix
