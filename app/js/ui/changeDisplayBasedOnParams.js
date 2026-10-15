@@ -91,8 +91,6 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 			const partIndex = parseInt(subSectionPartID) - 1;
 			const subsectionHeadings =
 				subSectionElement.querySelectorAll("h4, h5, h6");
-			console.log(subsectionHeadings);
-			console.log(partIndex);
 			if (
 				subsectionHeadings.length > 0 &&
 				partIndex < subsectionHeadings.length
