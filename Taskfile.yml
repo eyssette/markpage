@@ -332,7 +332,7 @@ tasks:
       - cmd: |
           if [ ! -f "{{.DIST_FOLDER}}/script.min.js" ]; then
             echo "Le fichier {{.DIST_FOLDER}}/script.min.js n'existe pas. Lancement de la tâche build pour le créer..."
-            task build
+            task build --force
           fi
       - npx es-check {{.ECMA_VERSION}} "{{.DIST_FOLDER}}/script.min.js"
 
