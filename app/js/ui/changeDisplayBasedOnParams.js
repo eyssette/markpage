@@ -24,8 +24,10 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 		const subSectionPartID = param.part
 			? param.part.toString().replace(/#.*/, "")
 			: "";
-		// On supprime le paramètre "part" de l'objet param pour éviter que l'utilisateur ne revienne à la même partie lorsqu'il navigue vers une autre sous-section
+		// On supprime certains paramètres de navigation de l'objet param une fois qu'on les a utilisés pour déterminer l'affichage
 		delete param.part;
+		delete param.groupDisplay;
+		delete param.subpart;
 
 		if (sectionID && subSectionID) {
 			bodyElement.classList.remove("displayHomepage");
