@@ -295,6 +295,8 @@ Les thèmes disponibles sont les suivants :
 
 <a href="/" class="selectTheme">base</a> <a href="/?theme=colors" class="selectTheme">colors</a> <a href="/?theme=digipad" class="selectTheme">digipad</a> <a href="/?theme=light" class="selectTheme">light</a>
 
+Le thème `light` est inspiré du thème utilisé par Cyril Iaconelli pour son application [Ticképad](https://tickepad.forge.apps.education.fr/).
+
 On peut aussi ajouter des styles CSS en les définissant dans une balise `<style>` (à placer de préférence à la fin de son document).
 
 
