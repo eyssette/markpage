@@ -1,5 +1,18 @@
 # Changelog
 
+## 5.1.2 (2026-10-15)
+
+### Fix
+
+- **css**: scroll-arrow mieux positionnée pour lightpad [(c22ceb8)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/c22ceb8cee155c1d81745720d3967396f59f13ca)
+- **css**: h2 avec une largeur un peu plus petite [(9716ebe)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/9716ebe5e4ce27fdb5ed74ae6a1e6b757f5c4a34)
+- **css**: amélioration titre h1 + searchBar pour lightpad et thème "light" [(c324e39)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/c324e3956b316fd04d008302b4ab0106c3125970)
+
+### Chore
+
+- **task**: tâche ecma-dist lance une tâche de build de script.min.js si le fichier n'existe pas [(33812e2)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/33812e2a1a67fdb5a409340a96fe55fa82b114ab)
+- **rolldown**: ajout d'un watch sur les fichiers dans les plugins pour avoir un livereload aussi quand ces fichiers changent [(dbb3681)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/dbb368176eafe44f59c85076617ab259b9299419)
+
 ## 5.1.1 (2026-10-15)
 
 ### Fix
