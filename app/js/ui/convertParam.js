@@ -92,14 +92,6 @@ export function convertNavigationParam(param, markpageData) {
 					// On ne supprime pas les lettres accentuées
 					return title.replace(/[^a-zA-Z0-9À-ÿ]/g, "").toLowerCase();
 				});
-			console.log(partTitles);
-			/* .map((title) =>
-					title
-						.replace(/<[^>]*>/g, "")
-						.replace(/[^a-zA-Z0-9À-ÿ]/g, "")
-						.toLowerCase(),
-				); */
-			console.log(partTitles);
 			const partIndex = partTitles.findIndex(
 				(title) => title === partTitleParam,
 			);
