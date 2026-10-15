@@ -6,7 +6,21 @@ import { yaml } from "../processMarkdown/yaml";
 import { handleTags } from "./searchBar/handleTags";
 import { handleSelectElements } from "./searchBar/handleSelectElements";
 
-// Pour créer un lien vers une section spécifique, il suffit de faire un clic avec la touche alt du clavier sur le titre de la section : cela va copier dans le presse-papier l'URL de la section, avec les paramètres "sec", "subsec" et éventuellement "part" dans l'URL, et comme valeurs les titres de la section, de la sous-section et de la partie correspondantes. Ces titres sont transformés pour être compatibles avec l'URL (on enlève les espaces, on garde seulement les lettres (éventuellement accentuées) et les chiffres, on met tout en minuscules).
+// Permet de trouver le titre h3 le plus proche en haut qui n'a pas la classe "groupDisplay" (c'est le titre de la sous-section) à partir d'un élément donné (qui peut être un titre h4, h5 ou h6, ou un autre élément à l'intérieur d'une sous-section)
+function findPreviousNonGroupDisplaySectionTitle(element) {
+	let currentElement = element;
+	while (currentElement) {
+		const titleElement = currentElement.querySelector("h3");
+		if (titleElement && !titleElement.classList.contains("groupDisplay")) {
+			return titleElement;
+		}
+		currentElement = currentElement.previousElementSibling;
+	}
+}
+
+// Pour créer un lien vers une section spécifique, il suffit de faire un clic avec la touche alt du clavier sur le titre de la section.
+// Cela va copier dans le presse-papier l'URL de la section, avec les paramètres "sec", "subsec" et éventuellement "part" dans l'URL, et comme valeurs les titres de la section, de la sous-section et de la partie correspondantes.
+// Ces titres sont transformés pour être compatibles avec l'URL (on enlève les espaces, on garde seulement les lettres (éventuellement accentuées) et les chiffres, on met tout en minuscules).
 
 function copySectionLinkToClipboard(event, hash) {
 	const titleElement = event.target;
@@ -28,18 +42,10 @@ function copySectionLinkToClipboard(event, hash) {
 		isGroupDisplay = parentSubSectionElement.classList.contains("groupDisplay");
 		// Si c'est le cas, on met pour subsectionTitle, le titre h3 le plus proche en haut qui n'a pas la classe "groupDisplay" (c'est le titre de la sous-section)
 		if (isGroupDisplay) {
-			// On remonte vers la section précédente
 			const parentSectionElement = parentSubSectionElement.closest("section");
-			// On regarde le titre h3 dans cette section et on regarde s'il a la classe "groupDisplay". Si c'est le cas, on remonte encore vers la section précédente, et ainsi de suite jusqu'à trouver un titre h3 qui n'a pas la classe "groupDisplay
-			let currentSectionElement = parentSectionElement;
-			while (currentSectionElement) {
-				const h3Element = currentSectionElement.querySelector("h3");
-				if (h3Element && !h3Element.classList.contains("groupDisplay")) {
-					subSectionTitle = h3Element.textContent;
-					break;
-				}
-				currentSectionElement = currentSectionElement.previousElementSibling;
-			}
+			const h3Element =
+				findPreviousNonGroupDisplaySectionTitle(parentSectionElement);
+			if (h3Element) subSectionTitle = h3Element.textContent;
 			partTitle = subSectionElement.querySelector("h3").textContent;
 		} else {
 			subSectionTitle = subSectionElement.querySelector("h3").textContent;
@@ -60,16 +66,12 @@ function copySectionLinkToClipboard(event, hash) {
 		if (isGroupDisplay) {
 			partTitle = subSectionTitle;
 			// On remonte de sous-section en sous-section jusqu'à trouver le titre h3 qui n'a pas la classe "groupDisplay"
-			let currentSubSectionElement = parentSubSectionElement;
-			while (currentSubSectionElement) {
-				const h3Element = currentSubSectionElement.querySelector("h3");
-				if (h3Element && !h3Element.classList.contains("groupDisplay")) {
-					subSectionTitle = h3Element.textContent;
-					subPartTitle = titleElement.textContent;
-					break;
-				}
-				currentSubSectionElement =
-					currentSubSectionElement.previousElementSibling;
+			const h3Element = findPreviousNonGroupDisplaySectionTitle(
+				parentSubSectionElement,
+			);
+			if (h3Element) {
+				subSectionTitle = h3Element.textContent;
+				subPartTitle = titleElement.textContent;
 			}
 		} else {
 			partTitle = titleElement.textContent;
