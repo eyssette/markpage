@@ -1,5 +1,16 @@
 # Changelog
 
+## 5.4.0 (2026-10-16)
+
+### Feat
+
+- **print**: gestion de l'impression du site [(e7aefb4)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/e7aefb445cbff3db1e7f7825b850c90c6a4cd2d9)
+- **search**: paramètre search possible dans l'URL pour lancer directement une recherche d'un terme (en mode lightpad) [(d902572)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/d902572a721639cb4057481c5b6a09f39635a5f6)
+
+### Fix
+
+- **removeMenu**: fix pour éviter un bug en cas d'absence de lien vers la page d'accueil [(476bdec)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/476bdec1172cfb71b34bad6e666912f2286818da)
+
 ## 5.3.3 (2026-10-16)
 
 ### Fix
