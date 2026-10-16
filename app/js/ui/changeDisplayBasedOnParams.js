@@ -129,8 +129,9 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 					behavior: "smooth",
 				});
 				setTimeout(() => {
+					const offsetTop = yaml.pad ? 250 : 150;
 					subSectionElement.parentNode.scrollTop =
-						subSectionElement.offsetTop - 150;
+						subSectionElement.offsetTop - offsetTop;
 				}, 100);
 			} else {
 				if (partElement) {
