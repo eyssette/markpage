@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.3.3 (2026-10-16)
+
+### Fix
+
+- **nav**: fix pour la gestion des liens directs vers une section quand on utilise le Latex [(a7d3e4c)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/a7d3e4c4c0cddbd52a57547549265059759526b2)
+
 ## 5.3.2 (2026-10-15)
 
 ### Fix
