@@ -15,7 +15,6 @@ export function convertNavigationParam(param, markpageData) {
 		// On supprime tous les caractères qui ne sont pas des lettres ou des chiffres
 		// On ne supprime pas les lettres accentuées
 		const sectionTitleParam = normalizeTitle(param.sec);
-		console.log(sectionTitleParam);
 		const sectionTitles = markpageData[2].map((title) => normalizeTitle(title));
 
 		// On cherche l'ID de la section correspondante
