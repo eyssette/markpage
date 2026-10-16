@@ -13,6 +13,7 @@ import { checkScrollListener } from "./checkScrollListener";
 import { checkInitEditor } from "./editor/checkInitEditor";
 import { resizeElements } from "./resize/resizeElements";
 import { convertNavigationParam } from "./convertParam";
+import { handlePrint } from "./handlePrint";
 
 export let params;
 
@@ -282,4 +283,5 @@ export function handleMarkpage(markpageData) {
 	setUpRedirectListener();
 	checkScrollListener();
 	checkInitEditor(params, markpageData);
+	handlePrint();
 }
