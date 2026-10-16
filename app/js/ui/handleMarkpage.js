@@ -40,7 +40,7 @@ export function handleMarkpage(markpageData) {
 
 	// Gestion des maths
 	if (yaml && yaml.maths) {
-		displayMaths();
+		displayMaths(baseURL, hash, markpageData);
 	}
 	// Gestion des add-ons
 	if (yaml && yaml.plugins && yaml.plugins.includes("copycode")) {

@@ -1,8 +1,9 @@
 import { yaml } from "../processMarkdown/yaml";
 import { convertLatexExpressions } from "../processMarkdown/convertLatex";
 import { convertIframeCodesToIframeHTMLElements } from "./iframes";
+import { handleClicks } from "./handleClicks";
 
-export function displayMaths() {
+export function displayMaths(baseURL, hash, markpageData) {
 	const interval = setInterval(() => {
 		if (window.katex) {
 			clearInterval(interval);
@@ -45,6 +46,7 @@ export function displayMaths() {
 			if (yaml.pad) {
 				convertIframeCodesToIframeHTMLElements(document.body, { delay: true });
 			}
+			handleClicks(baseURL, hash, markpageData);
 		}
 	}, 200);
 }
