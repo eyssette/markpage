@@ -14,14 +14,22 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 	const numberOfSections = sectionsTitle.length;
 	const subSectionsData = markpageData[3];
 	let subSectionElement;
+
 	if (param && Object.keys(param).length > 0) {
-		const sectionID = param.sec
-			? param.sec.toString().replace(/#.*/, "")
-			: param.sec;
+		const sectionID = param.sec ? param.sec.toString().replace(/#.*/, "") : 0;
 		const subSectionID = param.subsec
 			? param.subsec.toString().replace(/#.*/, "")
-			: param.subsec;
-		if (subSectionID) {
+			: 1;
+		// on pourrait aussi avoir un paramètre pour distinguer à l'intérieur d'une sous-section, les différentes parties / titres
+		const subSectionPartID = param.part
+			? param.part.toString().replace(/#.*/, "")
+			: "";
+		// On supprime certains paramètres de navigation de l'objet param une fois qu'on les a utilisés pour déterminer l'affichage
+		delete param.part;
+		delete param.groupDisplay;
+		delete param.subpart;
+
+		if (sectionID && subSectionID) {
 			bodyElement.classList.remove("displayHomepage");
 			bodyElement.classList.remove("displaySection");
 			bodyElement.classList.add("displaySubSection");
@@ -78,9 +86,25 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 		}
 
 		// Gestion du scroll vers l'élément cible
+
+		// Si on a un paramètre de partie d'une sous-section, on scrolle vers l'élément correspondant à cette partie (qui est le n-ième titre "h4 ou h5")
+		let partElement;
+		if (subSectionElement && subSectionPartID) {
+			const partIndex = parseInt(subSectionPartID) - 1;
+			const subsectionHeadings =
+				subSectionElement.querySelectorAll("h4, h5, h6");
+			if (
+				subsectionHeadings.length > 0 &&
+				partIndex < subsectionHeadings.length
+			) {
+				partElement = subsectionHeadings[partIndex];
+			}
+		}
 		if (
 			subSectionElement &&
-			((window.innerWidth < 600 && yaml.oneByOne == false) || yaml.pad)
+			((window.innerWidth < 600 && yaml.oneByOne == false) ||
+				yaml.pad ||
+				partElement)
 		) {
 			if (
 				(yaml.padScroll &&
@@ -105,13 +129,27 @@ export function changeDisplayBasedOnParams(param, markpageData) {
 					behavior: "smooth",
 				});
 				setTimeout(() => {
+					const offsetTop = yaml.pad ? 250 : 150;
 					subSectionElement.parentNode.scrollTop =
-						subSectionElement.offsetTop - 150;
+						subSectionElement.offsetTop - offsetTop;
 				}, 100);
 			} else {
-				subSectionElement.scrollIntoView({
-					behavior: "smooth",
-				});
+				if (partElement) {
+					// On scrolle pour que l'élément partElement soit visible tout en haut de la fenêtre
+					window.scrollTo({
+						top: partElement.offsetTop - 20,
+						behavior: "smooth",
+					});
+					// On met en surbrillance l'élément partElement de manière temporaire pour indiquer à l'utilisateur où il se trouve dans la sous-section
+					partElement.classList.add("highlighted");
+					setTimeout(() => {
+						partElement.classList.remove("highlighted");
+					}, 2000);
+				} else {
+					subSectionElement.scrollIntoView({
+						behavior: "smooth",
+					});
+				}
 			}
 		} else {
 			const isFoonoteLink = window.location.href.includes("?footnote");

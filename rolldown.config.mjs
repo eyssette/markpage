@@ -6,6 +6,7 @@ import { createMinifyStylesPlugin } from "./scripts/build/minify-css.mjs";
 import del from "rollup-plugin-delete";
 import livereload from "rollup-plugin-livereload";
 import path from "node:path";
+import { globSync } from "node:fs";
 import { replacePlugin } from "rolldown/plugins";
 import serve from "rollup-plugin-serve";
 import svelte from "rollup-plugin-svelte";
@@ -58,6 +59,20 @@ async function getVisualizerPlugin() {
 	});
 }
 
+// Ajoute des fichiers supplémentaires à surveiller pour le rechargement automatique du serveur de développement
+function watchExtraFiles(patterns) {
+	return {
+		name: "watch-extra-files",
+		buildStart() {
+			for (const pattern of patterns) {
+				for (const file of globSync(pattern)) {
+					this.addWatchFile(path.resolve(file));
+				}
+			}
+		},
+	};
+}
+
 // Configuration de la compilation en ESM au lieu de IIFE (pour avoir un bundle plus léger et plus moderne) : c'est la configuration utilisée par défaut si le navigateur supporte les modules (ce qui est le cas de tous les navigateurs modernes)
 const getEsmConfig = async () => ({
 	input: mainJsFile,
@@ -75,6 +90,12 @@ const getEsmConfig = async () => ({
 
 	// On a déjà minifié les CSS dans le bundle IIFE, donc on ne le fait pas dans le bundle ESM : on rajoute l'option cssAlreadyMinified : true
 	plugins: [
+		development &&
+			watchExtraFiles([
+				`${appFolder}js/plugins/*.js`,
+				`${appFolder}css/**/*.css`,
+			]),
+
 		// Supprime le contenu du dossier dist avant de compiler
 		del({ targets: "dist/*" }),
 
@@ -102,7 +123,8 @@ const getEsmConfig = async () => ({
 				contentBase: [distFolder, "./"],
 				open: !debug,
 			}),
-		development && livereload({ port: PORT_DEV_SERVER, delay: 300 }),
+		development &&
+			livereload({ port: PORT_DEV_SERVER, delay: 300, watch: distFolder }),
 
 		await getVisualizerPlugin(),
 	],

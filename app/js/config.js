@@ -12,7 +12,7 @@ export const shortcuts = [
 
 export const corsProxy = "https://cors.bwa.workers.dev/";
 
-export const CSSthemes = ["colors.css", "digipad.css"];
+export const CSSthemes = ["colors.css", "digipad.css", "light.css"];
 
 // Gestion des add-ons
 export const allowedPlugins = {
@@ -28,6 +28,7 @@ export const allowedPlugins = {
 	},
 	copycode: {
 		js: "js/plugins/copycode.js",
+		css: "js/plugins/copycode.css",
 	},
 	textFit: {
 		js: "js/plugins/textFit.min.js",

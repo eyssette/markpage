@@ -35,6 +35,7 @@ body {
 	overflow-wrap: break-word;
 	background: #f6f8fa;
 	color: #171717;
+	scrollbar-color: #8c97a4 transparent;
 }
 
 #innerBox,
@@ -101,7 +102,7 @@ h1 {
 h2 {
 	text-align: center;
 	flex-grow: 1;
-	width: 100% !important;
+	width: 98% !important;
 }
 
 h2 aside {
@@ -580,12 +581,17 @@ details {
 }
 
 pre {
-	background-color: white;
-	padding: 2em 1.5em;
-	width: fit-content;
-	box-shadow: 1px 1px 1px 1px #aaa;
+	position: relative;
 	margin: 2em auto;
+	padding: 1.5em;
+	overflow: hidden;
 	min-width: 50%;
+	width: fit-content;
+	background-color: white;
+	color: #333;
+	box-shadow: none;
+	border: 1px solid silver;
+	border-radius: 5px;
 }
 
 mark {
@@ -839,6 +845,8 @@ hr:last-child {
 
 	h3 {
 		margin-left: -25px;
+		position: relative;
+		z-index: 1;
 	}
 
 	h3 aside {
@@ -890,7 +898,7 @@ hr:last-child {
 .lightpad #scroll-arrow {
 	left: auto;
 	right: 10px;
-	top: 1.5em;
+	top: 2em;
 }
 
 @media screen and (width <= 500px) {
@@ -910,4 +918,9 @@ main a.footnoteLink:hover,
 /* stylelint-disable-next-line no-descending-specificity */
 main .footnote a:nth-of-type(1):hover {
 	border-bottom: 1px solid #567c9c;
+}
+
+.highlighted {
+	background-color: #ff9;
+	transition: background-color 0.5s ease;
 }

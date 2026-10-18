@@ -1,5 +1,6 @@
 import { yaml } from "../processMarkdown/yaml";
 import { handleMarkpage } from "./handleMarkpage";
+import { leaveExportMode } from "./handlePrint";
 import { convertIframeHTMLelementsToIframeCodes } from "./iframes";
 
 export function createMarkpage(markpageData, urlSourceMarkpage) {
@@ -144,6 +145,7 @@ export function createMarkpage(markpageData, urlSourceMarkpage) {
 		// On ouvre la fenêtre d'impression en PDF
 		setTimeout(() => {
 			window.print();
+			leaveExportMode();
 		}, 100);
 	}
 }

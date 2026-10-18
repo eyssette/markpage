@@ -1,5 +1,106 @@
 # Changelog
 
+## 5.4.0 (2026-10-16)
+
+### Feat
+
+- **print**: gestion de l'impression du site [(e7aefb4)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/e7aefb445cbff3db1e7f7825b850c90c6a4cd2d9)
+- **search**: paramètre search possible dans l'URL pour lancer directement une recherche d'un terme (en mode lightpad) [(d902572)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/d902572a721639cb4057481c5b6a09f39635a5f6)
+
+### Fix
+
+- **removeMenu**: fix pour éviter un bug en cas d'absence de lien vers la page d'accueil [(476bdec)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/476bdec1172cfb71b34bad6e666912f2286818da)
+
+## 5.3.3 (2026-10-16)
+
+### Fix
+
+- **nav**: fix pour la gestion des liens directs vers une section quand on utilise le Latex [(a7d3e4c)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/a7d3e4c4c0cddbd52a57547549265059759526b2)
+
+## 5.3.2 (2026-10-15)
+
+### Fix
+
+- **nav**: suppression des paramètres de navigation interne une fois qu'on les a utilisés pour déterminer l'affichage initial [(3a96313)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/3a96313e21ebf46fb6922525c199346476ffbbd6)
+- **nav**: les écouteurs pour le alt+clic sur les titres doivent pouvoir être remis après certains plugins qui changent le contenu et suppriment les écouteurs du départ [(d797aa9)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/d797aa908e2b90aaa151a2752341fd26f714be05)
+- **nav**: correctif pour les liens vers une section en cas d'utilisation de codes HTML dans les titres [(5ac17a0)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/5ac17a0a7efa1fb79aa6047808b026cfa82fadb5)
+- **css**: titres h3 au premier plan pour éviter les difficultés avec le alt+clic pour récupérer le lien dans le presse-papier [(adcf9aa)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/adcf9aa316800311be968a0333cd117447d4fae0)
+
+### Chore
+
+- refactorisation (extraction de la fonction de normalisation des titres de section) [(07bfe83)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/07bfe8394987b99a70fdaa3b432d2ad59d984083)
+
+## 5.3.1 (2026-10-15)
+
+### Fix
+
+- **scroll**: ajustement du scroll vers une section spécifique [(037a630)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/037a6303e59e83fe278b9cc1a9b6eb22b907eff8)
+- **nav**: possibilité d'avoir un lien vers une section avec groupDisplay + une subpart dans cette section [(90f08b8)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/90f08b8eba2d88105c6ee7c717aba21c291214e8)
+- **nav**: ajout des liens possibles vers une section avec groupDisplay [(91155ca)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/91155ca3dcd07938e803698b3a59ef3425668ba7)
+
+### Chore
+
+- refactorisation de copySectionLinkToClipboard [(f03a2e4)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/f03a2e48dbc5f618437e246788db8b565681b8a1)
+- simplification css [(1fe26e4)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/1fe26e4932eb2e312199c285f242ade471a7680b)
+
+## 5.3.0 (2026-10-15)
+
+### Feat
+
+- **nav**: copie possible du lien vers une section spécifique avec clic+alt sur un titre h2 à h6 [(ff2e342)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/ff2e342d0856fa5580fd39e946a93e840d552961)
+
+## 5.2.0 (2026-10-15)
+
+### Feat
+
+- **nav**: utilisation possible des paramètres dans l'URL pour naviguer vers une section, sous-section, et même partie précise, avec le titre et non l'ID [(0fff9c3)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/0fff9c3a555d2c3d1fd2319bab5482cbde9236fc)
+
+### Chore
+
+- **task**: task build forcé si le fichier script.min.js n'existe pas [(2f51a3f)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/2f51a3f5c2e035e1144221aa45f6a3f02303827b)
+
+## 5.1.2 (2026-10-15)
+
+### Fix
+
+- **css**: scroll-arrow mieux positionnée pour lightpad [(c22ceb8)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/c22ceb8cee155c1d81745720d3967396f59f13ca)
+- **css**: h2 avec une largeur un peu plus petite [(9716ebe)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/9716ebe5e4ce27fdb5ed74ae6a1e6b757f5c4a34)
+- **css**: amélioration titre h1 + searchBar pour lightpad et thème "light" [(c324e39)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/c324e3956b316fd04d008302b4ab0106c3125970)
+
+### Chore
+
+- **task**: tâche ecma-dist lance une tâche de build de script.min.js si le fichier n'existe pas [(33812e2)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/33812e2a1a67fdb5a409340a96fe55fa82b114ab)
+- **rolldown**: ajout d'un watch sur les fichiers dans les plugins pour avoir un livereload aussi quand ces fichiers changent [(dbb3681)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/dbb368176eafe44f59c85076617ab259b9299419)
+
+## 5.1.1 (2026-10-15)
+
+### Fix
+
+- **doc**: référence à Ticképad dans la doc de Lightpad [(82cf214)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/82cf21446f510592a550d44e6205fda6e72004af)
+- **plugin**: on attend le CSS de copycode avant de lancer la création des boutons copycode [(4139bb7)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/4139bb7faea0f2653d338a8cca85da5138b061ab)
+- **doc**: reformulations dans la doc de Lightpad [(d7c5a92)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/d7c5a92b5acd18f5da45f3558b0f9f4bb0991195)
+- **css**: scrollbar et blocs pre améliorés [(b011c7a)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/b011c7ae4fcb4cfc3f96d6866b6707934a4c02ec)
+- **plugin**: plugin copycode / le scroll du bloc "pre" ne déplace pas le bouton "copier" [(144aed9)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/144aed98f80678721342fb1877b59aaac44ded60)
+
+## 5.1.0 (2026-10-15)
+
+### Feat
+
+- **css**: thème "light" [(aac7c7f)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/aac7c7f7d14f25aa87027ac8ce69ee03c174f6b7)
+
+### Fix
+
+- **css**: amélioration titres h2 et h3 pour le thème "light" [(4883e5f)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/4883e5fbdc34923a375c38c28a10b4ac559a9507)
+- **css**: topPosition de la section remise à 0 si on supprime h2 et h3 via les paramètres URL [(507f391)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/507f391b6c41b3224d0d1596721c7e777d37676a)
+- **nav**: on désactive la navigation par le clavier quand on utilise les paramètres dans l'URL pour désactiver les pages h2 ou h3 [(3916ecf)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/3916ecf379a2601af55f9f4e8690d8afcf852d23)
+- **params**: possibilité de supprimer aussi les titres h2 avec un paramètre URL (h2=0) [(3b93b8c)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/3b93b8c72c02313c7e2f247ae5fc4023434c0383)
+- **admonitions**: correction d'un bug avec les admonitions dans des blocs code [(43e6c26)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/43e6c26b971ac5816a79ef8536c6a13c0249b5e6)
+- **admonitions**: gestion des admonitions imbriquées et des admonitions codimd de type spoiler [(147ed1e)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/147ed1e87094cb1c2cb90f76b3106351bc753437)
+- **ci_template**: ajout d'une variable SOURCE_FOLDER que l'on peut surcharger pour déployer Markpage à partir d'un dossier de sources Markdown déterminé [(96a9842)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/96a9842c3e6e416c78edc76f879cc72faaf4caed)
+- **css**: thème colors - border-radius h3 un peu moins important [(340a15b)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/340a15bc37bc926a0a1a790c210c3e8431a9650d)
+- **css**: en mode noColumns, overflow-y pour .sectionContent doit être prioritaire [(75a47a1)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/75a47a10c872fd3858d84643c5a4aeeedfdef1dd)
+- **package**: overrides de version pour la sécurité [(cf388ca)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/cf388ca3a8cdd8e9b3ba78740cfec5ee3a307b60)
+
 ## 5.0.0 (2026-08-26)
 
 ### Fix

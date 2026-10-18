@@ -48,7 +48,6 @@ Des boutons dédiés permettent de formater correctement le texte. De plus il af
 ### Titre du pad
 
 Pour donner un titre à votre pad, faites-le précéder de #.
-Exemple
 
 ```
 # Mon pad d'ERUN
@@ -57,7 +56,6 @@ Exemple
 ### Colonnes
 
 Les titres de colonnes sont précédés de ##.
-Exemple
 
 ```
 ## Bienvenue
@@ -66,7 +64,7 @@ Exemple
 ### Capsules
 
 Les titres de capsules sont précédés de ###.
-Exemple
+
 ```
 ### Comment ça marche ?
 ```
@@ -75,7 +73,6 @@ Exemple
 
 Il faut donc structurer le texte en colonnes et en capsules.
 Et on écrit à l'intérieur.
-Exemple
 
 ```
 # Lightpad
@@ -135,7 +132,7 @@ Pour formater une liste, on commence chaque ligne avec un tiret.
 - poire
 - abricot
 ```
-donne :
+Résultat :
 - pomme
 - poire
 - abricot
@@ -145,10 +142,10 @@ donne :
 Pour indiquer un titre à l'intérieur d'une capsule, on le fait précéder de #### ou de ##### (sous-titre)
 ```
 #### Titre
-##### Sous-tiree
+##### Sous-titre
 Contenu
 ```
-donne :
+Résultat :
 #### Titre
 ##### Sous-titre
 Contenu
@@ -200,7 +197,7 @@ Par exemple :
 ![](https://docs.forge.apps.education.fr/assets/images/brigit_et_komit_transparent.png)
 ```
 
-donne :
+Résultat :
 
 <img width="228" height="256" alt="Brigit, une forgeronne et Komit, un castor, sur une enclume, se font un check" src="assets/img/Brigit_et_Komit_transparent.svg" />
 
@@ -210,7 +207,6 @@ Et le lien est automatiquement formaté !
 ### Vidéos
 Pour insérer une vidéo, on colle simplement le lien d'intégration (iframe).
 Par exemple depuis https://tube-numerique-educatif.apps.education.fr/
-
 
 ```
 <iframe title="Présentation de la Journée du Libre éducatif 2024" width="300" height="215" src="https://tube-numerique-educatif.apps.education.fr/videos/embed/85f97f35-d00c-4aa8-ad51-bcc9135ff8a2" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
@@ -247,7 +243,7 @@ Par exemple :
 ```
 [La doc](https://docs.forge.apps.education.fr/)
 ```
-donne :
+Résultat :
 
 [La doc](https://docs.forge.apps.education.fr/)
 
@@ -255,7 +251,7 @@ donne :
 
 Pour afficher du code sans qu'il ne soit interprété, encadrez-le avec des `.
 
-Exemple 
+ 
 
 ````
 Ceci est du **gras**.
@@ -265,7 +261,7 @@ Ceci est du **gras**.
 ```
 ````
 
-donne :
+Résultat :
 
 Ceci est du **gras**.
 
@@ -297,7 +293,9 @@ theme: digipad
 
 Les thèmes disponibles sont les suivants :
 
-<a href="/" class="selectTheme">base</a> <a href="/?theme=colors" class="selectTheme">colors</a> <a href="/?theme=digipad" class="selectTheme">digipad</a>
+<a href="/" class="selectTheme">base</a> <a href="/?theme=colors" class="selectTheme">colors</a> <a href="/?theme=digipad" class="selectTheme">digipad</a> <a href="/?theme=light" class="selectTheme">light</a>
+
+Le thème `light` est inspiré du thème utilisé par Cyril Iaconelli pour son application [Ticképad](https://tickepad.forge.apps.education.fr/).
 
 On peut aussi ajouter des styles CSS en les définissant dans une balise `<style>` (à placer de préférence à la fin de son document).
 

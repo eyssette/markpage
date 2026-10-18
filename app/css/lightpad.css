@@ -27,6 +27,8 @@ h1 img {
 	height: 1.5em;
 	object-fit: contain;
 	vertical-align: middle;
+	display: inline-block;
+	margin-right: 0.5em;
 }
 
 #initialMessage {
@@ -45,7 +47,15 @@ main {
 	margin-top: -0.75em !important;
 	box-sizing: border-box;
 	width: 95% !important;
+	max-height: 95%;
 }
+
+@media screen and (width >= 1400px) {
+	.sectionContent {
+		max-height: 94%;
+	}
+}
+
 .sectionContent,
 h2 {
 	margin-left: auto;
@@ -175,7 +185,7 @@ h1 span.textFitted {
 		padding-left: 0 !important;
 	}
 	h1 img {
-		margin-right: 0;
+		margin-right: 0.25em;
 	}
 	h1 span.textFitted {
 		padding-right: 80px;

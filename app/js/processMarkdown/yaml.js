@@ -22,7 +22,7 @@ export async function processYAML(markdownContent) {
 	const params = getParams();
 	// Gestion de l'en-tête YAML
 	yaml = { ...defaultYaml };
-	if (params.export != undefined) {
+	if (params.export != undefined || params.print != undefined) {
 		params.singlePage = true;
 		yaml.export = true;
 		document.body.classList.add("export");

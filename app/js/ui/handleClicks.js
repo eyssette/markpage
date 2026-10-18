@@ -6,7 +6,138 @@ import { yaml } from "../processMarkdown/yaml";
 import { handleTags } from "./searchBar/handleTags";
 import { handleSelectElements } from "./searchBar/handleSelectElements";
 
+// Permet de trouver le titre h3 le plus proche en haut qui n'a pas la classe "groupDisplay" (c'est le titre de la sous-section) à partir d'un élément donné (qui peut être un titre h4, h5 ou h6, ou un autre élément à l'intérieur d'une sous-section)
+function findPreviousNonGroupDisplaySectionTitle(element) {
+	let currentElement = element;
+	while (currentElement) {
+		const titleElement = currentElement.querySelector("h3");
+		if (titleElement && !titleElement.classList.contains("groupDisplay")) {
+			return titleElement;
+		}
+		currentElement = currentElement.previousElementSibling;
+	}
+}
+
+// Pour créer un lien vers une section spécifique, il suffit de faire un clic avec la touche alt du clavier sur le titre de la section.
+// Cela va copier dans le presse-papier l'URL de la section, avec les paramètres "sec", "subsec" et éventuellement "part" dans l'URL, et comme valeurs les titres de la section, de la sous-section et de la partie correspondantes.
+// Ces titres sont transformés pour être compatibles avec l'URL (on enlève les espaces, on garde seulement les lettres (éventuellement accentuées) et les chiffres, on met tout en minuscules).
+
+function copySectionLinkToClipboard(event, hash) {
+	const titleElement = event.target;
+	const sectionElement = titleElement.closest("#content > section");
+	const subSectionElement = titleElement.closest(".subSection");
+
+	let sectionTitle = "";
+	let subSectionTitle = "";
+	let partTitle = "";
+	let subPartTitle = "";
+	let isGroupDisplay = false;
+
+	if (sectionElement) {
+		sectionTitle = sectionElement.querySelector("h2").textContent;
+	}
+	if (subSectionElement) {
+		// On vérifie si la sous-section est affichée dans un groupe de sous-sections (avec la classe "groupDisplay")
+		const parentSubSectionElement = event.target.parentElement;
+		isGroupDisplay = parentSubSectionElement.classList.contains("groupDisplay");
+		// Si c'est le cas, on met pour subsectionTitle, le titre h3 le plus proche en haut qui n'a pas la classe "groupDisplay" (c'est le titre de la sous-section)
+		if (isGroupDisplay) {
+			const parentSectionElement = parentSubSectionElement.closest("section");
+			const h3Element =
+				findPreviousNonGroupDisplaySectionTitle(parentSectionElement);
+			if (h3Element) subSectionTitle = h3Element.textContent;
+			partTitle = subSectionElement.querySelector("h3").textContent;
+		} else {
+			subSectionTitle = subSectionElement.querySelector("h3").textContent;
+		}
+	}
+
+	// Si l'élément cliqué est un titre h4, h5 ou h6, c'est le titre de la partie
+	if (
+		titleElement.tagName === "H4" ||
+		titleElement.tagName === "H5" ||
+		titleElement.tagName === "H6"
+	) {
+		// On vérifie si on est dans un groupe de sous-sections (avec la classe "groupDisplay")
+		const parentSubSectionElement = titleElement.closest(".subSection");
+		isGroupDisplay = parentSubSectionElement
+			.querySelector("h3")
+			.classList.contains("groupDisplay");
+		if (isGroupDisplay) {
+			partTitle = subSectionTitle;
+			// On remonte de sous-section en sous-section jusqu'à trouver le titre h3 qui n'a pas la classe "groupDisplay"
+			const h3Element = findPreviousNonGroupDisplaySectionTitle(
+				parentSubSectionElement,
+			);
+			if (h3Element) {
+				subSectionTitle = h3Element.textContent;
+				subPartTitle = titleElement.textContent;
+			}
+		} else {
+			partTitle = titleElement.textContent;
+		}
+	}
+
+	// On transforme les titres pour qu'ils soient compatibles avec l'URL
+	const transformTitleForURL = (title) => {
+		return title
+			.replace(/#.*/, "")
+			.replace(/[^a-zA-Z0-9À-ÿ]/g, "")
+			.toLowerCase();
+	};
+
+	const sectionParam = transformTitleForURL(sectionTitle);
+	const subSectionParam = transformTitleForURL(subSectionTitle);
+	const partParam = transformTitleForURL(partTitle);
+	const subPartParam = transformTitleForURL(subPartTitle);
+
+	// On conserve les autres paramètres de l'URL et on remplace sec, subsec et part
+	const urlObject = new URL(window.location.href);
+	urlObject.hash = hash;
+	for (const [key, value] of [
+		["sec", sectionParam],
+		["subsec", subSectionParam],
+		["part", partParam],
+		["subpart", subPartParam],
+	]) {
+		urlObject.searchParams.delete(key);
+		if (value) urlObject.searchParams.set(key, value);
+	}
+	// On ajoute le paramètre groupDisplay si nécessaire
+	if (isGroupDisplay) {
+		urlObject.searchParams.set("groupDisplay", "true");
+	} else {
+		urlObject.searchParams.delete("groupDisplay");
+	}
+	const url = urlObject.href;
+
+	navigator.clipboard.writeText(url).then(
+		function () {
+			//
+			confirm("Lien copié dans le presse-papier : " + url);
+		},
+		function (err) {
+			console.error(
+				"Erreur lors de la copie du lien dans le presse-papier : ",
+				err,
+			);
+		},
+	);
+}
+
 export function handleClicks(baseURL, hash, markpageData) {
+	// Si c'est un clic avec la touche alt du clavier sur un titre de section, on copie dans le presse-papier l'URL de la section correspondante
+	const clickableTitles = document.querySelectorAll("h2, h3, h4, h5, h6");
+	clickableTitles.forEach(function (title) {
+		title.addEventListener("click", function (event) {
+			if (event.altKey) {
+				event.preventDefault();
+				event.stopPropagation();
+				copySectionLinkToClipboard(event, hash);
+			}
+		});
+	});
+
 	// On détecte les clics sur les liens
 	const links = document.querySelectorAll(".navigationLink");
 	links.forEach(function (link) {

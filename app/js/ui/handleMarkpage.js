@@ -12,6 +12,8 @@ import { setTheme } from "./setTheme";
 import { checkScrollListener } from "./checkScrollListener";
 import { checkInitEditor } from "./editor/checkInitEditor";
 import { resizeElements } from "./resize/resizeElements";
+import { convertNavigationParam } from "./convertParam";
+import { handlePrint } from "./handlePrint";
 
 export let params;
 
@@ -35,15 +37,20 @@ export function handleMarkpage(markpageData) {
 	const hash = window.location.hash.substring(1);
 	const actualURL = window.location.search;
 	params = getParams(actualURL, hash);
+	params = convertNavigationParam(params, markpageData);
 
 	// Gestion des maths
 	if (yaml && yaml.maths) {
-		displayMaths();
+		displayMaths(baseURL, hash, markpageData);
 	}
 	// Gestion des add-ons
 	if (yaml && yaml.plugins && yaml.plugins.includes("copycode")) {
 		const interval = setInterval(() => {
-			if (window.copycode) {
+			// On attend que le script copycode.js et le CSS copycode.css soient chargés avant d'exécuter la fonction copycode()
+			if (
+				window.copycode &&
+				document.querySelector('link[href*="copycode.css"]')
+			) {
 				clearInterval(interval);
 				window.copycode();
 				handleClicks(baseURL, hash, markpageData);
@@ -276,4 +283,5 @@ export function handleMarkpage(markpageData) {
 	setUpRedirectListener();
 	checkScrollListener();
 	checkInitEditor(params, markpageData);
+	handlePrint();
 }

@@ -112,9 +112,10 @@ singlePage: true
 
 Pour changer de thème, il est recommandé d'utiliser l'en-tête yaml, mais vous pouvez aussi utiliser le paramètre `?theme=themeName` dans l'URL.
 
-Pour le moment un seul thème est disponible : le thème colors
+Pour le moment, deux thèmes sont disponibles : le thème `colors` et le thème `light`.
 
 - [voir ce site avec le thème colors](?theme=colors&sec=2&subsec=2)
+- [voir ce site avec le thème light](?theme=light&sec=2&subsec=2)
 - [voir ce site avec le thème par défaut](?sec=2&subsec=2)
 
 #### Styles CSS
@@ -183,6 +184,10 @@ Bloc de texte en Markdown multiligne caché par défaut
 Contenu
 :::
 
+### Lien vers une section spécifique
+
+Pour créer un lien vers une section spécifique, il suffit de faire un clic avec la touche `alt` du clavier sur le titre de la section : cela va copier dans le presse-papier l'URL de la section.
+
 ### Plugins
 
 Vous pouvez utiliser des plugins pour gérer des contenus ou des fonctionnalités spécifiques.
@@ -244,13 +249,6 @@ Rappel de la syntaxe pour un bloc code :
 contenu du bloc code
 ```
 ````
-
-#### TitleLinks
-
-Mot-clé pour ajouter ce plugin : `titleLinks`
-
-Cet add-on permet de partager des liens vers une sous-section spécifique.
-Si on clique sur un titre de niveau 4, 5 ou 6, un lien vers ce titre est copié dans le presse-papier (les titres des autres niveaux existent déjà sous forme de liens dans Markpage).
 
 ## Exemples d'utilisation
 

@@ -28,6 +28,13 @@
 	.singlePage details::details-content {
 		content-visibility: visible !important;
 	}
+
+	.singlePage pre,
+	code {
+		max-width: 100%;
+		overflow-wrap: break-word;
+		text-wrap: pretty;
+	}
 }
 
 .export details::details-content {

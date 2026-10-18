@@ -22,6 +22,14 @@ export function handleSearch(hash, markpageData) {
 
 	const searchInput = document.getElementById("searchInput");
 	searchbarElement.style.display = "block";
+
+	// S'il y a un paramètre search dans l'URL, on le met dans la barre de recherche et on lance la recherche
+	const searchParam = urlParams.get("search");
+	if (yaml && yaml.lightpad && searchParam) {
+		searchInput.value = searchParam;
+		searchText();
+	}
+
 	function searchText() {
 		let sectionsResults = [];
 		let subSectionsResults = [];
