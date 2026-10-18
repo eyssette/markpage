@@ -60,9 +60,11 @@ function copySectionLinkToClipboard(event, hash) {
 	) {
 		// On vérifie si on est dans un groupe de sous-sections (avec la classe "groupDisplay")
 		const parentSubSectionElement = titleElement.closest(".subSection");
-		isGroupDisplay = parentSubSectionElement
-			.querySelector("h3")
-			.classList.contains("groupDisplay");
+		const subSectionGroupTitle =
+			parentSubSectionElement && parentSubSectionElement.querySelector("h3");
+		isGroupDisplay =
+			subSectionGroupTitle &&
+			subSectionGroupTitle.classList.contains("groupDisplay");
 		if (isGroupDisplay) {
 			partTitle = subSectionTitle;
 			// On remonte de sous-section en sous-section jusqu'à trouver le titre h3 qui n'a pas la classe "groupDisplay"
@@ -129,13 +131,20 @@ export function handleClicks(baseURL, hash, markpageData) {
 	// Si c'est un clic avec la touche alt du clavier sur un titre de section, on copie dans le presse-papier l'URL de la section correspondante
 	const clickableTitles = document.querySelectorAll("h2, h3, h4, h5, h6");
 	clickableTitles.forEach(function (title) {
+		// On doit éviter d'ajouter un listener, s'il y en a déjà un, pour éviter d'avoir plusieurs copies du lien dans le presse-papier
+		// Mais on ne peut pas utiliser un attribut data-has-listener, car certains plugins réécrivent le DOM et recopie le HTML existant, voient alors l'attribut data, et ne relance pas alors le listener, alors qu'il doit l'être
+		// Solution : on ajoute un attribut data-has-listener, mais on le supprime juste après avoir ajouté le listener, pour que les plugins qui réécrivent le DOM ne voient pas l'attribut data et relancent le listener
+		if (title.dataset.hasListener) return;
+		title.dataset.hasListener = true;
 		title.addEventListener("click", function (event) {
 			if (event.altKey) {
+				console.log(event);
 				event.preventDefault();
 				event.stopPropagation();
 				copySectionLinkToClipboard(event, hash);
 			}
 		});
+		delete title.dataset.hasListener;
 	});
 
 	// On détecte les clics sur les liens
