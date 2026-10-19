@@ -53,7 +53,6 @@ export function handleMarkpage(markpageData) {
 			) {
 				clearInterval(interval);
 				window.copycode();
-				handleClicks(baseURL, hash, markpageData);
 			}
 		}, 200);
 	}
@@ -68,7 +67,6 @@ export function handleMarkpage(markpageData) {
 					window.processKroki(
 						document.getElementById("initialMessage").innerHTML,
 					);
-				handleClicks(baseURL, hash, markpageData);
 			}
 		}, 200);
 	}
@@ -96,7 +94,6 @@ export function handleMarkpage(markpageData) {
 				document.getElementById("content").innerHTML = window.processText2quiz(
 					document.getElementById("content").innerHTML,
 				);
-				handleClicks(baseURL, hash, markpageData);
 			}
 		}, 200);
 	}
@@ -118,7 +115,6 @@ export function handleMarkpage(markpageData) {
 				document.getElementById("content").innerHTML = window.processChatMD(
 					document.getElementById("content").innerHTML,
 				);
-				handleClicks(baseURL, hash, markpageData);
 			}
 		}, 200);
 	}
@@ -129,7 +125,6 @@ export function handleMarkpage(markpageData) {
 				document.getElementById("content").innerHTML = window.processMyMarkmap(
 					document.getElementById("content").innerHTML,
 				);
-				handleClicks(baseURL, hash, markpageData);
 			}
 		}, 200);
 	}
@@ -140,7 +135,6 @@ export function handleMarkpage(markpageData) {
 				document.getElementById("content").innerHTML = window.processFlashMD(
 					document.getElementById("content").innerHTML,
 				);
-				handleClicks(baseURL, hash, markpageData);
 			}
 		}, 200);
 	}

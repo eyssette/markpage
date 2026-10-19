@@ -1,10 +1,18 @@
-import { showOnlyThisElement } from "./showOnlyThisElement";
-import { changeDisplayBasedOnParams } from "./changeDisplayBasedOnParams";
-import { getParams } from "../utils";
-import { params } from "./handleMarkpage";
-import { yaml } from "../processMarkdown/yaml";
-import { handleTags } from "./searchBar/handleTags";
-import { handleSelectElements } from "./searchBar/handleSelectElements";
+import { showOnlyThisElement } from "./showOnlyThisElement.js";
+import { changeDisplayBasedOnParams } from "./changeDisplayBasedOnParams.js";
+import { getParams } from "../utils.js";
+import { params } from "./handleMarkpage.js";
+import { yaml } from "../processMarkdown/yaml.js";
+import { handleTags } from "./searchBar/handleTags.js";
+import { handleSelectElements } from "./searchBar/handleSelectElements.js";
+
+let hasDocumentClickListener = false;
+let hasInnerBoxMouseListener = false;
+let latestBaseURL = "";
+let latestHash = "";
+let latestMarkpageData;
+let latestDocument;
+let activeYaml;
 
 // Permet de trouver le titre h3 le plus proche en haut qui n'a pas la classe "groupDisplay" (c'est le titre de la sous-section) à partir d'un élément donné (qui peut être un titre h4, h5 ou h6, ou un autre élément à l'intérieur d'une sous-section)
 function findPreviousNonGroupDisplaySectionTitle(element) {
@@ -22,8 +30,7 @@ function findPreviousNonGroupDisplaySectionTitle(element) {
 // Cela va copier dans le presse-papier l'URL de la section, avec les paramètres "sec", "subsec" et éventuellement "part" dans l'URL, et comme valeurs les titres de la section, de la sous-section et de la partie correspondantes.
 // Ces titres sont transformés pour être compatibles avec l'URL (on enlève les espaces, on garde seulement les lettres (éventuellement accentuées) et les chiffres, on met tout en minuscules).
 
-function copySectionLinkToClipboard(event, hash) {
-	const titleElement = event.target;
+function copySectionLinkToClipboard(titleElement, hash) {
 	const sectionElement = titleElement.closest("#content > section");
 	const subSectionElement = titleElement.closest(".subSection");
 
@@ -38,8 +45,8 @@ function copySectionLinkToClipboard(event, hash) {
 	}
 	if (subSectionElement) {
 		// On vérifie si la sous-section est affichée dans un groupe de sous-sections (avec la classe "groupDisplay")
-		const parentSubSectionElement = event.target.parentElement;
-		isGroupDisplay = parentSubSectionElement.classList.contains("groupDisplay");
+		const parentSubSectionElement = titleElement.parentElement;
+		isGroupDisplay = titleElement.classList.contains("groupDisplay");
 		// Si c'est le cas, on met pour subsectionTitle, le titre h3 le plus proche en haut qui n'a pas la classe "groupDisplay" (c'est le titre de la sous-section)
 		if (isGroupDisplay) {
 			const parentSectionElement = parentSubSectionElement.closest("section");
@@ -115,7 +122,6 @@ function copySectionLinkToClipboard(event, hash) {
 
 	navigator.clipboard.writeText(url).then(
 		function () {
-			//
 			confirm("Lien copié dans le presse-papier : " + url);
 		},
 		function (err) {
@@ -127,137 +133,166 @@ function copySectionLinkToClipboard(event, hash) {
 	);
 }
 
-export function handleClicks(baseURL, hash, markpageData) {
-	// Si c'est un clic avec la touche alt du clavier sur un titre de section, on copie dans le presse-papier l'URL de la section correspondante
-	const clickableTitles = document.querySelectorAll("h2, h3, h4, h5, h6");
-	clickableTitles.forEach(function (title) {
-		// On doit éviter d'ajouter un listener, s'il y en a déjà un, pour éviter d'avoir plusieurs copies du lien dans le presse-papier
-		// Mais on ne peut pas utiliser un attribut data-has-listener, car certains plugins réécrivent le DOM et recopie le HTML existant, voient alors l'attribut data, et ne relance pas alors le listener, alors qu'il doit l'être
-		// Solution : on ajoute un attribut data-has-listener, mais on le supprime juste après avoir ajouté le listener, pour que les plugins qui réécrivent le DOM ne voient pas l'attribut data et relancent le listener
-		if (title.dataset.hasListener) return;
-		title.dataset.hasListener = true;
-		title.addEventListener("click", function (event) {
-			if (event.altKey) {
-				console.log(event);
-				event.preventDefault();
-				event.stopPropagation();
-				copySectionLinkToClipboard(event, hash);
-			}
-		});
-		delete title.dataset.hasListener;
-	});
+function getNavigationLinkFromTarget(target) {
+	const headingElement = target.closest("h3");
+	if (headingElement) {
+		const headingLink = headingElement.querySelector(".navigationLink");
+		if (headingLink) return headingLink;
+	}
 
-	// On détecte les clics sur les liens
-	const links = document.querySelectorAll(".navigationLink");
-	links.forEach(function (link) {
-		let listenerElement = link;
-		if (
-			link.parentElement.nodeName == "H3" ||
-			link.parentElement.parentElement.nodeName == "H3"
-		) {
-			listenerElement = link.parentElement;
+	return target.closest(".navigationLink");
+}
+
+function handleDocumentClick(event) {
+	const titleElement = event.target.closest("h2, h3, h4, h5, h6");
+	if (titleElement && event.altKey) {
+		event.preventDefault();
+		event.stopPropagation();
+		copySectionLinkToClipboard(titleElement, latestHash);
+		return;
+	}
+
+	const link = getNavigationLinkFromTarget(event.target);
+	if (!link) return;
+
+	// Empêche le comportement par défaut d'ouverture du lien et récupère au contraire le contenu du lien
+	event.preventDefault();
+	const currentHash = window.location.hash.substring(1) || latestHash;
+	const linkURL = link.href.replace(link.hash, "");
+	let newURL;
+	if (linkURL == latestBaseURL || linkURL + "index.html" == latestBaseURL) {
+		// Si le lien est un lien vers la page d'accueil, on enlève les paramètres "sec" et "subsec" de l'URL et on affiche tout le contenu
+		newURL = latestBaseURL + "#" + currentHash;
+		delete params.sec;
+		delete params.subsec;
+		showOnlyThisElement(undefined, "sections");
+		showOnlyThisElement(undefined, "subsections");
+	} else {
+		// Sinon, on récupère les paramètres "sec" et "subsec" du lien cliqué et on les ajoute à l'URL, puis on affiche la section ou la sous-section correspondante
+		const linkURLWithoutBase = linkURL.replace(latestBaseURL, "");
+		const linkParams = getParams(linkURLWithoutBase, currentHash);
+		Object.assign(params, linkParams);
+		if (!("subsec" in linkParams)) {
+			params.subsec = 1;
 		}
-		listenerElement.addEventListener("click", function (event) {
-			// Empêche le comportement par défaut d'ouverture du lien et récupère au contraire le contenu du lien
-			event.preventDefault();
-			const linkURL = link.href.replace(link.hash, "");
-			let newURL;
-			if (linkURL == baseURL || linkURL + "index.html" == baseURL) {
-				// Si le lien est un lien vers la page d'accueil, on enlève les paramètres "sec" et "subsec" de l'URL et on affiche tout le contenu
-				newURL = baseURL + "#" + hash;
-				delete params.sec;
-				delete params.subsec;
-				showOnlyThisElement(undefined, "sections");
-				showOnlyThisElement(undefined, "subsections");
-			} else {
-				// Sinon, on récupère les paramètres "sec" et "subsec" du lien cliqué et on les ajoute à l'URL, puis on affiche la section ou la sous-section correspondante
-				const linkURLWithoutBase = linkURL.replace(baseURL, "");
-				const linkParams = getParams(linkURLWithoutBase, hash);
-				Object.assign(params, linkParams);
-				if (!("subsec" in linkParams)) {
-					params.subsec = 1;
-				}
-				// Changement de l'historique de l'URL
-				newURL =
-					baseURL +
-					"?" +
-					Object.keys(params)
-						.map(function (key) {
-							return key + "=" + encodeURIComponent(params[key]);
-						})
-						.join("&") +
-					"#" +
-					hash.replace("?footnote", "");
-			}
-			history.pushState({ path: newURL }, "", newURL);
-			changeDisplayBasedOnParams(params, markpageData);
+		// Changement de l'historique de l'URL
+		newURL =
+			latestBaseURL +
+			"?" +
+			Object.keys(params)
+				.map(function (key) {
+					return key + "=" + encodeURIComponent(params[key]);
+				})
+				.join("&") +
+			"#" +
+			currentHash.replace("?footnote", "");
+	}
+	history.pushState({ path: newURL }, "", newURL);
+	changeDisplayBasedOnParams(params, latestMarkpageData);
+}
+
+function handleInnerBoxMouseDown(event) {
+	const innerBox = latestDocument.querySelector("#innerBox");
+	if (!innerBox) return;
+
+	// Liste de tags à ignorer car ils représentent des éléments potentiellement interactifs
+	const ignoredTags = [
+		"IMG",
+		"IFRAME",
+		"BUTTON",
+		"INPUT",
+		"TEXTAREA",
+		"SELECT",
+		"LABEL",
+		"VIDEO",
+		"AUDIO",
+		"CANVAS",
+	];
+	// On ne fait rien si on clique sur un élément potentiellement interactif ou si le clic est à l'intérieur des contenus des colonnes
+	// Pour les liens "A", on traite différement les titres des capsules, sur lesquelles on peut cliquer pour se déplacer avec la souris.
+	if (
+		ignoredTags.includes(event.target.tagName) ||
+		event.target.closest(".subSectionContent, .noSubSections") ||
+		(event.target.tagName == "A" && event.target.parentElement.tagName != "H3")
+	) {
+		return;
+	}
+	let startX = event.clientX;
+	const isModeLightpadNoColums =
+		latestDocument.body.classList.contains("noColumns");
+	let scrollableElement = isModeLightpadNoColums
+		? latestDocument.body.querySelector("#content")
+		: latestDocument.body.querySelector("#innerBox");
+
+	let scrollLeft = scrollableElement.scrollLeft;
+	let isDragging = true;
+
+	// On empêche la sélection de texte au moment de relâcher la souris
+	event.preventDefault();
+
+	function onMouseMove(e) {
+		if (!isDragging) return;
+		let deltaX = e.clientX - startX;
+		scrollableElement.scrollTo({
+			left: scrollLeft - deltaX,
+			behavior: "auto",
 		});
-	});
+	}
+
+	function onMouseUp() {
+		isDragging = false;
+		innerBox.removeEventListener("mousemove", onMouseMove);
+		innerBox.removeEventListener("mouseup", onMouseUp);
+	}
+
+	innerBox.addEventListener("mousemove", onMouseMove);
+	innerBox.addEventListener("mouseup", onMouseUp);
+}
+
+export function setHandleClicksDependencies(dependencies = {}) {
+	if (dependencies.document) {
+		latestDocument = dependencies.document;
+	}
+	if (dependencies.yaml) {
+		activeYaml = dependencies.yaml;
+	}
+}
+
+export function resetHandleClicksState() {
+	hasDocumentClickListener = false;
+	hasInnerBoxMouseListener = false;
+	latestBaseURL = "";
+	latestHash = "";
+	latestMarkpageData = undefined;
+	latestDocument = undefined;
+	activeYaml = undefined;
+}
+
+export function handleClicks(baseURL, hash, markpageData) {
+	latestDocument ??= document;
+	activeYaml ??= yaml;
+	latestBaseURL = baseURL;
+	latestHash = hash;
+	latestMarkpageData = markpageData;
+
+	if (!hasDocumentClickListener) {
+		latestDocument.addEventListener("click", handleDocumentClick);
+		hasDocumentClickListener = true;
+	}
 
 	// Gestion des boutons de filtres dans Lightpad
-	if (yaml.lightpad) {
+	if (activeYaml.lightpad) {
 		handleTags();
 		handleSelectElements();
 	}
 
 	// Possibilité de se déplacer à gauche ou à droite avec un clic maintenu sur la souris
 	// (Dans le mode "pad")
-	if (yaml.pad) {
-		const innerBox = document.querySelector("#innerBox");
-		innerBox.addEventListener("mousedown", function (event) {
-			// Liste de tags à ignorer car ils représentent des éléments potentiellement interactifs
-			const ignoredTags = [
-				"IMG",
-				"IFRAME",
-				"BUTTON",
-				"INPUT",
-				"TEXTAREA",
-				"SELECT",
-				"LABEL",
-				"VIDEO",
-				"AUDIO",
-				"CANVAS",
-			];
-			// On ne fait rien si on clique sur un élément potentiellement interactif ou si le clic est à l'intérieur des contenus des colonnes
-			// Pour les liens "A", on traite différement les titres des capsules, sur lesquelles on peut cliquer pour se déplacer avec la souris.
-			if (
-				ignoredTags.includes(event.target.tagName) ||
-				event.target.closest(".subSectionContent, .noSubSections") ||
-				(event.target.tagName == "A" &&
-					event.target.parentElement.tagName != "H3")
-			) {
-				return;
-			}
-			let startX = event.clientX;
-			const isModeLightpadNoColums =
-				document.body.classList.contains("noColumns");
-			let scrollableElement = isModeLightpadNoColums
-				? document.body.querySelector("#content")
-				: document.body.querySelector("#innerBox");
-
-			let scrollLeft = scrollableElement.scrollLeft;
-			let isDragging = true;
-
-			// On empêche la sélection de texte au moment de relâcher la souris
-			event.preventDefault();
-
-			function onMouseMove(e) {
-				if (!isDragging) return;
-				let deltaX = e.clientX - startX;
-				scrollableElement.scrollTo({
-					left: scrollLeft - deltaX,
-					behavior: "auto",
-				});
-			}
-
-			function onMouseUp() {
-				isDragging = false;
-				innerBox.removeEventListener("mousemove", onMouseMove);
-				innerBox.removeEventListener("mouseup", onMouseUp);
-			}
-
-			innerBox.addEventListener("mousemove", onMouseMove);
-			innerBox.addEventListener("mouseup", onMouseUp);
+	if (activeYaml.pad && !hasInnerBoxMouseListener) {
+		latestDocument.addEventListener("mousedown", function (event) {
+			if (!event.target.closest("#innerBox")) return;
+			handleInnerBoxMouseDown(event);
 		});
+		hasInnerBoxMouseListener = true;
 	}
 }
