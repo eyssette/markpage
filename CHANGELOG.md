@@ -1,5 +1,15 @@
 # Changelog
 
+## 5.4.1 (2026-10-20)
+
+### Fix
+
+- **nav**: autorisation d'une correspondance partielle pour la navigation vers une section spécifique avec un paramètre dans l'URL [(7d079c9)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/7d079c9c20a8f9e51f48a9e5062c6495523360e8)
+- **events**: meilleure gestion des événements de "clic" [(eda28de)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/eda28de636b90e1dca6c348f7e3949a310c894d3)
+- **nav**: correction d'un bug de copySectionLinkToClipboard sur une page sans titre h3 [(7ed3d23)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/7ed3d230f9e3f81229ba1ec9816d4061ec3805a5)
+- **nav**: réglage du scroll vers un élément en mode lightpad [(651bab7)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/651bab7d916d37458f82f545a9a9daafb493680c)
+- **config**: changement proxy cors [(acc2edf)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/acc2edfe49b821d7b4d7588575d208abd21e4c69)
+
 ## 5.4.0 (2026-10-16)
 
 ### Feat
