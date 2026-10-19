@@ -1,27 +1,46 @@
+import { levenshteinDistance } from "../utils";
+
 function normalizeTitle(title) {
 	return title
 		.toString()
-		.replace(/#.*/, "")
 		.replace(/<[^>]*>/g, "")
 		.replace(/&[^;]*;/g, "")
+		.replace(/\\u[0-9a-fA-F]{4}/g, "")
 		.replace(/[^a-zA-Z0-9À-ÿ]/g, "")
 		.toLowerCase();
+}
+
+function getClosestTitleIndex(possibleTitles, searchTitle) {
+	let titleIndex = -1;
+	let minDistance = Infinity;
+	possibleTitles.forEach((title, index) => {
+		const distance = levenshteinDistance(title, searchTitle);
+		if (distance < minDistance) {
+			minDistance = distance;
+			// la distance de levenshtein doit être au maximum de 5 pour que l'on considère que c'est une correspondance
+			//if (minDistance <= 5) {
+			titleIndex = index;
+		}
+	});
+	return titleIndex;
 }
 
 export function convertNavigationParam(param, markpageData) {
 	// Si le paramètre "sec" existe et s'il ne se convertit pas en un nombre, c'est un texte qui désigne une section par son titre. On va donc chercher l'ID de la section correspondante à ce titre.
 	if (param.sec && isNaN(param.sec)) {
 		// On récupère le titre de la section à partir du paramètre "sec"
-		// On supprime tous les caractères qui ne sont pas des lettres ou des chiffres
-		// On ne supprime pas les lettres accentuées
 		const sectionTitleParam = normalizeTitle(param.sec);
 		const sectionTitles = markpageData[2].map((title) => normalizeTitle(title));
 
 		// On cherche l'ID de la section correspondante
 		// C'est le numéro de l'élément qui est dans markpageData[2]
-		const sectionIndex = sectionTitles.findIndex(
+		let sectionIndex = sectionTitles.findIndex(
 			(title) => title === sectionTitleParam,
 		);
+		// Si on n'a pas trouvé une correspondance exacte, on va chercher le titre qui a une distance de Levenshtein minimale avec le titre du paramètre "sec"
+		if (sectionIndex === -1) {
+			sectionIndex = getClosestTitleIndex(sectionTitles, sectionTitleParam);
+		}
 
 		if (sectionIndex !== -1) {
 			// On remplace le paramètre "sec" par l'ID de la section correspondante
@@ -44,9 +63,16 @@ export function convertNavigationParam(param, markpageData) {
 			const subSectionTitles = markpageData[3][sectionID - 1].map(
 				(subSection) => normalizeTitle(subSection[0]),
 			);
-			const subSectionIndex = subSectionTitles.findIndex(
+			let subSectionIndex = subSectionTitles.findIndex(
 				(title) => title === subSectionTitleParam,
 			);
+			// Si on n'a pas trouvé une correspondance exacte, on va chercher le titre qui a une distance de Levenshtein minimale avec le titre du paramètre "subsec"
+			if (subSectionIndex === -1) {
+				subSectionIndex = getClosestTitleIndex(
+					subSectionTitles,
+					subSectionTitleParam,
+				);
+			}
 			if (subSectionIndex !== -1) {
 				// On remplace le paramètre "subsec" par l'ID de la sous-section correspondante
 				param.subsec = subSectionIndex + 1;
@@ -92,6 +118,13 @@ export function convertNavigationParam(param, markpageData) {
 					currentSubSectionIndex++;
 				}
 				if (partIndex === -1) {
+					// Si on n'a pas trouvé une correspondance exacte, on va chercher le titre qui a une distance de Levenshtein minimale avec le titre du paramètre "part"
+					const subSectionTitles = markpageData[3][sectionID - 1].map(
+						(subSection) => normalizeTitle(subSection[0]),
+					);
+					partIndex = getClosestTitleIndex(subSectionTitles, partTitleParam);
+				}
+				if (partIndex === -1) {
 					// Si on ne trouve pas la partie correspondante, on supprime le paramètre "part"
 					delete param.part;
 				} else {
@@ -106,29 +139,32 @@ export function convertNavigationParam(param, markpageData) {
 								(line) => line.startsWith("<h4") || line.startsWith("<h5"),
 							)
 							.map((line) => {
-								// On récupère le texte du titre en supprimant les balises HTML
-								// On supprime tous les caractères qui ne sont pas des lettres ou des chiffres
-								// On ne supprime pas les lettres accentuées
 								return normalizeTitle(line);
 							});
 						partIndex = partTitles.findIndex(
 							(title) => title === subpartTitleParam,
 						);
+						// Si on n'a pas trouvé une correspondance exacte, on va chercher le titre qui a une distance de Levenshtein minimale avec le titre du paramètre "subpart"
+						if (partIndex === -1) {
+							partIndex = getClosestTitleIndex(partTitles, subpartTitleParam);
+						}
 					}
 				}
 			} else {
+				// Si le paramètre "groupDisplay" n'est pas présent,
 				// On recherche dans le contenu de la sous-section les titres des parties (qui sont des titres h4 ou h5)
 				const subSectionContent = subSection[2];
 				const partTitles = subSectionContent
 					.split("\n")
 					.filter((line) => line.startsWith("<h4") || line.startsWith("<h5"))
 					.map((line) => {
-						// On récupère le texte du titre en supprimant les balises HTML
-						// On supprime tous les caractères qui ne sont pas des lettres ou des chiffres
-						// On ne supprime pas les lettres accentuées
 						return normalizeTitle(line);
 					});
 				partIndex = partTitles.findIndex((title) => title === partTitleParam);
+				// Si on n'a pas trouvé une correspondance exacte, on va chercher le titre qui a une distance de Levenshtein minimale avec le titre du paramètre "part"
+				if (partIndex === -1) {
+					partIndex = getClosestTitleIndex(partTitles, partTitleParam);
+				}
 			}
 			if (partIndex !== -1) {
 				// On remplace le paramètre "part" par l'ID de la partie correspondante
