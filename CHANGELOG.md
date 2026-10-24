@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.4.2 (2026-10-25)
+
+### Fix
+
+- **ci**: configuration du déploiement pour Github [(841dd42)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/841dd42fd16e1e7b8ebe60ae362a3aedeed05aa4)
+
 ## 5.4.1 (2026-10-20)
 
 ### Fix
