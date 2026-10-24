@@ -40,7 +40,7 @@ Vous pouvez partir de [ce modèle](https://codimd.apps.education.fr/YGJdl513QfaB
 Codimd est recommandé plutôt que Framapad car sur Codimd, l'éditeur vous “facilitera la vie”.
 Des boutons dédiés permettent de formater correctement le texte. De plus il affiche une coloration syntaxique qui aide à s'y retrouver.
 
-<img width="332" height="102" alt src="/assets/img/exempleCodiMD.svg" />
+<img width="332" height="102" alt src="./assets/img/exempleCodiMD.svg" />
 
 
 ## Structure du pad
@@ -293,7 +293,7 @@ theme: digipad
 
 Les thèmes disponibles sont les suivants :
 
-<a href="/" class="selectTheme">base</a> <a href="/?theme=colors" class="selectTheme">colors</a> <a href="/?theme=digipad" class="selectTheme">digipad</a> <a href="/?theme=light" class="selectTheme">light</a>
+<a href="./" class="selectTheme">base</a> <a href="./?theme=colors" class="selectTheme">colors</a> <a href="./?theme=digipad" class="selectTheme">digipad</a> <a href="./?theme=light" class="selectTheme">light</a>
 
 Le thème `light` est inspiré du thème utilisé par Cyril Iaconelli pour son application [Ticképad](https://tickepad.forge.apps.education.fr/).
 
