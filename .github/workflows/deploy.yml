@@ -1,0 +1,98 @@
+name: Déploiement GitHub Pages
+
+on:
+  push:
+    tags: ["[0-9]+.[0-9]+.[0-9]+"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    # En cas d'échec du build de la doc, le déploiement n'est pas bloqué
+    continue-on-error: true
+    outputs:
+      built: ${{ steps.upload.outcome == 'success' }}
+    steps:
+      - uses: actions/checkout@v4
+      # On vérifie si le fichier docs/.deploy-docs-with-markpage existe pour savoir si on doit générer la documentation avec Markpage
+      - id: check
+        run: |
+          if [ -f docs/.deploy-docs-with-markpage ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.check.outputs.enabled == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - if: steps.check.outputs.enabled == 'true'
+        working-directory: docs
+        run: |
+          mkdir -p .docs_source
+          cp -r * .docs_source
+          mkdir -p markpage
+          wget https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/archive/main/markpage.forge.apps.education.fr-main.tar.bz2 -O markpage.tar.bz2
+          tar -xjf markpage.tar.bz2 --strip-components=1 -C markpage
+          if [ -d "markpage/app" ]; then
+            cp -r .docs_source/* markpage/app/
+          else
+            cp -r .docs_source/* markpage/
+          fi
+          cd markpage
+          npm ci --no-audit
+          npm run build
+          mkdir -p ../website
+          if [ -d "dist" ]; then
+            cp -r dist/* ../website/
+          else
+            rm -rf node_modules .git .gitignore
+            find . -type f ! -name "*.html" ! -name "*.htm" ! -name "*.css" ! -name "*.js" ! -name "*.map" ! -name "*.md" ! -name "*.ico" ! -name "*.png" ! -name "*.jpg" ! -name "*.jpeg" ! -name "*.gif" ! -name "*.svg" ! -name "*.woff" ! -name "*.woff2" ! -name "*.ttf" ! -name "*.eot" -delete
+            find . -type d -empty -delete
+            cp -r . ../website/
+          fi
+      - id: upload
+        if: steps.check.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs
+          path: docs/website
+          retention-days: 1
+
+  build:
+    needs: build-docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit
+      - run: npm run build
+      # GitHub Pages n'accepte qu'un seul artefact : la doc est fusionnée dans dist/docs
+      - if: needs.build-docs.outputs.built == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: docs
+          path: dist/docs
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
