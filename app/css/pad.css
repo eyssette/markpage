@@ -1,6 +1,10 @@
 body {
 	font-size: 0.95em;
 }
+main,
+#content {
+	min-height: 100vh;
+}
 @media screen and (max-width: 834px) {
 	.noSearchBar h1 {
 		padding-top: unset;
@@ -256,6 +260,7 @@ iframe {
 	}
 	#searchBar input {
 		width: 0px;
+		visibility: hidden;
 	}
 	#searchBar input:hover,
 	#searchBar input:not(:placeholder-shown),
@@ -264,6 +269,7 @@ iframe {
 		background: white;
 		border: 1px solid black;
 		margin-right: 10px;
+		visbility: visible;
 	}
 	#content > section {
 		min-width: 105%;

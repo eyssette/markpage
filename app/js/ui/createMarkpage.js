@@ -139,7 +139,9 @@ export function createMarkpage(markpageData, urlSourceMarkpage) {
 		initialMessageElement.style.display = "none";
 	}
 	mainElement.innerHTML = convertIframeHTMLelementsToIframeCodes(sectionsHTML);
-	footerContentElement.innerHTML = footerHTML;
+	if (!yaml.pad) {
+		footerContentElement.innerHTML = footerHTML;
+	}
 	handleMarkpage(markpageData);
 	if (yaml.export) {
 		// On ouvre la fenêtre d'impression en PDF

@@ -1,8 +1,15 @@
 import { yaml } from "../processMarkdown/yaml";
 
 const arrow = document.getElementById("scroll-arrow");
+let isFirstCheck = true;
 
 function checkScroll() {
+	// Si c'est la première fois qu'on appelle cette fonction, on ne fait rien, pour éviter que l'arrow disparaisse au chargement de la page
+	if (isFirstCheck) {
+		isFirstCheck = false;
+		return;
+	}
+
 	let scrollable = 0;
 	let scrolled = 0;
 
