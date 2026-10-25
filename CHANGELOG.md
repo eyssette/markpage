@@ -1,5 +1,12 @@
 # Changelog
 
+## 5.4.3 (2026-10-25)
+
+### Fix
+
+- **perf**: optimisations pour Lightpad (score Lighthouse) [(7d6a2c6)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/7d6a2c6e03749bfc9bae9997d9a367134466faa3)
+- **md**: chemin relatif pour certaines URL [(cc3937a)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/cc3937a7e11c545550ce6f4c8e358eb4a50a3eb2)
+
 ## 5.4.2 (2026-10-25)
 
 ### Fix

@@ -4,7 +4,7 @@
 export const APP_NAME = "markpage";
 // Le numéro de version est automatiquement mis à jour lors d'un bump de version.
 // NE PAS MODIFIER MANUELLEMENT
-export const APP_VERSION = "5.4.2";
+export const APP_VERSION = "5.4.3";
 // On peut forcer manuellement le service worker à se réinstaller et à recharger les caches en changeant la version ci-dessous.
 export const SW_VERSION = "0";
 
