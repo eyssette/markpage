@@ -36,6 +36,7 @@ body {
 	background: #f6f8fa;
 	color: #171717;
 	scrollbar-color: #8c97a4 transparent;
+	visibility: hidden;
 }
 
 #innerBox,

@@ -32,6 +32,17 @@ function setUpRedirectListener() {
 	});
 }
 
+// Fonction pour rendre visible le contenu de la page après que tout le contenu a été chargé et traité
+let contentVisible = false;
+// Variable pour indiquer si on doit différer l'affichage du contenu jusqu'à ce que tout soit prêt (par exemple, si on attend le chargement d'un plugin)
+let deferContentDisplay = false;
+function makeContentVisible() {
+	if (!contentVisible) {
+		document.body.style.visibility = "visible";
+		contentVisible = true;
+	}
+}
+
 export function handleMarkpage(markpageData) {
 	const baseURL = window.location.origin + window.location.pathname;
 	const hash = window.location.hash.substring(1);
@@ -45,18 +56,21 @@ export function handleMarkpage(markpageData) {
 	}
 	// Gestion des add-ons
 	if (yaml && yaml.plugins && yaml.plugins.includes("copycode")) {
+		deferContentDisplay = true;
 		const interval = setInterval(() => {
 			// On attend que le script copycode.js et le CSS copycode.css soient chargés avant d'exécuter la fonction copycode()
 			if (
-				window.copycode &&
+				typeof window.copycode === "function" &&
 				document.querySelector('link[href*="copycode.css"]')
 			) {
 				clearInterval(interval);
 				window.copycode();
+				makeContentVisible();
 			}
 		}, 200);
 	}
 	if (yaml && yaml.plugins && yaml.plugins.includes("kroki")) {
+		deferContentDisplay = true;
 		const interval = setInterval(() => {
 			if (window.processKroki) {
 				clearInterval(interval);
@@ -67,6 +81,7 @@ export function handleMarkpage(markpageData) {
 					window.processKroki(
 						document.getElementById("initialMessage").innerHTML,
 					);
+				makeContentVisible();
 			}
 		}, 200);
 	}
@@ -88,12 +103,14 @@ export function handleMarkpage(markpageData) {
 		handleLinks(linksWithNoLightbox);
 	}
 	if (yaml && yaml.plugins && yaml.plugins.includes("text2quiz")) {
+		deferContentDisplay = true;
 		const interval = setInterval(() => {
 			if (window.processText2quiz) {
 				clearInterval(interval);
 				document.getElementById("content").innerHTML = window.processText2quiz(
 					document.getElementById("content").innerHTML,
 				);
+				makeContentVisible();
 			}
 		}, 200);
 	}
@@ -109,32 +126,38 @@ export function handleMarkpage(markpageData) {
 		}, 200);
 	}
 	if (yaml && yaml.plugins && yaml.plugins.includes("chatmd")) {
+		deferContentDisplay = true;
 		const interval = setInterval(() => {
 			if (window.processChatMD) {
 				clearInterval(interval);
 				document.getElementById("content").innerHTML = window.processChatMD(
 					document.getElementById("content").innerHTML,
 				);
+				makeContentVisible();
 			}
 		}, 200);
 	}
 	if (yaml && yaml.plugins && yaml.plugins.includes("myMarkmap")) {
+		deferContentDisplay = true;
 		const interval = setInterval(() => {
 			if (window.processMyMarkmap) {
 				clearInterval(interval);
 				document.getElementById("content").innerHTML = window.processMyMarkmap(
 					document.getElementById("content").innerHTML,
 				);
+				makeContentVisible();
 			}
 		}, 200);
 	}
 	if (yaml && yaml.plugins && yaml.plugins.includes("flashmd")) {
 		const interval = setInterval(() => {
+			deferContentDisplay = true;
 			if (window.processFlashMD) {
 				clearInterval(interval);
 				document.getElementById("content").innerHTML = window.processFlashMD(
 					document.getElementById("content").innerHTML,
 				);
+				makeContentVisible();
 			}
 		}, 200);
 	}
@@ -144,12 +167,22 @@ export function handleMarkpage(markpageData) {
 		yaml.plugins &&
 		yaml.plugins.includes("titleLinks")
 	) {
+		deferContentDisplay = true;
 		const interval = setInterval(() => {
 			if (window.titleLinks) {
 				clearInterval(interval);
 				window.titleLinks();
+				makeContentVisible();
 			}
 		}, 200);
+	}
+
+	if (!deferContentDisplay) {
+		makeContentVisible();
+	} else {
+		setTimeout(() => {
+			makeContentVisible();
+		}, 1000);
 	}
 
 	// S'il y a un paramètre dans l'URL pour définir un thème, on définit le thème via ce paramètre
