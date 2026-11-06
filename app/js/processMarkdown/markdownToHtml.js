@@ -123,7 +123,7 @@ function processAdmonition(text, level) {
 			);
 			// On récupère les informations de l'admonition qui sont dans la première ligne
 			// On récupère le type de l'admonition, l'effet collapsible s'il est utilisé, et le titre de l'admonition s'il est utilisé
-			const getAdmonitionInfosRegex = /:::(\w+)( collapsible)?( .*)?/;
+			const getAdmonitionInfosRegex = /:::([^\s:]+)( collapsible)?( .*)?/;
 			const admonitionFirstLine = admonition.slice(0, admonition.indexOf("\n"));
 			const admonitionInfos = admonitionFirstLine.match(
 				getAdmonitionInfosRegex,
@@ -165,7 +165,7 @@ function processAdmonition(text, level) {
 				);
 				// On convertit le contenu de l'admonition en HTML
 				const admonitionHTML = isCollapsible
-					? `<div class="admonition ${typeAdmonition}"><details><summary class="admonitionTitle">${titleAdmonition}</summary><div class="admonitionContent">\n${contentAdmonition}\n</div></details></div>\n`
+					? `<div class="admonition collapsible ${typeAdmonition}"><details><summary class="admonitionTitle">${titleAdmonition}</summary><div class="admonitionContent">\n${contentAdmonition}\n</div></details></div>\n`
 					: `<div class="admonition ${typeAdmonition}"><div class="admonitionTitle">${titleAdmonition}</div><div class="admonitionContent">\n${contentAdmonition}\n</div></div>\n`;
 
 				// On remplace l'occurrence trouvée
