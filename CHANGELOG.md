@@ -1,5 +1,16 @@
 # Changelog
 
+## 5.4.4 (2026-11-07)
+
+### Fix
+
+- **markdown**: meilleure gestion des admonitions [(bd5b66f)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/bd5b66fa58e6e5f616ae2b9ae30695af616e2ba1)
+- **perf**: amélioration du score de CLS (Cumulative Layout Shift) [(05108ae)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/05108aed10fa9b5e0df68d90cdbd6f2243f173a3)
+
+### Chore
+
+- **ai**: update des fichiers pour les agents IA [(3d8d237)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/3d8d2374fc5681493fe932e02388db68e6aa8eed)
+
 ## 5.4.3 (2026-10-25)
 
 ### Fix
