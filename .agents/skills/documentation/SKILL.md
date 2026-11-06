@@ -2,7 +2,6 @@
 description: "Rédiger de la documentation technique ou utilisateur. À utiliser pour commencer une fonction ou un script, pour expliquer comment un module fonctionne, pour créer un tutoriel, une notice d'utilisation, ou compléter le README."
 name: "documentation"
 argument-hint: "<sujet> <public>"
-agent: "agent"
 ---
 
 # Documentation
@@ -77,11 +76,24 @@ Quand l'utilisateur choisit `Message ou section de documentation utilisateur` :
 - Si la documentation implique un changement de comportement, ne pas documenter un état supposé : s'aligner sur le comportement réel.
 - Si un texte visible utilisateur change dans l'application elle-même, vérifier s'il relève de l'i18n du projet.
 
-## Validation attendue
+## Validation attendue (boucle validation-correction)
 
-- Relire le texte produit pour supprimer la paraphrase, les répétitions et les détails inutiles.
-- Vérifier que le contenu répond bien au public choisi au début.
-- Si un fichier du dépôt a été modifié, exécuter `npx task lint:all` si la modification peut être concernée par les validations documentaires ou HTML du projet.
+Après avoir produit la documentation, relis le texte et corrige les écarts avant de considérer la tâche terminée. Répète cette boucle jusqu'à ce que tous les points soient satisfaits :
+
+- [ ] Relire le texte produit pour supprimer la paraphrase, les répétitions et les détails inutiles.
+- [ ] Vérifier que le contenu répond bien au public choisi au début.
+- [ ] Corriger tout écart détecté, puis relire à nouveau.
+
+### Checklist copiable
+
+Colle cette checklist dans ta réponse et coche chaque point au fur et à mesure :
+
+- [ ] Type de documentation identifié (technique ou utilisateur) et confirmé avec l'utilisateur si nécessaire
+- [ ] Public visé clair
+- [ ] Contenu rédigé selon la branche correspondante (1 ou 2)
+- [ ] Conformité AGENTS.md vérifiée (style concis, français, périmètre limité)
+- [ ] Relecture effectuée : pas de paraphrase, pas de répétitions, pas de détails inutiles
+- [ ] Résumé de sortie fourni (type, public, fichiers modifiés, validations exécutées)
 
 ## Format de sortie attendu
 

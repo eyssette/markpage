@@ -2,7 +2,6 @@
 description: "Corriger un bug JavaScript. À utiliser pour identifier, résoudre des erreurs ou des comportements inattendus dans du code JS, réparer des fonctions ou des modules, et s'assurer que le code fonctionne comme prévu."
 name: "fix-this"
 argument-hint: "<description précise du bug>"
-agent: "agent"
 ---
 
 # Fix This
@@ -23,19 +22,20 @@ Si une information critique manque, pose une question courte avant de modifier l
 
 ## Procédure obligatoire
 
-1. Reproduire le bug.
-2. Écrire ou adapter un test qui échoue et démontre clairement le bug.
-3. Appliquer le correctif minimal dans le code existant (pas de refactor hors sujet).
-4. Vérifier que le test de reproduction passe.
-5. Exécuter les validations du projet dans cet ordre :
-	- `npx task lint:all`
-	- `npx task tests:unit`
-	- `npx task ecma:source` si la syntaxe touchée peut impacter la compatibilité
-6. Résumer : cause racine, correctif, tests ajoutés/modifiés, risques restants.
+Suis cette checklist et coche chaque étape au fur et à mesure :
+
+- [ ] Bug reproduit
+- [ ] Test de reproduction écrit (échoue)
+- [ ] Correctif minimal appliqué (pas de refactor hors sujet)
+- [ ] Test de reproduction passe
+- [ ] `npx task lint:file:all -- <fichier>` (pour les fichiers touchés) OK
+- [ ] `npx task tests:unit` OK
+- [ ] `npx task ecma:source` OK (si pertinent)
+- [ ] Résumé fourni (cause racine, correctif, tests, risques)
 
 ## Qualité du code
 
-- Suivre les bonnes pratiques modernes, en restant compatible avec la version ECMAScript cible du projet (voir `ECMA_VERSION` dans `rolldown.config.mjs`, `Taskfile.yml`, et `oxlint.config.mjs`).
+- Suivre les bonnes pratiques modernes, en restant compatible avec la version ECMAScript cible du projet (es2020).
 - Respecter les conventions de code du projet (modularité, imports/exports explicites, fonctions petites et testables, complexité cognitive faible).
 - En javascript, éviter au maximum les fonctions qui peuvent avoir des effets de bord ou dépendre de l'état global. Préférer les fonctions pures et les structures de données immuables.
 - Documenter les fonctions et classes avec des commentaires clairs et concis, en français, sauf demande contraire.
@@ -51,7 +51,7 @@ Si une information critique manque, pose une question courte avant de modifier l
 
 ## Format de sortie attendu
 
-- Corriger le bug : si le mode "agent" n'est pas activé, demander à l'utilisateur de l'activer pour pouvoir appliquer le correctif.
+- Si le mode "agent" n'est pas activé, demander à l'utilisateur de l'activer avant d'appliquer le correctif.
 - Fournir un résumé clair de la correction apportée, sans verbosité inutile.
 
 ## Rappels de style

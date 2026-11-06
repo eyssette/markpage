@@ -1,8 +1,7 @@
 ---
 description: "Réaliser une revue de code du code sélectionné, en respectant AGENTS.md et les bonnes pratiques. À utiliser pour analyser la qualité, la sécurité ou la conformité d'un bloc de code. Par exemple : « critique ce code », « vérifie si mon script est propre », « analyse ce commit », « analyse cette proposition de modification », « examine cette branche » ou « donne-moi ton avis sur cette implémentation »."
 name: "review-this"
-argument-hint: "<code à analyser>>"
-agent: "agent"
+argument-hint: "<code à analyser>"
 ---
 
 # Review This
@@ -64,8 +63,8 @@ Si un axe n'est pas applicable au code sélectionné, l'indiquer brièvement au 
 	- Si le code sélectionné est un dossier, identifier les fichiers JS et exécuter le script sur chacun d'eux.
 	- Si le code sélectionné est une branche, identifier les fichiers modifiés et exécuter le script sur chacun d'eux.
 2. Interpréter les résultats du script de revue :
-	- formatage mal fait : indiquer de lancer la commande `npx task:format` pour corriger le formatage
-	- problèmes de lint : s'il y a moins de 30 problèmes indiqués dans le rapport, lance la commande `npx oxlint --config oxlint.config.mjs --report-unused-disable-directives-severity "warn" "$FILE_PATH" -f stylish` pour obtenir le détail des problèmes et les analyser.
+	- formatage mal fait : indiquer de lancer la commande `npx task:format:file -- <file_path>` pour corriger le formatage d'un fichier.
+	- problèmes de lint : s'il y a des problèmes de lint et que le nombre de problèmes est raisonnable (par exemple moins de 30), lance la commande `npx oxlint --config oxlint.config.mjs --report-unused-disable-directives-severity "warn" "$FILE_PATH" -f stylish` pour obtenir le détail des problèmes et les analyser.
 		- ATTENTION : n'oublie pas de lancer cette tâche dès qu'il y a des problèmes de lint et moins de 30 problèmes, car le rapport de revue initial ne fournit pas le détail des problèmes.
 	- incompatibilité ECMAScript : indiquer qu'il y a un problème de compatibilité ECMAScript et qu'il faut corriger le code pour respecter la version cible du projet.
 	- absence de test, échec de test, ou couverture insuffisante : indiquer qu'il faut ajouter ou corriger les tests unitaires pour sécuriser le code. Préciser les fonctions à tester en priorité.

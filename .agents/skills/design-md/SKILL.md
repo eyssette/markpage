@@ -2,7 +2,6 @@
 name: design-md
 description: Créer ou modifier un fichier DESIGN.md conforme à la spécification DESIGN.md (identité visuelle, couleurs, typographie, espacements, arrondis, composants), en visant la simplicité et l'accessibilité, et en guidant l'utilisateur pas à pas, avec des questions simples et non techniques. À utiliser dès que l'utilisateur veut créer, générer ou remplir un DESIGN.md, une "charte graphique", une "identité visuelle", un "design system" — même s'il ne connaît pas le vocabulaire technique du design ou du développement.
 argument-hint: "Taper sur Entrée pour créer le fichier DESIGN.md"
-agent: "agent"
 ---
 
 # Générateur de DESIGN.md, pas à pas
@@ -64,6 +63,21 @@ Suivre cet ordre, qui correspond à l'ordre des sections du DESIGN.md final.
 
 Sauter une section si l'utilisateur indique clairement qu'elle n'est pas pertinente pour son projet (dans ce cas, elle sera listée dans `omitted` — voir plus bas).
 
+**Checklist copiable** — colle-la dans ta réponse et coche chaque étape au fil de l'entretien pour suivre ta progression :
+
+```
+- [ ] Vérifier si `.plan/DESIGN.md` existe déjà (créer ou mettre à jour ?)
+- [ ] 1. Overview : nom, description, public, image/sites d'inspiration ou ambiance
+- [ ] 2. Colors : valider la palette ou recueillir une couleur précise (vérifier l'accessibilité)
+- [ ] 3. Typography : polices + taille de confort du texte
+- [ ] 4. Layout : densité (spacing)
+- [ ] 5. Elevation & Depth : relief ou plat
+- [ ] 6. Shapes : forme des coins (rounded)
+- [ ] 7. Components : composants souhaités (auto ou manuel)
+- [ ] 8. Do's and Don'ts : règles à valider + règles propres de l'utilisateur
+- [ ] Construire le fichier final et vérifier le format (voir « Construire le fichier final »)
+```
+
 ### 1. Overview (identité et ambiance)
 
 - Demander le **nom** du projet (texte libre) et une **description courte** (1-2 phrases).
@@ -71,7 +85,7 @@ Sauter une section si l'utilisateur indique clairement qu'elle n'est pas pertine
 - Demander à l'utilisateur s'il a une image (capture d'écran) à donner qui pourrait servir d'inspiration, ou l'adresse d'un ou deux sites dont il apprécie le design : si c'est le cas, consulter et analyser ces images ou sites pour en extraire les choix par défaut et pour pouvoir proposer pour chaque question quelque chose qui s'approche de ces images ou sites.
 - Si l'utilisateur n'a pas donné d'images ou de sites, demander l'**ambiance générale** en une question à choix : par exemple "Sobre et professionnel", "Chaleureux et humain", "Moderne et minimaliste", "Ludique et coloré" (ce sont les 4 préréglages de `./references/style-presets.md` — les décrire en une formule parlante plutôt que par leur nom de code). C'est la réponse la plus structurante : elle détermine le préréglage utilisé pour tout le reste, sauf si l'utilisateur précise ensuite des couleurs ou polices différentes.
 
-Rédiger ensuite un paragraphe de présentation (section Overview) à partir de ces réponses, Sans jargon.
+Rédiger ensuite un paragraphe de présentation (section Overview) à partir de ces réponses, sans jargon.
 
 ### 2. Colors
 
@@ -90,7 +104,7 @@ Demander à l'utilisateur la ou les deux polices principales qu'il souhaite util
 
 Vérifier que la police est simple, lisible et accessible, et qu'il s'agit d'une police libre de droits.
 
-Demander ensuite la taille de confort du texte : "Standard", "Confortable / grand" (Aéré), "Compact" (Dense) — ajuster l'échelle typographique commune en conséquence (voir references/style-presets.md).
+Demander ensuite la taille de confort du texte : "Standard", "Confortable / grand" (Aéré), "Compact" (Dense) — ajuster l'échelle typographique commune en conséquence (voir `./references/style-presets.md`).
 
 ### 4. Layout
 

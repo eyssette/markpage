@@ -2,7 +2,6 @@
 name: css
 description: Écrire ou vérifier du CSS. Vérification du respect des bonnes pratiques et vérification de la compatibilité Baseline 2020. À utiliser dès qu'on veut écrire, éditer, relire ou auditer du style CSS.
 argument-hint: "<fichier CSS à vérifier>"
-agent: "agent"
 ---
 
 # Bonnes pratiques CSS et compatibilité Baseline 2020
@@ -11,29 +10,17 @@ L'objectif est de **produire** ou de **vérifier** du CSS donné en entrée.
 
 ## IMPORTANT : Workflow
 
-### 1/ Vérification de la présence d'un design de référence
-Il faut d'abord vérifier s'il existe un fichier `.plan/DESIGN.md` dans le projet.
-- Si oui, il faut demander à l'utilisateur s'il veut l'utiliser comme référence pour la vérification du CSS.
-- Si non, il faut demander à l'utilisateur s'il veut d'abord créer un fichier `.plan/DESIGN.md` avant de continuer, et utiliser alors la skill `design-md` pour générer un plan de design initial.
+Suivre cette checklist :
 
-### 2/ Tâche à identifier : produire ou vérifier du CSS
-Ensuite, il faut voir si l'utilisateur veut **produire** du CSS ou **vérifier** du CSS existant.
-
-### 3/ Workflow pour chaque tâche
-
-#### Cas 1 : S'il faut **produire** du CSS
-- écrire le CSS en respectant les règles de bonnes pratiques ci-dessous,
-  - écrire en priorité le CSS dans le fichier `app/css/style.css`
-  - s'il faut découper le CSS, créer un fichier par composant/layout dans `app/css/components/` ou `app/css/layouts/` et importer chaque fichier à la suite au début de `app/js/main.js`.
-- vérifier la compatibilité la Baseline 2020, avec le script python fourni (`check_baseline_css.py` dans `references/scripts/`).
-
-#### Cas 2 : S'il faut **vérifier** du CSS existant :
-- vérifier que les règles de bonnes pratiques ci-dessous sont respectées,
-- vérifier la compatibilité la Baseline 2020, avec le script python fourni (`check_baseline_css.py` dans `references/scripts/`).
-- écrire un rapport de vérification détaillé, avec les problèmes détectés et les solutions possibles dans un fichier. `.report/css-audit/YYYY-MM-DD-HHMMSS.md` (où `YYYY-MM-DD-HHMMSS` est la date et l'heure de l'audit).
-- en cas de problèmes :
-  - Si les problèmes sont simples, proposer des corrections directes.
-  - Si les problèmes sont nombreux ou complexes, proposer un plan de correction étape par étape et demander à l'utilisateur s'il veut corriger ou ignorer chaque problème, en avançant petit à petit et sous le contrôle de l'utilisateur.
+- [ ] Vérifier la présence de `.plan/DESIGN.md` et demander à l'utilisateur s'il veut l'utiliser (ou le créer via la SKILL `design-md`)
+- [ ] Identifier la tâche : produire ou vérifier du CSS
+- [ ] (Production) Écrire le CSS dans `app/css/styles.css` (ou découper par composant dans `app/css/components/` / `app/css/layouts/`). Importer les fichiers CSS dans `app/js/main.mjs` dans l'ordre logique.
+- [ ] (Vérification) Suivre les étapes suivantes :
+  - [ ] Vérifier la compatibilité Baseline 2020 avec `python3 ./agents/skills/css/scripts/check_baseline_css.py <fichier.css>`
+  - [ ] Signaler chaque avertissement du script à l'utilisateur et demander corriger/ignorer
+  - [ ] Vérifier le respect des bonnes pratiques CSS
+  - [ ] Écrire le rapport dans `.report/css-audit/YYYY-MM-DD-HHMMSS.md` avec les problèmes détectés et les solutions possibles
+  - [ ] Proposer une correction directe ou un plan de correction étape par étape si les problèmes sont nombreux ou complexes, et demander à l'utilisateur s'il veut corriger ou ignorer chaque problème, en avançant petit à petit et sous le contrôle de l'utilisateur.
 
 ## Objectifs et règles de base
 

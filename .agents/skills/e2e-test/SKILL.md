@@ -1,8 +1,7 @@
 ---
-description: "Créer un test end-to-end Gherkin et ses step definitions CodeceptJS. À utiliser pour automatiser des scénarios de bout en bout qui simulent un parcours utilisateur réel, pour vérifier le comportement attendu et s'assurer que l'interface fonctionne correctement."
+description: "Créer un test end-to-end Gherkin et ses step definitions CodeceptJS pour couvrir un parcours utilisateur réel. À utiliser quand l'utilisateur demande d'écrire un test E2E, d'ajouter un scénario ou des features Gherkin, de couvrir une fonctionnalité de reproduire un bug ou de vérifier un comportement attendu de l'interface."
 name: "e2e-test"
-argument-hint: "<scénario> | <fonctionnalité attendue>| <bug qui ne doit pas apparaître>"
-agent: "agent"
+argument-hint: "<scénario> | <fonctionnalité attendue> | <bug qui ne doit pas apparaître>"
 ---
 
 # E2E Test
@@ -31,7 +30,7 @@ Si le parcours ou le résultat attendu n'est pas assez clair, pose une seule que
 6. Si le scénario sert à itérer localement sur un seul cas, ajouter le tag `@CURRENT` pendant l'itération.
 7. Vérifier que le scénario décrit une intention utilisateur et non des détails DOM, CSS ou implémentation interne.
 8. Exécuter les validations du projet dans cet ordre :
-	- `npx task lint:all`
+	- `npx task lint:file:all -- <chemin_du_fichier>` pour les fichiers touchés
 	- `npx task tests:e2e:current` si un scénario `@CURRENT` a été préparé
 	- sinon `npx task tests:e2e`
 9. Résumer : parcours couvert, fichiers créés/modifiés, steps ajoutées ou réutilisées, validations exécutées.

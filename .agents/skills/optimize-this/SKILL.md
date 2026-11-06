@@ -2,7 +2,6 @@
 description: "Optimiser une fonction JavaScript. À utiliser pour améliorer la performance, la rapidité ou la consommation de ressources d'un code, pour que l'application s'exécute plus vite et demande moins de mémoire, tout en conservant le même comportement observable."
 name: "optimize-this"
 argument-hint: "<fonction à optimiser> [symptôme observé ou gains attendus]"
-agent: "agent"
 ---
 
 # Optimize This
@@ -20,18 +19,19 @@ Prends l'argument utilisateur comme source principale :
 
 Si la cible ou le gain recherché n'est pas clair, pose une seule question courte avant de modifier le code.
 
-## Procédure obligatoire
+## Procédure
 
-1. Comprendre le comportement actuel de la fonction et le chemin d'exécution qui coûte le plus.
-2. Identifier l'optimisation la plus probable avec le plus petit changement possible.
-3. Verrouiller le comportement avec des tests existants ou ajustés si nécessaire.
-4. Appliquer l'optimisation sans dégrader inutilement la lisibilité ni introduire de complexité accidentelle.
-5. Vérifier que le comportement reste identique.
-6. Exécuter les validations du projet dans cet ordre :
-	- `npx task lint:all`
-	- `npx task tests:unit`
-	- `npx task ecma:source` si la syntaxe touchée peut impacter la compatibilité
-7. Résumer : coût ciblé, optimisation appliquée, compromis éventuels, validations exécutées.
+Suis cette checklist et coche chaque étape au fur et à mesure :
+
+- [ ] Comprendre le comportement actuel et le chemin d'exécution le plus coûteux
+- [ ] Identifier l'optimisation la plus probable avec le plus petit changement possible
+- [ ] Verrouiller le comportement avec des tests existants ou ajustés
+- [ ] Appliquer l'optimisation sans dégrader la lisibilité et sans introduire trop de complexité ou d'abstraction
+- [ ] Vérifier que le comportement reste identique
+- [ ] `npx task lint:file:all -- <chemin_du_fichier>` sur les fichiers touchés
+- [ ] `npx task tests:unit`
+- [ ] `npx task ecma:source` si la syntaxe touchée peut impacter la compatibilité
+- [ ] Résumer : coût ciblé, optimisation appliquée, compromis, validations exécutées
 
 ## Bonnes pratiques d'optimisation JavaScript
 
@@ -41,7 +41,7 @@ Si la cible ou le gain recherché n'est pas clair, pose une seule question court
 - Réduire les allocations, recomputations, parcours inutiles et accès redondants quand cela simplifie aussi le code.
 - Éviter les micro-optimisations obscures qui dégradent la lisibilité sans gain clair.
 - Garder des fonctions petites, testables et avec peu d'effets de bord.
-- Rester compatible avec la version ECMAScript cible du projet.
+- Rester compatible avec la version ECMAScript cible (es2020), vérifiée par `npx task ecma:source`.
 
 ## Contraintes de conformité AGENTS.md
 

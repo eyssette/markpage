@@ -2,7 +2,6 @@
 name: "code"
 description: "Écrire du code pour implémenter une fonctionnalité en respectant les bonnes pratiques et les conventions du projet. À utiliser lorsque l'utilisateur demande de créer une application, une fonction, un module, un composant"
 argument-hint: "<plan d'action ou fonctionnalité à implémenter>"
-agent: "agent"
 ---
 
 # Code
@@ -30,19 +29,24 @@ agent: "agent"
 
 ## 2. Principes de code à respecter systématiquement
 
-- **JavaScript modulaire** : fichiers courts, un rôle par fichier, imports/exports explicites (ESM, extension `.mjs`/`.js` selon l'existant). Pas d'objet fourre-tout, pas de fichier god-module, pas de fichier "barrel"
+### 2.1 Principes de code JS, CSS et Svelte
+
+- **Imports dynamiques pour les plugins/fonctionnalités optionnelles** : tout module chargé conditionnellement (plugin, fonctionnalité activable, code lourd non utilisé au démarrage) doit être importé via `import()` dynamique, jamais en `import` statique en tête de fichier. Cela inclut les composants Svelte non utilisés systématiquement.
+- **Pas de top-level await** : tout `await` doit être à l'intérieur d'une fonction asynchrone (`async function`). Ne jamais faire de `await` au niveau racine d'un module, y compris pour un `import()` dynamique.
+- **Compatibilité ECMAScript** : rester compatible avec l'ECMAScript cible (es2020). En cas de doute sur une syntaxe récente, lancer `npx task ecma:source` après écriture.
+- **Gestion des événements** : toujours utiliser des écouteurs d'événements (`addEventListener`) dans les fichiers JavaScript, plutôt que des attributs HTML (ex : `onclick`, `onchange`…).
+- **Architecture CSS** : ne jamais utiliser de CSS inline, ou alors seulement très rarement, quand ce serait complexifier de faire autrement. Les styles doivent être intégrés dans `app/css/style.css` ou dans un fichier dédié importé via `app/js/main.mjs`. Avant toute création de style, consulter `.plan/DESIGN.md` ; si ce fichier est absent, suggérer sa création via la SKILL `/design-md`. Utiliser la SKILL `/css` pour créer ou vérifier le style CSS produit.
+
+### 2.2 Principes généraux de programmation (rappel)
+
+- **JavaScript modulaire** : fichiers courts, un rôle par fichier, imports/exports explicites (ESM, extension `.mjs`/`.js` selon l'existant). Pas d'objet fourre-tout, pas de fichier god-module, pas de fichier "barrel".
 - **KISS** : la solution la plus simple qui fonctionne. Pas de sur-ingénierie.
 - **DRY** : factoriser la logique dupliquée dans une fonction/module partagé, mais ne pas factoriser prématurément deux usages qui n'ont pas encore prouvé être identiques.
 - **1 fonction = 1 responsabilité** : une fonction fait une seule chose, a un nom qui le dit, et reste testable isolément. Si une fonction fait "et... et...", la découper.
 - **Pas de classes** : utiliser des fonctions et des modules, jamais `class`. Préférer la composition de fonctions à l'héritage.
 - **Pas de mutation cachée** : privilégier les fonctions pures quand c'est raisonnable ; documenter clairement toute mutation d'un paramètre si elle est nécessaire.
-- **Imports dynamiques pour les plugins/fonctionnalités optionnelles** : tout module chargé conditionnellement (plugin, fonctionnalité activable, code lourd non utilisé au démarrage) doit être importé via `import()` dynamique, jamais en `import` statique en tête de fichier. Cela inclut les composants Svelte non utilisés systématiquement.
-- **Pas de top-level await** : tout `await` doit être à l'intérieur d'une fonction asynchrone (`async function`). Ne jamais faire de `await` au niveau racine d'un module, y compris pour un `import()` dynamique.
-- **Compatibilité ECMAScript** : rester compatible avec `ECMA_VERSION` défini dans `rolldown.config.mjs` / `Taskfile.yml` / `oxlint.config.mjs`. En cas de doute sur une syntaxe récente, lancer `npx task ecma:source` après écriture.
 - **Complexité cognitive faible** : préférer les retours anticipés (early return) aux imbrications profondes ; éviter les conditions complexes non nommées (extraire dans une variable/fonction au nom explicite).
 - **Nommage** : anglais pour le code (fonctions, variables), français pour les commentaires et la documentation (sauf demande contraire de l'utilisateur).
-- **Gestion des événements** : Toujours utiliser des écouteurs d'événements (addEventListener), dans les fichiers JavaScript, plutôt que des attributs HTML (ex: onclick, onchange …).
-- **Architecture CSS** : ne jamais utiliser du CSS inline, ou alors seulement très rarement, quand ce serait complexifier de faire autrement. Les styles doivent être intégrés dans `app/css/style.css` ou dans un fichier dédié importé via `app/js/main.mjs`. Avant toute création de style, consulter `.plan/DESIGN.md` ; si ce fichier est absent, suggérer sa création via la SKILL `/design-md`. Utiliser la SKILL `/css` pour créer ou vérifier le style CSS produit.
 
 ## 3. Accessibilité et sécurité
 
@@ -92,21 +96,22 @@ agent: "agent"
 
 ## 8. Lint
 
+- Lint les fichiers touchés d'abord avec `npx task lint:file -- <chemin_du_fichier>` et corriger absolument les erreurs ou avertissements signalés.
+- Lint les fichiers touchés ensuite avec `npx task lint:file:all -- <chemin_du_fichier>` et corriger les erreurs ou avertissements signalés (sauf si cela complique inutilement le code ou si l'utilisateur demande de ne pas le faire).
 - Ne jamais désactiver une règle de lint (inline, par fichier, ou globale dans `oxlint.config.mjs`).
   - Règle en erreur → corriger le code.
   - Règle en avertissement → essayer d'abord de corriger le code ; si ce n'est pas raisonnable, demander à l'utilisateur s'il veut la désactiver, en expliquant pourquoi.
-- `npx task lint` affiche les erreurs bloquantes. `npx task lint:all` affiche en plus les avertissements non bloquants.
 
 ## 9. Séquence de fin de tâche (obligatoire)
 
 Avant de considérer une tâche de code terminée, exécuter dans cet ordre :
 
-1. **`npx task review:file -- <chemin_du_fichier>` sur chaque fichier créé ou modifié** — étape obligatoire, non optionnelle, même si le lint et les tests passent. Corriger les points soulevés par la revue avant de rendre la main, ou expliquer à l'utilisateur pourquoi un point n'est pas corrigé.
-2. `npx task lint:all` pour vérifier l'ensemble
-3. `npx task tests:unit` (et `npx task tests:e2e:current` si un scénario `@CURRENT` a été écrit/modifié)
-4. `npx task ecma:source` si une syntaxe potentiellement incompatible a été touchée
+- [ ] `npx task lint:file:all -- <fichier>` sur chaque fichier créé/modifié, points corrigés
+- [ ] `npx task review:file -- <fichier>` sur chaque fichier créé/modifié, points corrigés
+- [ ] `npx task tests:unit` (et `npx task tests:e2e:current` si scénario `@CURRENT`)
+- [ ] `npx task ecma:source` si syntaxe potentiellement incompatible touchée
+- [ ] Aucune commande `push`/`bump`/`git push`/`--no-verify` lancée sans demande explicite
 
-Ne pas exécuter `npx task push`, `npx task bump`, `git push`, ni `git commit --no-verify` sans demande explicite de l'utilisateur dans le tour de conversation en cours, avec un avertissement clair sur l'effet de la commande (push multi-dépôts, montée de version, contournement des hooks).
 
 ## 10. Commit (seulement si demandé)
 

@@ -2,7 +2,6 @@
 description: "Créer un test unitaire Jasmine pour une fonction JavaScript sélectionnée. À utiliser pour assurer la fiabilité et la validation d'un morceau de code. Par exemple : « écris un test pour cette fonction », « génère un spec Jasmine pour ce code » ou « crée une suite de tests unitaires pour ce script »"
 name: "unit-test"
 argument-hint: "<fonction à tester>"
-agent: "agent"
 ---
 
 # Unit Test
@@ -33,10 +32,10 @@ Si la fonction cible ou le comportement attendu n'est pas assez clair, pose une 
 5. Si aucun fichier de test pertinent n'existe, en créer un dans `tests/unit` en miroir raisonnable du fichier source.
 6. Vérifier que le test reflète le vrai comportement attendu, sans adapter artificiellement l'assertion pour faire passer une implémentation incorrecte.
 7. Exécuter les validations du projet dans cet ordre :
-	- `npx task lint:all`
+	- `npx task lint:file:all -- <chemin_du_fichier>` pour les fichiers touchés
 	- `npx task tests:unit`
 	- `npx task ecma:source` si la syntaxe touchée peut impacter la compatibilité
-8. Résumer : comportement couvert, fichiers modifiés, validations exécutées, lacunes restantes.
+8. Résumer : comportement couvert, fichiers modifiés, cas ajoutés, validations exécutées, lacunes restantes.
 
 ## Bonnes pratiques Jasmine
 
@@ -49,6 +48,72 @@ Si la fonction cible ou le comportement attendu n'est pas assez clair, pose une 
 - Éviter la duplication inutile dans les tests, sans introduire d'abstraction qui masque l'intention.
 - Favoriser des entrées explicites et petites.
 - Tester les cas vides, limites ou atypiques quand ils sont plausibles pour la fonction.
+
+## Exemple de bon test unitaire Jasmine pour une fonction
+
+```javascript
+import { levenshteinDistance } from "../../app/myModule.js";
+
+describe("levenshteinDistance", function () {
+	it("returns 0 when comparing two identical strings", function () {
+		const result = levenshteinDistance("kitten", "kitten");
+		expect(result).toEqual(0);
+	});
+
+	it("returns the length of the second string when the first is empty", function () {
+		const result = levenshteinDistance("", "test");
+		expect(result).toEqual(4);
+	});
+
+	it("returns the length of the first string when the second is empty", function () {
+		const result = levenshteinDistance("test", "");
+		expect(result).toEqual(4);
+	});
+
+	it("calculates the distance when one substitution is required", function () {
+		const result = levenshteinDistance("kitten", "sitten");
+		expect(result).toEqual(1);
+	});
+
+	it("calculates the distance when one insertion is required", function () {
+		const result = levenshteinDistance("kitten", "kittlen");
+		expect(result).toEqual(1);
+	});
+
+	it("calculates the distance when one deletion is required", function () {
+		const result = levenshteinDistance("kitten", "kiten");
+		expect(result).toEqual(1);
+	});
+
+	it("computes the correct distance with multiple edits", function () {
+		const result = levenshteinDistance("kitten", "sitting");
+		expect(result).toEqual(3);
+	});
+
+	it("handles completely different strings", function () {
+		const result = levenshteinDistance("abc", "xyz");
+		expect(result).toEqual(3);
+	});
+
+	it("returns 0 when comparing two empty strings", function () {
+		const result = levenshteinDistance("", "");
+		expect(result).toEqual(0);
+	});
+
+	it("treats case-sensitive differences as edits", function () {
+		const result = levenshteinDistance("Apple", "apple");
+		expect(result).toEqual(1);
+	});
+
+	it("calculates the distance for longer strings with multiple edits", function () {
+		const result = levenshteinDistance(
+			"kitten is a small domesticated carnivorous mammal",
+			"sitting is a common position for humans",
+		);
+		expect(result).toEqual(30);
+	});
+});
+```
 
 ## Conventions locales à suivre
 
@@ -66,14 +131,6 @@ Si la fonction cible ou le comportement attendu n'est pas assez clair, pose une 
 - Si le comportement testé implique du texte visible utilisateur, vérifier que la source réelle reste bien gérée via l'i18n du projet.
 - Ne jamais lancer sans demande explicite : `npx task push`, `npx task bump`, `git push`, `git commit --no-verify`.
 
-## Format de sortie attendu
-
-- Créer ou compléter le test demandé : si le mode "agent" n'est pas activé, demander à l'utilisateur de l'activer pour appliquer les changements.
-- Fournir un résumé concis avec :
-	- le comportement couvert
-	- les fichiers modifiés
-	- les cas ajoutés
-	- les validations exécutées
 
 ## Rappels de style
 
