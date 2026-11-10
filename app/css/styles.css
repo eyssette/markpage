@@ -122,6 +122,14 @@ h3 {
 	cursor: pointer;
 	flex-wrap: wrap;
 	border-radius: 10px;
+	font-size: 1.125rem;
+	font-weight: 500;
+}
+
+.lightpad h3 {
+	padding-top: 0.5em;
+	font-size: 1.35rem;
+	font-weight: 600;
 }
 
 h3 img {
@@ -280,8 +288,9 @@ footer a aside {
 }
 
 .subSection.visible h3 {
-	border: 1px solid black;
+	border: 1px solid #666;
 	border-radius: 5px;
+	font-weight: 600;
 }
 
 .sectionContent,
