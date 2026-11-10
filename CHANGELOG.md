@@ -1,5 +1,15 @@
 # Changelog
 
+## 5.5.0 (2026-11-10)
+
+### Feat
+
+- **stats**: possibilité d'avoir des statistiques d'utilisation sur un site Markpage/Lightpad [(8d535c5)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/8d535c554880c49b0dc228efd3bc9c41436af5c1)
+
+### Fix
+
+- **css**: amélioration du style des titres h3 [(2f50042)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/2f50042d280c81785627cdafdfb455fddc2c94bc)
+
 ## 5.4.4 (2026-11-07)
 
 ### Fix
