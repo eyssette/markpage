@@ -1,6 +1,7 @@
 import { showOnlyThisElement } from "./showOnlyThisElement";
 import { yaml } from "../processMarkdown/yaml";
 import { handleIframes } from "./iframes";
+import { getStatsData, sendStatsData } from "../stats/statistics";
 
 const bodyElement = document.body;
 const progressBarElement = document.getElementById("progressBar");
@@ -9,6 +10,12 @@ let previousSection = initialMessageElement;
 
 // Fonction pour changer l'affichage en fonction des paramètres dans l'objet param (qui correspond aux paramètres dans l'URL)
 export function changeDisplayBasedOnParams(param, markpageData) {
+	const websiteName = markpageData[0];
+	if (yaml.stats && yaml.stats.destination) {
+		const statsData = getStatsData({ websiteName });
+		sendStatsData(yaml, statsData);
+	}
+
 	let visibleElement = initialMessageElement;
 	const sectionsTitle = markpageData[2];
 	const numberOfSections = sectionsTitle.length;
