@@ -10,7 +10,10 @@ let previousSection = initialMessageElement;
 
 // Fonction pour changer l'affichage en fonction des paramètres dans l'objet param (qui correspond aux paramètres dans l'URL)
 export function changeDisplayBasedOnParams(param, markpageData) {
-	const websiteName = markpageData[0];
+	const websiteName =
+		(document.body.querySelector("h1") &&
+			document.body.querySelector("h1").textContent.trim()) ||
+		"";
 	if (yaml.stats && yaml.stats.destination) {
 		const statsData = getStatsData({ websiteName });
 		sendStatsData(yaml, statsData);
