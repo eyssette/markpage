@@ -13,19 +13,6 @@ function generateUUID() {
 	});
 }
 
-function getBaseUrl() {
-	const hasBaseUrlInHash =
-		window.location.origin.includes("markpage.") ||
-		window.location.origin.includes("lightpad.") ||
-		window.location.origin.includes("localhost");
-
-	if (hasBaseUrlInHash) {
-		const hash = window.location.hash && window.location.hash.substring(1);
-		return hash || window.location.origin;
-	}
-	return window.location.origin;
-}
-
 const userId = generateUUID();
 
 let index = 0;
@@ -37,8 +24,7 @@ export function getStatsData(options = {}) {
 			: document.querySelector("h1").textContent || "";
 	const statsData = {
 		website_name: websiteName,
-		website_url: window.location.href,
-		website_base_url: getBaseUrl(),
+		website_page: window.location.href,
 		connexion_id: userId,
 		connexion_date: new Date().toISOString(),
 		connexion_view_index: index,
