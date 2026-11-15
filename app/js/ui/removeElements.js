@@ -16,13 +16,14 @@ export function removeH3(params) {
 	for (const h3Element of h3Elements) {
 		h3Element.style.display = "none";
 	}
-	if (params.subsec) {
+	if (params.subsec && params.sec) {
 		// À la place du titre en haut de page, on met le titre h3 de la section affichée
-		const h3Title = h3Elements[params.subsec - 1].firstChild.innerHTML;
-		if (params.sec && h3Title) {
-			const h2Title = document.querySelector(
-				"#section-" + params.sec + " h2 a",
-			);
+		const h2Title = document.querySelector("#section-" + params.sec + " h2 a");
+		const h3ElementsFromSection = document.querySelectorAll(
+			"#section-" + params.sec + " h3 a",
+		);
+		const h3Title = h3ElementsFromSection[params.subsec - 1].textContent;
+		if (h2Title && h3Title) {
 			h2Title.parentElement.innerHTML = h2Title.innerHTML + " / " + h3Title;
 		}
 	}
