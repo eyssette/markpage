@@ -1,11 +1,12 @@
 ---
 editor: true
-plugins: copycode
+plugins: copycode, highlight
 style: |
   img{border-radius:10px}
   #initialMessage {max-width: 800px;}
   @media (min-width: 835px) {#markpage-icon{ float: left; margin-right: 3em; margin-bottom: 5em;} }
   @media (max-width: 834px) { #markpage-icon{display: flex; justify-content: center;} }
+  .language-ruby .hljs-symbol{background:transparent}
 ---
 
 # Markpage
@@ -57,7 +58,7 @@ Pour ajouter un sous-titre au titre de section, on place le sous-titre dans un �
 
 On peut combiner les balises `span` et `aside`. On aurait ainsi par exemple :
 
-```
+```markdown
 #​​# Titre section <span>précision sur le titre</span><aside>Sous-titre</aside>
 ```
 
@@ -71,8 +72,8 @@ Pour ajouter une image, on ajoute l'image en markdown dans la ligne juste au-des
 
 On peut combiner ces trois éléments.
 
-```
-​#​​#​# Titre sous-section <aside>Sous-titre<aside>2e sous-titre</aside></aside>
+```markdown
+#​​#​# Titre sous-section <aside>Sous-titre<aside>2e sous-titre</aside></aside>
 ![](URL-image)
 ```
 
@@ -82,7 +83,7 @@ On peut combiner ces trois éléments.
 
 Vous pouvez au début de votre fichier ajouter un en-tête YAML de ce type :
 
-```
+```yaml
 ---
 maths: true
 favicon: URL_image
@@ -130,7 +131,7 @@ Vous pouvez attribuer une classe CSS à une ligne avec la syntaxe `{.maClasse}` 
 
 Si vous voulez attribuer une classe CSS à plusieurs lignes, il faut utiliser cette syntaxe :
 
-```
+```markdown
 <div markdown class="maClasse">
 Bloc de texte Markdown multiligne
 </div>
@@ -204,7 +205,7 @@ _Kroki_ permet de générer automatiquement des graphiques avec la syntaxe suiva
 
 Pour cela, il faut utiliser un bloc code et indiquer au début la syntaxe qu'on veut utiliser, ainsi :
 
-````
+````markdown
 ```mermaid
 On met ici son graphique avec la syntaxe mermaid
 ```
@@ -227,7 +228,7 @@ Mot-clé pour ajouter ce plugin : `text2quiz`
 
 On intègre un exercice text2quiz avec la syntaxe suivante : 
 
-````
+````markdown
 ```text2quiz
 On met ici ses exercices avec la syntaxe text2quiz
 ```
@@ -244,7 +245,7 @@ Cet add-on permet d'avoir un bouton cliquable pour copier dans le presse-papier 
 
 Rappel de la syntaxe pour un bloc code :
 
-````
+````markdown
 ```
 contenu du bloc code
 ```

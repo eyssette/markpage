@@ -1,7 +1,7 @@
 ---
 editor: true
-plugins: copycode
-style: a.selectTheme{display:inline-block;margin:0.5em 0.5em;}ul span{font-size:0.9em;display:block;color:#333}
+plugins: copycode, highlight
+style: a.selectTheme{display:inline-block;margin:0.5em 0.5em;}ul span{font-size:0.9em;display:block;color:#333}.language-ruby .hljs-symbol{background:transparent}
 ---
 
 # <img width="50" height="50" alt src="lightpad.svg?nolightbox"> Lightpad
@@ -49,7 +49,7 @@ Des boutons dédiés permettent de formater correctement le texte. De plus il af
 
 Pour donner un titre à votre pad, faites-le précéder de #.
 
-```
+```markdown
 # Mon pad d'ERUN
 ```
 
@@ -57,7 +57,7 @@ Pour donner un titre à votre pad, faites-le précéder de #.
 
 Les titres de colonnes sont précédés de ##.
 
-```
+```markdown
 ## Bienvenue
 ```
 
@@ -65,7 +65,7 @@ Les titres de colonnes sont précédés de ##.
 
 Les titres de capsules sont précédés de ###.
 
-```
+```markdown
 ### Comment ça marche ?
 ```
 
@@ -74,7 +74,7 @@ Les titres de capsules sont précédés de ###.
 Il faut donc structurer le texte en colonnes et en capsules.
 Et on écrit à l'intérieur.
 
-```
+```markdown
 # Lightpad
 
 ## Bienvenue
@@ -93,24 +93,26 @@ Il suffit de créer un texte sur...
 ### Écrire en gras
 
 Pour écrire **en gras** on encadre avec des **.
-```
+```markdown
 Texte **en gras**
 ```
 
 ### Écrire en italique
 
 Pour écrire *en italique*, on encadre avec des *.
-```
+```markdown
 Texte *en italique*
 ```
+
 On peut ***combiner***.
-```
+```markdown
 Texte ***en gras italique***
 ```
 
 ### Souligner
 
 Pour ++souligner++ on encadre avec des `++`.
+
 ```
 Texte ++souligné++
 ```
@@ -127,7 +129,7 @@ Ce texte est --rouge:en rouge--.
 ### Listes
 
 Pour formater une liste, on commence chaque ligne avec un tiret.
-```
+```markdown
 - pomme
 - poire
 - abricot
@@ -140,7 +142,7 @@ Résultat :
 ### Titres
 
 Pour indiquer un titre à l'intérieur d'une capsule, on le fait précéder de #### ou de ##### (sous-titre)
-```
+```markdown
 #### Titre
 ##### Sous-titre
 Contenu
@@ -188,7 +190,7 @@ Voici des détails.
 
 ### Images
 Pour insérer une image on écrit :
-```
+```markdown
 ![](lien de l'image)
 ```
 Par exemple :
@@ -208,7 +210,7 @@ Et le lien est automatiquement formaté !
 Pour insérer une vidéo, on colle simplement le lien d'intégration (iframe).
 Par exemple depuis https://tube-numerique-educatif.apps.education.fr/
 
-```
+```markdown
 <iframe title="Présentation de la Journée du Libre éducatif 2024" width="300" height="215" src="https://tube-numerique-educatif.apps.education.fr/videos/embed/85f97f35-d00c-4aa8-ad51-bcc9135ff8a2" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
 ```
 
@@ -219,6 +221,7 @@ Il est recommandé de mettre la vidéo dans un encadré qui se déplie afin d'op
 <iframe title="Présentation de la Journée du Libre éducatif 2024" width="300" height="215" src="https://tube-numerique-educatif.apps.education.fr/videos/embed/85f97f35-d00c-4aa8-ad51-bcc9135ff8a2" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
 :::
 ```
+
 :::info collapsible Voir la vidéo
 <iframe title="Présentation de la Journée du Libre éducatif 2024" width="300" height="215" src="https://tube-numerique-educatif.apps.education.fr/videos/embed/85f97f35-d00c-4aa8-ad51-bcc9135ff8a2" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms" loading="lazy"></iframe>
 :::
@@ -240,7 +243,7 @@ et le lien entre ( ).
 
 Par exemple :
 
-```
+```markdown
 [La doc](https://docs.forge.apps.education.fr/)
 ```
 Résultat :
@@ -253,7 +256,7 @@ Pour afficher du code sans qu'il ne soit interprété, encadrez-le avec des `.
 
  
 
-````
+````markdown
 Ceci est du **gras**.
 
 ```
@@ -285,7 +288,7 @@ On peut personnaliser l'apparence de Lightpad en utilisant les thèmes disponibl
 
 On définit le thème dans un en-tête en début de fichier.
 
-```
+```yaml
 ---
 theme: digipad
 ---
@@ -303,20 +306,21 @@ On peut aussi ajouter des styles CSS en les définissant dans une balise `<style
 ### Logo
 
 Dans l'en-tête on peut utiliser un logo personnalisé, en le mettant juste avant son titre
-```
+```markdown
 # ![](URL_Image) Mon titre
 ```
+
 :::info
 Astuce : sur Codimd il suffit de faire glisser l'image depuis l'ordinateur.
 :::
 
 On peut aussi utiliser des [codes emojis](https://eyssette.forge.apps.education.fr/emojis), ou bien copier-coller un emoji !
 
-```
+```markdown
 # :de: Meine Webseite
 ```
 
-```
+```markdown
 🇩🇪 Meine Webseite
 ```
 
