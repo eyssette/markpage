@@ -32,6 +32,11 @@ export const highlightCode = (editor) => {
 		/(?<!_)_(\w.*?)_(?!_)/g,
 		'<span class="markdownItalic">_$1_</span>',
 	);
+	// Coloration syntaxique pour le texte souligné
+	code = code.replace(
+		/\+\+(\w.*?)\+\+/g,
+		'<span class="markdownUnderline">++$1++</span>',
+	);
 	// Coloration syntaxique pour les listes
 	code = code.replace(
 		/^(\s*)([-*]|\d+\.)(\s)/gm,

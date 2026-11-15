@@ -74,6 +74,9 @@ body.editMode.lightpad #innerBox {
 .markdownItalic {
 	font-style: italic;
 }
+.markdownUnderline {
+	text-decoration: underline;
+}
 .markdownLists {
 	color: darkblue;
 	font-weight: bold;
