@@ -79,3 +79,6 @@ code.hljs {
 .hljs-strong {
 	font-weight: 700;
 }
+code.hljs.language-markdown {
+	line-height: normal;
+}
