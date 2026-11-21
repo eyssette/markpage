@@ -5,11 +5,15 @@ export function leaveExportMode() {
 	if (!hasExportParam()) return;
 	const url = new URL(window.location.href);
 	url.searchParams.delete("export");
+	url.searchParams.delete("singlePage");
 	window.location.href = url.href;
 }
 
 function enterExportMode() {
 	const url = new URL(window.location.href);
+	url.searchParams.delete("sec");
+	url.searchParams.delete("subsec");
+	url.searchParams.set("singlePage", "true");
 	url.searchParams.set("export", "true");
 	window.location.href = url.href;
 }
