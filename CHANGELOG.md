@@ -1,5 +1,25 @@
 # Changelog
 
+## 5.6.0 (2026-11-21)
+
+### Feat
+
+- **params**: ajout du paramètre "focus" dans l'URL pour afficher une seule page [(c31de15)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/c31de1584b03e3c74af517bc143a9f88bfd166d4)
+
+### Fix
+
+- **search**: pas de gestion des recherches si la barre de recherche est supprimée [(c36dd18)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/c36dd1897db05676c25f9cc73dc5cb2e16b2ca83)
+- **ui**: supression de la barre de recherche si on supprime les h3 (pour afficher une seule page) [(ee93cb3)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/ee93cb3e3802a563f04abf33d51adff4db213812)
+- **ui**: suppression de la section de navigation quand on supprime les titres h3 (pour afficher une page seulement) [(e5b35f4)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/e5b35f47f418c4f8d1cc2701781f92c6cfefbf36)
+- **ui**: corrige l'affichage du titre quand on utilise le paramètres `h3=0` dans l'URL [(ea8d8df)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/ea8d8dfaf5c107e48f73ce38d7fd6f295b2d7fd0)
+- **highlight**: utilisation de highlight pour les blocs code des pages d'accueil de Markpage et Lightpad [(de1b74b)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/de1b74b319d6c66063af61b4597ee4496f7c1e2a)
+- **highlight**: prise en compte des éléments soulignés dans l'éditeur [(2b943de)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/2b943de7417d4b06ed1bfba0714169548188b99d)
+- **highlight**: mise à jour de highlight.js [(b2142b3)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/b2142b32ad69de6f440de333ecea38b2ac34f3e7)
+- **css**: line-height normal pour les blocs de code en Markdown [(9bb8f88)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/9bb8f8836d70706d93c79e81ae129787f4074691)
+- **html**: ajout du lien vers le fichier manifest [(6b11e5a)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/6b11e5a14148189e7c2813da9ff0f128d0e29f65)
+- **stats**: simplification des données envoyées pour les statistiques [(3e425bf)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/3e425bf2d205e95e9e028e5e95ce36e04de88010)
+- **stats**: récupération du titre du site via l'élément H1 [(fe76d54)](https://forge.apps.education.fr/markpage/markpage.forge.apps.education.fr/-/commit/fe76d5409fd86fd9d99c9267046429ef2d6b79a6)
+
 ## 5.5.0 (2026-11-10)
 
 ### Feat
