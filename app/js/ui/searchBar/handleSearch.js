@@ -9,6 +9,9 @@ export function handleSearch(hash, markpageData) {
 	const sectionsTitle = markpageData[2];
 	const subSectionsData = markpageData[3];
 	const searchbarElement = document.getElementById("searchBar");
+	if (!searchbarElement) {
+		return;
+	}
 
 	const urlParams = new URLSearchParams(window.location.search);
 	const shouldRemoveSearchBar =
