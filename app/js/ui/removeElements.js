@@ -30,6 +30,11 @@ export function removeH3(params) {
 	// On supprime aussi la section de navigation
 	const navSections = document.querySelector("#nav");
 	navSections.style.display = "none";
+	// On supprime la barre de recherche
+	const searchBar = document.querySelector("#searchBar");
+	if (searchBar) {
+		searchBar.remove();
+	}
 
 	// On recale correctement en CSS le contenu de la section, étant donné qu'on a supprimé la partie "titres h3" sur la gauche
 	const topPosition = params.h2 === "0" ? " top:0px;" : "";
