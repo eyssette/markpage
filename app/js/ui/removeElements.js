@@ -27,6 +27,10 @@ export function removeH3(params) {
 			h2Title.parentElement.innerHTML = h2Title.innerHTML + " / " + h3Title;
 		}
 	}
+	// On supprime aussi la section de navigation
+	const navSections = document.querySelector("#nav");
+	navSections.style.display = "none";
+
 	// On recale correctement en CSS le contenu de la section, étant donné qu'on a supprimé la partie "titres h3" sur la gauche
 	const topPosition = params.h2 === "0" ? " top:0px;" : "";
 	const styleSubSectionContent = `@media screen and (min-width: 601px) {.subSectionContent {margin-left:140px;${topPosition}}}`;
