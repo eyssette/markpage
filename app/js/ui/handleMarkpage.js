@@ -249,6 +249,13 @@ export function handleMarkpage(markpageData) {
 		});
 	}
 	// On peut ajouter un paramètre dans l'URL pour cacher le menu du bas et l'icône de page d'accueil
+
+	if (params.focus != undefined) {
+		params.menu = "0";
+		params.h2 = "0";
+		params.h3 = "0";
+	}
+
 	if (params.menu && params.menu == 0) {
 		removeMenu(linkToHomePageElement);
 	}
